@@ -1,0 +1,7 @@
+.container {
+	padding-right:30rpx;
+	padding-left:30rpx;
+}
+.foot {
+	padding-bottom:40rpx;
+}

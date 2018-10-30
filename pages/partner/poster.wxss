@@ -1,0 +1,24 @@
+.partner-introduce {
+	width:100%;
+}
+.partner-introduce image {
+	width:100%;
+}
+/* sp */
+.cushion {
+	height:100rpx;
+}
+.partner {
+	position:fixed;
+	left:0rpx;
+	right:0rpx;
+	bottom:0rpx;
+	height:100rpx;
+	width:100%;
+	background-color:#fed406;
+	color:white;
+}
+.partner navigator {
+	line-height:100rpx;
+	text-align:center;
+}

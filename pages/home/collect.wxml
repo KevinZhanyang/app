@@ -1,0 +1,5 @@
+<!-- articles -->
+<view class="bg-white">
+    <article articles="{{ articles }}"></article>
+</view>
+<empty tests="{{ articles.length }}" title="您还没有收藏的商品哦"></empty>

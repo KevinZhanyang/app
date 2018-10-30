@@ -1,0 +1,10 @@
+<!-- SERVICE START -->
+<view class="partner-introduce">
+	<image mode="widthFix" src="http://static.124115.com/static/program/img/partner/background.jpg"></image>
+</view>
+<!-- SAVE START -->
+<view class="cushion"></view>
+<view class="partner">
+	<navigator url="/pages/partner/register" hover-class="none">成为合伙人</navigator>
+</view>
+<!-- SAVE END -->

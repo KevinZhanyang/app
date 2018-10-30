@@ -1,0 +1,12 @@
+<view class="status">
+    <view class="avatar">
+        <navigator url="/pages/published/index?user_id={{ user.id }}" hover-class="navigator-hover">
+            <image src="{{ user.avatar }}"></image>
+        </navigator>
+    </view>
+    <view class="nickname">{{ user.nickname }}</view>
+    <view class="attr">
+        <view class="count">已发布商品 {{ count }} 件</view>
+        <view class="created_quantum">{{ user.created_quantum }}入驻</view>
+    </view>
+</view>

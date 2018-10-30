@@ -1,0 +1,1 @@
+<cover-view class="shadow" wx:if="{{ show == true }}"></cover-view>

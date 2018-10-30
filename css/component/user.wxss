@@ -1,0 +1,39 @@
+._user {
+	padding-top:50rpx;
+	padding-left:30rpx;
+	padding-right:30rpx;
+	padding-bottom:30rpx;
+	border-bottom:1px solid #EEE;
+	margin-bottom:8rpx;
+}
+.user {
+	position: relative;
+	height:80rpx;
+	padding-left:110rpx;
+}
+.user .avatar {
+	position:absolute;
+	left:0rpx;
+	top:0rpx;
+	right:0rpx;
+	bottom:0rpx;
+	width:80rpx;
+	height:80rpx;
+	border-radius:40rpx;
+	overflow:hidden;
+}
+.user .avatar image {
+	height:80rpx;
+	width:80rpx;
+}
+.user .nickname {
+	height:40rpx;
+	font-size:30rpx;
+	line-height:30rpx;
+	color:black;
+}
+.user .scores {
+	height:40rpx;
+	line-height:40rpx;
+	color:#333;
+}

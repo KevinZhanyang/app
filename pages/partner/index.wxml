@@ -1,0 +1,17 @@
+<!-- STATISTICS START -->
+<view class="statistics">
+	合伙人置顶特权 | 您目前有<label>{{ count }}</label>次置顶机会
+</view>
+<!-- STATISTICS END -->
+<!-- OBTAIN START -->
+<view class="container obtain">
+	<!-- sp -->
+	<view class="explain">输入暗号获取置顶次数</view>
+	<!-- sp -->
+	<view class="code">
+		<input type="text" placeholder="输入暗号" bindinput="updateCode" />
+	</view>
+	<!-- sp -->
+	<button class="btn-yellow" bindtap="obtain">获取</button>
+</view>
+<!-- OBTAIN END -->

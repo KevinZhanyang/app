@@ -1,0 +1,8 @@
+/* wechat */
+@import "./css/common.wxss";
+
+/* toolkit */
+@import './css/toolkit.wxss';
+
+/* component */
+@import './css/component.wxss';

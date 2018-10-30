@@ -1,0 +1,21 @@
+.empty {
+	height:60vh;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.empty .title {
+	text-align:center;
+	font-size:28rpx;
+	color:#666;
+	line-height:120rpx;
+}
+.empty .png {
+	text-align:center;
+	width:500rpx;
+	height:294rpx;
+}
+.empty .png image {
+	width:500rpx;
+	height:294rpx;
+}

@@ -1,0 +1,34 @@
+.products {
+	padding-top:50rpx;
+	padding-bottom:30rpx;
+	border-top:1px solid #EEE;
+}
+.products .product {
+	border-radius:20rpx;
+	background-color:#FF9265;
+}
+.products .product + .product {
+	margin-bottom:15rpx;
+}
+.product .content {
+	display:flex;
+	justify-content: space-between;
+	height:50rpx;
+	padding-right:15rpx;
+	margin-bottom:25rpx;
+}
+.product .content .name {
+	font-size:30rpx;
+	line-height:50rpx;
+	color:#666;
+}
+.product .content .exchange {
+}
+.product .img {
+	border-radius:8rpx;
+	overflow:hidden;
+}
+.product .img image {
+	width:100%;
+	height:200rpx;
+}

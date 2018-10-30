@@ -1,0 +1,89 @@
+<shadow show="{{ showShadow }}"></shadow>
+<!-- USER START -->
+<profile user="{{ user }}"></profile>
+<!-- USER END -->
+<!-- EXCHANGE START -->
+<view class="_exchange">
+    <navigator url="/pages/exchange/index" hover-class="navigator-hover">
+    <view class="exchange">
+        <image src="http://static.124115.com/static/program/img/home/exchange.jpg"></image>
+    </view>
+    </navigator>
+</view>
+<!-- HOME -->
+<view class="bg-white">
+    <view class="cells menus">  
+        <!-- sp --> 
+        <navigator url="/pages/home/message" hover-class="none">
+        <view class="cell">
+            <view class="primary">
+                <image class="icon" src="http://static.124115.com/static/program/img/home/message.png"></image>
+                我的消息
+                <label class="notify" wx:if="{{ systemNotify > 0 }}">{{ systemNotify }}</label>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+        </navigator>
+        <!-- sp -->  
+        <navigator url="/pages/home/published" hover-class="none">
+        <view class="cell">    
+            <view class="primary">
+                <image class="icon" src="http://static.124115.com/static/program/img/home/aircraft.png"></image>
+                我的发布
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+        </navigator>
+        <!-- sp -->  
+        <navigator url="/pages/home/exchange" hover-class="none">
+        <view class="cell">    
+            <view class="primary">
+                <image class="icon" src="http://static.124115.com/static/program/img/home/notebook.png"></image>
+                我的兑换
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+        </navigator>
+        <!-- sp -->
+        <navigator url="/pages/home/collect" hover-class="none">
+        <view class="cell">    
+            <view class="primary">
+                <image class="icon" src="http://static.124115.com/static/program/img/home/star.png"></image>
+                我的收藏
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+        </navigator>
+        <!-- sp -->
+        <view class="cell">    
+            <view class="primary">
+                <image class="icon" src="http://static.124115.com/static/program/img/home/service.png"></image>
+                <button class="btn-none" open-type="contact" style="width:80vw;text-align:left;">联系客服</button>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+        <!-- sp -->
+        <navigator url="/pages/home/bind" hover-class="none">
+        <view class="cell">
+            <view class="primary">
+                <image class="icon" src="http://static.124115.com/static/program/img/home/phone.png"></image>
+                绑定手机号码
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+        </navigator>
+        <!-- sp -->  
+        <navigator url="{{ user.is_partner == 1 ? '/pages/partner/index' : '/pages/partner/poster' }}" hover-class="none">
+        <view class="cell">    
+            <view class="primary">
+                <image class="icon" src="http://static.124115.com/static/program/img/home/partner.png"></image>
+                我是合伙人
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+        </navigator>
+    </view>
+</view>
+<!-- MENU START -->
+<menu number="2" notify="{{ systemNotify }}"></menu>
+<!-- MENU END -->

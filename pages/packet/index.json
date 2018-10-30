@@ -1,0 +1,10 @@
+{
+	"navigationBarBackgroundColor": "#d95940",
+	"navigationBarTextStyle": "white",
+	"navigationBarTitleText": "红包详情",
+	"backgroundColor": "#F8F8F8",
+	"backgroundTextStyle": "dark",
+	"enablePullDownRefresh": false,
+	"disableScroll": false,
+	"onReachBottomDistance": 50
+}

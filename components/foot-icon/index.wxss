@@ -1,0 +1,9 @@
+/* components/my-component.wxss */
+.foot {
+	padding-bottom:20rpx;
+	text-align:center;
+}
+.foot .icon {
+	height:38rpx;
+	width:168rpx;
+}

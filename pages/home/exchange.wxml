@@ -1,0 +1,38 @@
+<!-- SEARCH START -->
+<view class="_user bg-white">
+	<view class="user">
+	    <view class="avatar"><image src="{{ user.avatar }}"></image></view>
+	    <view class="nickname">{{ user.nickname }}</view>
+	    <view class="scores">积分 : {{ user.scores }} 分</view>
+	</view>
+</view>
+<!-- SEARCH END -->
+<!-- ARROW START -->
+<view class="container bg-white _arrow">
+	<navigator class="arrow" url="/pages/exchange/index" hover-class="none">现在去兑换？</navigator>
+</view>
+<!-- ARROWS END -->
+<!-- PRODUCTS -->
+<view class="exchanges">
+	<view class="exchange bg-white" wx:for="{{ exchanges }}" wx:for-index="key" wx:for-item="exchange" wx:key="id">
+		<view class="primary">
+			<view class="name">{{ exchange.product.name }}</view>
+			<view class="price">{{ exchange.product.price }} 积分 </view>
+			<view class="process">客服: {{ exchange.result }}</view>
+			<view class="process">{{ exchange.created_at }}</view>
+			<view class="process">收件人电话 : {{ exchange.phone }}</view>
+			<view class="process">收件人 : {{ exchange.recipient }}</view>
+			<view class="process">收件地址 : {{ exchange.address }}</view>
+		</view>
+		<!-- sp -->
+		<view class="img">
+			<image src="{{ exchange.product.img }}"></image>
+		</view>
+	</view>
+</view>
+<!-- empty -->
+<empty tests="{{ exchanges.length }}" title="您还没有兑换的商品哦"></empty>
+
+
+
+

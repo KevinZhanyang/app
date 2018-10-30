@@ -1,0 +1,139 @@
+.images {
+	position: relative;
+	display:flex;
+	flex-wrap:wrap;
+	flex-direction: column;
+	justify-content: flex-start;
+	white-space:nowrap;
+	width:100%;
+	padding-top:15rpx;
+	padding-bottom:15rpx;
+	margin-bottom:25rpx;
+	border-bottom:1px solid #EEE;
+}
+.images .camera {
+	/* (750 - 120) / 2 */
+	/* margin-left:315rpx; */
+	margin-left:285rpx;
+}
+.image {
+	position:relative;
+	display:inline-block;
+	width:180rpx;
+	height:180rpx;
+	overflow:hidden;
+	margin-left:15rpx;
+}
+.image image {
+	width:180rpx;
+	height:180rpx;
+}
+.image .close {
+	position:absolute;
+	top:0rpx;
+	right:0rpx;
+	width:35rpx;
+	height:35rpx;
+	background-color:black;
+	color:white;
+	font-size:40rpx;
+	line-height:24rpx;
+	text-align:center;
+}
+.image .close image {
+	width:50rpx;
+	height:50rpx;
+}
+.image .cover {
+	position:absolute;
+	bottom:0rpx;
+	right:0rpx;
+	left:0rpx;
+	background-color:#ff5555;
+	text-align:center;
+	width:180rpx;
+	height:35rpx;
+	opacity:0.8;
+	font-size:26rpx;
+	line-height:35rpx;
+	color:white;
+}
+.image .cover-canvel {
+	display:none;
+}
+.image .status {
+	position:absolute;
+	top:0rpx;
+	bottom:0rpx;
+	right:0rpx;
+	left:0rpx;
+	background-color:rgba(0,0,0, 0.8);
+	text-align:center;
+	width:180rpx;
+	height:180rpx;
+	opacity:0.8;
+	font-size:30rpx;
+	line-height:180rpx;
+	color:white;
+}
+/* textarea */
+.description {
+	width:100%;
+	padding-top:30rpx;
+	padding-bottom:30rpx;
+	border-top:1px solid #EEE;
+	border-bottom:1px solid #EEE;
+	margin-bottom:25rpx;
+	font-size:26rpx;
+	line-height:30rpx;
+}
+.description .content {
+	width:100%;
+}
+.layer {
+	height:300rpx;
+}
+.publish {		
+	position:fixed;
+	right:0rpx;
+	left:0rpx;
+	bottom:0rpx;
+	padding:15rpx 30rpx;
+	background-color:white;
+}
+.publish .published {
+	background-color:#fed406;
+	color:white;
+}
+/* guide start */
+.guide-layer {
+	position:fixed;
+	top:0rpx;
+	bottom:0rpx;
+	right:0rpx;
+	left:0rpx;
+	background-color:rgba(0,0,0,0.6);
+}
+._guide {
+	position:fixed;
+	top:0rpx;
+	bottom:0rpx;
+	right:0rpx;
+	left:0rpx;
+	background-image:url(http://static.124115.com/static/program/img/publish/guide.png);
+	background-size:100% 100%;
+	background-position:center center;
+	width:100vw;
+	height:100vh;
+}
+._guide .guide {
+	positions:relative;
+}
+._guide .guide .close {
+	position:absolute;
+	right:10rpx;
+	bottom:160rpx;
+	width:180rpx;
+	height:100rpx;
+}
+/* guide end */

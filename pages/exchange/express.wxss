@@ -1,0 +1,30 @@
+.express {
+	padding-left:20rpx;
+	padding-right:20rpx;
+	border-top:1px solid #E4E4E4;
+	background-color:white;
+}
+.express .item {
+	height:81rpx;
+	display:flex;
+	justify-content: space-around;
+	border-bottom:1px solid #EEEEEE;
+	line-height:80rpx;
+	color:#2b2b2fb;
+}
+.express .item .secondary {
+	width:150rpx;
+	font-size:26rpx;
+	line-height:80rpx;
+	color:#9B9B9B;
+}
+.express .item .primary {
+	flex-grow:1;
+	color:#9B9B9B;
+}
+.express .item .primary .input {
+	font-size:26rpx;
+	line-height:80rpx;
+	height:80rpx;
+	padding-left:15rpx;
+}

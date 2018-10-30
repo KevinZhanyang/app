@@ -1,0 +1,13 @@
+<view class="img">
+	<image mode="widthFix" src="{{ article.circle_img }}"></image>
+</view>
+<button bindtap="storageToPhotoAlbum">保存到相册</button>
+<!-- GUIDE START -->
+<view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}">
+</view>
+<view class="_guide z-elves" wx:if="{{ guideStatus == 0 }}">
+    <view class="guide">
+        <view class="close" bindtap="closeGuide"></view>
+    </view>
+</view>
+<!-- GUIDE END -->

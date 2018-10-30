@@ -1,0 +1,15 @@
+._exchange {
+	padding-bottom:17rpx;
+}
+.exchange {
+	height:168rpx;
+	width:100%;
+}
+.exchange image {
+	height:168rpx;
+	width:100%;
+}
+/* menu */
+.menus {
+	padding-left:40rpx;
+}

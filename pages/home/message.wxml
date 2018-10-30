@@ -1,0 +1,17 @@
+<view class="messages">
+	<view class="message" catchtap="navigator" data-id="{{ notify.id }}" wx:for="{{ notifies }}" wx:for-index="index" wx:for-item="notify" wx:key="id">
+		<view class="img">
+			<image mode="aspectFill" src="{{ notify.img }}"></image>
+		</view>
+		<view class="primary">
+			<view class="name">
+				<image class="avatar" src="{{ notify.user.avatar }}"></image>
+				{{ notify.user.nickname }}
+				<label class="read" wx:if="{{ notify.read == 1 }}">末读</label>
+			</view>
+			<view class="created_at">{{ notify.created_at }}</view>
+		</view>
+		<view class="content">{{ notify.content }}</view>
+	</view>
+</view>
+<empty tests="{{ notifies.length }}" title="您还没有收到任何回复哦"></empty>

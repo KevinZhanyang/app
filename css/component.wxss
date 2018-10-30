@@ -1,0 +1,6 @@
+/* component */
+@import './component/list.wxss';
+@import './component/cell.wxss';
+@import './component/upload.wxss';
+@import './component/table.wxss';
+@import './component/user.wxss';

@@ -1,0 +1,15 @@
+.options {
+	height:89rpx;
+	margin-bottom:20rpx;
+	border-top:1px solid #F2F2F2;
+}
+.options .option {
+	height:89rpx;
+	font-size:28rpx;
+	line-height:89rpx;
+	color:#565656;
+}
+.options .active {
+	border-bottom:4rpx solid #FF2223;
+	color:#FF2223;
+}

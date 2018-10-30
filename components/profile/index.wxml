@@ -1,0 +1,13 @@
+<view class="_profile">
+    <view class="profile">
+        <view class="avatar"><image src="{{ user.avatar }}"></image></view>
+        <view class="nickname">{{ user.nickname }}</view>
+        <view class="created_at">入驻时间 : {{ user.created_at }} </view>
+    </view>
+    <view class="score">
+    	<view class="content">积分 : {{ user.scores }} 分</view>
+    	<navigator class="arrow" url="/pages/exchange/index" hover-class="none">
+    	<view class="exchange">去兑换</view>
+    	</navigator>
+    </view>
+</view>

@@ -1,0 +1,13 @@
+{
+	"navigationBarBackgroundColor": "#fed406",
+	"navigationBarTextStyle": "black",
+	"backgroundColor": "#F8F8F8",
+	"backgroundTextStyle": "dark",
+	"enablePullDownRefresh": true,
+	"onReachBottomDistance": 50,
+	"disableScroll": false,
+   	"usingComponents": {
+    	"article": "/components/article/index",
+    	"load": "/components/load/index"
+  	}
+}

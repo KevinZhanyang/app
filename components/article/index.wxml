@@ -1,0 +1,41 @@
+<view class="articles">
+    <view class="article" wx:for="{{ articles }}" wx:for-index="recentId" wx:for-item="article" wx:key="id">
+        <view class="avatar">
+            <navigator url="/pages/published/index?user_id={{ article.user_id }}" hover-class="navigator-hover">
+                <image src="{{ article.avatar }}"></image>
+            </navigator>
+        </view>
+        <image class="partner" wx:if="{{ article.is_partner == 1 }}" src="http://static.124115.com/static/program/img/icon/partner.png"></image>
+        <image class="partner" wx:if="{{ article.is_tester == 1 }}" src="http://static.124115.com/static/program/img/icon/tester.png"></image>
+        <view class="price">$ {{ article.price }}</view>
+        <view class="nickname">
+            {{ article.nickname }} 
+            <label class="time">{{ article.date }}</label></view>
+        
+        <navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
+        <!-- CONTENT START -->
+        <view class="content">
+            <label class="promotion" wx:if="{{ article.promotion == 1 }}">置顶</label>
+            {{ article.content }}
+        </view>
+        <!-- CONTENT END -->
+        <!-- images -->
+        <view class="images" wx:if="{{ article.imgs.length == 3 }}">
+            <image class="image image-multi" wx:for="{{ article.imgs }}" mode="aspectFill" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
+        </view>
+        <view class="images" wx:if="{{ article.imgs.length == 2 }}">
+            <image class="image image-double" wx:for="{{ article.imgs }}" mode="aspectFill" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
+        </view>
+        <view class="images" wx:if="{{ article.imgs.length == 1 }}">
+            <image class="image image-single" mode="widthFix" wx:for="{{ article.imgs }}" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
+        </view>
+        </navigator>
+        <!-- STATUS -->
+        <view class="status">赞 {{ article.likes }}  留言 {{ article.messages }}  收藏 {{ article.collect }}</view>
+        <view class="attr"> 
+            {{ article.address }}
+            <text wx:if="{{ article.distance != '-' }}">距 {{ article.distance }} km</text>
+            <navigator class="authorization" open-type="redirect" url="{{ '/pages/authorization/location?from=' + from }}" hover-class="navigator-hover" wx:if="{{ article.distance == '-' }}">查看距离</navigator>
+        </view>
+    </view>
+</view>

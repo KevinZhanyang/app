@@ -1,0 +1,14 @@
+{
+	"navigationBarBackgroundColor": "#FFFFFF",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "发布",
+	"backgroundColor": "#F8F8F8",
+	"backgroundTextStyle": "dark",
+	"enablePullDownRefresh": false,
+	"disableScroll": false,
+	"onReachBottomDistance": 50,
+	"usingComponents": {
+    	"menu": "/components/menu/index",
+    	"shadow": "/components/shadow/index"
+  	}
+}

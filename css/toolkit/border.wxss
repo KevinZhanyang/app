@@ -1,0 +1,6 @@
+.page__bd_spacing {
+  padding-right:15px;
+}
+.page__bd {
+  padding-bottom:40px;
+}

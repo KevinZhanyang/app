@@ -1,0 +1,15 @@
+<!-- 正在加载 -->
+<view class="load-more" wx:if="{{ status == 0 }}">
+	<view class="loading"></view>
+	<view class="tips">数据下载中,请稍后...</view>
+</view>
+<!-- 加载完毕 -->
+<view class="load-more" wx:if="{{ status == 1 }}">
+	<view class="tips">加载完毕</view>
+</view>
+
+<!-- 已全部加载 -->
+<view class="load-more" wx:if="{{ status == 2 }}">
+	<view class="tips">数据已全部加载完成</view>
+</view>
+

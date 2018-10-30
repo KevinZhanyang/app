@@ -1,0 +1,8 @@
+<view class="empty" wx:if="{{ tests == 0 }}">
+	<view>
+		<view class="png">
+    		<image mode="aspectFit" src="http://static.124115.com/static/program/img/default/empty.png"></image>
+    	</view>
+    	<view class="title">{{ title }}</view>
+    </view>
+</view>

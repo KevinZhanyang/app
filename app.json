@@ -1,0 +1,47 @@
+{
+    "pages": [
+        "pages/index/index",
+
+        "pages/school/index",
+
+        "pages/exchange/index", 
+        "pages/exchange/express", 
+
+        "pages/article/index",
+        "pages/article/item",
+
+        "pages/packet/index",
+
+        "pages/publish/index",
+        "pages/publish/share",
+        "pages/publish/moments",
+
+        "pages/published/index",
+
+        "pages/home/index",
+        "pages/home/message",
+        "pages/home/exchange",
+        "pages/home/collect",
+        "pages/home/published",
+        "pages/home/article",
+        "pages/home/bind",
+        
+        "pages/partner/poster",
+        "pages/partner/register",
+        "pages/partner/index",
+        
+        "pages/authorization/location",
+        "pages/authorization/info"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#FFFFFF",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "北美二手社",
+        "navigationStyle":"default",
+        "backgroundColor": "white",
+        "backgroundTextStyle": "light",
+        "enablePullDownRefresh": false,
+        "onReachBottomDistance": "50"
+    },
+    "debug": false
+}

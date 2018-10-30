@@ -1,0 +1,21 @@
+.btn-yellow {
+    background-color:#fed406;
+    color:white;
+}
+.btn-none {
+	display:inline-block;
+	background-color:initial;
+	border:0rpx;
+	padding:0rpx;
+	margin:0rpx;
+	font-size:initial;
+	color:initial;
+	line-height:initial;
+	border-radius:0rpx;
+	font-size:30rpx;
+padding-left:10rpx;
+
+}
+.btn-none::after{
+	border: none;
+}

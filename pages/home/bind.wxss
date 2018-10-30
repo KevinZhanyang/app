@@ -1,0 +1,28 @@
+page {
+	background-color:white;
+}
+.img {
+	width:100%;
+	background-color:white;
+}
+.img image {
+	width:100%;
+}
+.title {
+	text-align:center;
+	height:60rpx;
+	line-height:60rpx;
+	font-size:35rpx;
+	font-weight:bold;
+	background-color:white;
+	color:#2b2b2b;
+}
+.comment {
+	text-align:center;
+	height:50rpx;
+	padding-bottom:110rpx;
+	font-size:30rpx;
+	line-height:50rpx;
+	background-color:white;
+	color:#2b2b2b;
+}

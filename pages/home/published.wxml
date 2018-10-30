@@ -1,0 +1,46 @@
+<!-- OPTIONS START -->
+<view class="options">
+	<view class="option{{ option == 0 ? ' active' : '' }}" data-key="0" bindtap="updateOption">上架宝贝</view>
+	<view class="option{{ option == 1 ? ' active' : '' }}" data-key="1" bindtap="updateOption">下架宝贝</view>
+</view>
+<!-- OPTIONS END -->
+<!-- ARTICLES START -->
+<view class="published-articles">
+	<view class="published-article" wx:for="{{ articles }}" wx:for-index="index" wx:for-item="article" wx:key="id" wx:if="{{ article.on_offer == option }}">
+		<view class="_reflesh" wx:if="{{ article.on_offer == 0 }}">
+			<button class="reflesh" data-key="{{ index }}" bindtap="refresh">{{ article.polished == true ? '已刷新' : '刷新' }}</button>
+		</view>
+		<navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
+		<view class="info">
+			<view class="img">
+				<image mode="aspectFill" src="{{ article.imgs[0].img }}"></image>
+			</view>
+			<view class="content">{{ article.content }}</view>
+			<view class="attr">赞 {{ article.likes }} 留言 {{ article.messages }} 收藏 {{ article.collect }}</view>
+			<view class="price">￥ {{ article.price }} 美元</view>
+		</view>
+		</navigator>
+		<view class="actions">
+			<button wx:if="{{ article.on_offer == 0 }}" class="action" data-key="{{ index }}" bindtap="promotion">{{ article.promotion == 1 ? '已置顶' : '置顶' }}</button>
+			<button class="action" data-id="{{ article.id }}" catchtap="redirectToEdit">编辑</button>
+			<button class="action" data-key="{{ index }}" data-offer="{{ article.on_offer }}" bindtap="offer">{{ article.on_offer == 0 ? '下架' : '上架' }}</button>
+		</view>
+	</view>
+</view>
+<!-- ARTICLES END -->
+<!-- EMPTY START -->
+<view wx:if="{{ option == 0 }}">
+	<empty tests="{{ onNumber }}" title="您还没有上架的商品哦"></empty>
+</view>
+<view wx:if="{{ option == 1 }}">
+	<empty tests="{{ offNumebr }}" title="您还没有下架的商品哦"></empty>
+</view>
+<!-- EMPTY END -->
+<!-- NAVIGATOR START -->
+<view class="navigator">
+	<view class="title">没有更多宝贝了</view>
+	<view style="text-align:center;">
+		<navigator class="push" url="/pages/publish/index" hover-class="navigator-hover">发布宝贝</navigator>
+	</view>
+</view>
+<!-- navigator END -->

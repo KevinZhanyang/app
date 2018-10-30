@@ -1,0 +1,18 @@
+<!-- SEARCH START -->
+<view class="logo">
+	<image mode="widthFix" src="http://static.124115.com/static/program/img/authorization/logo.jpg"></image>
+</view>
+<view class="title">申请获取以下权限</view>
+<view class="subtitle">获取你的地址位置</view>
+<!-- sp -->
+<view class="submit">
+	<button class="btn-yellow" open-type="openSetting" bindopensetting='handler'>点击授权</button>
+</view>
+
+<!-- MENU START -->
+<menu number="0"></menu>
+<!-- MENU END -->
+
+
+
+

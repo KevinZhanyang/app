@@ -1,0 +1,6 @@
+<status user="{{ user }}" count="{{ articles.length }}"></status>
+<!-- articles -->
+<view class="bg-white">
+    <article articles="{{ articles }}"></article>
+</view>
+

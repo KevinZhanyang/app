@@ -1,0 +1,10 @@
+{
+	"navigationBarBackgroundColor": "#FFFFFF",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "朋友圈",
+	"backgroundColor": "#F8F8F8",
+	"backgroundTextStyle": "dark",
+	"enablePullDownRefresh": false,
+	"disableScroll": false,
+	"onReachBottomDistance": 50
+}

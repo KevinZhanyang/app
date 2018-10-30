@@ -1,0 +1,39 @@
+<!-- INPUT START -->
+<view class="cells" wx:if="{{ partner.id == 0 }}">
+    <view class="cell">
+        <view class="secondary">姓名</view>
+        <view class="primary">
+            <input class="input" type="text" maxlength="10" placeholder="张三" value="{{ partner.name }}" bindinput="updateName"></input>
+        </view>
+    </view>
+    <view class="cell">
+        <view class="secondary">电话</view>
+        <view class="primary">
+            <input class="input" type="text" maxlength="11" placeholder="请填写能联系到你的电话" value="{{ partner.phone }}" bindinput="updatePhone"></input>
+        </view>
+    </view>
+    <view class="cell">
+        <view class="secondary">学校</view>
+        <view class="primary">
+            <input class="input" type="text" maxlength="30" placeholder="您就读的学校" value="{{ partner.school }}" bindinput="updateSchool"></input>
+        </view>
+    </view>
+</view>
+<view class="partner" wx:if="{{ partner.id == 0 }}">
+    <view>
+        <button class="btn-yellow" bindtap="register">登记</button>
+    </view>
+</view>
+<!-- SAVE END -->
+<!-- STATUS START -->
+<view class="status" wx:if="{{ partner.id > 0 }}">
+    <view>
+        <view>
+            <image src="http://static.124115.com/static/program/img/default/success.png"></image>
+        </view>
+        <view>登记成功，等待官方审核</view>
+    </view>
+</view>
+<!-- STATUS END -->
+
+

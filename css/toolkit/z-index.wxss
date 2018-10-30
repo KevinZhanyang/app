@@ -1,0 +1,16 @@
+/* 暗夜精灵 */
+.z-elves {
+	z-index:1000;
+}
+/* 人类 */
+.z-human {
+	z-index:100;
+}
+/* 矮人 */
+.z-dwarves {
+	z-index:10;
+}
+/* 半兽人 */
+z-orcs {
+	z-index: 0;
+} 

@@ -1,0 +1,78 @@
+<!-- SEARCH START -->
+<view style="height:100rpx;"></view>
+<view class="search bg-white">
+	<input type="text" class="keyword" confirm-type="search" placeholder="搜搜你的学校有什么好货" bindconfirm="search" value="{{ keyword }}" />
+</view>
+<!-- SEARCH END -->
+
+<!-- KEYWORDS START -->
+<view class="container bg-white" wx:if="{{ status == 'search' }}">
+	<view class="hot-title">热门搜索</view>
+	<view class="bg-white">
+		<view class="hotkeywords">
+			<view class="hotkeyword" wx:for="{{ keywords }}" wx:for-index="index" wx:for-item="keyword" wx:key="id" data-keyword="{{ keyword['value'] }}" bindtap="searchByKeyword">
+				{{ keyword['value'] }}
+			</view>
+		</view>
+	</view>
+</view>
+<!-- KEYWORDS END -->
+
+<!-- OPTIONS START -->
+<view style="height:90rpx" wx:if="{{ status == 'article' }}"></view>
+<view class="_options" wx:if="{{ status == 'article' }}">
+	<view class="options">
+		<!-- SEPARATE -->
+		<view class="{{ optionsKey == '1' ? 'option activity': 'option' }}" data-key="1" bindtap="tapOption">
+			{{ provinces[provinceKey]['name'] }}
+			<label></label>
+		</view>
+
+		<view class="{{ optionsKey == '2' ? 'option activity': 'option' }}" data-key="2" bindtap="tapOption">
+			{{ categories[categoryKey]['name'] }}
+			<label></label>
+		</view>
+
+		<view class="{{ optionsKey == '3' ? 'option activity': 'option' }}" data-key="3" bindtap="tapOption">
+			{{ sorts[sortKey] }}
+			<label></label>
+		</view>
+		<!-- SEPARATE -->
+		<scroll-view scroll-y="true" class="content" wx:if="{{ optionsKey == 1 }}">
+			<view class="item" wx:for="{{ provinces }}" wx:for-index="index" wx:for-item="province" wx:key="key" data-type="province" data-value="{{ index }}" bindtap="changeOption">
+				{{ province.name }}
+			</view>
+		</scroll-view>
+		<scroll-view scroll-y="true" class="content" wx:if="{{ optionsKey == 2 }}">
+			<view class="item" wx:for="{{ categories }}" wx:for-index="index" wx:for-item="category" wx:key="key" data-type="category" data-value="{{ index }}" bindtap="changeOption">
+				{{ category.name }}
+			</view>
+		</scroll-view>
+		<scroll-view scroll-y="true" class="content" wx:if="{{ optionsKey == 3 }}">
+			<view class="item" wx:for="{{ sorts }}" wx:for-index="index" wx:for-item="sort" wx:key="key" data-type="sort" data-value="{{ index }}" bindtap="changeOption">
+				{{ sort }}
+			</view>
+		</scroll-view>
+		<!-- SEPARATE -->
+	</view>
+	<!-- layer -->
+</view>
+<!-- OPTIONS END -->
+
+<view wx:if="{{ optionsKey != 0 }}" style="z-index:9;position:fixed;top:0rpx;bottom:0rpx;right:0rpx;left:0rpx;background-color:rgba(0,0,0,0.6);" bindtap="clearOption">9329392</view>
+
+<!-- ARTICLES START -->
+<view class="bg-white _article" wx:if="{{ status == 'article' }}">
+	<article articles="{{ articles }}" wx:if="{{ articles.length > 0 }}" from="/pages/article/index"></article>
+	<view class="empty" wx:if="{{ articles.length <= 0 }}">
+		<image src="/static/img/empty.png"></image>
+		<view>找不到内容</view>
+	</view>
+</view>
+<!-- ARTICLES END -->
+
+<!-- LOAD START -->
+<view wx:if="{{ articles.length > 0 }}">
+    <load status="{{ articleLoadStatus }}"></load>
+</view>
+<!-- LOAD END -->

@@ -1,0 +1,38 @@
+<!-- ADDRESS START -->
+<view class="express">
+	<view class="item">
+		<view class="secondary">商品名称</view>
+		<view class="primary">
+			{{ product.name }}
+		</view>
+	</view>
+	<view class="item">
+		<view class="secondary">所需积分</view>
+		<view class="primary">
+			{{ product.price }} 
+		</view>
+	</view>
+	<view class="item">
+		<view class="secondary">收件人</view>
+		<view class="primary">
+			<input class="input" placeholder="" bindinput="updateName" value="{{ name }}" />
+		</view>
+	</view>
+	<view class="item">
+		<view class="secondary">收件人电话</view>
+		<view class="primary">
+			<input class="input" placeholder="" bindinput="updatePhone" value="{{ phone }}" />
+		</view>
+	</view>
+	<view class="item">
+		<view class="secondary">收货地址</view>
+		<view class="primary">
+			<input class="input" placeholder="" bindinput="updateAddress" value="{{ address }}" />
+		</view>
+	</view>
+</view>
+<!-- ADDRESS EDNT -->
+<view style="margin:30rpx;">
+	<button class="btn-yellow" bindtap="exchange">兑换</button>
+</view>
+

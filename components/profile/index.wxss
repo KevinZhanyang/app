@@ -1,0 +1,83 @@
+._profile {
+	position:relative;
+	height:320rpx;
+	padding-top:100rpx;
+	padding-left:30rpx;
+	padding-right:30rpx;
+	padding-bottom:100rpx;
+	background-image:url(http://static.124115.com/static/program/img/components/profile/background.png);
+	background-size:100% 100%;
+	border-bottom:1px solid #EEE;
+	margin-bottom:60rpx;
+	background-color:white;
+}
+._profile .score {
+	position:absolute;
+	left:45rpx;
+	right:45rpx;
+	bottom:-45rpx;
+	display:flex;
+	justify-content:space-between;
+	height:90rpx;
+	padding-left:120rpx;
+	padding-right:15rpx;
+	border:1px solid #EEE;
+	border-radius:45rpx;
+	background-color:white;
+	background-image:url(http://static.124115.com/static/program/img/components/profile/score.png);
+	background-repeat:no-repeat;
+	background-size: 60rpx 60rpx;
+	background-position:30rpx center;
+}
+._profile .score .content {
+	font-size:26rpx;
+	line-height:90rpx;
+	color:#2b2b2b;
+}
+._profile .score .exchange {
+	text-align:center;
+	height:60rpx;
+	width:190rpx;
+	margin-top:15rpx;
+	margin-bottom:15rpx;
+	border:2px solid #2b2b2b;
+	border-radius:30rpx;
+	background-color:#FFD700;
+	font-size:30rpx;
+	line-height:56rpx;
+	color:#2b2b2b;
+}
+.profile {
+	position: relative;
+	height:80rpx;
+	padding-left:140rpx;
+}
+.profile .avatar {
+	position:absolute;
+	left:0rpx;
+	top:0rpx;
+	right:0rpx;
+	bottom:0rpx;
+	width:110rpx;
+	height:110rpx;
+	border:5rpx solid #FCCB00;
+	border-radius:55rpx;
+	overflow:hidden;
+}
+.profile .avatar image {
+	width:110rpx;
+	height:110rpx;
+}
+.profile .nickname {
+	height:60rpx;
+	font-size:35rpx;
+	line-height:60rpx;
+	font-weight:bold;
+	color:#2b2b2b;
+}
+.profile .created_at {
+	height:50rpx;
+	line-height:50rpx;
+	font-size:28rpx;
+	color:#6f6f6f;
+}

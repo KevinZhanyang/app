@@ -1,0 +1,16 @@
+<!-- SEARCH START -->
+<view class="img">
+	<image mode="widthFix" src="http://static.124115.com/static/program/img/home/bind.png"></image>
+</view>
+<!-- sp -->
+<view class="title">绑定手机号码</view>
+<view class="comment" wx:if="{{ user.phone.length <= 5 }}">"北美二手社"申请获取你的手机号.</view>
+<view class="comment" wx:if="{{ user.phone.length > 5 }}">{{ user.phone }}</view>
+<!-- SUBMIT -->
+<view class="container bg-white">
+	<view style="padding:50px 0px;">
+	<button type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定</button>
+	</view>
+</view>
+
+

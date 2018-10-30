@@ -1,0 +1,12 @@
+.shadow {
+	z-index:10000; 
+	position:fixed;
+	top:0rpx;
+	bottom:0rpx;
+	right:0rpx;
+	left:0rpx;
+	width:100vw;
+	height:100vh;
+	display:block;
+	background-color:rgba(255,255,255,1);
+}

@@ -1,0 +1,70 @@
+<shadow show="{{ showShadow }}"></shadow>
+<!-- IMAGE START -->
+<scroll-view scroll-x="true" class="images bg-white">
+    <view class="{{ images.length == 0 ? 'image camera' : 'image' }}" bindtap="chooseImage">
+        <image src="/static/img/camera.png"></image>
+    </view>
+    <view class="image" wx:for="{{ images }}" wx:for-index="index" wx:for-item="image" wx:key="id" wx:if="{{ image.server == 0 || image.server == 1 }}">
+        <view class="close" data-key="{{ index }}" bindtap="delImage" wx:if="{{ image.server == 1 }}">×</view>
+        <view class="{{ image.isCover == false ? 'cover cover-canvel' : 'cover' }}" data-key="{{ index }}" bindtap="setCover">封面</view>
+        <view class="status" wx:if="{{ image.server != 1 }}">{{ image.server == 0 ? '上传中' : '上传失败' }}</view>
+        <image mode="aspectFill" src="{{ image.path }}" data-key="{{ index }}" bindtap="setCover"></image>
+    </view>
+</scroll-view>
+<!-- IMAGE END -->
+<form report-submit="{{ true }}" bindsubmit="publish">
+<!-- TEXTAREA START -->
+<view class="container bg-white description"> 
+    <view>
+        <textarea maxlength="500" class="content" placeholder="在这里写要发布的信息，可以写转手原因，入手渠道，新旧程度和使用感受等。" bindinput="updateContent" value="{{ article.content }}"></textarea>
+    </view>
+</view>
+<!-- TEXTAREA END -->
+<!-- PARAMETERS START -->
+<view class="cells">
+    <view class="cell">
+        <view class="secondary">价格(美元)</view>
+        <view class="primary">
+            <input class="input" type="digit" maxlength="10" placeholder="0" value="{{ article.price }}" bindinput="updatePrice"></input>
+        </view>
+    </view>
+    <view class="cell">
+        <view class="secondary">手机号码</view>
+        <view class="primary">
+            <input class="input" type="text" maxlength="15" placeholder="手机号码" value="{{ article.phone }}" bindinput="updatePhone"></input>
+        </view>
+    </view>
+    <view class="cell">
+        <view class="secondary">微信号码</view>
+        <view class="primary">
+            <input class="input" type="text" placeholder="微信号码" value="{{ article.wechat }}" bindinput="updateWechat"></input>
+        </view>
+    </view>
+    <view class="cell">
+        <view class="primary">
+            <picker mode="multiSelector" bindchange="bindSchoolChange" bindcolumnchange="bindcolumnchange" bindcancel="bindCancel" selector="multiSelector" value="{{ multiIndex }}" range="{{ multiArray }}" range-key="name">
+                <view class="select">
+                    {{ multiArray[0][multiIndex[0]].name }}, {{ multiArray[1][multiIndex[1]].name }}
+                </view>
+            </picker>
+        </view>
+    </view>
+
+    <view class="cell">
+        <view class="primary">
+            <picker bindchange="bindCategoryChange" value="{{ categoryKey }}" range-key="name" range="{{ categories }}">
+                <view class="select">{{ categories[categoryKey].name }}</view>
+            </picker>
+        </view>
+    </view>
+    <!-- sp -->
+</view>
+<!-- PARAMETERS END -->
+<!-- LAYER START -->
+<view class="layer"></view>
+<!-- LAYER END -->
+<!-- sp -->
+<view class="publish">
+	<button class="published" disabled="{{ publishButtonDisabled }}" size="default" formType="submit">发布</button>
+</view>
+</form>

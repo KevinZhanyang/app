@@ -1,0 +1,623 @@
+//
+import { Category } from '../../model/category';
+import { School } from '../../model/school';
+import { User } from '../../model/user';
+import { Article } from '../../model/article';
+import { Province } from '../../model/province';
+
+//
+const appInstance = getApp();
+
+//
+Page({
+    data: {
+        // 分类的内容
+        categories: [],
+        categoryKey: 0,
+        // 学校
+        multiArray: [], // 省列表
+        schools:[], // 学校列表
+        multiIndex: [0, 0], // provinceKey schoolKey
+        tempMultiIndex: [0, 0],
+        // 新闻内容
+        article: {
+            price: '',
+            content: '',
+            phone: '',
+            wechat: '',
+        },
+        // 新闻的图片列表
+        images:[],
+        // 发布的按钮禁用状态: true 铵钮棼用，不可以发布，false, 铵钮可以，可以发布
+        publishButtonDisabled: false,
+        // 
+        showShadow: true,
+    },
+    //
+    onLoad: function(options){
+        let that = this;
+        // 如果没有授权地理位置，转到授权
+        User.testAuthorizeUserLocation()
+        .then(res => {
+            //
+            User.testAuthorizeUserInfo()
+            .then(res => {
+                //
+                that.setData({
+                    showShadow: false,
+                });
+
+                // 
+                that.loadLocalArticle();
+                //
+                that.loadCategory();
+                that.loadProvince();
+                //
+                that.Sycn();
+            })
+            .catch(res => {
+                console.log('========== 进入个人中心页面，用户信息末授权，转向/pages/authorization/info');
+                wx.redirectTo({
+                    url: '/pages/authorization/info?from=/pages/publish/index',
+                });
+            });
+            //
+        })
+        .catch(res => {
+            console.log('========== 进入地址授权页，转向/pages/authorization/location');
+            wx.redirectTo({
+                url: '/pages/authorization/location?from=/pages/publish/index',
+            });
+            return;
+        });
+    },
+    Sycn() {
+        //
+        User.get()
+        .then(res => {
+            let user = res.data;
+
+            //
+            if (user.nickname.length < 2 || user.avatar.length == 0) {
+                User.syncUserInfo();
+            } 
+        });
+        //
+    },
+    /* init start */
+    loadLocalArticle () {
+        // 
+        let that = this;
+        wx.getStorage({
+            key: 'publish',
+            success: function(res) {
+                // 成功取得变量，变量可能为空
+                let publish = res.data;
+                //
+                let article = that.data.article;
+                //
+                if (publish.content != undefined) {
+                    article.content = publish.content;
+                }
+                //
+                if (publish.price != undefined) {
+                    article.price = publish.price;
+                }
+                //
+                if (publish.phone != undefined) {
+                    article.phone = publish.phone;
+                }
+                //
+                if (publish.wechat != undefined) {
+                    article.wechat = publish.wechat;
+                }
+                // 读取新闻
+                that.setData({
+                    article: article,
+                });
+                // 
+                if (publish.multiIndex != undefined) {
+                    that.setData({
+                        multiIndex: publish.multiIndex,
+                    });
+                    that.data.tempMultiIndex = publish.multiIndex;                }   
+                // 读取学校
+                if (publish.categoryKey != undefined) {
+                    that.setData({
+                        categoryKey: publish.categoryKey,
+                    });
+                }
+                /*
+                // 读取图片
+                if (publish.images != undefined) {
+                    that.setData({
+                        images: publish.images,
+                    });
+                }
+                */
+                //
+            },
+            fail() {
+                //
+            }, 
+        });
+    },
+    //
+    loadCategory: function(){
+    	let that = this;
+    	Category.get().then(function(result) {
+    		var categories = result.data;
+            categories.unshift({
+                id: 0, 
+                name: '选择分类',
+            });
+    		that.setData({
+                categories: categories,
+            });
+    	});
+    },
+    //
+    loadProvince() {
+        let that = this;
+        Province.get({
+            school: 1,
+        })
+        .then(res => {
+            //
+            let multiArray = [];
+
+            // provinces
+            let provinces = res.data; // 数组可能为空
+            multiArray.push(provinces);
+            that.setData({
+                multiArray: multiArray,
+            });
+            //
+            that.loadSchool();
+        });
+    },
+    //
+    loadSchool: function(){
+        let that = this;
+        School.get().then(function(result) {
+            //
+            let schools = result.data;
+            that.data.schools = schools;
+
+            that.generatePickSchools();
+            //
+        });
+    },
+    generatePickSchools() {
+        console.log('>>>>>>>>>>>>>>>>>>>>> generatePickSchools');
+        //
+        let that = this;
+        // 获取学校列表
+        let multiArray = this.data.multiArray; 
+        // provinceKey
+        let provinceKey = this.data.multiIndex[0];
+        let provinceId = this.data.multiArray[0][provinceKey].id;
+
+        //
+        let schools = this.data.schools;
+        let currentSchools = [];
+        for (let x in schools) {
+            if (schools[x].province_id == provinceId) {
+                currentSchools.push(schools[x]);
+            }
+        }
+        multiArray[1] = currentSchools;
+        that.setData({
+            multiArray: multiArray,
+        });
+    },
+    /* init end */
+    /* update start */
+    bindcolumnchange(event) {
+        //
+        let that = this;
+        let detail = event.detail;
+        let column = detail.column;
+        let value = detail.value;
+        //
+        switch (column) {
+            // 修改了省份,更新学校
+            case 0: 
+                console.log('>>>>>>>>>>>>>>>>>>>>> bindcolumnchange 0');
+                console.log(event);
+                let multiIndex = this.data.multiIndex;
+                multiIndex[0] = value;
+                multiIndex[1] = 0;
+                this.setData({
+                    multiIndex: multiIndex,
+                });
+                that.generatePickSchools();
+                break;
+            case 1:
+                console.log('>>>>>>>>>>>>>>>>>>>>> bindcolumnchange 1');
+                console.log(event);
+                break;
+        }
+        //
+    },
+    bindSchoolChange(event) {
+        console.log('>>>>>>>>>>>>>>>>>>>>> bindSchoolChange');
+        console.log(event);
+        let detail = event.detail;
+        let value = detail.value; // value 是一个数组
+        let tempMultiIndex = [
+            value[0],
+            value[1],
+        ];
+        //
+        this.setData({
+            multiIndex: value,
+            tempMultiIndex: tempMultiIndex,
+        });
+    },
+    // picker cancel
+    bindCancel(event) {
+        let tempMultiIndex = this.data.tempMultiIndex;
+        let multiIndex = [
+            tempMultiIndex[0],
+            tempMultiIndex[1],
+        ];
+        this.setData({
+            multiIndex: multiIndex,
+        });
+        this.generatePickSchools();
+    },
+    updateContent: function(event) {
+        let value = event.detail.value;
+        let article = this.data.article;
+        article.content = value;
+        this.setData({
+            article: article,
+        });
+    },
+    //
+    updatePrice: function(event) {
+        let value = event.detail.value;
+        // value = parseInt(value);
+        let article = this.data.article;
+        article.price = value;
+        this.setData({
+            article: article,
+        });
+    },
+    updatePhone(event) {
+        let value = event.detail.value;
+        let article = this.data.article;
+        article.phone = value;
+        this.setData({
+            article: article,
+        });
+    },
+    //
+    updateWechat(event) {
+        let value = event.detail.value;
+        let article = this.data.article;
+        article.wechat = value;
+        this.setData({
+            article: article,
+        });
+    },
+    //
+    bindCategoryChange(event) {
+        let key = event.detail.value; // schools 数组的KEY
+        let category = this.data.categories[key];
+        let categoryId = category['id'];
+        this.data.categoryId = categoryId;
+        this.setData({
+            categoryKey: key,
+        });
+    },
+    //
+    chooseImage(event) {
+        let that = this;
+        wx.chooseImage({
+            count: 9,
+            sizeType: [
+                'original',
+                'compressed',
+            ],
+            sourceType: [
+                'album',
+                'camera',
+            ],
+            success: function(res){
+                // 现有图片
+                let images = that.data.images;
+                let coverStatus = 1;
+                for (let x in images) {
+                    if (images[x].isCover == 1) {
+                        coverStatus = 0;
+                        break;
+                    }
+                }
+                // 添加的图片
+                let tempFilePaths = res.tempFilePaths;
+                // 处理添加的图片，
+
+                for(let x in tempFilePaths) { 
+                    //
+                    let path = tempFilePaths[x];
+                    let isCover = coverStatus;
+                    //
+                    coverStatus = 0;  
+                    let position = path.lastIndexOf('/') + 1;
+                    let name = path.substr(position);
+
+                    //
+                    images.push({
+                        path: path,
+                        isCover: isCover,
+                        server: 0,
+                        name: name,
+                    });
+                }
+                //
+                that.setData({
+                    images: images,
+                });
+
+                // 上传到服务器
+                for (let x in images) {
+                    let image = images[x];
+                    if (image.server == 0) {
+                        let name = image.name;
+                        let path = image.path;
+                        Article.uploadTempImg(name, path)
+                        .then(function(result){
+                            //
+                            images[x].server = 1;
+                            that.setData({
+                                images: images,
+                            });
+                        })
+                        .catch(function(result) {
+                            //
+                            images[x].server = -1;
+                            that.setData({
+                                images: images,
+                            });
+                        });
+                    }
+                }
+            },
+            fail: function(red){
+                //
+            }, 
+            complete: function(){
+                //
+            }
+        });
+    },
+    // 如果只有一张图就算了。如果还有在工作中的图，把帽子给他们
+    delImage(event) {
+        //
+        let key = event.currentTarget.dataset.key;
+        let images = this.data.images;
+
+        // 如果已经上传到服务器的图片
+        if (images[key].server == 1) {
+            images[key].server = 2;
+        } else {
+            images[key].server = -1;
+        }
+        
+        //
+        if (images[key].isCover ==1) {
+            images[key].isCover = 0;
+            //
+            for (let x in images) {
+                if (images[x].server == 1) {
+                    images[x].isCover = 1;
+                    break;
+                }
+            }
+        }
+        //
+        this.setData({
+            images: images,
+        });
+    },
+    //
+    setCover(event) {
+        //
+        let key = event.currentTarget.dataset.key;
+        let images = this.data.images;
+        //
+        for(let x in images) {
+            let isCover = (x == key ? 1 : 0);
+            images[x].isCover = isCover;
+        }
+        //
+        this.setData({
+            images: images,
+        });
+    },
+    /* update end */
+    //
+    /* publish start */
+    showError(str) {
+        //
+        wx.showToast({
+          title: str,
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+    },
+    publish(event) {
+        //
+        let formId = event.detail.formId;
+
+        let imageLength = 0; // 服务器上已存在的图片数量
+        let onProgress = 0;
+        let images = this.data.images;
+        for(let x in images) {
+            if (images[x].server == 1) {
+                imageLength++;
+            } else if (images[x].server == 0) {
+                onProgress++
+            }
+        }
+        if (onProgress > 0) {
+            this.showError('还有照片上传中');
+            return;
+        }
+        if (imageLength <= 0) {
+            this.showError('必须发布照片');
+            return;
+        }
+
+        if (this.data.article.content.length == 0) {
+            this.showError('内容不能为空');
+            return;
+        }
+
+        if (this.data.article.phone.length == 0 && this.data.article.wechat.length == 0) {
+            this.showError('联系方式不能为空');
+            return;
+        } 
+
+        // test
+        if (this.data.categoryKey == 0) {
+            this.showError('必须选择分类');
+            return;
+        }
+
+        //
+        wx.showLoading({
+            title: '发布中',
+        });
+        this.setData({
+            publishButtonDisabled: true,
+        });
+
+        // 
+        let that = this;
+        User.getLocation()
+        .then(res => {
+            let latitude = res.latitude;
+            let longitude = res.longitude;
+            // 如果经度或纬度没有授权提示
+            if (latitude == 0 || longitude == 0) {
+                wx.redirectTo({
+                    url: '/pages/authorization/location?from=/pages/publish/index',
+                });
+                return;
+            }
+            //
+            let multiIndex = that.data.multiIndex;
+
+            let categoryId = that.data.categories[that.data.categoryKey].id;
+            let schoolId = that.data.multiArray[1][multiIndex[1]].id;
+            let images = this.data.images;
+            let article = this.data.article;
+            //
+            let item = {
+                category_id: categoryId,
+                school_id: schoolId,
+                price: article.price,
+                content: article.content,
+                phone: article.phone,
+                wechat: article.wechat,
+                latitude: latitude,
+                longitude: longitude,
+                // 
+                form_id: formId,
+                images: images,
+            };
+            //
+            Article.post(item)
+            .then(result => {
+                let article = result.data;
+                let articleId = article.id;
+                that.skip(articleId);
+            });
+            //
+        });
+        //
+    },
+    // 
+    skip(articleId) {
+        wx.removeStorage({
+            key: 'publish',
+            success: function(res) {
+                console.log('========= remove storage success');
+                //
+                //
+            },
+            fail: function(res) {
+                console.log('========= remove storage fail');
+            },
+            complete: function (res) {
+                let url = '/pages/publish/share?id=' + articleId;
+                wx.hideLoading();
+                wx.redirectTo({
+                    url: url,
+                });
+            }
+        });
+        //
+    },
+    /* publish end */
+    /* close start */
+    /*
+    关闭页面 如果发布成功
+            // content: '',
+            phone: '',
+            wechat: '',
+            multiIndex,
+            categoryKey
+            没有发布
+            content: '',
+            phone: '',
+            wechat: '',
+            multiIndex,
+            categoryKey
+    */
+    onUnload() {
+        // 没有发布
+        if (this.data.publishButtonDisabled == false) {
+            let article = this.data.article;
+            let item = {
+                price: article.price,
+                content: article.content,
+                phone: article.phone,
+                wechat: article.wechat,
+                //
+                categoryKey: this.data.categoryKey,
+                // images: this.data.images,
+                multiIndex: this.data.multiIndex,
+            };
+            wx.setStorage({
+                key: 'publish',
+                data: item,
+            });
+        // 发布成功
+        } else {
+            //
+            let article = this.data.article;
+            let item = {
+                // price: article.price,
+                // content: article.content,
+                phone: article.phone,
+                wechat: article.wechat,
+                //
+                categoryKey: this.data.categoryKey,
+                // images: this.data.images,
+                multiIndex: this.data.multiIndex,
+            };
+            wx.setStorage({
+                key: 'publish',
+                data: item,
+            });
+            //
+        }
+    },
+    /* close end */
+    //
+});

@@ -1,0 +1,14 @@
+{
+	"navigationBarBackgroundColor": "#FFFFFF",
+	"navigationBarTextStyle": "black",
+	"backgroundColor": "#F8F8F8",
+	"backgroundTextStyle": "dark",
+	"enablePullDownRefresh": false,
+	"disableScroll": false,
+	"onReachBottomDistance": 50,
+	"usingComponents": {
+    	"profile": "/components/profile/index",
+    	"menu": "/components/menu/index",
+    	"shadow": "/components/shadow/index"
+  	}
+}
