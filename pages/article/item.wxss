@@ -28,18 +28,23 @@
 	color:#989898;
 }
 .user .nickname {
-	height:35rpx;
 	margin-bottom:10rpx;
+	display: flex;
+}
+.user .nickname .name{
+	max-width: 240rpx;
+	flex: 1;
 	font-size:26rpx;
 	line-height:35rpx;
 	color:black;
+	height:35rpx;
 }
 .user .nickname .time {
 	height:35rpx;
 	font-size:24rpx;
 	line-height:35rpx;
-	color:black;
 	color:#989898;
+	flex: 1;
 }
 .user .attr {
 	height:35rpx;

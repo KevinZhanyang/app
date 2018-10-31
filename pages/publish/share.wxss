@@ -101,14 +101,15 @@ page {
 	bottom:0rpx;
 	right:0rpx;
 	left:0rpx;
-	background-image:url(http://static.124115.com/static/program/img/publish/guide.png?v1);
-	background-size:100% 100%;
-	background-position:center center;
+	background-image:url(http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.HvhR7yCicXuc6cddf342936e356281ebe7bd15d0dd76.png?x-oss-process=style/thumbnail);
+	/* background-image:url(http://static.124115.com/static/program/img/publish/guide.png?v1); */
+	background-size:cover;
+	background-position:center;
 	width:100vw;
 	height:100vh;
 }
 ._guide .guide {
-	positions:relative;
+	position:relative;
 }
 ._guide .guide .close {
 	position:absolute;

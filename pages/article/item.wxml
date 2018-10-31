@@ -2,15 +2,15 @@
 <!-- USER START -->
 <view class="user bg-white">
     <navigator url="/pages/published/index?user_id={{ user.id }}" hover-class="navigator-hover">
-    <view class="avatar">
-        <image src="{{ user.avatar }}"></image>
-    </view>
+        <view class="avatar">
+            <image src="{{ user.avatar }}"></image>
+        </view>
     </navigator>
     <view class="distance">
         <text>距 {{ article.distance }} km</text>
     </view>
     <view class="nickname">
-        {{ user.nickname }}
+        <view class="name text-ellipsis">{{ user.nickname }}</view>
         <label class="time">{{ user.updated_quantum }}来过</label>
     </view>
     <view class="attr">{{ article.school.name }}</view>
@@ -22,9 +22,7 @@
 <!-- ARTICLE START -->
 <view class="container bg-white">
     <view class="item">
-    	<view class="content">
-    		{{ article.content }}
-    	</view>
+        <view class="content">{{ article.content }}</view>
         <view class="images">
             <view class="image" wx:for="{{ articleImgs }}" wx:for-index="key" wx:for-item="articleImg" wx:key="id">
                 <image mode="widthFix" src="{{ articleImg.img }}" data-key="{{ key }}" bindtap="previewImage"></image>
@@ -32,7 +30,7 @@
         </view>
     </view>
 </view>
-<!-- ARTICLE END --> 
+<!-- ARTICLE END -->
 <!-- RED PACKET START -->
 <view class="container bg-white _packets">
     <view class="packets">
@@ -59,14 +57,19 @@
         </view>
     </view>
     <view class="attr">
-        <view>拆红包领积分 <label class="rule" bindtap="showPacketRulePopupWindow">红包规则</label></view>
+        <view>
+            拆红包领积分
+            <label class="rule" bindtap="showPacketRulePopupWindow">红包规则</label>
+        </view>
         <navigator url="/pages/packet/index?article_id={{ article.id }}">看看大家的手气 >></navigator>
     </view>
 </view>
 <view class="_congratulate congratulate_ z-human" wx:if="{{ receiveRedPacketInterface }}">
     <view class="congratulate z-elves">
         <view class="close" bindtap="closeGetRedpacketPopupWindow">X</view>
-        <view class="content">拆开红包，您可获得 : {{ (packetCount != 5 && packetCount != 10 && packetCount != 20 && packetCount != 30) ? 1 : 2 }} 积分</view>
+        <view class="content">
+            拆开红包，您可获得 : {{ (packetCount != 5 && packetCount != 10 && packetCount != 20 && packetCount != 30) ? 1 : 2 }} 积分
+        </view>
         <button class="open" bindtap="postPacket"></button>
     </view>
 </view>
@@ -80,34 +83,34 @@
 </view>
 <view class="container bg-white likes">已有{{ article.likes }}人赞过</view>
 <!-- LIKE END -->
-
 <!-- TITLE START -->
-<view class="container bg-white message-title">{{ messages.length }} 条留言 </view>
+<view class="container bg-white message-title">{{ messages.length }} 条留言</view>
 <!-- TITLE END -->
 <!-- REPLY START -->
 <form bindsubmit="send" report-submit="{{ true }}">
-<view class="bg-white reply">
-    <open-data class="avatar" type="userAvatarUrl"></open-data>
-    <input class="content" value="{{ content }}" type="text" cursor-spacing="80" focus="{{ focus }}" adjust-position="{{ true }}" disabled="{{ sendDisabled }}" placeholder="{{ placeholder }}" bindinput="updateContent" />
-    <button formType="submit" class="send">发送</button>
-</view>
+    <view class="bg-white reply">
+        <open-data class="avatar" type="userAvatarUrl"></open-data>
+        <input class="content" value="{{ content }}" type="text" cursor-spacing="80" focus="{{ focus }}" adjust-position="{{ true }}" disabled="{{ sendDisabled }}" placeholder="{{ placeholder }}" bindinput="updateContent" />
+        <button formType="submit" class="send">发送</button>
+    </view>
 </form>
 <!-- REPLY END -->
-
 <!-- MESSAGE  START -->
 <view class="messages">
     <view class="message" wx:for="{{ messages }}" wx:for-index="key" wx:for-item="message" wx:key="id">
-    	<view class="avatar">
+        <view class="avatar">
             <navigator url="/pages/published/index?user_id={{ message.parent.user_id }}" hover-class="navigator-hover">
                 <image src="{{ message.parent.user.avatar }}"></image>
             </navigator>
-    	</view>
+        </view>
         <!-- PARENT START -->
-    	<view class="parent" hover-class="hover" data-key="{{ key }}" data-children-key="-1" data-parent-id="{{ message.parent.message.id }}" data-reply-id="{{ message.parent.message.id }}" catchtap="reply" catchlongpress="longpressParentMessage">
+        <view class="parent" hover-class="hover" data-key="{{ key }}" data-children-key="-1" data-parent-id="{{ message.parent.message.id }}" data-reply-id="{{ message.parent.message.id }}" catchtap="reply" catchlongpress="longpressParentMessage">
             <view class="secondary">
                 <view class="nickname">
-                    {{ message.parent.user.nickname }} 
-                    <label class="seller" wx:if="{{ message.parent.user.id == article.user_id }}">卖主</label>
+                    {{ message.parent.user.nickname }}
+                    <label class="seller" wx:if="{{ message.parent.user.id == article.user_id }}">
+                        卖主
+                    </label>
                 </view>
                 <text class="created_at">{{ message.parent.message.created_at }}</text>
             </view>
@@ -121,8 +124,10 @@
             </view>
             <view class="secondary">
                 <view class="nickname">
-                    {{ children.user.nickname }} 
-                    <label class="seller" wx:if="{{ children.user.id == article.user_id }}">卖主</label>
+                    {{ children.user.nickname }}
+                    <label class="seller" wx:if="{{ children.user.id == article.user_id }}">
+                        卖主
+                    </label>
                 </view>
                 <text class="created_at">{{ children.message.created_at }}</text>
             </view>
@@ -132,7 +137,6 @@
     </view>
 </view>
 <!-- MESSAGE END -->
-
 <!-- SEDUCE START -->
 <view class="container bg-white _seduce" catchtap="releaseMessageRelationship_">
     <image class="img" src="/static/img/seduce.png"></image>
@@ -141,11 +145,9 @@
     </view>
 </view>
 <!-- SEDUCE END -->
-
 <!-- BLANK START -->
 <view class="blank"></view>
 <!-- BLANK END -->
-
 <!-- FUNCTION START -->
 <view class="z-dwarves _functions">
     <view class="functions">
@@ -162,23 +164,21 @@
             </view>
             <!-- share -->
             <navigator url="/pages/publish/share?id={{ article.id }}" hover-class="navigator-hover">
-            <view class="submenu">
-                <image class="icon" src="/static/img/share.png"></image>
-                分享
-            </view>
+                <view class="submenu">
+                    <image class="icon" src="/static/img/share.png"></image>
+                    分享
+                </view>
             </navigator>
         </view>
         <view>
             <view class="wechat" catchtap="showCopyWechatInterface">加微信</view>
-            <view class="call" catchtap="call">打电话</view>
+            <!-- <view class="call" catchtap="call">打电话</view> -->
         </view>
     </view>
 </view>
 <!-- FUNCTION END -->
-
 <!-- shadow -->
-<view class="rule-shadow z-human" wx:if="{{ ruleStatus }}">
-</view>
+<view class="rule-shadow z-human" wx:if="{{ ruleStatus }}"></view>
 <!-- content -->
 <view class="_rule z-elves" wx:if="{{ ruleStatus }}">
     <view class="rule">
@@ -192,7 +192,6 @@
     </view>
 </view>
 <!-- RULE END -->
-
 <!-- COPY START -->
 <view class="_copy z-elves" catchtouchmove="preventTouchMove" wx:if="{{ showCopyWechatInterface }}">
     <view class="copy">
@@ -203,12 +202,5 @@
 </view>
 <!-- COPY END -->
 <!-- WARNGING START -->
-<cover-view class="warnging" wx:if="{{ showWarnging }}">
-线下交易有风险，付款前需谨慎哦
-</cover-view>
+<cover-view class="warnging" wx:if="{{ showWarnging }}">线下交易有风险，付款前需谨慎哦</cover-view>
 <!-- WARNGING END -->
-
-
-
-
-
