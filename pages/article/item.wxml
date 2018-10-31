@@ -172,7 +172,7 @@
         </view>
         <view>
             <view class="wechat" catchtap="showCopyWechatInterface">加微信</view>
-            <!-- <view class="call" catchtap="call">打电话</view> -->
+            <view class="call" catchtap="call">举报</view>
         </view>
     </view>
 </view>
