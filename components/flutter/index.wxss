@@ -10,6 +10,7 @@
 }
 .free-WaterfallFlow .flex-wrap {
   display: inline-block;
+  width: 339rpx;
   margin-bottom: 20rpx;
   background: #fff;
   border-radius: 0 0 10rpx 10rpx;
