@@ -64,7 +64,8 @@
 <view class="layer"></view>
 <!-- LAYER END -->
 <!-- sp -->
-<view class="publish">
+<!--show if out our-->
+<view class="publish" wx:if="{{publishedShow}}">
 	<button class="published" disabled="{{ publishButtonDisabled }}" size="default" formType="submit">发布</button>
 </view>
 </form>

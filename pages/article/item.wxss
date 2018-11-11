@@ -1,12 +1,37 @@
 /* user */
+.goodsimgs {
+  width: 750rpx;
+  height: 750rpx;
+}
+
+.goodsimgs image {
+  width: 750rpx;
+  height: 750rpx;
+}
+.nav-list + .title {
+  margin-top: 50rpx;
+}
+/* menu */
+.menus {
+	padding-left:40rpx;
+
+}
+.school{
+  background-color:#f4f6f9;
+  width: 750rpx;
+  padding-top:20rpx;
+  padding-bottom:20rpx;
+}
 .user {
-	position:relative;
-	height:140rpx;
-	padding-left:135rpx;
+
+	padding-left:0rpx !important;
 	padding-top:30rpx;
 	padding-right:30rpx;
 	padding-bottom:30rpx;
+  border-bottom:1px solid #f6f6f6;
+
 }
+
 .user .avatar {
 	position:absolute;
 	top:30rpx;
@@ -22,8 +47,8 @@
 }
 .user .distance {
 	position:absolute;
-	top:35rpx;
-	right:30rpx;
+	top:30rpx;
+	right:0rpx;
 	font-size:24rpx;
 	color:#989898;
 }
@@ -50,10 +75,12 @@
 /* price */
 .price {
 	padding-top:40rpx;
-	border-top:1rpx solid #E6E6E6;
+	/* border-top:1rpx solid #E6E6E6; */
 	font-size:50rpx;
 	font-weight:bold;
 	color:red;
+ 
+
 }
 /* sp */
 .item {
@@ -64,6 +91,7 @@
 	padding-bottom:15rpx;
 	color:#333;
 	font-size:34rpx;
+   border-bottom:1rpx solid #f6f6f6;
 }
 .item .images {
 	width:100%;
