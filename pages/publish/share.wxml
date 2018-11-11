@@ -13,7 +13,7 @@
 		</view>
 		<!-- sp -->
 		<view class="effect">把宝贝分享给好友 才能卖得更快哦</view>
-		<view class="activity">
+		<view  wx:if="{{ guideStatus !== 0 }}" class="activity">
 			<view class="moments" bindtap="showCircleImg">
 				朋友圈
 			</view>

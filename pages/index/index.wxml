@@ -2,21 +2,21 @@
 <view class="_search">
     <view class="search">
         <image class="magnifying_glass" src="/static/img/magnifying_glass.png"></image>
-       <navigator class="navigator" hover-class="none" url="/pages/article/index?from=search">搜索内容</navigator>
+        <navigator class="navigator" hover-class="none" url="/pages/article/index?from=search">
+            搜索内容
+        </navigator>
     </view>
 </view>
-
 <!-- swiper -->
 <swiper class="carousels" indicator-dots="true" autoplay="true">
-  <block wx:for="{{ swipers }}" wx:for-index="index" wx:for-item="swiper" wx:key="id">
-    <swiper-item class="carousel">
-        <navigator url="{{ swiper.url }}" hover-class="navigator-hover">
-            <image class="carousel-img" src="{{ swiper.img }}" />
-        </navigator>
-    </swiper-item>
-  </block>
+    <block wx:for="{{ swipers }}" wx:for-index="index" wx:for-item="swiper" wx:key="id">
+        <swiper-item class="carousel">
+            <navigator url="{{ swiper.url }}" hover-class="navigator-hover">
+                <image class="carousel-img" src="{{ swiper.img }}" />
+            </navigator>
+        </swiper-item>
+    </block>
 </swiper>
-
 <!-- category -->
 <view class="bg-white _categories">
     <scroll-view scroll-x="true">
@@ -32,11 +32,14 @@
         </view>
     </scroll-view>
 </view>
-
 <!-- SWITCH -->
 <view class="switches bg-white">
-    <label class="switch switch-left {{ switch == 'hot' ?  'switch-on' : 'switch-off' }}" data-switch="hot" bindtap="switch">最抢手</label>
-    <label class="switch switch-right {{ switch == 'recent' ?  'switch-on' : 'switch-off' }}" data-switch="recent" bindtap="switch">最新的</label>
+    <label class="switch switch-left {{ switch == 'hot' ?  'switch-on' : 'switch-off' }}" data-switch="hot" bindtap="switch">
+        最抢手
+    </label>
+    <label class="switch switch-right {{ switch == 'recent' ?  'switch-on' : 'switch-off' }}" data-switch="recent" bindtap="switch">
+        最新的
+    </label>
 </view>
 <!-- ARTICLE -->
 <view class="bg-white">
@@ -58,11 +61,10 @@
 </view>
 <!-- LOAD END -->
 <!-- MENU START -->
-<menu number="0" notify="{{ systemNotify }}"></menu>
+<menu number="0" back="{{back}}" notify="{{ systemNotify }}"></menu>
 <!-- MENU END -->
 <!-- GUIDE START -->
-<view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}">
-</view>
+<view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}"></view>
 <view class="_guide z-elves" wx:if="{{ guideStatus == 0 }}">
     <view class="guide">
         <view class="close" bindtap="closeGuide"></view>

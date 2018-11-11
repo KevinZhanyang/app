@@ -54,6 +54,7 @@ Page({
         let articleId = options.id;
         this.loadArticle(articleId);
     },
+
     /* close start */
     /* init start */
     loadArticle (articleId) {
