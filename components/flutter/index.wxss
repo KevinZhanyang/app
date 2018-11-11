@@ -1,0 +1,64 @@
+.free-WaterfallFlow {
+  column-count: 2; /*column-count 属性规定元素应该被分隔的列数：*/
+  margin: 0 auto;
+  width: 750rpx;
+  column-gap: 24rpx;
+  background: #eceef1;
+  padding-top: 20rpx;
+  padding: 20rpx 24rpx;
+  box-sizing: border-box;
+}
+.free-WaterfallFlow .flex-wrap {
+  display: inline-block;
+  margin-bottom: 20rpx;
+  background: #fff;
+  border-radius: 0 0 10rpx 10rpx;
+}
+.flex-wrap .pic {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 10rpx;
+}
+.flex-wrap .containner {
+  padding: 22rpx 18rpx;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  font-size: 28rpx;
+  color: #333;
+  padding-bottom: 30rpx;
+  word-wrap: break-word;
+  text-align: justify;
+}
+.head-flex {
+  display: flex;
+  align-items: flex-start;
+}
+.head-image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 10rpx;
+  display: block;
+}
+.head-box {
+  display: flex;
+  flex-grow: 1;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.head-box .nickname {
+  font-size: 22rpx;
+  color: #333;
+  line-height: 40rpx;
+}
+.head-box .price {
+  font-size: 25rpx;
+  color: #000;
+  font-weight: 600;
+  line-height: 40rpx;
+}

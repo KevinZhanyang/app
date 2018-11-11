@@ -28,6 +28,7 @@ Page({
     switch: "recent",
     timer: null,
     back: false,
+    modal: false,
     // swiper
     swipers: [
       {
@@ -57,6 +58,12 @@ Page({
         that.setData({ back: false });
       }
     }, 50);
+  },
+  onCloseModal() {},
+  showModal() {
+    this.setData({
+      modal: !this.data.modal
+    });
   },
   //
   onLoad: function(options) {

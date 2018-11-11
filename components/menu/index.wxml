@@ -13,14 +13,14 @@
         </view>
         <view class="{{ number == 0 ? 'name current' : 'name' }}">返回</view>
     </view>
-    <navigator url="/pages/publish/index" hover-class="none">
-        <view class="menu">
-            <view class="icon_">
-                <image src="http://static.124115.com/static/program/img/menu/publish.png"></image>
-            </view>
-            <view class="{{ number == 1 ? 'name name_ current' : 'name name_' }}">发布</view>
+    <!-- <navigator url="/pages/publish/index" hover-class="none"> -->
+    <view bind:tap="showModal" class="menu">
+        <view class="icon_">
+            <image src="http://static.124115.com/static/program/img/menu/publish.png"></image>
         </view>
-    </navigator>
+        <view class="{{ number == 1 ? 'name name_ current' : 'name name_' }}">发布</view>
+    </view>
+    <!-- </navigator> -->
     <navigator open-type="redirect" url="/pages/home/index" hover-class="none">
         <view class="menu">
             <view class="icon">

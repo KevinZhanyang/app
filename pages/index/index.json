@@ -1,14 +1,16 @@
 {
-	"navigationBarBackgroundColor": "#fed406",
-	"navigationBarTextStyle": "black",
-	"backgroundColor": "#F8F8F8",
-	"backgroundTextStyle": "dark",
-	"enablePullDownRefresh": false,
-	"onReachBottomDistance": 50,
-	"disableScroll": false,
-   	"usingComponents": {
-    	"article": "/components/article/index",
-    	"load": "/components/load/index",
-    	"menu": "/components/menu/index"
-  	}
+  "navigationBarBackgroundColor": "#fed406",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#F8F8F8",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": false,
+  "onReachBottomDistance": 50,
+  "disableScroll": false,
+  "usingComponents": {
+    "article": "/components/article/index",
+    "flutter": "/components/flutter/index",
+    "load": "/components/load/index",
+    "menu": "/components/menu/index",
+    "vant-popup": "/components/popup/index"
+  }
 }

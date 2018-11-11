@@ -45,11 +45,13 @@
 <view class="bg-white">
     <!-- hot -->
     <view wx:if="{{ switch == 'hot' }}">
-        <article articles="{{ hotArticles }}" from="/pages/index/index"></article>
+        <flutter articles="{{  hotArticles }}" from="/pages/index/index"></flutter>
+        <!-- <article articles="{{ hotArticles }}" from="/pages/index/index"></article> -->
     </view>
     <!-- RECENT -->
     <view wx:if="{{ switch == 'recent' }}">
-        <article articles="{{ recentArticles }}" from="/pages/index/index"></article>
+        <flutter articles="{{ recentArticles }}" from="/pages/index/index"></flutter>
+        <!-- <article articles="{{ recentArticles }}" from="/pages/index/index"></article> -->
     </view>
 </view>
 <!-- LOAD START -->
@@ -61,7 +63,7 @@
 </view>
 <!-- LOAD END -->
 <!-- MENU START -->
-<menu number="0" back="{{back}}" notify="{{ systemNotify }}"></menu>
+<menu number="0" bind:show="showModal" back="{{back}}" notify="{{ systemNotify }}"></menu>
 <!-- MENU END -->
 <!-- GUIDE START -->
 <view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}"></view>
@@ -70,4 +72,16 @@
         <view class="close" bindtap="closeGuide"></view>
     </view>
 </view>
+<vant-popup custom-class="out-pop" z-index="98" position="bottom" show="{{modal}}" bind:close="onCloseModal">
+    <view class="pop-box">
+        <view class="left-btn">
+            <image src="/static/img/collected.png" mode="widthFix" />
+            <label>我要出售</label>
+        </view>
+        <view class="right-btn">
+            <image src="/static/img/collected.png" mode="widthFix" />
+            <label>我要求购</label>
+        </view>
+    </view>
+</vant-popup>
 <!-- GUIDE END -->

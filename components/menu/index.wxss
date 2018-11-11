@@ -1,76 +1,77 @@
 .menus {
-	z-index:100;
-	position:fixed;
-	bottom:0rpx;
-	right:0rpx;
-	left:0rpx;
-	display:flex;
-	justify-content:space-around;
-	height:97rpx;
-	padding-top:8rpx;
-	padding-bottom:3rpx;
-	border-top:1px solid #B4B4B4;
-	background-color:white;
+  z-index: 100;
+  position: fixed;
+  bottom: 0rpx;
+  right: 0rpx;
+  left: 0rpx;
+  display: flex;
+  justify-content: space-around;
+  height: 97rpx;
+  padding-top: 8rpx;
+  padding-bottom: 3rpx;
+  border-top: 1px solid #b4b4b4;
+  background-color: white;
 }
 .menus .menu {
-	position:relative;
-	width:60rpx;
-	height:85rpx;
-	/* background-color:red; */
+  position: relative;
+  width: 60rpx;
+  height: 85rpx;
+  /* background-color:red; */
 }
+
 .menus .menu .icon {
-	width:60rpx;
-	height:60rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 .menus .menu .icon image {
-	width:60rpx;
-	height:60rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 .menus .menu .icon_ {
-	position:absolute;
-	top:-35rpx;
-	right:-15rpx;
-	left:-15rpx;
-	width:90rpx;
-	height:90rpx;
+  position: absolute;
+  top: -35rpx;
+  right: -15rpx;
+  left: -15rpx;
+  width: 90rpx;
+  height: 90rpx;
 }
 .menus .menu .icon_ image {
-	width:100%;
-	height:100%;
+  width: 100%;
+  height: 100%;
 }
 .menus .menu .name {
-	position:absolute;
-	bottom:6rpx;
-	right:0rpx;
-	left:0rpx;
-	font-size:19rpx;
-	height:19rpx;
-	text-align:center;
-	color:##303030;
+  position: absolute;
+  bottom: 6rpx;
+  right: 0rpx;
+  left: 0rpx;
+  font-size: 19rpx;
+  height: 19rpx;
+  text-align: center;
+  color: #303030;
 }
 .menus .menu .name_ {
-	font-size:22rpx;
-	height:22rpx;
+  font-size: 22rpx;
+  height: 22rpx;
 }
 .menus .menu .current {
-	color:#008CBF;
+  color: #008cbf;
 }
 /* sp */
 .blank {
-	height:97rpx;
+  height: 97rpx;
 }
 /* system notify */
 .notify {
-	z-index:101;
-	position:fixed;
-	right:80rpx;
-	bottom:60rpx;
-	width:30rpx;
-	height:30rpx;
-	border-radius:20rpx;
-	background-color:red;
-	line-height:30rpx;
-	text-align:center;
-	font-size:18rpx;
-	color:white;
+  z-index: 101;
+  position: fixed;
+  right: 80rpx;
+  bottom: 60rpx;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 20rpx;
+  background-color: red;
+  line-height: 30rpx;
+  text-align: center;
+  font-size: 18rpx;
+  color: white;
 }
