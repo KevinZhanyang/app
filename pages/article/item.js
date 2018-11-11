@@ -25,7 +25,7 @@ Page({
             '赞',
             '已赞',
         ],
-        likeValue: 0,
+      likeValue: "/static/img/wanted.png",
         // relay
         parentId: 0,
         replyId: 0, 
@@ -49,6 +49,14 @@ Page({
         // 显示警告内容
         showWarnging: false,
     },
+  previewImage: function (e) {
+    var current = e.target.dataset.src;
+    //预览图片
+    wx.previewImage({
+      current: current,
+      urls: [current],
+    });
+  },
     //
     onLoad(options) {
         let articleId = 0;
@@ -142,11 +150,12 @@ Page({
             var likeKeys = Object.keys(like);
             let value = likeKeys.length == 0 ? 0 : 1;
             that.setData({
-                likeValue: value,
+              likeValue: value == 1 ? "/static/img/wanted.png" :"/static/img/want.png",
             });
             //
         });
     },
+
     // 
     like() {
         //
@@ -179,7 +188,7 @@ Page({
                     let article = that.data.article;
                     article.likes += 1;
                     that.setData({
-                        likeValue: 1,
+                      likeValue: "/static/img/wanted.png",
                         article: article,
                     });
                     // 提示获取了多少积分
@@ -792,5 +801,56 @@ Page({
         });
         //
     },
+  /* circle start */
+  loadCircleImg(articleId) {
+    //
+    let that = this;
+    Share.getCircleImg(articleId)
+      .then(res => {
+        let img = res.data;
+        that.setData({
+          circleImg: img,
+        });
+      });
+    //
+  },
+  showCircleImg() {
+    //
+    let url = this.data.circleImg;
+    if (url.length == 0) {
+      setTimeout(function () {
+        //
+        if (ulr.length == 0) {
+          //
+          setTimeout(function () {
+            //
+            wx.previewImage({
+              urls: [
+                url,
+              ],
+            });
+            //
+          }, 500);
+          //
+        } else {
+          //
+          wx.previewImage({
+            urls: [
+              url,
+            ],
+          });
+          //
+        }
+        //
+      }, 500);
+    } else {
+      wx.previewImage({
+        urls: [
+          url,
+        ],
+      });
+    }
+    //
+  },
     /* COPY WECHAT END */
 });

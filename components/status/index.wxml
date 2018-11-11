@@ -6,7 +6,7 @@
     </view>
     <view class="nickname">{{ user.nickname }}</view>
     <view class="attr">
-        <view class="count">已发布商品 {{ count }} 件</view>
-        <view class="created_quantum">{{ user.created_quantum }}入驻</view>
+        <view class="count">发布商品 {{ count }} </view>
+        <view class="created_quantum">加入二手社{{ user.created_quantum }}</view>
     </view>
 </view>
