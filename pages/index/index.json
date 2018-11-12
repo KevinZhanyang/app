@@ -4,7 +4,7 @@
   "backgroundColor": "#F8F8F8",
   "backgroundTextStyle": "dark",
   "enablePullDownRefresh": false,
-  "onReachBottomDistance": 50,
+  "onReachBottomDistance": 350,
   "disableScroll": false,
   "usingComponents": {
     "article": "/components/article/index",

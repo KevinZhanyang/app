@@ -7,17 +7,17 @@
 <!-- PRICE END -->
 <!-- ARTICLE START -->
 <view class=" bg-white">
-   
+
   <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
     <swiper-item wx:for="{{articleImgs}}" wx:for-index="key" wx:for-item="articleImg" wx:key="id">
-      <image data-src="{{articleImg.img}} "src="{{articleImg.img}}" data-key="{{ key }}" background-size="cover" bindtap="previewImage"></image>
+      <image data-src="{{articleImg.img}} " mode="center" src="{{articleImg.img}}" data-key="{{ key }}" background-size="cover" bindtap="previewImage"></image>
     </swiper-item>
   </swiper>
 
   <view class="container bg-white price">$ {{ article.price }}</view>
-     <view class="item content">
-    		{{ article.content }}
-    	</view>
+  <view class="item content">
+    {{ article.content }}
+  </view>
   <view class="container user bg-white">
     <view class="distance">
       <text>距 {{ article.distance }} km</text>
@@ -97,7 +97,8 @@
 <!-- STATUS END -->
 <!-- LIKE START -->
 <view class="container bg-white _like">
-  <view class="like" bindtap="like"><image src="/static/img/want.png"></image>想要</view>
+  <view class="like" bindtap="like">
+    <image src="{{likeValue}}"></image>想要</view>
 </view>
 <view class="container bg-white likes">已有{{ article.likes }}人想要</view>
 <!-- LIKE END -->
@@ -159,7 +160,7 @@
 <view class="container bg-white _seduce" catchtap="releaseMessageRelationship_">
   <image class="img" src="/static/img/default.png"></image>
   <view class="seduce">
-   暂时没有留言
+    暂时没有留言
   </view>
 </view>
 <!-- SEDUCE END -->
@@ -173,20 +174,20 @@
   <view class="functions">
     <view class="submenus">
       <!-- navigator -->
-      <view class="submenu" catchtap="redirectToIndex">
-        <image class="icon" src="/static/img/home.png"></image>
-        <view>首页</view>
+      <view class="homepage" catchtap="redirectToIndex">
+        <image class="menu_icon" src="/static/img/home.png"></image>
+        <view class='menu_text'>首页</view>
       </view>
       <!-- collect -->
-      <view class="submenu" catchtap="collect">
-        <image class="icon" src="/static/img/moments.png"></image>
-        <view>分享</view>
+      <view class="homepage" catchtap="showCircleImg">
+        <image class="menu_icon" src="/static/img/moments.png"></image>
+        <view class='menu_text'>分享</view>
       </view>
       <!-- share -->
-      <navigator url="/pages/publish/share?id={{ article.id }}" hover-class="navigator-hover">
-        <view class="submenu">
-          <image class="icon" src="/static/img/inform.png"></image>
-          举报
+      <navigator url="/pages/publish/share?id={{ article.id }}" >
+        <view class="homepage">
+          <image class="menu_icon" src="/static/img/inform.png"></image>
+          <view class='menu_text'>举报</view> 
         </view>
       </navigator>
     </view>

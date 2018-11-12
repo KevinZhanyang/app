@@ -35,10 +35,10 @@
 <!-- SWITCH -->
 <view class="switches bg-white">
     <label class="switch switch-left {{ switch == 'hot' ?  'switch-on' : 'switch-off' }}" data-switch="hot" bindtap="switch">
-        最抢手
+        出售中
     </label>
     <label class="switch switch-right {{ switch == 'recent' ?  'switch-on' : 'switch-off' }}" data-switch="recent" bindtap="switch">
-        最新的
+        求购的
     </label>
 </view>
 <!-- ARTICLE -->
@@ -72,14 +72,14 @@
         <view class="close" bindtap="closeGuide"></view>
     </view>
 </view>
-<vant-popup custom-class="out-pop" z-index="98" position="bottom" show="{{modal}}" bind:close="onCloseModal">
+<vant-popup custom-class="out-pop" z-index="98" position="bottom" show="{{modal}}" bind:close="onCloseModal" bindtap='preventTouchMove'>
     <view class="pop-box">
         <view class="left-btn">
-            <image src="/static/img/collected.png" mode="widthFix" />
+            <image src="/static/img/sale.png" mode="widthFix" />
             <label>我要出售</label>
         </view>
         <view class="right-btn">
-            <image src="/static/img/collected.png" mode="widthFix" />
+            <image src="/static/img/buy.png" mode="widthFix" />
             <label>我要求购</label>
         </view>
     </view>

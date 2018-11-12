@@ -8,6 +8,7 @@
   padding: 20rpx 24rpx;
   box-sizing: border-box;
 }
+
 .free-WaterfallFlow .flex-wrap {
   display: inline-block;
   width: 339rpx;
@@ -15,14 +16,18 @@
   background: #fff;
   border-radius: 0 0 10rpx 10rpx;
 }
+
 .flex-wrap .pic {
   width: 100%;
   margin: 0 auto;
   border-radius: 10rpx;
+  height: 339rpx;
 }
+
 .flex-wrap .containner {
   padding: 22rpx 18rpx;
 }
+
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -33,11 +38,18 @@
   padding-bottom: 30rpx;
   word-wrap: break-word;
   text-align: justify;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  height: 80rpx;
+  margin-bottom: 6rpx;
+  /* -webkit-animation: weuiLoading 1s steps(12, end) infinite; */
 }
+
 .head-flex {
   display: flex;
   align-items: flex-start;
 }
+
 .head-image {
   width: 40rpx;
   height: 40rpx;
@@ -46,17 +58,27 @@
   margin-right: 10rpx;
   display: block;
 }
+
 .head-box {
   display: flex;
   flex-grow: 1;
   flex-flow: row wrap;
   justify-content: space-between;
 }
+
 .head-box .nickname {
   font-size: 22rpx;
   color: #333;
   line-height: 40rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  width: 120rpx;
 }
+
 .head-box .price {
   font-size: 25rpx;
   color: #000;

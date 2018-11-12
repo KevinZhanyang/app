@@ -68,11 +68,14 @@ Page({
         }
 
         let that = this;
+      // 下载分享给用户|群的照片
+      this.loadCircleImg(articleId); 
         /*
         wx.showLoading({
             title: 'loading',
             mask: true,
         });
+        
         */
         // 如果没有授权地理位置，转到授权
         User.testAuthorizeUserLocation()
@@ -813,6 +816,18 @@ Page({
         });
       });
     //
+  },
+  // 下载朋友圈照片
+  loadShare(articleId) {
+    //
+    let that = this;
+    Share.getShareImg(articleId)
+      .then(res => {
+        let result = res.data;
+        that.setData({
+          shareImg: result.thumbnail,
+        });
+      });
   },
   showCircleImg() {
     //

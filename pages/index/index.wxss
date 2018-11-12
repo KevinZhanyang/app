@@ -151,15 +151,19 @@
   height: 10vh;
 }
 .pop-box {
-  padding-bottom: 150rpx;
-  height: 400rpx;
-  width: 680rpx;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 10rpx 10rpx 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+ padding-bottom:69rpx;
+height:358rpx;
+width:707rpx;
+margin:0 auto;
+background:#fff;
+border-radius:10rpx 10rpx 0 0;
+display:flex;
+align-items:center;
+justify-content:space-around;
+font-size:30px;
+font-family:SimHei;
+font-weight:400;
+color:rgba(43,43,43,1);
 }
 .left-btn,
 .right-btn {
@@ -174,5 +178,5 @@
   width: 90rpx;
   height: 90rpx;
   border-radius: 50%;
-  margin-bottom: 10rpx;
+  margin-bottom: 20rpx;
 }

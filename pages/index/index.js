@@ -186,15 +186,14 @@ Page({
       });
     });
   },
+  
   //
   onReachBottom: function() {
     let flag = this.data.switch;
     let that = this;
-
     this.setData({
       articleLoadStatus: 1
     });
-
     switch (flag) {
       case "hot":
         if (this.data.hotArticleLoadStatus == 2) {
@@ -331,6 +330,11 @@ Page({
       key: "index_guide",
       data: Date.now()
     });
-  }
+  },
+   preventTouchMove: function(e) {
+    this.setData({
+      modal: !this.data.modal
+    });
+  },
   /* guide end */
 });

@@ -29,7 +29,7 @@
 	padding-right:30rpx;
 	padding-bottom:30rpx;
   border-bottom:1px solid #f6f6f6;
-
+border-top:1px solid #f6f6f6;
 }
 
 .user .avatar {
@@ -48,13 +48,14 @@
 .user .distance {
 	position:absolute;
 	top:30rpx;
-	right:0rpx;
+	right:30rpx;
 	font-size:24rpx;
 	color:#989898;
 }
 .user .nickname {
 	margin-bottom:10rpx;
 	display: flex;
+  margin-left: 30rpx;
 }
 .user .nickname .name{
 	max-width: 240rpx;
@@ -91,12 +92,17 @@
 .item {
 	padding-top:20rpx;
 	padding-bottom:30rpx;
+  padding-left:30rpx;
 }
 .item .content {
 	padding-bottom:15rpx;
 	color:#333;
 	font-size:34rpx;
    border-bottom:1rpx solid #f6f6f6;
+}
+.cell{
+  margin-left:-10rpx !important;
+  margin-right:-18rpx !important;
 }
 .item .images {
 	width:100%;
@@ -289,13 +295,11 @@
 /* message */
 .message-title {
 	height:60rpx;
-	margin-bottom:10rpx;
 	line-height:60rpx;
 	font-size:30rpx;
 	color:#666;
 }
-.messages {
-}
+
 .messages .hover {
 	background-color:#EEE;
 	border-radius:15rpx;
@@ -400,24 +404,27 @@
 }
 /* seduce */
 ._seduce {
-	text-align:center;
-	padding:30rpx;
-	padding-bottom:30rpx;
+text-align:center;
+padding-top:33px;
+padding-bottom:16px;
+height:300rpx;
+
 }
 ._seduce .img {
-	width:150rpx;
-	height:150rpx;
-	margin-bottom:30rpx;
+	width:198rpx;
+	height:106rpx;
+	
 }
 ._seduce .seduce {
-	height:50rpx;
-	width:140rpx;
-	margin-right:auto;
-	margin-left:auto;
-	border-radius:25rpx;
-	font-size:30rpx;
-	line-height:50rpx;
-	color:#333;
+height:25rpx;
+width:154rpx;
+margin-right:auto;
+margin-left:247rpx;
+border-radius:25rpx;
+font-size:26rpx;
+line-height:50rpx;
+color:#9F9F9F;
+
 }
 ._seduce .seduce image {
 	height:50rpx;
@@ -437,11 +444,18 @@
 	border:2px solid #333;
 	border-radius:40rpx;
 	margin-bottom:20rpx;
-	font-size:34rpx;
+	font-size:28rpx;
+font-family:SimHei;
+font-weight:400;
 	line-height:78rpx;
 	text-align:center;
 	background-color:#fed406;
 	color:#333;
+}
+.like image{
+  width: 32rpx;
+  height: 26rpx;
+  margin-right: 8rpx;
 }
 .likes {
 	padding-bottom:30rpx;
@@ -512,7 +526,10 @@
 /* MENU START */
 .submenus {
 	display:flex;
-	justify-content: flex-start;
+	justify-content: space-around;
+  width: 422rpx;
+  padding-top:18rpx;
+
 }
 .submenus .submenu {
 	position:relative;
@@ -529,6 +546,22 @@
 	height:40rpx;
 	width:40rpx;
 }
+
+.menu_icon{
+  height:40rpx;
+	width:40rpx;
+}
+.menu_text{
+
+height:20rpx;
+font-size:20rpx;
+font-family:SimHei;
+font-weight:400;
+color:rgba(102,102,102,1);
+line-height:30rpx;
+}
+
+
 .submenus .submenu .icon image {
 	width:40rpx;
 	height:40rpx;
@@ -540,18 +573,16 @@
 */
 /* MENU END */
 .functions .wechat {
-	display:inline-block;
-	text-align:center;
-	width:150rpx;
-	height:80rpx;
-	border-radius:8rpx;
-	margin-top:10rpx;
-	margin-bottom:10rpx;
-	margin-right:10rpx;
-	font-size:30rpx;
-	line-height:80rpx;
-	background-color:#FFF6BA;
-	color:#FFD900;
+display:inline-block;
+text-align:center;
+width:328rpx;
+height:100rpx;
+margin-right:-13rpx;
+font-size:30rpx;
+line-height:100rpx;
+background-color:#FFF6BA;
+color:#FFD900;
+
 }
 .functions .call {
 	display:inline-block;
