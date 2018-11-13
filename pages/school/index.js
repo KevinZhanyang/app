@@ -5,6 +5,7 @@ import { Province } from '../../model/province';
 //
 Page({
     data: {
+      Myschool: [{ id: 1, name: "斯坦福大学斯坦福大学" }, { id: 1, name: "斯坦福大学" }, { id: 1, name: "斯坦福大学"}],
         //
         provines:[],
         // 

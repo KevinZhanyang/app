@@ -1,0 +1,30 @@
+   <view class="location">
+
+      <view class="location_imag">
+         <image src="/static/img/location.png"></image>
+      </view>
+        <picker bindchange="bindCategoryChange" value="{{ provinceKey }}" range-key="name" range="{{ provinces }}">
+          <view class="select">{{ provinces[provinceKey].name }}</view>
+        </picker>
+      <view class="return_imag">
+         <image src="/static/img/return_down.png"></image>
+      </view>
+    </view>
+
+
+
+<view class='textarea_view'>
+<view class="location_imag">
+         <image src="/static/img/province_select.png"></image>
+ </view>
+  <textarea placeholder='输入新增学校全称' maxlength="-1" bindinput="updateContent" value="{{ article.content }}"></textarea>
+</view>
+
+<view class='tips'>
+审核通过将会有你的校友进入哦
+</view>
+
+  <!--show if out our-->
+  <view class="publish">
+    <button class="published" disabled="{{ publishButtonDisabled }}" size="default" formType="submit">提交审核</button>
+  </view>

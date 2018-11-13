@@ -1,0 +1,40 @@
+.img {
+	width:100%;
+	height:1053rpx;
+}
+.img image {
+	width:100%;
+	height:1053rpx;
+}
+/* guide start */
+.guide-layer {
+	position:fixed;
+	top:0rpx;
+	bottom:0rpx;
+	right:0rpx;
+	left:0rpx;
+	background-color:rgba(0,0,0,0.6);
+}
+._guide {
+	position:fixed;
+	top:0rpx;
+	bottom:0rpx;
+	right:0rpx;
+	left:0rpx;
+	background-image:url(http://static.124115.com/static/program/img/publish/guide.png);
+	background-size:100% 100%;
+	background-position:center center;
+	width:100vw;
+	height:100vh;
+}
+._guide .guide {
+	positions:relative;
+}
+._guide .guide .close {
+	position:absolute;
+	right:40rpx;
+	bottom:250rpx;
+	width:200rpx;
+	height:120rpx;
+}
+/* guide end */

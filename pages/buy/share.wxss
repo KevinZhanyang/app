@@ -1,0 +1,179 @@
+page {
+}
+._share {
+	position:relative;
+	height:100vh;
+	background-color:white;
+	background-size:100% 100%;
+}
+.share {
+	padding-top:70rpx;
+}
+.share .img {
+	margin-right:auto;
+	margin-left:auto;
+	margin-bottom:70rpx;
+	width:410rpx;
+	height:410rpx;
+	overflow:hidden;
+	border:4rpx solid white;
+}
+.share .img image {
+	width:402rpx;
+	height:402rpx;
+	border-radius:8rpx;
+}
+/* sp */
+._navigator {
+	display:flex;
+	justify-content: space-around;
+	margin-bottom:50rpx;
+}
+.navigator {
+	width:220rpx;
+	height:75rpx;
+	font-size:30rpx;
+	line-height:76rpx;
+	text-align:center;
+	border-radius:38rpx;
+	color:#2b2b2b;
+	border:1rpx solid #2b2b2b;
+}
+/* sp */
+.share .effect {
+	text-align:center;
+	margin-bottom:56rpx;
+	font-size:30rpx;
+	color:#6f6f6f;
+}
+.share .activity {
+	display:flex;
+	justify-content:space-between;
+	width:360rpx;
+	margin-right:auto;
+	margin-left:auto;
+}
+.share .activity .moments {
+	text-align:center;
+	width:100rpx;
+	padding-top:145rpx;
+	font-size:25rpx;
+	background-image:url(http://static.124115.com/static/program/img/publish/moments.png);
+	background-repeat:no-repeat;
+	background-position:top center;
+	background-size:100rpx 100rpx;
+	color:#C0BBB8;
+}
+.share .activity .friend {
+	text-align:center;
+	width:110rpx;
+	padding-top:145rpx;
+	font-size:25rpx;
+	background-image:url(http://static.124115.com/static/program/img/publish/wechat.png);
+	background-repeat:no-repeat;
+	background-position:top center;
+	background-size:100rpx 100rpx;
+	color:#C0BBB8;
+
+	margin:0rpx;
+	background-color:inherit;
+	padding-left:0rpx;
+	padding-right:0rpx;
+	line-height:20rpx;
+
+	border:1px solid transparent;
+}
+.share .activity .friend::after{
+	border: none;
+}
+/* guide start */
+.guide-layer {
+	position:fixed;
+	top:0rpx;
+	bottom:0rpx;
+	right:0rpx;
+	left:0rpx;
+	background-color:rgba(0,0,0,0.6);
+}
+._guide {
+	position:fixed;
+	top:0rpx;
+	bottom:0rpx;
+	right:0rpx;
+	left:0rpx;
+	background-image:url(http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.HvhR7yCicXuc6cddf342936e356281ebe7bd15d0dd76.png?x-oss-process=style/thumbnail);
+	/* background-image:url(http://static.124115.com/static/program/img/publish/guide.png?v1); */
+	background-size:cover;
+	background-position:center;
+	width:100vw;
+	height:100vh;
+}
+._guide .guide {
+	position:relative;
+}
+._guide .guide .close {
+	position:absolute;
+	top:56vh;
+	bottom:32vh;
+	height:12vh;
+	left:67vw;
+	right:4vw;
+	width:29vw;
+}
+/* guide end */
+/* DECLARATION START */
+.declaration {
+	position:absolute;
+	bottom:0rpx;
+	height:100rpx;
+	line-height:100rpx;
+	text-align:center;
+	width:100vw;
+	color:#6f6f6f;
+	font-size:24rpx;
+}
+.declaration-content {
+	position:fixed;
+	display:flex;
+	justify-content:space-around;
+	align-items: center;
+	top:0rpx;
+	right:0rpx;
+	bottom:0rpx;
+	left:0rpx;
+	width:100vw;
+	height:100vh;
+	background-color:rgba(0, 0, 0, 0.8);
+}
+.declaration-content .content {
+	position:relative;
+	background-color:white;
+	width:80vw;
+	padding:50rpx 30rpx;
+	border-radius:8rpx;
+
+	font-size:26rpx;
+	line-height:45rpx;
+	color:#333;
+}
+.declaration-content .content .close{
+	position:absolute;
+	right:0rpx;
+	top:0rpx;
+	width:60rpx;
+	height:60rpx;
+	text-align:center;
+	line-height:60rpx;
+	font-size:50rpx;
+	color:#6f6f6f;
+}
+.declaration-content .content .title {
+	line-height:100rpx;
+	height:100rpx;
+	color:#666;
+	text-align:center;
+	font-size:28rpx;
+}
+/* DECLARATION END */
+
+

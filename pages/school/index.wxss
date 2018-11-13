@@ -3,12 +3,17 @@ page {
 }
 /* SEARCH START */
 .search {
+display:flex;
+
+
 	height:100rpx;
 	padding-top:15rpx;
 	padding-bottom:15rpx;
 	padding-left:15rpx;
 	padding-right:15rpx;
 	background-color:#fed406;
+
+
 }
 .search .keyword {
 	text-align:center;
@@ -20,6 +25,7 @@ page {
 	font-size:26rpx;
 	background-color:#F5F5F5;
 	color:#2b2b2b;
+
 
 	background-image:url(data:image/png;base64,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);
 	background-repeat:no-repeat;
@@ -78,3 +84,92 @@ background-color:white;
 color:#333;
 }
 /* ITEMS END */
+.images {
+	position: relative;
+	display:flex;
+	flex-wrap:wrap;
+	flex-direction: column;
+	justify-content: flex-start;
+	white-space:nowrap;
+	width:100%;
+	padding-top:15rpx;
+	padding-bottom:15rpx;
+	margin-bottom:25rpx;
+	/* border-bottom:1px solid #EEE; */
+}
+/* mySchool start */
+.list {
+  /* padding-top: 45rpx; */
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  width:750px;
+height:113rpx;
+background:rgba(244,246,249,1);
+}
+.list-item_text{
+  width:110px;
+height:27rpx;
+font-size:28rpx;
+font-family:SimHei;
+font-weight:400;
+color:rgba(102,102,102,1);
+line-height:44px;
+margin-left: 31rpx;
+margin-bottom:45rpx;
+
+
+}
+
+.list .list-item {
+  padding: 20rpx 30rpx;
+  font-size: 30rpx;
+  background: #fff;
+  color: #b5b8be;
+  border: 1rpx solid #ebebeb;
+  text-align: center;
+  border-radius: 10rpx;
+  margin: 10rpx;
+  
+  
+ 
+
+background:rgba(255,255,255,1);
+}
+
+.list-item.active {
+  background: #2b2b2b;
+  color: #fad33a;
+  border: 1rpx solid #2b2b2b;
+}
+
+/* mySchool end */
+.location_img{
+ width:47rpx;
+height:47rpx;
+margin-top:5rpx;
+
+  margin-right: 13rpx;
+  margin-left:24rpx; 
+}
+.location{
+  height:60rpx;
+line-height:60rpx;
+text-align:bottom;
+  width: 200rpx;
+ display:flex;
+justify-content:center;
+margin-top:10rpx;
+
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+}
+.search_box{
+
+
+    width:461rpx;
+margin-left:40rpx;
+}

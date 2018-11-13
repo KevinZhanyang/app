@@ -19,62 +19,22 @@
           <image mode="aspectFill" src="{{ image.path }}" data-key="{{ index }}" bindtap="setCover"></image>
         </view>
       </scroll-view>
-      <!-- <view class="lattice-image"> -->
-      <!-- <view class='img'>
-          <image class='png' src='http://image.weilanwl.com/img/3x4-1.jpg' mode='scaleToFill'></image>
-          <view class='iconfont icon-close'></view>
-        </view> -->
-
-      <!-- <view class='img'>
-          <image class='png' src='http://image.weilanwl.com/img/3x4-1.jpg' mode='scaleToFill'></image>
-          <!-- <view class='delete_png_view'>
-          
-           <image class="delete_png" src='/static/img/delete_png.png' ></image>
-           
-           </view> -->
-      <!-- <view class='iconfont icon-close'></view>
-        </view> -->
-      <!-- <view class='img'>
-          <image src='http://image.weilanwl.com/img/3x4-1.jpg' mode='scaleToFill'></image>
-          <view class='iconfont icon-close'></view>
-        </view> -->
-      <!-- 
-        <view class='lattice-btn'>
-          <text class='iconfont icon-cameraadd'></text>
-        </view>
-      </view> -->
+     
 
       <view class=" attr">
         <view>
           <image class="location_img" src="/static/img/location.png"></image>
           <label class="rule">{{address}}</label>
         </view>
-        <view class="radio">
-          <radio-group bindchange="radioChange">
-            <label >
-              <radio value="{{index}}" checked='{{checked}}'>全新</radio>
-            </label>
-          </radio-group>
-          </view>
       </view>
     </view>
 
   </view>
-  <!-- <view class="container bg-white description"> 
-    <view>
-        <textarea maxlength="500" class="content" placeholder="在这里写要发布的信息，可以写转手原因，入手渠道，新旧程度和使用感受等。" bindinput="updateContent" value="{{ article.content }}"></textarea>
-    </view>
-</view> -->
+
   <!-- TEXTAREA END -->
 
   <!-- PARAMETERS START -->
   <view class="cells">
-    <view class="cell">
-      <view class="secondary">价格(美元)</view>
-      <view class="primary">
-        <input class="input" type="digit" maxlength="10" placeholder="" value="{{ article.price }}" bindinput="updatePrice"></input>
-      </view>
-    </view>
 
     <view class="cell">
       <view class="primary">

@@ -41,7 +41,7 @@ border:none;
 .images .camera {
 	/* (750 - 120) / 2 */
 	/* margin-left:315rpx; */
-	margin-left:0rpx;
+	/* margin-left:285rpx; */
 }
 .img{
   	width:156rpx !important;

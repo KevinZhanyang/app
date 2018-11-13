@@ -82,24 +82,24 @@ Page({
     });
     //控制国内用户不能上传
     let that = this;
-    // this.publishShow().then(function (result) {
-    //   var locationData = result.data;
-    //   if (locationData.code == 200 && locationData.body && locationData.body.data.country_id == 'CN' && locationData.body.data.country =="中国") {
-    //     that.setData({
-    //       publishedShow: false,
-    //     });
-    //     wx.showModal({
-    //       title: '发布提示',
-    //       content: '暂不支持国内用户上传！',
-    //       showCancel: false,
-    //       success:function(){
-    //         wx.navigateBack({
+    this.publishShow().then(function (result) {
+      var locationData = result.data;
+      if (locationData.code == 200 && locationData.body && locationData.body.data.country_id == 'CN' && locationData.body.data.country =="中国") {
+        that.setData({
+          publishedShow: false,
+        });
+        wx.showModal({
+          title: '发布提示',
+          content: '暂不支持国内用户上传！',
+          showCancel: false,
+          success:function(){
+            wx.navigateBack({
               
-    //         })
-    //       }
-    //     })
-    //   }
-    // });
+            })
+          }
+        })
+      }
+    });
 
     // 如果没有授权地理位置，转到授权
     User.testAuthorizeUserLocation()
@@ -567,10 +567,10 @@ Page({
       this.showError('还有照片上传中');
       return;
     }
-    if (imageLength <= 0) {
-      this.showError('必须发布照片');
-      return;
-    }
+    // if (imageLength <= 0) {
+    //   this.showError('必须发布照片');
+    //   return;
+    // }
 
     if (this.data.article.content.length == 0) {
       this.showError('内容不能为空');
@@ -629,6 +629,7 @@ Page({
           // 
           form_id: formId,
           images: images,
+          type:1
         };
         //
         Article.post(item)

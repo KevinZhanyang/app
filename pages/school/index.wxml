@@ -1,37 +1,60 @@
 <!-- SEARCH START -->
 <view class="search bg-white">
-	<input class="keyword" placeholder="输入关健字" bindconfirm="search" value="{{ keyword }}" />
+
+  <view class='location'>
+    <image class="location_img" src="/static/img/add.png"></image>
+    <label class="rule">新增学校</label>
+  </view>
+  <view class="search_box">
+    <input class="keyword" placeholder="输入关健字" bindconfirm="search" value="{{ keyword }}" />
+  </view>
+
 </view>
 <!-- SEARCH END -->
+
+<view style='background-color:rgba(244,246,249,1);'>
+<view class="list-item_text  " bindtap="showCreateTagModel">
+  我的学校
+</view>
+
+  <scroll-view scroll-x="true" >
+  <view class="list">
+    <view class="list-item {{item.state==1?'active':''}}" bindtap="selectTag" data-id="{{item.id}}" wx:for="{{Myschool}}" wx:key="{{item.id}}">
+      {{item.name}}
+    </view>
+    </view>
+  </scroll-view>
+
+</view>
+
+
+
 <!-- PROVINCES START -->
 <scroll-view scroll-y="true" class="provinces" wx:if="{{ items.length == 0 }}">
-	<view class="province{{ provinceId == province.id ? ' active' : '' }}" wx:for="{{ provinces }}" wx:for-index="index" wx:for-item="province" wx:key="id" data-id="{{ province.id }}" bindtap="updateSchool">
-		<text>{{ province.name }}</text>
-	</view>
+  <view class="province{{ provinceId == province.id ? ' active' : '' }}" wx:for="{{ provinces }}" wx:for-index="index" wx:for-item="province" wx:key="id" data-id="{{ province.id }}" bindtap="updateSchool">
+    <text>{{ province.name }}</text>
+  </view>
 </scroll-view>
 <!-- PROVINCES END -->
 <!-- SCHOOL START -->
-<scroll-view scroll-y="true" class="schools"  wx:if="{{ items.length == 0 }}">
-	<navigator wx:for="{{ schools }}" wx:for-index="index" wx:for-item="school" wx:key="id" url="/pages/article/index?school_id={{ school.id }}" hover-class="none">
-	<view class="school" data-id="{{ school.id }}">
-		<text>{{ school.name }}</text>
-	</view>
-	</navigator>
+<scroll-view scroll-y="true" class="schools" wx:if="{{ items.length == 0 }}">
+  <navigator wx:for="{{ schools }}" wx:for-index="index" wx:for-item="school" wx:key="id" url="/pages/article/index?school_id={{ school.id }}" hover-class="none">
+    <view class="school" data-id="{{ school.id }}">
+      <text>{{ school.name }}</text>
+    </view>
+  </navigator>
 </scroll-view>
 <!-- SCHOOL END -->
 <!-- ITEMS START -->
 <view class="items" wx:if="{{ items.length > 0 }}">
-	<view class="clear">
-		<icon type="clear" size="23" catchtap="clear" />
-	</view>
-	<!-- sp -->
-	<navigator wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="id" url="/pages/article/index?province_id={{ item.province_id }}" hover-class="none">
-	<view class="item">
-	{{ item.name }}
-	</view>
-	</navigator>
+  <view class="clear">
+    <icon type="clear" size="23" catchtap="clear" />
+  </view>
+  <!-- sp -->
+  <navigator wx:for="{{ items }}" wx:for-index="index" wx:for-item="item" wx:key="id" url="/pages/article/index?province_id={{ item.province_id }}" hover-class="none">
+    <view class="item">
+      {{ item.name }}
+    </view>
+  </navigator>
 </view>
 <!-- ITEMS END -->
-
-
-

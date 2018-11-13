@@ -135,7 +135,7 @@ Page({
   },
   //
   onShow() {
-    this.sendCode();
+   
     // if (appInstance.globalData.published == true) {
     if (true) {
       this.clearRecentArticle();
@@ -407,7 +407,6 @@ Page({
       }
     }, 100)
   },
-
   queryMultipleNodes: function() {
     let that = this;
     var query = wx.createSelectorQuery()
@@ -421,11 +420,16 @@ Page({
         top: res[0].top
       })
     })
-
   },
   goPublish(){
     wx.navigateTo({
       url: '/pages/publish/index',
+    })
+  }
+  ,
+  goBuy() {
+    wx.navigateTo({
+      url: '/pages/buy/index',
     })
   }
 });
