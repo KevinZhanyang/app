@@ -1,6 +1,6 @@
 {
     "pages": [
-      "pages/publish/index",
+    
         "pages/index/index",
 
         "pages/school/index",
@@ -12,7 +12,7 @@
         "pages/article/item",
 
         "pages/packet/index",
-
+  "pages/publish/index",
         
         "pages/publish/share",
         "pages/publish/moments",

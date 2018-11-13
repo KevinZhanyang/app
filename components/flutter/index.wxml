@@ -37,7 +37,7 @@
     <view class="flex-wrap" wx:for="{{ articles }}" wx:for-index="recentId" wx:for-item="article" wx:key="id" wx:if="{{recentId%2!=''}}">
       <block wx:if="{{recentId==1}}">
         <!-- 学校入口 -->
-        <navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
+        <navigator url="/pages/school/index" hover-class="navigator-hover">
           <image class="pic" lazy-load="{{true}}" mode="widthFix" src="/static/img/banner.png"></image>
         </navigator>
       </block>

@@ -1,3 +1,27 @@
+/* packet */
+._packets .attr {
+	display:flex;
+	justify-content: space-between;
+	height:50rpx;
+	line-height:50rpx;
+	padding-bottom:60rpx;
+	padding-left:30rpx;
+	padding-right:30rpx;
+	font-size:26rpx;
+	color:#6f6f6f;
+}
+._packets .attr .rule {
+	color:#ff5555;
+}
+.packets {
+	width:calc(100% - 60rpx);
+	padding-top:15rpx;
+	padding-bottom:30rpx;
+	margin-right:30rpx;
+	margin-left:30rpx;
+}
+
+
 /* user */
 .goodsimgs {
   width: 750rpx;

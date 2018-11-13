@@ -454,11 +454,11 @@ export class Article
     static hot(item){
         //
         item.order = 'hot';
-
+      item.category_id = 11;
         //
         return new Promise(function(resolve, reject){
             //
-            let url = Config.host + '/hot';
+          let url = Config.host + '/article';
             let options = {
                 url: url,
                 method:'get',

@@ -1,5 +1,12 @@
+
+
 <!-- SEARCH START -->
 <view class="_search">
+    <view class='location'>
+          <image class="location_img" src="/static/img/black_lo.png"></image>
+          <label class="rule">{{address?address:"选择地址"}}</label>
+        </view>
+    
     <view class="search">
         <image class="magnifying_glass" src="/static/img/magnifying_glass.png"></image>
         <navigator class="navigator" hover-class="none" url="/pages/article/index?from=search">
@@ -18,7 +25,7 @@
     </block>
 </swiper>
 <!-- category -->
-<view class="bg-white _categories">
+<view class="bg-white _categories ">
     <scroll-view scroll-x="true">
         <view class="categories">
             <view class="category" wx:for="{{ categories }}" wx:for-index="index" wx:for-item="category" wx:key="id">
@@ -32,8 +39,9 @@
         </view>
     </scroll-view>
 </view>
+
 <!-- SWITCH -->
-<view class="switches bg-white">
+<view id="the-id" class="switches bg-white">
     <label class="switch switch-left {{ switch == 'hot' ?  'switch-on' : 'switch-off' }}" data-switch="hot" bindtap="switch">
         出售中
     </label>
@@ -74,7 +82,7 @@
 </view>
 <vant-popup custom-class="out-pop" z-index="98" position="bottom" show="{{modal}}" bind:close="onCloseModal" bindtap='preventTouchMove'>
     <view class="pop-box">
-        <view class="left-btn">
+        <view class="left-btn" bindtap='goPublish'>
             <image src="/static/img/sale.png" mode="widthFix" />
             <label>我要出售</label>
         </view>

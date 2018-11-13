@@ -5,32 +5,60 @@
   <!-- TEXTAREA START -->
   <view class='form-box'>
     <view class="form-item form-upload  {{modalName==null?'':'hide'}}">
-      <textarea placeholder='在这里写要发布的信息，可以写转手原因，入手渠道，新旧程度和使用感受等。' maxlength="-1"></textarea>
-      <view class="lattice-image">
-        <view class='img'>
+      <textarea placeholder='在这里写要发布的信息，可以写转手原因，入手渠道，新旧程度和使用感受等。' maxlength="-1" bindinput="updateContent" value="{{ article.content }}"></textarea>
+
+      <scroll-view scroll-x="true" class="images bg-white">
+        <view class="{{ images.length == 0 ? 'image camera' : 'image' }}" bindtap="chooseImage">
+          <image src="/static/img/adpng.png"></image>
+          <text>添加图片</text>
+        </view>
+        <view class="image" wx:for="{{ images }}" wx:for-index="index" wx:for-item="image" wx:key="id" wx:if="{{ image.server == 0 || image.server == 1 }}">
+          <view class="close" data-key="{{ index }}" bindtap="delImage" wx:if="{{ image.server == 1 }}">×</view>
+          <view class="{{ image.isCover == false ? 'cover cover-canvel' : 'cover' }}" data-key="{{ index }}" bindtap="setCover">封面</view>
+          <view class="status" wx:if="{{ image.server != 1 }}">{{ image.server == 0 ? '上传中' : '上传失败' }}</view>
+          <image mode="aspectFill" src="{{ image.path }}" data-key="{{ index }}" bindtap="setCover"></image>
+        </view>
+      </scroll-view>
+      <!-- <view class="lattice-image"> -->
+      <!-- <view class='img'>
           <image class='png' src='http://image.weilanwl.com/img/3x4-1.jpg' mode='scaleToFill'></image>
           <view class='iconfont icon-close'></view>
-        </view>
+        </view> -->
 
-        <!-- <view class='img'>
+      <!-- <view class='img'>
           <image class='png' src='http://image.weilanwl.com/img/3x4-1.jpg' mode='scaleToFill'></image>
           <!-- <view class='delete_png_view'>
           
            <image class="delete_png" src='/static/img/delete_png.png' ></image>
            
            </view> -->
-        <!-- <view class='iconfont icon-close'></view>
+      <!-- <view class='iconfont icon-close'></view>
         </view> -->
-        <!-- <view class='img'>
+      <!-- <view class='img'>
           <image src='http://image.weilanwl.com/img/3x4-1.jpg' mode='scaleToFill'></image>
           <view class='iconfont icon-close'></view>
         </view> -->
-
+      <!-- 
         <view class='lattice-btn'>
           <text class='iconfont icon-cameraadd'></text>
         </view>
+      </view> -->
+
+      <view class=" attr">
+        <view>
+          <image class="location_img" src="/static/img/location.png"></image>
+          <label class="rule">{{address}}</label>
+        </view>
+        <view class="radio">
+          <radio-group bindchange="radioChange">
+            <label >
+              <radio value="{{index}}" checked='{{checked}}'>全新</radio>
+            </label>
+          </radio-group>
+          </view>
       </view>
     </view>
+
   </view>
   <!-- <view class="container bg-white description"> 
     <view>
@@ -58,7 +86,7 @@
     <view class="cell">
       <view class="secondary">手机号码</view>
       <view class="primary">
-        <input class="input" type="text"  maxlength="15" placeholder="" value="{{ article.phone }}" bindinput="updatePhone"></input>
+        <input class="input" type="text" maxlength="15" placeholder="" value="{{ article.phone }}" bindinput="updatePhone"></input>
       </view>
     </view>
     <view class="cell">
@@ -67,42 +95,42 @@
         <input class="input" type="text" placeholder="" value="{{ article.wechat }}" bindinput="updateWechat"></input>
       </view>
     </view>
-  
 
-    
+
+
     <!-- sp -->
   </view>
   <!-- PARAMETERS END -->
   <!-- LAYER START -->
   <view class="layer">
-          <view class="layer_text">
-            选择要同步的学校
-          </view>
-  <view class="layer_m">
-  <view class="cells cell school">
-      <view class="primary">
-        <picker mode="multiSelector" bindchange="bindSchoolChange" bindcolumnchange="bindcolumnchange" bindcancel="bindCancel" selector="multiSelector" value="{{ multiIndex }}" range="{{ multiArray }}" range-key="name">
-          <view class="select select_school">
-            选择要同步的学校
-          </view>
-        </picker>
-      </view>
+    <view class="layer_text">
+      选择要同步的学校
     </view>
-    
-    <view class="cells school_name">
-      <view class="primary">
-            {{ multiArray[1][multiIndex[1]].name }}
+    <view class="layer_m">
+      <view class="cells cell school">
+        <view class="primary">
+          <picker mode="multiSelector" bindchange="bindSchoolChange" bindcolumnchange="bindcolumnchange" bindcancel="bindCancel" selector="multiSelector" value="{{ multiIndex }}" range="{{ multiArray }}" range-key="name">
+            <view class="select select_school">
+              选择要同步的学校
+            </view>
+          </picker>
+        </view>
       </view>
+
+      <view class="cells school_name">
+        <view class="primary">
+          {{ multiArray[1][multiIndex[1]].name }}
+        </view>
+      </view>
+
     </view>
-  
-  </view>
-       
+
 
   </view>
   <!-- LAYER END -->
   <!-- sp -->
   <!--show if out our-->
-  <view class="publish" >
+  <view class="publish">
     <button class="published" disabled="{{ publishButtonDisabled }}" size="default" formType="submit">发布</button>
   </view>
 </form>

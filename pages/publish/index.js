@@ -21,13 +21,15 @@ import {
 import {
   Upload
 } from '../../lib/upload';
-
+var QQMapWX = require('../../lib/map/qqmap-wx-jssdk.min.js');
+var qqmapsdk;
 //
 const appInstance = getApp();
 
 //
 Page({
   data: {
+    checked:false,
     // 分类的内容
     categories: [],
     categoryKey: 0,
@@ -75,27 +77,29 @@ Page({
   },
   //
   onLoad: function(options) {
-
+    qqmapsdk = new QQMapWX({
+      key: 'KKMBZ-I23R2-JUCUK-CECQF-26SEK-G4FAH'
+    });
     //控制国内用户不能上传
     let that = this;
-    this.publishShow().then(function (result) {
-      var locationData = result.data;
-      if (locationData.code == 200 && locationData.body && locationData.body.data.country_id == 'CN' && locationData.body.data.country =="中国") {
-        that.setData({
-          publishedShow: false,
-        });
-        wx.showModal({
-          title: '发布提示',
-          content: '暂不支持国内用户上传！',
-          showCancel: false,
-          success:function(){
-            wx.navigateBack({
+    // this.publishShow().then(function (result) {
+    //   var locationData = result.data;
+    //   if (locationData.code == 200 && locationData.body && locationData.body.data.country_id == 'CN' && locationData.body.data.country =="中国") {
+    //     that.setData({
+    //       publishedShow: false,
+    //     });
+    //     wx.showModal({
+    //       title: '发布提示',
+    //       content: '暂不支持国内用户上传！',
+    //       showCancel: false,
+    //       success:function(){
+    //         wx.navigateBack({
               
-            })
-          }
-        })
-      }
-    });
+    //         })
+    //       }
+    //     })
+    //   }
+    // });
 
     // 如果没有授权地理位置，转到授权
     User.testAuthorizeUserLocation()
@@ -113,6 +117,40 @@ Page({
             //
             that.loadCategory();
             that.loadProvince();
+
+
+            User.getLocation()
+              .then(res => {
+                qqmapsdk.reverseGeocoder({
+                  location: {
+                    
+                    latitude: res.latitude,
+                    longitude: res.longitude
+                  },
+                  success: function (addressRes) {
+                    var address = addressRes.result.formatted_addresses.recommend;
+                    // console.log("hh");
+                    // console.log(address);
+                    that.setData({
+                      address: address
+                    })
+                  },
+                  fail: function (res) {
+                    // console.log("pp");
+                    // console.log(res);
+                  },
+                  complete: function (res) {
+                    // console.log("op");
+                    // console.log(res);
+                  }
+                });
+
+
+              })
+
+           
+
+
             //
             that.Sycn();
           })
@@ -680,6 +718,13 @@ Page({
       //
     }
   },
+  radioChange(event){
+    console.log("3333333333333")
+    console.log(event);
+    this.setData({
+      checked: !this.data.checked
+    })
+  }
   /* close end */
   //
 });

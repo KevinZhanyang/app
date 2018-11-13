@@ -1,16 +1,30 @@
 //
-import { Category } from "../../model/category";
-import { Article } from "../../model/article";
-import { Share } from "../../model/share";
-import { User } from "../../model/user";
-import { Notify } from "../../model/notify";
+import {
+  Category
+} from "../../model/category";
+import {
+  Article
+} from "../../model/article";
+import {
+  Share
+} from "../../model/share";
+import {
+  User
+} from "../../model/user";
+import {
+  Notify
+} from "../../model/notify";
 
 //
 const appInstance = getApp();
 
+var QQMapWX = require('../../lib/map/qqmap-wx-jssdk.min.js');
+var qqmapsdk;
+
 //
 Page({
   data: {
+    topTabClass: "",
     /* category */
     categories: [],
     /* article */
@@ -30,8 +44,7 @@ Page({
     back: false,
     modal: false,
     // swiper
-    swipers: [
-      {
+    swipers: [{
         img: "http://static.124115.com/static/program/img/index/school.png",
         url: "/pages/school/index"
       },
@@ -51,11 +64,17 @@ Page({
       clearTimeout(this.timer);
     }
     this.timer = setTimeout(() => {
-      let { scrollTop } = data;
+      let {
+        scrollTop
+      } = data;
       if (scrollTop > 800) {
-        that.setData({ back: true });
+        that.setData({
+          back: true
+        });
       } else {
-        that.setData({ back: false });
+        that.setData({
+          back: false
+        });
       }
     }, 50);
   },
@@ -67,6 +86,10 @@ Page({
   },
   //
   onLoad: function(options) {
+    let that = this;
+    qqmapsdk = new QQMapWX({
+      key: 'KKMBZ-I23R2-JUCUK-CECQF-26SEK-G4FAH'
+    });
     //
     wx.showShareMenu({
       //
@@ -80,9 +103,39 @@ Page({
     this.initGuide();
     // 红点
     this.loadNotify();
+
+    User.getLocation()
+      .then(res => {
+        qqmapsdk.reverseGeocoder({
+          location: {
+
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: function (addressRes) {
+            var address = addressRes.result.formatted_addresses.recommend;
+            // console.log("hh");
+            // console.log(address);
+            that.setData({
+              address: address
+            })
+          },
+          fail: function (res) {
+            // console.log("pp");
+            // console.log(res);
+          },
+          complete: function (res) {
+            // console.log("op");
+            // console.log(res);
+          }
+        });
+
+
+      })
   },
   //
   onShow() {
+    this.sendCode();
     // if (appInstance.globalData.published == true) {
     if (true) {
       this.clearRecentArticle();
@@ -186,7 +239,7 @@ Page({
       });
     });
   },
-  
+
   //
   onReachBottom: function() {
     let flag = this.data.switch;
@@ -331,10 +384,48 @@ Page({
       data: Date.now()
     });
   },
-   preventTouchMove: function(e) {
+  preventTouchMove: function(e) {
     this.setData({
       modal: !this.data.modal
     });
   },
   /* guide end */
+  sendCode: function(e) {
+    var that = this;
+    var times = 0
+    var i = setInterval(function() {
+      times++;
+      that.queryMultipleNodes();
+      var top = that.data.top;
+      console.log(top)
+      if (top <= 0) {
+        that.setData({
+          topTabClass: "scroll-header"
+        })
+      } else {
+
+      }
+    }, 100)
+  },
+
+  queryMultipleNodes: function() {
+    let that = this;
+    var query = wx.createSelectorQuery()
+    query.select('#the-id').boundingClientRect()
+    query.selectViewport().scrollOffset()
+
+    query.exec(function(res) {
+      var top = res[0].top
+      // #the-id节点的上边界坐标
+      that.setData({
+        top: res[0].top
+      })
+    })
+
+  },
+  goPublish(){
+    wx.navigateTo({
+      url: '/pages/publish/index',
+    })
+  }
 });
