@@ -21,8 +21,8 @@
 
       <view class="perDay">
         <view>
-          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
-            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
+            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
           </span>
         </view>
         <view class='perDay_num'>第一天</view>
@@ -30,9 +30,9 @@
       </view>
 
         <view class="perDay">
-        <view>
-          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
-            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+         <view>
+          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
+            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
           </span>
         </view>
         <view class='perDay_num'>第一天</view>
@@ -40,9 +40,9 @@
       </view>
 
         <view class="perDay">
-        <view>
-          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
-            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+         <view>
+          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
+            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
           </span>
         </view>
         <view class='perDay_num'>第一天</view>
@@ -50,9 +50,9 @@
       </view>
 
         <view class="perDay">
-        <view>
-          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
-            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+         <view>
+          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
+            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
           </span>
         </view>
         <view class='perDay_num'>第一天</view>
@@ -60,9 +60,9 @@
       </view>
 
         <view class="perDay">
-        <view>
-          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
-            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+          <view>
+          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
+            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
           </span>
         </view>
         <view class='perDay_num'>第一天</view>
@@ -70,9 +70,9 @@
       </view>
 
         <view class="perDay">
-        <view>
-          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
-            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+         <view>
+          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
+            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
           </span>
         </view>
         <view class='perDay_num'>第一天</view>
@@ -80,9 +80,9 @@
       </view>
 
         <view class="perDay">
-        <view>
-          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
-            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+          <view>
+          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
+            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
           </span>
         </view>
         <view class='perDay_num'>第一天</view>
@@ -109,7 +109,7 @@
       </view>
       <form bindsubmit="go" report-submit='true'>
         <button class="go" form-type="submit">
-          生成海报
+          去分享
         </button>
       </form>
     </view>
@@ -122,7 +122,7 @@
       </view>
       <form bindsubmit="go" report-submit='true'>
         <button class="go" form-type="submit">
-          生成海报
+          去分享
         </button>
       </form>
     </view>
@@ -136,7 +136,7 @@
       </view>
       <form bindsubmit="go" report-submit='true'>
         <button class="go" form-type="submit">
-          生成海报
+          去分享
         </button>
       </form>
     </view>
@@ -149,7 +149,7 @@
       </view>
       <form bindsubmit="go" report-submit='true'>
         <button class="go" form-type="submit">
-          生成海报
+          去分享
         </button>
       </form>
     </view>
@@ -162,7 +162,7 @@
       </view>
       <form bindsubmit="go" report-submit='true'>
         <button class="go" form-type="submit">
-          生成海报
+          去分享
         </button>
       </form>
     </view>
