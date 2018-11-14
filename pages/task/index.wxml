@@ -1,0 +1,172 @@
+<view class='used_container'>
+
+
+  <view class='head'>
+    <image src='/static/img/task_background_2x.png'></image>
+  </view>
+  <view class='user_info'>
+    <view class='per_text'> 可用积分</view>
+    <view class='user_info_bottom'>
+      <view class='score'>4353</view>
+      <view class='exchange'>
+        <image src='/static/img/exchange.png'></image>
+        <view class="goExchange">去兑换</view>
+      </view>
+    </view>
+  </view>
+  <view class='sign_box'>
+    <view class='sign_top'>每天签到即有礼</view>
+    <view class='sign_middle'> 连续签到7天有更多惊喜哦~</view>
+    <view class='sign_bottom'>
+
+      <view class="perDay">
+        <view>
+          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
+            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+          </span>
+        </view>
+        <view class='perDay_num'>第一天</view>
+
+      </view>
+
+        <view class="perDay">
+        <view>
+          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
+            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+          </span>
+        </view>
+        <view class='perDay_num'>第一天</view>
+
+      </view>
+
+        <view class="perDay">
+        <view>
+          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
+            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+          </span>
+        </view>
+        <view class='perDay_num'>第一天</view>
+
+      </view>
+
+        <view class="perDay">
+        <view>
+          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
+            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+          </span>
+        </view>
+        <view class='perDay_num'>第一天</view>
+
+      </view>
+
+        <view class="perDay">
+        <view>
+          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
+            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+          </span>
+        </view>
+        <view class='perDay_num'>第一天</view>
+
+      </view>
+
+        <view class="perDay">
+        <view>
+          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
+            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+          </span>
+        </view>
+        <view class='perDay_num'>第一天</view>
+
+      </view>
+
+        <view class="perDay">
+        <view>
+          <span style="border-radius: 50%;    height: 66rpx;    width: 66rpx;    display: inline-block;    background: #238ff9;      vertical-align: top;">
+            <span style="display: block;    color: #FFFFFF;    height: 20rpx;    line-height: 66rpx;    text-align: center"> +12</span>
+          </span>
+        </view>
+        <view class='perDay_num'>第一天</view>
+
+      </view>
+
+    </view>
+    <view>
+      <form bindsubmit="sign" report-submit='true'>
+        <button class="sign_btn" form-type="submit">
+          签到
+        </button>
+      </form>
+    </view>
+
+  </view>
+  <view class='items'>
+    <view class='item'>
+      <view class="item_text">
+        <view class='text_top'>想要
+          <label>+2积分</label>
+        </view>
+        <view class='text_bottom'>看到想要的宝贝记得点击爱心哦~</view>
+      </view>
+      <form bindsubmit="go" report-submit='true'>
+        <button class="go" form-type="submit">
+          生成海报
+        </button>
+      </form>
+    </view>
+    <view class='item'>
+      <view class="item_text">
+        <view class='text_top'>想要
+          <label>+2积分</label>
+        </view>
+        <view class='text_bottom'>看到想要的宝贝记得点击爱心哦~</view>
+      </view>
+      <form bindsubmit="go" report-submit='true'>
+        <button class="go" form-type="submit">
+          生成海报
+        </button>
+      </form>
+    </view>
+
+    <view class='item'>
+      <view class="item_text">
+        <view class='text_top'>想要
+          <label>+2积分</label>
+        </view>
+        <view class='text_bottom'>看到想要的宝贝记得点击爱心哦~</view>
+      </view>
+      <form bindsubmit="go" report-submit='true'>
+        <button class="go" form-type="submit">
+          生成海报
+        </button>
+      </form>
+    </view>
+    <view class='item'>
+      <view class="item_text">
+        <view class='text_top'>想要
+          <label>+2积分</label>
+        </view>
+        <view class='text_bottom'>看到想要的宝贝记得点击爱心哦~</view>
+      </view>
+      <form bindsubmit="go" report-submit='true'>
+        <button class="go" form-type="submit">
+          生成海报
+        </button>
+      </form>
+    </view>
+    <view class='item'>
+      <view class="item_text">
+        <view class='text_top'>想要
+          <label>+2积分</label>
+        </view>
+        <view class='text_bottom'>看到想要的宝贝记得点击爱心哦~</view>
+      </view>
+      <form bindsubmit="go" report-submit='true'>
+        <button class="go" form-type="submit">
+          生成海报
+        </button>
+      </form>
+    </view>
+  </view>
+
+
+</view>
