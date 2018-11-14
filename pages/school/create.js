@@ -8,7 +8,7 @@ import {
 import {
   Province
 } from '../../model/province';
-
+import { School } from '../../model/school';
 import Config from '../../lib/config';
 Page({
 
@@ -20,6 +20,7 @@ Page({
     provinceKey: 0,
 
   },
+  
 
   /**
    * 生命周期函数--监听页面加载
@@ -80,7 +81,10 @@ Page({
   onReady: function () {
 
   },
+  createSchoole(){
 
+
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -121,5 +125,35 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  updateContent(event){
+    console.log(event);
+    this.setData({
+      name: event.detail.value
+    })
+
+  },
+  createSchool(){
+    if(!this.data.name){
+    wx.showLoading({
+      title: '请输入学校名称',
+      duration:1500
+    })
+    return false;
+    }
+    var data ={
+       name:this.data.name,
+      provinceId: this.data.provinceId,
+      status:1
+    }
+    School.create(data)
+      .then(res => {
+        wx.showLoading({
+          title: '已提交',
+          duration: 1500
+        })
+        wx.navigateBack({
+        })
+      });
   }
 })

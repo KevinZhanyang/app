@@ -46,9 +46,11 @@ padding-bottom:10rpx;
   margin-left: 39rpx;
   font-size: 28px;
   font-family: SimHei;
-  font-weight: 400;
+  font-weight:bold;
   color: rgba(43, 43, 43, 1);
   line-height: 30px;
+  margin-top:10rpx;
+
 }
 
 .exchange {
@@ -187,7 +189,7 @@ border-radius:33px;
 .text_top{
 margin-top:20rpx;
 margin-left: 30rpx;
-width:200rpx;
+width:340rpx;
 height:28rpx;
 font-size:30rpx;
 font-family:SimHei;
@@ -205,8 +207,6 @@ color:rgba(251,226,81,1);
 line-height:30rpx;
 }
 
-
-
 .text_bottom{
   margin-top:20rpx;
 margin-left: 30rpx;
@@ -217,4 +217,19 @@ font-family:SimHei;
 font-weight:400;
 color:rgba(159,159,159,1);
 line-height:30rpx;
+}
+
+
+.sign_circle_signed{
+  border-radius: 50% ;  border-color:#FBE251;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;
+}
+.sign_circle_score_signed{
+display: block;   color:#FBE251;  height: 20rpx;    line-height: 66rpx;    text-align: center
+}
+
+.sign_circle{
+   border-radius: 50% ;  border-color:#9F9F9F;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;
+}
+.sign_circle_score{
+ display: block;   color:#9F9F9F;  height: 20rpx;    line-height: 66rpx;    text-align: center
 }

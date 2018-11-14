@@ -5,7 +5,7 @@ import { Province } from '../../model/province';
 //
 Page({
     data: {
-      Myschool: [{ id: 1, name: "斯坦福大学斯坦福大学" }, { id: 1, name: "斯坦福大学" }, { id: 1, name: "斯坦福大学"}],
+      // Myschool: [{ id: 1, name: "斯坦福大学斯坦福大学" }, { id: 1, name: "斯坦福大学" }, { id: 1, name: "斯坦福大学"}],
         //
         provines:[],
         // 
@@ -15,6 +15,14 @@ Page({
         // 搜索出来的学校
         items: [],
     },
+  createSchool() {
+    wx.navigateTo({
+      url: '/pages/school/create',
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
     //
     onLoad() {
         this.loadProvince();

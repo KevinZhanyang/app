@@ -1,9 +1,9 @@
 {
   "pages": [
      
-  "pages/task/index",
+  
     "pages/index/index",
-   
+    "pages/task/index",
     "pages/school/index",
     "pages/exchange/index",
     "pages/exchange/express",

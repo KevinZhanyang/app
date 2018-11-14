@@ -4,10 +4,18 @@
 
       <block wx:if="{{recentId==4}}">
         <!-- 活动入口 -->
-        <navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
-          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="/static/img/banner.png"></image>
+        <navigator url="/pages/exchange/index" hover-class="navigator-hover">
+          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="/static/img/score_home.png"></image>
         </navigator>
       </block>
+
+      <block wx:if="{{recentId==0}}">
+        <!-- 活动入口 -->
+        <navigator url="/pages/task/index" hover-class="navigator-hover">
+          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="/static/img/task.png"></image>
+        </navigator>
+      </block>
+
 
       <block wx:else>
         <navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
@@ -38,9 +46,10 @@
       <block wx:if="{{recentId==1}}">
         <!-- 学校入口 -->
         <navigator url="/pages/school/index" hover-class="navigator-hover">
-          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="/static/img/banner.png"></image>
+          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="/static/img/school_home.png"></image>
         </navigator>
       </block>
+
 
       <block wx:else>
         <navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">

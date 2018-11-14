@@ -17,7 +17,7 @@
 <view class="location_imag">
          <image src="/static/img/province_select.png"></image>
  </view>
-  <textarea placeholder='输入新增学校全称' maxlength="-1" bindinput="updateContent" value="{{ article.content }}"></textarea>
+  <textarea placeholder='输入新增学校全称' maxlength="-1" bindinput="updateContent" value="{{ name }}"></textarea>
 </view>
 
 <view class='tips'>
@@ -26,5 +26,8 @@
 
   <!--show if out our-->
   <view class="publish">
-    <button class="published" disabled="{{ publishButtonDisabled }}" size="default" formType="submit">提交审核</button>
+   <form bindsubmit="createSchool" report-submit='true'>
+        <button class="published" disabled="{{ publishButtonDisabled }}" size="default" formType="submit">提交审核</button>
+      </form>
+   
   </view>

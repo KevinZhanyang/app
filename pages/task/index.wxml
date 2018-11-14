@@ -7,8 +7,8 @@
   <view class='user_info'>
     <view class='per_text'> 可用积分</view>
     <view class='user_info_bottom'>
-      <view class='score'>4353</view>
-      <view class='exchange'>
+      <view class='score'>{{user.scores}}</view>
+      <view class='exchange' bindtap='goExchange'>
         <image src='/static/img/exchange.png'></image>
         <view class="goExchange">去兑换</view>
       </view>
@@ -18,110 +18,61 @@
     <view class='sign_top'>每天签到即有礼</view>
     <view class='sign_middle'> 连续签到7天有更多惊喜哦~</view>
     <view class='sign_bottom'>
-
-      <view class="perDay">
+      <view class="perDay" bindtap="selectTag" data-id="{{item.score}}" wx:for="{{signArray}}" wx:key="{{item.id}}">
         <view>
-          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
-            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
+          <span class="{{item.sign_circle?item.sign_circle:'sign_circle'}}">
+            <block wx:if="{{item.hook}}">
+              <span class="{{item.sign_circle_score?item.sign_circle_score:'sign_circle_score'}}"> ✔</span>
+            </block>
+            <block wx:else>
+              <span class="{{item.sign_circle_score?item.sign_circle_score:'sign_circle_score'}}"> +{{item.score}}</span>
+            </block>
           </span>
         </view>
-        <view class='perDay_num'>第一天</view>
-
+        <view class='perDay_num'>第{{item.id}}天</view>
       </view>
-
-        <view class="perDay">
-         <view>
-          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
-            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
-          </span>
-        </view>
-        <view class='perDay_num'>第一天</view>
-
-      </view>
-
-        <view class="perDay">
-         <view>
-          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
-            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
-          </span>
-        </view>
-        <view class='perDay_num'>第一天</view>
-
-      </view>
-
-        <view class="perDay">
-         <view>
-          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
-            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
-          </span>
-        </view>
-        <view class='perDay_num'>第一天</view>
-
-      </view>
-
-        <view class="perDay">
-          <view>
-          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
-            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
-          </span>
-        </view>
-        <view class='perDay_num'>第一天</view>
-
-      </view>
-
-        <view class="perDay">
-         <view>
-          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
-            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
-          </span>
-        </view>
-        <view class='perDay_num'>第一天</view>
-
-      </view>
-
-        <view class="perDay">
-          <view>
-          <span style="border-radius: 50% ;  border-color:#238ff9;  border-style:solid;border-width:1rpx; height: 66rpx;    width: 66rpx;    display: inline-block;      vertical-align: top;">
-            <span style="display: block;   color:rgba(159,159,159,1);  height: 20rpx;    line-height: 66rpx;    text-align: center"> +5</span>
-          </span>
-        </view>
-        <view class='perDay_num'>第一天</view>
-
-      </view>
-
     </view>
     <view>
-      <form bindsubmit="sign" report-submit='true'>
-        <button class="sign_btn" form-type="submit">
-          签到
-        </button>
-      </form>
+      <block wx:if="{{signed}}">
+        <form bindsubmit="putFormId" report-submit='true'>
+          <button class="sign_btn" form-type="submit">
+            今日已签到
+          </button>
+        </form>
+      </block>
+      <block wx:else>
+        <form bindsubmit="sign" report-submit='true'>
+          <button class="sign_btn" form-type="submit">
+            签到
+          </button>
+        </form>
+      </block>
     </view>
 
   </view>
   <view class='items'>
     <view class='item'>
       <view class="item_text">
-        <view class='text_top'>想要
-          <label>+2积分</label>
+        <view class='text_top'>发布二手信息
+          <label>+20积分*10</label>
         </view>
-        <view class='text_bottom'>看到想要的宝贝记得点击爱心哦~</view>
+        <view class='text_bottom'>带不走的留给需要它的人吧</view>
       </view>
-      <form bindsubmit="go" report-submit='true'>
-        <button class="go" form-type="submit">
-          去分享
+      <form bindsubmit="go" data-url='/pages/publish/index' report-submit='true'>
+        <button class="go" data-url='/pages/publish/index' form-type="submit">
+          去发布
         </button>
       </form>
     </view>
     <view class='item'>
       <view class="item_text">
-        <view class='text_top'>想要
-          <label>+2积分</label>
+        <view class='text_top'>分享小程序
+          <label>+10积分*5</label>
         </view>
-        <view class='text_bottom'>看到想要的宝贝记得点击爱心哦~</view>
+        <view class='text_bottom'>好朋友就是会把所有好的给她</view>
       </view>
-      <form bindsubmit="go" report-submit='true'>
-        <button class="go" form-type="submit">
+      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
+        <button class="go" data-url='/pages/index/index' form-type="submit">
           去分享
         </button>
       </form>
@@ -130,39 +81,66 @@
     <view class='item'>
       <view class="item_text">
         <view class='text_top'>想要
-          <label>+2积分</label>
+          <label>+2积分*3</label>
         </view>
-        <view class='text_bottom'>看到想要的宝贝记得点击爱心哦~</view>
+        <view class='text_bottom'>看到宝贝点爱心领积分</view>
       </view>
-      <form bindsubmit="go" report-submit='true'>
-        <button class="go" form-type="submit">
-          去分享
+      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
+        <button class="go" data-url='/pages/index/index' form-type="submit">
+          去点赞
         </button>
       </form>
     </view>
     <view class='item'>
       <view class="item_text">
-        <view class='text_top'>想要
-          <label>+2积分</label>
+        <view class='text_top'>浏览宝贝信息
+          <label>+2积分*3</label>
         </view>
-        <view class='text_bottom'>看到想要的宝贝记得点击爱心哦~</view>
+        <view class='text_bottom'>逛逛宝贝得积分</view>
       </view>
-      <form bindsubmit="go" report-submit='true'>
-        <button class="go" form-type="submit">
-          去分享
+      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
+        <button class="go" data-url='/pages/index/index' form-type="submit">
+          去浏览
         </button>
       </form>
     </view>
     <view class='item'>
       <view class="item_text">
-        <view class='text_top'>想要
-          <label>+2积分</label>
+        <view class='text_top'>留言
+          <label>+2积分*5</label>
         </view>
-        <view class='text_bottom'>看到想要的宝贝记得点击爱心哦~</view>
+        <view class='text_bottom'>给卖家留言,卖家马上收到</view>
       </view>
-      <form bindsubmit="go" report-submit='true'>
-        <button class="go" form-type="submit">
-          去分享
+      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
+        <button class="go" data-url='/pages/index/index' form-type="submit">
+          去留言
+        </button>
+      </form>
+    </view>
+     
+     <view class='item'>
+      <view class="item_text">
+        <view class='text_top'>拆红包
+          <label>+1积分*20</label>
+        </view>
+        <view class='text_bottom'>拆红包有惊喜哦~</view>
+      </view>
+      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
+        <button class="go" data-url='/pages/index/index' form-type="submit">
+          去拆红包
+        </button>
+      </form>
+    </view>
+    <view class='item'>
+      <view class="item_text">
+        <view class='text_top'>绑定手机号
+          <label>+20积分*1</label>
+        </view>
+        <view class='text_bottom'>绑定后好消息第一时间通知你</view>
+      </view>
+      <form bindsubmit="go" data-url='/pages/home/bind' report-submit='true'>
+        <button class="go" data-url='/pages/home/bind' form-type="submit">
+          去绑定
         </button>
       </form>
     </view>

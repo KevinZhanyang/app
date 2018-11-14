@@ -1,7 +1,7 @@
 <!-- SEARCH START -->
 <view class="search bg-white">
 
-  <view class='location'>
+  <view class='location' bindtap='createSchool'>
     <image class="location_img" src="/static/img/add.png"></image>
     <label class="rule">新增学校</label>
   </view>
@@ -13,18 +13,20 @@
 <!-- SEARCH END -->
 
 <view style='background-color:rgba(244,246,249,1);'>
-<view class="list-item_text  " bindtap="showCreateTagModel">
+
+   <block wx:if="{{Myschool}}">
+   <view class="list-item_text  " bindtap="showCreateTagModel">
   我的学校
 </view>
-
-  <scroll-view scroll-x="true" >
+   <scroll-view scroll-x="true" >
   <view class="list">
     <view class="list-item {{item.state==1?'active':''}}" bindtap="selectTag" data-id="{{item.id}}" wx:for="{{Myschool}}" wx:key="{{item.id}}">
       {{item.name}}
     </view>
     </view>
   </scroll-view>
-
+   </block>
+  
 </view>
 
 

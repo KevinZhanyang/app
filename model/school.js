@@ -15,7 +15,6 @@ export class School
                 url: url,
                 method:'get',
             }
-
             //
             Http.executeWithLogin(options).then(function(result){
                 resolve(result);
@@ -89,4 +88,24 @@ export class School
             });
         });
     }
+
+  static create(data) {
+    //
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/schools';
+      let options = {
+        url: url,
+        method: 'POST',
+        data: data
+      }
+
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+  }
 }
