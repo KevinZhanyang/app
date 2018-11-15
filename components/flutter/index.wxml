@@ -5,21 +5,21 @@
       <block wx:if="{{recentId==4}}">
         <!-- 活动入口 -->
         <navigator url="/pages/exchange/index" hover-class="navigator-hover">
-          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="/static/img/score_home.png"></image>
+          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.0jO3otl4oHIW3356a252e690e66b16ac1bdda180af05.png?x-oss-process=style/thumbnail"></image>
         </navigator>
       </block>
 
-      <block wx:if="{{recentId==0}}">
+      <block wx:if="{{recentId==2}}">
         <!-- 活动入口 -->
         <navigator url="/pages/task/index" hover-class="navigator-hover">
-          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="/static/img/task.png"></image>
+          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.IHvQUjcYJjwJ3356a252e690e66b16ac1bdda180af05.png?x-oss-process=style/thumbnail"></image>
         </navigator>
       </block>
 
 
       <block wx:else>
         <navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
-          <image class="pic" lazy-load="{{true}}" mode="center" src="{{article.imgs[0].img}}"></image>
+          <image class="pic" lazy-load="{{true}}" mode="aspectFill" src="{{article.imgs[0].img}}"></image>
           <view class="containner">
             <view class="ellipsis ">{{ article.content}}</view>
             <view class="head-containner">
@@ -42,18 +42,21 @@
     </view>
   </block>
   <block>
-    <view class="flex-wrap" wx:for="{{ articles }}" wx:for-index="recentId" wx:for-item="article" wx:key="id" wx:if="{{recentId%2!=''}}">
-      <block wx:if="{{recentId==1}}">
-        <!-- 学校入口 -->
+    <!-- 学校入口 -->
+     <view class="flex-wrap">
         <navigator url="/pages/school/index" hover-class="navigator-hover">
-          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="/static/img/school_home.png"></image>
+          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.JcP4NUJ87nyrb10282aff263997f0f77b3b7e75df844.png?x-oss-process=style/thumbnail"></image>
         </navigator>
-      </block>
+</view>
+    <view class="flex-wrap" wx:for="{{ articles }}" wx:for-index="recentId" wx:for-item="article" wx:key="id" wx:if="{{recentId%2!=''}}">
+      <!-- <block wx:if="{{recentId==1}}">
+      
+      </block> -->
 
 
-      <block wx:else>
+      <!-- <block wx:else> -->
         <navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
-          <image class="pic" lazy-load="{{true}}" mode="center" src="{{article.imgs[0].img}}"></image>
+          <image class="pic" lazy-load="{{true}}" mode="aspectFill" src="{{article.imgs[0].img}}"></image>
           <view class="containner">
             <view class="ellipsis ">{{ article.content}}</view>
             <view class="head-containner">
@@ -69,7 +72,7 @@
             </view>
           </view>
         </navigator>
-      </block>
+      <!-- </block> -->
 
     </view>
   </block>

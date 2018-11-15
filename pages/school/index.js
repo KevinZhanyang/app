@@ -26,6 +26,7 @@ Page({
     //
     onLoad() {
         this.loadProvince();
+      this.getMySchool();
     },
     //
     loadProvince()
@@ -43,6 +44,19 @@ Page({
             let provineId = provinces[0].id;
             that.loadSchool(provineId);
         });
+    },
+
+    getMySchool(){
+      School.getMySchool()
+        .then(result => {
+          let schools = result.data.body;
+          if (schools && schools.length>0){
+            that.setData({
+              Myschool: schools,
+            });
+          }
+        });
+
     },
     updateSchool(event) {
         let currentTarget = event.currentTarget;

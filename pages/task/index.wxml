@@ -22,7 +22,7 @@
         <view>
           <span class="{{item.sign_circle?item.sign_circle:'sign_circle'}}">
             <block wx:if="{{item.hook}}">
-              <span class="{{item.sign_circle_score?item.sign_circle_score:'sign_circle_score'}}"> ✔</span>
+              <span class="sign_circle_score_signed"> ✔</span>
             </block>
             <block wx:else>
               <span class="{{item.sign_circle_score?item.sign_circle_score:'sign_circle_score'}}"> +{{item.score}}</span>

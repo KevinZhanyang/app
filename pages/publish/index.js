@@ -80,26 +80,26 @@ Page({
     qqmapsdk = new QQMapWX({
       key: 'KKMBZ-I23R2-JUCUK-CECQF-26SEK-G4FAH'
     });
-    //控制国内用户不能上传
+    // //控制国内用户不能上传
     let that = this;
-    this.publishShow().then(function (result) {
-      var locationData = result.data;
-      if (locationData.code == 200 && locationData.body && locationData.body.data.country_id == 'CN' && locationData.body.data.country =="中国") {
-        that.setData({
-          publishedShow: false,
-        });
-        wx.showModal({
-          title: '发布提示',
-          content: '暂不支持国内用户上传！',
-          showCancel: false,
-          success:function(){
-            wx.navigateBack({
+    // this.publishShow().then(function (result) {
+    //   var locationData = result.data;
+    //   if (locationData.code == 200 && locationData.body && locationData.body.data.country_id == 'CN' && locationData.body.data.country =="中国") {
+    //     that.setData({
+    //       publishedShow: false,
+    //     });
+    //     wx.showModal({
+    //       title: '发布提示',
+    //       content: '暂不支持国内用户上传！',
+    //       showCancel: false,
+    //       success:function(){
+    //         wx.navigateBack({
               
-            })
-          }
-        })
-      }
-    });
+    //         })
+    //       }
+    //     })
+    //   }
+    // });
 
     // 如果没有授权地理位置，转到授权
     User.testAuthorizeUserLocation()
@@ -155,6 +155,7 @@ Page({
             that.Sycn();
           })
           .catch(res => {
+            console.log(res);
             console.log('========== 进入个人中心页面，用户信息末授权，转向/pages/authorization/info');
             wx.redirectTo({
               url: '/pages/authorization/info?from=/pages/publish/index',

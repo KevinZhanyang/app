@@ -108,4 +108,25 @@ export class School
       });
     });
   }
+
+  static getMySchool() {
+    //
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/schools/my';
+      let options = {
+        url: url,
+        method: 'get',
+      }
+
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+  }
 }
+
+ 
