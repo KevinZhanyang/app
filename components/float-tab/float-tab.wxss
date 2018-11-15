@@ -1,0 +1,118 @@
+@import "tab-item/tab-item.wxss";
+
+.float_container {
+    position: fixed;
+    width: 100%;
+    /*悬停关键样式*/
+    top: 0;
+    left: 0;
+    z-index: 999;
+    
+    background-color: #ffffff;
+}
+
+.ml_float_tab{
+    display: flex;
+    flex-direction: column;
+}
+
+.tab_container {
+    height: 96rpx;
+    display: flex;
+    flex-direction: row;
+    margin: 32rpx 32rpx 32rpx 32rpx;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #DDDDDD;
+    box-sizing: border-box;
+}
+
+
+.tab_item {
+    display: flex;
+    flex-direction: row;
+    height: 96rpx;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+
+.tab_line {
+    height: 40rpx;
+    width: 1px;
+    z-index: 0;
+    background-color: #E5E5E5;
+}
+
+.tab_bottom_line {
+    height: 20rpx;
+    background-color: #F5F5F5;
+}
+
+
+/* switches */
+.switches {
+  display: flex;
+  position: relative;
+  margin-top: 20rpx;
+}
+
+.switches .switch {
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 34rpx;
+  width: 50%;
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+}
+.switches .switch-left {
+  background-image: url(http://static.124115.com/static/program/img/index/switch_left.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.switches .switch-right {
+  background-image: url(http://static.124115.com/static/program/img/index/switch_right.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.switches .switch-off {
+  color: #999;
+}
+.switches .switch-on {
+  background-image: none;
+  color: #fed406;
+}
+
+.switches_float{
+  display: flex;
+  position: relative;
+  
+}
+.switches_float .switch {
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 34rpx;
+  width: 50%;
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+}
+.switches_float .switch-left {
+  background-image: url(http://static.124115.com/static/program/img/index/switch_left.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.switches_float .switch-right {
+  background-image: url(http://static.124115.com/static/program/img/index/switch_right.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.switches_float .switch-off {
+  color: #999;
+}
+.switches_float .switch-on {
+  background-image: none;
+  color: #fed406;
+}

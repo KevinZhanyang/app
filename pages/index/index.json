@@ -11,6 +11,9 @@
     "flutter": "/components/flutter/index",
     "load": "/components/load/index",
     "menu": "/components/menu/index",
-    "vant-popup": "/components/popup/index"
+    "vant-popup": "/components/popup/index",
+    "float-tab": "/components/float-tab/float-tab"
   }
+
+
 }

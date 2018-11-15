@@ -1,4 +1,6 @@
 //
+var rate = 0; //分辨转换
+var floatTop = 0; //悬浮高度
 import {
   Category
 } from "../../model/category";
@@ -24,6 +26,12 @@ var qqmapsdk;
 //
 Page({
   data: {
+    tabs: [
+      { id: "news", isSelect: true, title: "要闻" },
+      { id: "hall", isSelect: false, title: "供需" }
+    ], //tabbar数组
+    curTabId: "news", //当前tabid
+    isShowFloatTab: false, //是否显示悬浮tab
     topTabClass: "",
     /* category */
     categories: [],
@@ -87,6 +95,7 @@ Page({
   //
   onLoad: function(options) {
     let that = this;
+    this.getScrollTop();
     qqmapsdk = new QQMapWX({
       key: 'KKMBZ-I23R2-JUCUK-CECQF-26SEK-G4FAH'
     });
@@ -431,5 +440,52 @@ Page({
     wx.navigateTo({
       url: '/pages/buy/index',
     })
-  }
+  },
+  /**
+   * 获得滑动导致悬浮开始的高度
+   * @return {[type]} [description]
+   */
+  getScrollTop: function () {
+    var that = this;
+    if (wx.canIUse('getSystemInfo.success.screenWidth')) {
+      wx: wx.getSystemInfo({
+        success: function (res) {
+          rate = res.screenWidth / 750;
+          floatTop = 580 * rate;
+          that.setData({
+            scrollTop: 580 * res.screenWidth / 750,
+            scrollHeight: res.screenHeight / (res.screenWidth / 750) - 128,
+          });
+        }
+      });
+    }
+  },
+
+  /**
+    * 生命周期函数--监听页面加载
+    */
+  onPageScroll: function (event) {
+    var scrollTop = event.scrollTop;
+    if (scrollTop >= floatTop && !this.data.isShowFloatTab) {
+      this.setData({
+        isShowFloatTab: true,
+      });
+    } else if (scrollTop < floatTop && this.data.isShowFloatTab) {
+      this.setData({
+        isShowFloatTab: false,
+      });
+    }
+  },
+
+
+  /**
+     * 点击tab切换
+     * @param  {[type]} event 
+     * @return {[type]}       
+     */
+  clickTab: function (event) {
+    this.setData({
+      switch: event.detail.switch
+    });
+  },
 });

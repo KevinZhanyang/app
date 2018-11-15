@@ -39,13 +39,19 @@
 </view>
 
 <!-- SWITCH -->
-<view id="the-id" class="switches bg-white">
+<!-- <view id="the-id" class="switches bg-white">
   <label class="switch switch-left {{ switch == 'hot' ?  'switch-on' : 'switch-off' }}" data-switch="hot" bindtap="switch">
     出售中
   </label>
   <label class="switch switch-right {{ switch == 'recent' ?  'switch-on' : 'switch-off' }}" data-switch="recent" bindtap="switch">
     求购的
   </label>
+</view> -->
+<view class="flaot-container">
+    <float-tab
+        items="{{tabs}}"
+        fixedBar="{{isShowFloatTab}}"
+        bind:myevent="clickTab"/>
 </view>
 <!-- ARTICLE -->
 <view class="bg-white">

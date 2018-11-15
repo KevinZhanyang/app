@@ -1,0 +1,23 @@
+<import src="tab-item/tab-item.wxml" />
+
+<view wx:if="{{showFixedBar}}" class="float_container">
+  <view class="switches_float bg-white">
+    <label class="switch switch-left {{ switch == 'recent' ?  'switch-on' : 'switch-off' }}" data-switch="recent" bindtap="onTabItemClick">
+      出售中
+    </label>
+    <label class="switch switch-right {{ switch == 'hot' ?  'switch-on' : 'switch-off' }}" data-switch="hot" bindtap="onTabItemClick">
+      求购的
+    </label>
+  </view>
+</view>
+
+<view wx:else class="ml_float_tab">
+  <view class="switches bg-white">
+    <label class="switch switch-left {{ switch == 'recent' ?  'switch-on' : 'switch-off' }}" data-switch="recent" bindtap="onTabItemClick">
+      出售中
+    </label>
+    <label class="switch switch-right {{ switch == 'hot' ?  'switch-on' : 'switch-off' }}" data-switch="hot" bindtap="onTabItemClick">
+      求购的
+    </label>
+  </view>
+</view>
