@@ -57,8 +57,8 @@
 <view class="bg-white">
   <!-- hot -->
   <view wx:if="{{ switch == 'hot' }}">
-    <flutter articles="{{  hotArticles }}" from="/pages/index/index"></flutter>
-    <!-- <article articles="{{ hotArticles }}" from="/pages/index/index"></article> -->
+    <!-- <flutter articles="{{  hotArticles }}" from="/pages/index/index"></flutter> -->
+    <article articles="{{ hotArticles }}" from="/pages/index/index"></article>
   </view>
   <!-- RECENT -->
   <view wx:if="{{ switch == 'recent' }}">
