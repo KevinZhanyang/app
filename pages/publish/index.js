@@ -250,7 +250,7 @@ Page({
       var categories = result.data;
       categories.unshift({
         id: 0,
-        name: '选择分类',
+        name: '点击选择',
       });
       that.setData({
         categories: categories,
@@ -372,6 +372,14 @@ Page({
     let value = event.detail.value;
     let article = this.data.article;
     article.content = value;
+    if(value.length>100){
+      wx.showLoading({
+        title: '文字太多啦',
+        duration:1500
+      })
+      return false;
+      
+    }
     this.setData({
       article: article,
     });
@@ -523,8 +531,22 @@ Page({
       images: images,
     });
   },
+  // preview image
+  previewImage(event) {
+    //
+    let imageUrl = event.currentTarget.dataset.src;
+   
+    let imageUrls = [];
+    imageUrls.push(imageUrl)
+    //
+    wx.previewImage({
+      current: imageUrl, // 当前显示图片的http链接
+      urls: imageUrls // 需要预览的图片http链接列表
+    });
+  },
   //
   setCover(event) {
+    this.previewImage(event);
     //
     let key = event.currentTarget.dataset.key;
     let images = this.data.images;

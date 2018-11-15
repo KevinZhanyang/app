@@ -8,10 +8,12 @@
 <!-- ARTICLE START -->
 <view class=" bg-white">
 
-  <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+  <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000" >
     <swiper-item wx:for="{{articleImgs}}" wx:for-index="key" wx:for-item="articleImg" wx:key="id">
       <image data-src="{{articleImg.img}} " mode="center" src="{{articleImg.img}}" data-key="{{ key }}" background-size="cover" bindtap="previewImage"></image>
+        <view class="imageCount"><text class='currentIndex'>{{key+1}}</text>/{{articleImgs.length}}</view>
     </swiper-item>
+   
   </swiper>
 
   <view class="container bg-white price">$ {{ article.price }}</view>
@@ -35,7 +37,7 @@
 <view class='school'>
   <view class="cells menus">
     <!-- sp -->
-    <navigator url="/pages/home/message" hover-class="none">
+    <navigator url="/pages/article/index?school_id={{ article.school.id }}" hover-class="none">
       <view class="cell">
         <view class="primary">
           <!-- <image class="icon" src="http://static.124115.com/static/program/img/home/message.png"></image> -->
@@ -159,9 +161,19 @@
 <!-- SEDUCE START -->
 <view class="container bg-white _seduce" catchtap="releaseMessageRelationship_">
   <image class="img" src="/static/img/default.png"></image>
-  <view class="seduce">
+  <block wx:if="{{message.length>0}}">
+<view class="seduce">
+   这已经是最后一条留言了
+  </view>
+
+  </block>
+  <block>
+<view class="seduce">
     暂时没有留言
   </view>
+
+  </block>
+  
 </view>
 <!-- SEDUCE END -->
 
@@ -181,15 +193,15 @@
       <!-- collect -->
       <view class="homepage" catchtap="showCircleImg">
         <image class="menu_icon" src="/static/img/moments.png"></image>
-        <view class='menu_text'>分享</view>
+        <view class='menu_text'>朋友圈</view>
       </view>
       <!-- share -->
-      <navigator url="/pages/publish/share?id={{ article.id }}" >
+      <view bindtap='inform' >
         <view class="homepage">
           <image class="menu_icon" src="/static/img/inform.png"></image>
           <view class='menu_text'>举报</view> 
         </view>
-      </navigator>
+      </view>
     </view>
     <view class='wechat_out'>
       <view class="wechat" catchtap="showCopyWechatInterface">COPY微信号</view>

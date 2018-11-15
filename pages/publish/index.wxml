@@ -5,7 +5,7 @@
   <!-- TEXTAREA START -->
   <view class='form-box'>
     <view class="form-item form-upload  {{modalName==null?'':'hide'}}">
-      <textarea placeholder='在这里写要发布的信息，可以写转手原因，入手渠道，新旧程度和使用感受等。' maxlength="-1" bindinput="updateContent" value="{{ article.content }}"></textarea>
+      <textarea placeholder='在这里写要发布的信息，可以写转手原因，入手渠道，新旧程度和使用感受等(限100字以内)。' maxlength="-1" bindinput="updateContent" value="{{ article.content }}"></textarea>
 
       <scroll-view scroll-x="true" class="images bg-white">
         <view class="{{ images.length == 0 ? 'image camera' : 'image' }}" bindtap="chooseImage">
@@ -16,7 +16,7 @@
           <view class="close" data-key="{{ index }}" bindtap="delImage" wx:if="{{ image.server == 1 }}">×</view>
           <view class="{{ image.isCover == false ? 'cover cover-canvel' : 'cover' }}" data-key="{{ index }}" bindtap="setCover">封面</view>
           <view class="status" wx:if="{{ image.server != 1 }}">{{ image.server == 0 ? '上传中' : '上传失败' }}</view>
-          <image mode="aspectFill" src="{{ image.path }}" data-key="{{ index }}" bindtap="setCover"></image>
+          <image mode="aspectFill" src="{{ image.path }}" data-key="{{ index }}" data-src="{{ image.path }}" bindtap="setCover"></image>
         </view>
       </scroll-view>
       <!-- <view class="lattice-image"> -->
@@ -77,6 +77,7 @@
     </view>
 
     <view class="cell">
+    <view class="secondary">选择分类</view>
       <view class="primary">
         <picker bindchange="bindCategoryChange" value="{{ categoryKey }}" range-key="name" range="{{ categories }}">
           <view class="select">{{ categories[categoryKey].name }}</view>
@@ -113,7 +114,7 @@
       </view>
 
       <view class="cells school_name">
-        <view class="primary">
+        <view class="primary selectSchool">
           {{ multiArray[1][multiIndex[1]].name }}
         </view>
       </view>

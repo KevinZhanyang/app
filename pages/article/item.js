@@ -12,6 +12,7 @@ const appInstance = getApp();
 //
 Page({
     data: {
+      currentIndex:0,
         // article
         article: {},
         articleImgs: [],
@@ -57,6 +58,7 @@ Page({
       urls: [current],
     });
   },
+
     //
     onLoad(options) {
         let articleId = 0;
@@ -209,6 +211,7 @@ Page({
             });
             //
         }
+      that.collect();
     },
     /* LIKE END */
     /* ARTICLE START */
@@ -258,6 +261,16 @@ Page({
             });
         });
     },
+  inform(){
+    wx.showModal({
+      title: '提示',
+      content: '举报成功，我们将尽快处理，感谢您的支持！',
+      showCancel:false
+    })
+
+
+
+  },
     // preview image
     previewImage(event) {
         //

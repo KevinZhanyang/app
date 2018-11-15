@@ -15,6 +15,41 @@ Page({
         // 搜索出来的学校
         items: [],
     },
+    onShow:function(){
+      var mySchool = wx.getStorageSync("MySchool");
+      this.setData({
+        MySchool: mySchool
+      })
+    },
+  selectTag(event){
+
+    wx.navigateTo({
+      url: event.currentTarget.dataset.url,
+    })
+
+  },
+  goArticle(event){
+    console.log(event);
+    var mySchool = wx.getStorageSync("MySchool");
+     if(!mySchool){
+       mySchool = [];
+     }
+     var is_new = true;
+     mySchool.map((item)=>{
+       if (item.id == event.currentTarget.dataset.school.id){
+         is_new = false;
+       }
+       return item;
+     })
+    if (is_new){
+      mySchool.push(event.currentTarget.dataset.school);
+    }
+    wx.setStorageSync("MySchool", mySchool);
+    wx.navigateTo({
+      url: event.currentTarget.dataset.url,
+    })
+
+  },
   createSchool() {
     wx.navigateTo({
       url: '/pages/school/create',
@@ -26,7 +61,8 @@ Page({
     //
     onLoad() {
         this.loadProvince();
-      this.getMySchool();
+        this.getMySchool();
+       
     },
     //
     loadProvince()

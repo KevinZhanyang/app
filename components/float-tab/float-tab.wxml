@@ -6,7 +6,7 @@
       出售中
     </label>
     <label class="switch switch-right {{ switch == 'hot' ?  'switch-on' : 'switch-off' }}" data-switch="hot" bindtap="onTabItemClick">
-      求购的
+      求购中
     </label>
   </view>
 </view>
@@ -17,7 +17,7 @@
       出售中
     </label>
     <label class="switch switch-right {{ switch == 'hot' ?  'switch-on' : 'switch-off' }}" data-switch="hot" bindtap="onTabItemClick">
-      求购的
+      求购中
     </label>
   </view>
 </view>

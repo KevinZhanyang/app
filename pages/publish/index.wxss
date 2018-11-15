@@ -21,6 +21,10 @@ color:rgba(51,51,51,1);
 border:none;
 
 }
+ .input{
+  padding-left:0rpx !important;
+
+}
 
 
 
@@ -323,4 +327,17 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .radio{
   margin-bottom: 3rpx;
+}
+
+.selectSchool{
+ overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  word-wrap: break-word;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+
 }

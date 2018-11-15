@@ -12,7 +12,59 @@ Page({
         systemNotify: 0,
         //
         showShadow: true,
+      // 向导
+      guideStatus: 0, // 0显示|1不显示
+      // 是否有系统通知
     },
+  /* share */
+  /* guide start */
+  showModal() {
+    this.setData({
+      modal: !this.data.modal
+    });
+  },
+  goPublish() {
+    wx.navigateTo({
+      url: '/pages/publish/index',
+    })
+  }
+  ,
+  goBuy() {
+    wx.navigateTo({
+      url: '/pages/buy/index',
+    })
+  },
+  initGuide() {
+    let that = this;
+    wx.getStorage({
+      key: "index_guide",
+      success: res => {
+        that.setData({
+          guideStatus: 1
+        });
+      },
+      fail: res => {
+        that.setData({
+          guideStatus: 0
+        });
+      }
+    });
+  },
+  closeGuide() {
+    this.setData({
+      guideStatus: 1
+    });
+    wx.setStorage({
+      key: "index_guide",
+      data: Date.now()
+    });
+  },
+  preventTouchMove: function (e) {
+    this.setData({
+      modal: !this.data.modal
+    });
+  },
+  /* guide end */
     //
     onLoad() {
         let that = this;

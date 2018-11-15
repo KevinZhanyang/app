@@ -13,3 +13,76 @@
 .menus {
 	padding-left:40rpx;
 }
+
+
+/* guide start */
+.guide-layer {
+  position: fixed;
+  top: 0rpx;
+  bottom: 0rpx;
+  right: 0rpx;
+  left: 0rpx;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+._guide {
+  position: fixed;
+  top: 0rpx;
+  bottom: 0rpx;
+  right: 0rpx;
+  left: 0rpx;
+  background-image: url(http://static.124115.com/static/program/img/index/guide.png?v1);
+  background-size: 100% 100%;
+  background-position: center center;
+  width: 100vw;
+  height: 100vh;
+}
+._guide .guide {
+  position: relative;
+}
+._guide .guide .close {
+  position: absolute;
+  left: 72vw;
+  right: 8vw;
+  top: 81vh;
+  bottom: 9vh;
+  width: 20vw;
+  height: 10vh;
+}
+.pop-box {
+ padding-bottom:69rpx;
+height:358rpx;
+width:707rpx;
+margin:0 auto;
+background:#fff;
+border-radius:10rpx 10rpx 0 0;
+display:flex;
+align-items:center;
+justify-content:space-around;
+font-size:30px;
+font-family:SimHei;
+font-weight:400;
+color:rgba(43,43,43,1);
+}
+.left-btn,
+.right-btn {
+  display: flex;
+  flex-direction: column;
+  font-size: 24rpx;
+  color: #333;
+  justify-content: center;
+}
+.left-btn image,
+.right-btn image {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+}
+
+
+
+
+
+
+
+

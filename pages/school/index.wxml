@@ -14,14 +14,14 @@
 
 <view style='background-color:rgba(244,246,249,1);'>
 
-   <block wx:if="{{Myschool}}">
+   <block wx:if="{{MySchool}}">
    <view class="list-item_text  " bindtap="showCreateTagModel">
   我的学校
 </view>
    <scroll-view scroll-x="true" >
   <view class="list">
-    <view class="list-item {{item.state==1?'active':''}}" bindtap="selectTag" data-id="{{item.id}}" wx:for="{{Myschool}}" wx:key="{{item.id}}">
-      {{item.name}}
+    <view class="list-item {{item.state==1?'active':''}}" bindtap="selectTag" data-url="/pages/article/index?school_id={{ school.id }}" data-id="{{item.id}}" wx:for="{{MySchool}}" wx:for-item="school" wx:key="{{item.id}}">
+      {{school.name}}
     </view>
     </view>
   </scroll-view>
@@ -40,11 +40,11 @@
 <!-- PROVINCES END -->
 <!-- SCHOOL START -->
 <scroll-view scroll-y="true" class="schools" wx:if="{{ items.length == 0 }}">
-  <navigator wx:for="{{ schools }}" wx:for-index="index" wx:for-item="school" wx:key="id" url="/pages/article/index?school_id={{ school.id }}" hover-class="none">
+  <view wx:for="{{ schools }}" wx:for-index="index" wx:for-item="school" wx:key="id" data-url="/pages/article/index?school_id={{ school.id }}" data-school="{{school}}"hover-class="none" bindtap='goArticle'>
     <view class="school" data-id="{{ school.id }}">
       <text>{{ school.name }}</text>
     </view>
-  </navigator>
+  </view>
 </scroll-view>
 <!-- SCHOOL END -->
 <!-- ITEMS START -->

@@ -6,7 +6,7 @@
   left: 0rpx;
   display: flex;
   justify-content: space-around;
-  height: 97rpx;
+  height: 110rpx;
   padding-top: 8rpx;
   padding-bottom: 3rpx;
   border-top: 1px solid #b4b4b4;
@@ -29,11 +29,11 @@
 }
 .menus .menu .icon_ {
   position: absolute;
-  /* top: -35rpx; */
+  top: -35rpx;
   right: -15rpx;
   left: -15rpx;
-  width: 90rpx;
-  height: 90rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 .menus .menu .icon_ image {
   width: 100%;

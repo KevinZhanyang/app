@@ -9,6 +9,7 @@
 	"usingComponents": {
     	"profile": "/components/profile/index",
     	"menu": "/components/menu/index",
-    	"shadow": "/components/shadow/index"
+    	"shadow": "/components/shadow/index",
+      "vant-popup": "/components/popup/index"
   	}
 }

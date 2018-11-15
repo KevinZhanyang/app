@@ -84,6 +84,33 @@
         </navigator>
     </view>
 </view>
+
+
 <!-- MENU START -->
-<menu number="2" notify="{{ systemNotify }}"></menu>
+<menu number="2" bind:show="showModal" back="{{back}}" notify="{{ systemNotify }}"></menu>
+
+
+
+
+
+<!-- GUIDE START -->
+<view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}"></view>
+<view class="_guide z-elves" wx:if="{{ guideStatus == 0 }}">
+  <view class="guide">
+    <view class="close" bindtap="closeGuide"></view>
+  </view>
+</view>
+<vant-popup custom-class="out-pop" z-index="98" position="bottom" show="{{modal}}" bind:close="onCloseModal" bindtap='preventTouchMove'>
+  <view class="pop-box">
+    <view class="left-btn" bindtap='goPublish'>
+      <image src="/static/img/sale.png" mode="widthFix" />
+      <label>我要出售</label>
+    </view>
+    <view class="right-btn" bindtap='goBuy'>
+      <image src="/static/img/buy.png" mode="widthFix" />
+      <label>我要求购</label>
+    </view>
+  </view>
+</vant-popup>
+<!-- GUIDE END -->
 <!-- MENU END -->
