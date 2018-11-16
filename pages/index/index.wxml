@@ -75,7 +75,7 @@
 </view>
 <!-- LOAD END -->
 <!-- MENU START -->
-<menu number="0" bind:show="showModal" back="{{back}}" notify="{{ systemNotify }}"></menu>
+<menu number="0"   bind:show="showModal" back="{{isShowFloatTab}}" notify="{{ systemNotify }}"></menu>
 <!-- MENU END -->
 <!-- GUIDE START -->
 <view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}"></view>

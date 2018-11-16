@@ -49,12 +49,12 @@
           <image class="location_img" src="/static/img/location.png"></image>
           <label class="rule">{{address}}</label>
         </view>
-        <view class="radio">
-          <radio-group bindchange="radioChange">
+        <view class="radio" bindtap="radioChange">
+         <radio-group >
             <label >
               <radio value="{{index}}" checked='{{checked}}'>全新</radio>
             </label>
-          </radio-group>
+         </radio-group>
           </view>
       </view>
     </view>
@@ -77,11 +77,24 @@
     </view>
 
     <view class="cell">
-    <view class="secondary">选择分类</view>
+    <view class="secondary">分类</view>
       <view class="primary">
         <picker bindchange="bindCategoryChange" value="{{ categoryKey }}" range-key="name" range="{{ categories }}">
           <view class="select">{{ categories[categoryKey].name }}</view>
         </picker>
+      </view>
+    </view>
+
+     <view class="cell">
+    <view class="secondary">交易方式</view>
+      <view class="primary">
+         <view>
+  <view class="list">
+    <view class="list-item {{school.state==1?'active':''}}" bindtap="selectTag"  data-id="{{school.id}}" wx:for="{{tradeWay}}" wx:for-item="school" wx:key="{{item.id}}">
+      {{school.name}}
+    </view>
+    </view>
+  </view>
       </view>
     </view>
    

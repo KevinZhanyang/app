@@ -33,10 +33,12 @@ Page({
     // 分类的内容
     categories: [],
     categoryKey: 0,
+    selectTag:3,
     // 学校
     multiArray: [], // 省列表
     schools: [], // 学校列表
     multiIndex: [0, 0], // provinceKey schoolKey
+    tradeWay: [{ id:1, name: "自取" }, { id:2, name: "送货上门" }, { id:3, name: "邮寄" ,state:1}],
     tempMultiIndex: [0, 0],
     // 新闻内容
     article: {
@@ -52,6 +54,24 @@ Page({
     // 
     showShadow: true,
     publishedShow: true,
+  },
+  selectTag(event) {
+
+    console.log(event)
+    let id = event.currentTarget.dataset["id"];
+    let selectTag = this.data.selectTag;
+    let tradeWay = this.data.tradeWay;
+    for (let item of tradeWay) {
+      if (id==item.id) {
+        item.state = 1;
+      } else {
+        item.state = 0;
+      }
+    }
+    this.setData({
+      tradeWay: tradeWay,
+      selectTag:id
+    });
   },
   publishShow() {
 
@@ -573,6 +593,7 @@ Page({
     return;
   },
   publish(event) {
+   
     //
     let formId = event.detail.formId;
 
@@ -586,6 +607,7 @@ Page({
         onProgress++
       }
     }
+
     if (onProgress > 0) {
       this.showError('还有照片上传中');
       return;
@@ -594,6 +616,12 @@ Page({
       this.showError('必须发布照片');
       return;
     }
+
+    if (this.data.article.price <= 0) {
+      this.showError('必须填写价格');
+      return;
+    }
+   
 
     if (this.data.article.content.length == 0) {
       this.showError('内容不能为空');
@@ -649,6 +677,8 @@ Page({
           wechat: article.wechat,
           latitude: latitude,
           longitude: longitude,
+          selectTag: that.data.selectTag,
+          isNew: that.data.checked?1:0,
           // 
           form_id: formId,
           images: images,

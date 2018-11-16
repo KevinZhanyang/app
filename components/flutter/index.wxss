@@ -40,7 +40,7 @@
   text-align: justify;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  height: 78rpx;
+  height: 73rpx;
   margin-bottom: 6rpx;
   /* -webkit-animation: weuiLoading 1s steps(12, end) infinite; */
 }
