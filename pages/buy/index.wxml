@@ -13,7 +13,7 @@
           <text>添加图片</text>
         </view>
         <view class="image" wx:for="{{ images }}" wx:for-index="index" wx:for-item="image" wx:key="id" wx:if="{{ image.server == 0 || image.server == 1 }}">
-          <view class="close" data-key="{{ index }}" bindtap="delImage" wx:if="{{ image.server == 1 }}">×</view>
+          <image src="/static/img/delete_png.png" class="close" data-key="{{ index }}" bindtap="delImage" wx:if="{{ image.server == 1 }}" ></image>
           <view class="{{ image.isCover == false ? 'cover cover-canvel' : 'cover' }}" data-key="{{ index }}" bindtap="setCover">封面</view>
           <view class="status" wx:if="{{ image.server != 1 }}">{{ image.server == 0 ? '上传中' : '上传失败' }}</view>
           <image mode="aspectFill" src="{{ image.path }}" data-key="{{ index }}" bindtap="setCover"></image>
@@ -65,7 +65,7 @@
       <view class="cells cell school">
         <view class="primary">
           <picker mode="multiSelector" bindchange="bindSchoolChange" bindcolumnchange="bindcolumnchange" bindcancel="bindCancel" selector="multiSelector" value="{{ multiIndex }}" range="{{ multiArray }}" range-key="name">
-            <view class="select select_school">
+            <view class="select select_school " style='width:300rpx;'>
               选择要同步的学校
             </view>
           </picker>

@@ -24,7 +24,26 @@ export class Message
                 reject(error);
             });
         });
-    }    
+    }  
+
+  //
+  static delete(id) {
+    //
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/messages/' + id;
+      let options = {
+        url: url,
+        method: 'delete',
+      }
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+  }   
 
     //
     static get(articleId)

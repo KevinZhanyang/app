@@ -1,15 +1,21 @@
 /* search */
-.location_img{
+
+.location_img {
   width: 30rpx;
   height: 36rpx;
   margin-right: 13rpx;
-  margin-left:24rpx; 
+  margin-left: 24rpx;
+  margin-top:10rpx;
+
 }
-.location{
-  height:60rpx;
-line-height:60rpx;
-text-align:bottom;
-  width: 200rpx;
+
+.location {
+  display: flex;
+  flex-direction: row;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: bottom;
+  width: 261rpx;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -17,17 +23,41 @@ text-align:bottom;
   word-wrap: break-word;
   text-overflow: ellipsis;
 }
+
+.rule {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  font-size: 26rpx;
+  margin-top: -61rpx;
+  width: 220rpx;
+  height: 60rpx;
+  margin-left: 62rpx;
+  background: transparent !important;
+  /* border: 1px  transparent  !important; */
+  text-align: left;
+  line-height: 60rpx;
+  border:none !important;
+}
+/*去除buttun边框关键样式*/
+button[class="rule"]::after {
+  border: 0;
+} 
+
 ._search {
-  display:flex;
+  display: flex;
   padding-top: 15rpx;
   padding-bottom: 15rpx;
   padding-left: 15rpx;
   padding-right: 15rpx;
   background-color: #fed406;
 }
-.search {
- display:flex;
 
+.search {
+  display: flex;
   padding-left: 75rpx;
   padding-right: 75rpx;
   position: relative;
@@ -37,6 +67,7 @@ text-align:bottom;
   width: 461rpx;
   margin-left: 40rpx;
 }
+
 .search .magnifying_glass {
   position: absolute;
   top: 0rpx;
@@ -45,10 +76,12 @@ text-align:bottom;
   height: 60rpx;
   width: 60rpx;
 }
+
 .search .magnifying_glass image {
   height: 60rpx;
   width: 60rpx;
 }
+
 .search .navigator {
   height: 60rpx;
   padding-left: 60rpx;
@@ -58,20 +91,24 @@ text-align:bottom;
   line-height: 60rpx;
   text-align: center;
 }
+
 /* category */
+
 ._categories {
 }
+
 .categories {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-start;
   white-space: nowrap;
-  width: 100%;
+  width: 750rpx;
   height: 338rpx;
   padding-top: 7rpx;
   padding-bottom: 7rpx;
 }
+
 .categories .category {
   display: inline-block;
   width: 164rpx;
@@ -81,6 +118,7 @@ text-align:bottom;
   padding-bottom: 25rpx;
   height: 162rpx;
 }
+
 .categories .category .icon {
   width: 60rpx;
   height: 84rpx;
@@ -88,32 +126,40 @@ text-align:bottom;
   margin-left: 52rpx;
   padding-bottom: 24rpx;
 }
+
 .categories .category .icon image {
   width: 60rpx;
   height: 60rpx;
 }
+
 .categories .category .name {
   font-size: 28rpx;
   line-height: 28rpx;
 }
+
 /* carousels */
+
 .carousels {
   /* margin-bottom:15rpx; */
   height: 312rpx;
 }
+
 .carousels .carousel {
 }
+
 .carousels .carousel .carousel-img {
   width: 100%;
   height: 312rpx;
 }
 
 /* switches */
+
 .switches {
   display: flex;
   position: relative;
   margin-top: 20rpx;
 }
+
 .switches .switch {
   height: 88rpx;
   line-height: 88rpx;
@@ -123,47 +169,56 @@ text-align:bottom;
   color: #333;
   font-weight: bold;
 }
+
 .switches .switch-left {
   background-image: url(http://static.124115.com/static/program/img/index/switch_left.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
 .switches .switch-right {
   background-image: url(http://static.124115.com/static/program/img/index/switch_right.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
 .switches .switch-off {
   color: #999;
 }
+
 .switches .switch-on {
   background-image: none;
   color: #fed406;
 }
+
 /* guide start */
+/* 
 .guide-layer {
   position: fixed;
   top: 0rpx;
   bottom: 0rpx;
   right: 0rpx;
   left: 0rpx;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-._guide {
+  
+} */
+
+.guide {
   position: fixed;
-  top: 0rpx;
-  bottom: 0rpx;
-  right: 0rpx;
-  left: 0rpx;
-  background-image: url(http://static.124115.com/static/program/img/index/guide.png?v1);
-  background-size: 100% 100%;
-  background-position: center center;
-  width: 100vw;
-  height: 100vh;
+  top:15rpx;
+  right: 21rpx;
+
+  width: 348rpx;
+  height: 84rpx;
 }
-._guide .guide {
+.guide image{
+   width: 348rpx;
+  height: 84rpx;
+}
+
+/* ._guide .guide {
   position: relative;
 }
+
 ._guide .guide .close {
   position: absolute;
   left: 72vw;
@@ -172,54 +227,56 @@ text-align:bottom;
   bottom: 9vh;
   width: 20vw;
   height: 10vh;
-}
+} */
+
 .pop-box {
- padding-bottom:69rpx;
-height:358rpx;
-width:707rpx;
-margin:0 auto;
-background:#fff;
-border-radius:10rpx 10rpx 0 0;
-display:flex;
-align-items:center;
-justify-content:space-around;
-font-size:30px;
-font-family:SimHei;
-font-weight:400;
-color:rgba(43,43,43,1);
+  padding-bottom: 69rpx;
+  height: 358rpx;
+  width: 707rpx;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10rpx 10rpx 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 30px;
+  font-family: SimHei;
+  font-weight: 400;
+  color: rgba(43, 43, 43, 1);
 }
-.left-btn,
-.right-btn {
+
+.left-btn, .right-btn {
   display: flex;
   flex-direction: column;
   font-size: 24rpx;
   color: #333;
   justify-content: center;
 }
-.left-btn image,
-.right-btn image {
+
+.left-btn image, .right-btn image {
   width: 90rpx;
   height: 90rpx;
   border-radius: 50%;
   margin-bottom: 20rpx;
 }
 
-.scroll-header{
-  position: fixed;  /* 固定位置 */
+.scroll-header {
+  position: fixed; /* 固定位置 */
   top: 0;
 }
 
-
 /* pages/float_tab/float_tab.wxss */
-.flaot-container{
+
+.flaot-container {
   display: flex;
   flex-direction: column;
 }
 
-.float-top{
+.float-top {
   height: 450rpx;
   background-color: red;
 }
+
 /* 
 .tab_list_data{
   height: 2000rpx;

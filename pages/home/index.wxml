@@ -49,7 +49,7 @@
         <view class="cell">    
             <view class="primary">
                 <image class="icon" src="http://static.124115.com/static/program/img/home/star.png"></image>
-                我的收藏
+                我的想要
             </view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </view>
@@ -94,12 +94,12 @@
 
 
 <!-- GUIDE START -->
-<view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}"></view>
+<!-- <view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}"></view>
 <view class="_guide z-elves" wx:if="{{ guideStatus == 0 }}">
   <view class="guide">
     <view class="close" bindtap="closeGuide"></view>
   </view>
-</view>
+</view> -->
 <vant-popup custom-class="out-pop" z-index="98" position="bottom" show="{{modal}}" bind:close="onCloseModal" bindtap='preventTouchMove'>
   <view class="pop-box">
     <view class="left-btn" bindtap='goPublish'>

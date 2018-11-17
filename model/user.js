@@ -454,5 +454,24 @@ export class User
             });
         });
     }
+
+  static getCurrentUser() {
+    //
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/currentUser';
+      let options = {
+        url: url,
+        method: 'get',
+      }
+
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+  }
     // 
 }

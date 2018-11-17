@@ -1,7 +1,7 @@
 {
   "pages": [
      
- 
+    
     "pages/index/index",
     "pages/task/index",
     "pages/school/index",
@@ -14,7 +14,7 @@
     "pages/publish/share",
     "pages/publish/moments",
     "pages/published/index",
-    "pages/buy/index",
+"pages/buy/index",
     "pages/buy/share",
     "pages/buy/moments",
     "pages/home/index",

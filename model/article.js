@@ -482,4 +482,32 @@ export class Article
         //
     }
     // game over
+
+
+  //
+  static getWithPage(parameters) {
+    //
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/articles';
+      let options = {
+        url: url,
+        method: 'get',
+        /*
+        data: {
+            category_id: categoryId,
+        },  
+        */
+        data: parameters,
+      }
+
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+    //
+  }
 }

@@ -17,7 +17,7 @@ Page({
 
     /* 参数 */
     // 排序
-    sorts: ["出售中", "购买中","最新发布", "热门发布", "价格最高", "价格最低"],
+    sorts: ["最新发布", "热门发布", "出售中", "购买中", "价格最高", "价格最低"],
     sortKey: 0,
     // 分类
     categories: [],
@@ -34,11 +34,12 @@ Page({
   //
   onLoad: function(options) {
     // province
-    let provinceId = options.province_id == undefined ? 0 : options.province_id;
+    let provinceId = options.province_id == undefined ? "" : options.province_id;
     this.loadProvince(provinceId);
 
     // category
-    let categoryId = options.category_id == undefined ? 0 : options.category_id;
+    let categoryId = options.category_id == undefined ? "" : options.category_id;
+    
     this.loadCategory(categoryId);
 
     // keywords
@@ -53,7 +54,7 @@ Page({
     } else {
       // article
       // school
-      let schoolId = options.school_id == undefined ? 0 : options.school_id;
+      let schoolId = options.school_id == undefined ? "" : options.school_id;
 
       //
       this.initArticle(provinceId, categoryId, schoolId);
@@ -246,9 +247,13 @@ Page({
     let sortId = this.data.sortKey;
     this.loadArticle({
       sort_id: sortId,
+      sortId: sortId,
       category_id: categoryId,
+      categoryId: categoryId,
       province_id: provinceId,
-      school_id: schoolId
+      provinceId: provinceId,
+      school_id: schoolId,
+      schoolId: schoolId
     });
   },
   /* sp */
@@ -262,7 +267,9 @@ Page({
     this.loadArticle({
       sort_id: sortId,
       category_id: categoryId,
-      province_id: provinceId
+      province_id: provinceId,
+      categoryId: categoryId,
+      provinceId, provinceId
     });
   },
   onReachBottom() {
@@ -300,42 +307,74 @@ Page({
       //
       options.longitude = res.longitude;
       options.latitude = res.latitude;
-
+      that.getWithPage(options);
       //
-      Article.get(options).then(function(res) {
-        //
-        let paginate = res.data;
-        let paginateArticles = paginate.data;
-        let articles = that.data.articles;
+      // Article.get(options).then(function(res) {
+      //   //
+      //   let paginate = res.data;
+      //   let paginateArticles = paginate.data;
+      //   let articles = that.data.articles;
 
-        // 如果返回空，显示空标质
-        if (paginateArticles.length == 0) {
-          that.setData({
-            empty: "找不到数据",
-            articleLoadStatus: -1
-          });
-          return;
-        }
+      //   // 如果返回空，显示空标质
+      //   if (paginateArticles.length == 0) {
+      //     that.setData({
+      //       empty: "找不到数据",
+      //       articleLoadStatus: -1
+      //     });
+      //     return;
+      //   }
 
-        for (let x in paginateArticles) {
-          articles.push(paginateArticles[x]);
-        }
+      //   for (let x in paginateArticles) {
+      //     articles.push(paginateArticles[x]);
+      //   }
 
-        // if current_page equal to last_page, mean need finish
-        let articleLoadStatus =
-          paginate.current_page == paginate.last_page ? 2 : 0;
-        that.data.page = paginate.current_page + 1;
-        that.setData({
-          articles: articles,
-          articleLoadStatus: articleLoadStatus
-        });
-        //
-      });
+      //   // if current_page equal to last_page, mean need finish
+      //   let articleLoadStatus =
+      //     paginate.current_page == paginate.last_page ? 2 : 0;
+      //   that.data.page = paginate.current_page + 1;
+      //   that.setData({
+      //     articles: articles,
+      //     articleLoadStatus: articleLoadStatus
+      //   });
+      //   //
+      // });
       //
     });
   },
+   
+
+  getWithPage(options){
+    let that = this
+    options.currentStartIndex = this.data.page*10;
+    options.perPageNum = 20;
+    options.longitude = null;
+    options.latitude = null;
+    if (options.categoryId == 0 || options.categoryId == undefined){
+      delete options.categoryId
+    }
+    if (options.provinceId == 0 || options.provinceId == undefined) {
+      delete options.provinceId
+    }
+   
+    Article.getWithPage(options).then(function (res) {
+      let articles = that.data.articles ? that.data.articles:[];
+      console.log(65656)
+      console.log(res)
+      for (let x in res.data.body.articlesList) {
+        articles.push(res.data.body.articlesList[x]);
+      }
+      // if current_page equal to last_page, mean need finish
+      let articleLoadStatus =
+        that.data.page = options.current_page + 1;
+      that.setData({
+        articles: articles,
+      });
+    })
+  },
+
   //
   searchArticle: function(options) {
+  
     //
     if (this.data.articleLoadStatus == 2) {
       console.log("========== all loaded");
@@ -360,6 +399,7 @@ Page({
 
     //
     options.page = this.data.page;
+    
 
     let that = this;
     User.getLocation().then(res => {
@@ -367,36 +407,38 @@ Page({
       options.longitude = res.longitude;
       options.latitude = res.latitude;
 
+
+      that.getWithPage(options);
       //
-      Article.search(options).then(function(res) {
-        //
-        let paginate = res.data;
-        let paginateArticles = paginate.data;
-        let articles = that.data.articles;
+      // Article.search(options).then(function(res) {
+      //   //
+      //   let paginate = res.data;
+      //   let paginateArticles = paginate.data;
+      //   let articles = that.data.articles;
 
-        // 如果返回空，显示空标质
-        if (paginateArticles.length == 0) {
-          that.setData({
-            empty: "找不到数据",
-            articleLoadStatus: -1
-          });
-          return;
-        }
+      //   // 如果返回空，显示空标质
+      //   if (paginateArticles.length == 0) {
+      //     that.setData({
+      //       empty: "找不到数据",
+      //       articleLoadStatus: -1
+      //     });
+      //     return;
+      //   }
 
-        for (let x in paginateArticles) {
-          articles.push(paginateArticles[x]);
-        }
+      //   for (let x in paginateArticles) {
+      //     articles.push(paginateArticles[x]);
+      //   }
 
-        // if current_page equal to last_page, mean need finish
-        let articleLoadStatus =
-          paginate.current_page == paginate.last_page ? 2 : 0;
-        that.data.page = paginate.current_page + 1;
-        that.setData({
-          articles: articles,
-          articleLoadStatus: articleLoadStatus
-        });
-        //
-      });
+      //   // if current_page equal to last_page, mean need finish
+      //   let articleLoadStatus =
+      //     paginate.current_page == paginate.last_page ? 2 : 0;
+      //   that.data.page = paginate.current_page + 1;
+      //   that.setData({
+      //     articles: articles,
+      //     articleLoadStatus: articleLoadStatus
+      //   });
+      //   //
+      // });
       //
     });
   }

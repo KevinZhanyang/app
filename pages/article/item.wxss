@@ -467,9 +467,9 @@ height:300rpx;
 }
 ._seduce .seduce {
 height:25rpx;
-width:170rpx;
-margin-right:auto;
-margin-left:247rpx;
+width:300rpx;
+margin:auto;
+
 border-radius:25rpx;
 font-size:26rpx;
 line-height:50rpx;
@@ -796,5 +796,11 @@ text-shadow:0px 3px 9px rgba(255,197,59,0.6);
 	font-size:24rpx;
 }
 /* WARNGING END */
+
+.mo{
+ margin-left:10rpx;
+
+
+}
 
 

@@ -19,7 +19,8 @@ Page({
       { id: 5, score: 65, mark: 0 },
       { id: 6, score: 75, mark: 0 },
       { id: 7, score: 100, mark: 0 },
-    ]
+    ],
+    signed:false
 
   },
 
@@ -41,13 +42,20 @@ getDetail(){
 
       var signArray = that.data.signArray.map((item, index) => {
         console.log(index)
-        if (result.data.body.count == index) {
+        if (result.data.body.count==0&&index==0){
           item.sign_circle = "sign_circle_signed";
           item.sign_circle_score = "sign_circle_score_signed";
           if (result.data.body.mark == "1") {
             item.hook = "hook";
           }
-        } else if (result.data.body.count>index){
+        }else
+        if ((result.data.body.count) == index) {
+          item.sign_circle = "sign_circle_signed";
+          item.sign_circle_score = "sign_circle_score_signed";
+          if (result.data.body.mark == "1") {
+            item.hook = "hook";
+          }
+        } else if ((result.data.body.count)>index){
           item.sign_circle = "sign_circle_signed";
           item.sign_circle_score = "sign_circle_score_signed";
           item.hook = "hook";
@@ -62,6 +70,10 @@ getDetail(){
       if (result.data.body.mark == "1") {
         that.setData({
           signed: true
+        })
+      }else{
+        that.setData({
+          signed: false
         })
       }
     }
@@ -87,16 +99,22 @@ getCurrentUser(){
 
   },
   sign(event){
+    console.log(event);
     let that = this;
     Task.create(this.data.task).then(function (result) {
 
       if (result.data.code == 200) {
+        wx.showLoading({
+          title: '签到成功!',
+          duration:1500
+        })
         if (result.data.mark == "1") {
           that.setData({
             signed: true
           })
         }
         that.getDetail();
+        this.getCurrentUser();
       }
       console.log(result);
     });

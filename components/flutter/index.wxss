@@ -29,19 +29,21 @@
 }
 
 .ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
+
   font-size: 28rpx;
   color: #333;
   padding-bottom: 30rpx;
-  word-wrap: break-word;
+  /* word-wrap: break-word; */
   text-align: justify;
-  display: -webkit-box;
+  height: 76rpx;
+
+  display: -webkit-box ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
   -webkit-box-orient: vertical;
-  height: 73rpx;
-  margin-bottom: 6rpx;
+  -webkit-line-clamp:2; 
+
   /* -webkit-animation: weuiLoading 1s steps(12, end) infinite; */
 }
 

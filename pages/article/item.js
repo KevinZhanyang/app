@@ -61,6 +61,9 @@ Page({
 
     //
     onLoad(options) {
+
+     
+
         let articleId = 0;
         if (options.q != undefined) {
             let url = 'https://used.124115.com/regular?id=125';
@@ -70,6 +73,14 @@ Page({
         }
 
         let that = this;
+
+      User.getCurrentUser().then(res => {
+        that.setData({
+          currentUser:res.data.body
+        })
+
+
+      })
       // 下载分享给用户|群的照片
       this.loadCircleImg(articleId); 
         /*
@@ -516,12 +527,93 @@ Page({
     {
         // 如果是自已
         console.log(event);
+        let that =this;
+
+      if (event.currentTarget.dataset.userId==this.data.currentUser.recId){
+
+              wx.showModal({
+                title: '温馨提示',
+                content: '确认删除留言？',
+                success:function(res){
+                   if(res.confirm){
+
+                     Message.delete(event.currentTarget.dataset.replyId).then(res=>{
+                       if(res.data.code==200){
+                         wx.showLoading({
+                           title: '删除成功',
+                           duration: 1000
+                         })
+
+                         that.loadMessage(that.data.article.id) ;
+                         
+                       }else{
+                         wx.showLoading({
+                           title: '删除失败',
+                           duration: 1000
+                         })
+                       }
+                          
+
+
+                     })
+
+
+
+
+
+                   }
+                }
+              
+              })
+
+
+        }
+
     },
     //
     longpressChildMessage(event) 
     {
-        //
-        console.log(event);
+      let that = this;
+
+      if (event.currentTarget.dataset.userId == this.data.currentUser.recId) {
+
+        wx.showModal({
+          title: '温馨提示',
+          content: '确认删除留言？',
+          success: function (res) {
+            if (res.confirm) {
+
+              Message.delete(event.currentTarget.dataset.replyId).then(res => {
+                if (res.data.code == 200) {
+                  wx.showLoading({
+                    title: '删除成功',
+                    duration: 1000
+                  })
+
+                  that.loadMessage(that.data.article.id);
+
+                } else {
+                  wx.showLoading({
+                    title: '删除失败',
+                    duration: 1000
+                  })
+                }
+
+
+
+              })
+
+
+
+
+
+            }
+          }
+
+        })
+
+
+      }
     },
     // 
     updateContent(event)

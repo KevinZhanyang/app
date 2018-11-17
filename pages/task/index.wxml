@@ -29,15 +29,17 @@
 
         <block wx:else>
           <view>
-            <block wx:if="{{item.hook}} ">
+            <block wx:if="{{item.hook}}">
               <view>
                 <image src="/static/img/signed.png" style='height:66rpx;width:66rpx '></image>
               </view>
+              
             </block>
             <block wx:else>
               <span class="{{item.sign_circle?item.sign_circle: 'sign_circle'}} ">
                 <span class="{{item.sign_circle_score?item.sign_circle_score: 'sign_circle_score'}} "> +{{item.score}}</span>
               </span>
+              
             </block>
           </view>
           <view class='perDay_num'>第{{item.id}}天</view>
@@ -45,19 +47,19 @@
       </view>
     </view>
     <view>
-      <block wx:if="{{signed}} ">
-        <form bindsubmit="putFormId " report-submit='true'>
-          <button class="sign_btn " form-type="submit ">
+      <block wx:if="{{signed}}">
+        <form bindsubmit="putFormId" report-submit='true'>
+          <button class="sign_btn" form-type="submit">
             今日已签到
           </button>
         </form>
       </block>
       <block wx:else>
-        <form bindsubmit="sign " report-submit='true'>
-          <button class="sign_btn " form-type="submit ">
+        <!-- <form bindsubmit="sign" report-submit='true'> -->
+          <button class="sign_btn" bindtap='sign'>
             签到
           </button>
-        </form>
+        <!-- </form> -->
       </block>
     </view>
 

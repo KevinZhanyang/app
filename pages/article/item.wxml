@@ -8,12 +8,13 @@
 <!-- ARTICLE START -->
 <view class=" bg-white">
 
-  <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000" >
+  <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
     <swiper-item wx:for="{{articleImgs}}" wx:for-index="key" wx:for-item="articleImg" wx:key="id">
-      <image data-src="{{articleImg.img}} " mode="center" src="{{articleImg.img}}" data-key="{{ key }}" background-size="cover" bindtap="previewImage"></image>
-        <view class="imageCount"><text class='currentIndex'>{{key+1}}</text>/{{articleImgs.length}}</view>
+      <image data-src="{{articleImg.img}} " mode="aspectFill" src="{{articleImg.img}}" data-key="{{ key }}" background-size="cover" bindtap="previewImage"></image>
+      <view class="imageCount">
+        <text class='currentIndex'>{{key+1}}</text>/{{articleImgs.length}}</view>
     </swiper-item>
-   
+
   </swiper>
 
   <view class="container bg-white price">$ {{ article.price }}</view>
@@ -22,7 +23,7 @@
   </view>
   <view class="container user bg-white">
     <view class="distance">
-      <text>距 {{ article.distance }} km</text>
+      <text>距 {{ article.distance?article.distance:'查看距离' }} km</text>
     </view>
     <view class="nickname">
       <label class="time">发布时间：{{ article.created_at }}</label>
@@ -127,8 +128,8 @@
       </navigator>
     </view>
     <!-- PARENT START -->
-    <view class="parent" hover-class="hover" data-key="{{ key }}" data-children-key="-1" data-parent-id="{{ message.parent.message.id }}" data-reply-id="{{ message.parent.message.id }}" catchtap="reply" catchlongpress="longpressParentMessage">
-      <view class="secondary">
+    <view class="parent" hover-class="hover" data-key="{{ key }}" data-children-key="-1" data-parent-id="{{ message.parent.message.id }}" data-reply-id="{{ message.parent.message.id }}" data-user-id="{{message.parent.message.user_id}}" catchtap="reply" catchlongpress="longpressParentMessage">
+      <view class="secondary" >
         <view class="nickname">
           {{ message.parent.user.nickname }}
           <label class="seller" wx:if="{{ message.parent.user.id == article.user_id }}">卖主</label>
@@ -139,7 +140,7 @@
     </view>
     <!-- PARENT END -->
     <!-- CHILDREN START -->
-    <view class="children" hover-class="hover" data-key="{{ key }}" data-parent-id="{{ message.parent.message.id }}" data-reply-id="{{ children.message.id }}" wx:for="{{ message.childrens }}" wx:for-index="k" wx:for-item="children" wx:key="id" data-children-key="{{ k }}"
+    <view class="children" hover-class="hover" data-key="{{ key }}" data-user-id="{{message.parent.message.user_id}}" data-parent-id="{{ message.parent.message.id }}" data-reply-id="{{ children.message.id }}" wx:for="{{ message.childrens }}" wx:for-index="k" wx:for-item="children" wx:key="id" data-children-key="{{ k }}"
       catchtap="reply" catchlongpress="longpressChildMessage">
       <view class="avatar">
         <image src="{{ children.user.avatar }}"></image>
@@ -161,19 +162,18 @@
 <!-- SEDUCE START -->
 <view class="container bg-white _seduce" catchtap="releaseMessageRelationship_">
   <image class="img" src="/static/img/default.png"></image>
-  <block wx:if="{{message.length>0}}">
-<view class="seduce">
-   这已经是最后一条留言了
-  </view>
+  <block wx:if="{{messages.length>0}}">
+    <view class="seduce">
+      这已经是最后一条留言了
+    </view>
+  </block>
+  <block wx:else>
+    <view class="seduce">
+      期待你的留言
+    </view>
 
   </block>
-  <block>
-<view class="seduce">
-    暂时没有留言
-  </view>
 
-  </block>
-  
 </view>
 <!-- SEDUCE END -->
 
@@ -191,15 +191,15 @@
         <view class='menu_text'>首页</view>
       </view>
       <!-- collect -->
-      <view class="homepage" catchtap="showCircleImg">
-        <image class="menu_icon" src="/static/img/moments.png"></image>
+      <view class="homepage" catchtap="showCircleImg" >
+        <image class="menu_icon  mo" src="/static/img/moments.png"></image>
         <view class='menu_text'>朋友圈</view>
       </view>
       <!-- share -->
-      <view bindtap='inform' >
+      <view bindtap='inform'>
         <view class="homepage">
           <image class="menu_icon" src="/static/img/inform.png"></image>
-          <view class='menu_text'>举报</view> 
+          <view class='menu_text'>举报</view>
         </view>
       </view>
     </view>

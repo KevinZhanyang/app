@@ -66,6 +66,26 @@ Page({
     // 是否有系统通知
     systemNotify: 0
   },
+  //移动选点
+  moveToLocation: function () {
+ 
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        let mobileLocation = {
+          longitude: res.longitude,
+          latitude: res.latitude,
+          address: res.address,
+        };
+        that.setData({
+          mobileLocation: mobileLocation,
+        });
+      },
+      fail: function (err) {
+        console.log(err)
+      }
+    });
+  },
   onPageScroll(data) {
     const that = this;
     if (this.timer) {
@@ -97,14 +117,9 @@ Page({
     let that = this;
     this.getScrollTop();
     qqmapsdk = new QQMapWX({
-      key: 'KKMBZ-I23R2-JUCUK-CECQF-26SEK-G4FAH'
-    });
-    //
-    wx.showShareMenu({
-      //
+      key: 'HG5BZ-TRHW3-5R737-33FXO-KNHNE-ESB5F'
     });
 
-    //
     this.loadCategory();
     // this.loadRecentArticle();
     // this.loadHotArticle();
@@ -113,34 +128,46 @@ Page({
     // 红点
     this.loadNotify();
 
-    User.getLocation()
+    // 如果没有授权地理位置，转到授权
+    User.testAuthorizeUserLocation()
       .then(res => {
-        qqmapsdk.reverseGeocoder({
-          location: {
 
-            latitude: res.latitude,
-            longitude: res.longitude
-          },
-          success: function (addressRes) {
-            var address = addressRes.result.formatted_addresses.recommend;
-            // console.log("hh");
-            // console.log(address);
-            that.setData({
-              address: address
-            })
-          },
-          fail: function (res) {
-            // console.log("pp");
-            // console.log(res);
-          },
-          complete: function (res) {
-            // console.log("op");
-            // console.log(res);
-          }
-        });
+        User.getLocation()
+          .then(res => {
+            var mobileLocation = {
+              latitude: res.latitude,
+              longitude: res.longitude,
+            };
+            qqmapsdk.reverseGeocoder({
+              location: {
+
+                latitude: res.latitude,
+                longitude: res.longitude
+              },
+              success: function (addressRes) {
+                var address = addressRes.result.formatted_addresses.recommend;
+                console.log("hh");
+                console.log(address);
+                mobileLocation.address = address;
+                that.setData({
+                  mobileLocation: mobileLocation,
+                });
+              },
+              fail: function (res) {
+                console.log("pp");
+                console.log(res);
+              },
+              complete: function (res) {
+                console.log("op");
+                console.log(res);
+              }
+            });
 
 
+          })
       })
+
+    
   },
   //
   onShow() {

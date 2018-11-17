@@ -1,8 +1,12 @@
 <!-- SEARCH START -->
 <view class="_search">
   <view class='location'>
-    <image class="location_img" src="/static/img/black_lo.png"></image>
-    <label class="rule">{{address?address:"选择地址"}}</label>
+    <view><image class="location_img" src="/static/img/black_lo.png"></image></view>
+    <view>
+      <button style='border:none !important;' bindtap="moveToLocation" class="rule" >{{mobileLocation.address?mobileLocation.address:"选择地址"}}</button>
+    </view>
+    <!-- <label class="rule"></label> -->
+   
   </view>
 
   <view class="search">
@@ -78,11 +82,15 @@
 <menu number="0"   bind:show="showModal" back="{{isShowFloatTab}}" notify="{{ systemNotify }}"></menu>
 <!-- MENU END -->
 <!-- GUIDE START -->
-<view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}"></view>
-<view class="_guide z-elves" wx:if="{{ guideStatus == 0 }}">
+<!-- <view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}"></view> -->
+<!-- <view class="_guide z-elves" wx:if="{{ guideStatus == 0 }}">
   <view class="guide">
     <view class="close" bindtap="closeGuide"></view>
   </view>
+</view> -->
+
+<view class="guide" wx:if="{{ guideStatus == 0 }}">
+    <image class="close" bindtap="closeGuide" src='/static/img/guide.png'/>
 </view>
 <vant-popup custom-class="out-pop" z-index="98" position="bottom" show="{{modal}}" bind:close="onCloseModal" bindtap='preventTouchMove'>
   <view class="pop-box">

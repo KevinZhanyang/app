@@ -93,12 +93,17 @@ Page({
     //
   },
   onShow: function() {
-   
+    if (wx.getStorageSync("imagesTmp")){
+        this.setData({
+          images: wx.getStorageSync("imagesTmp")
+        })
+   }
   },
   //
   onLoad: function(options) {
+
     qqmapsdk = new QQMapWX({
-      key: 'KKMBZ-I23R2-JUCUK-CECQF-26SEK-G4FAH'
+      key: 'HG5BZ-TRHW3-5R737-33FXO-KNHNE-ESB5F'
     });
     // //控制国内用户不能上传
     let that = this;
@@ -490,6 +495,8 @@ Page({
           images: images,
         });
 
+       
+
         // 上传到服务器
         for (let x in images) {
           let image = images[x];
@@ -503,6 +510,7 @@ Page({
                 that.setData({
                   images: images,
                 });
+                wx.setStorageSync("imagesTmp", images);
               })
               .catch(function(result) {
                 //
@@ -510,6 +518,7 @@ Page({
                 that.setData({
                   images: images,
                 });
+                wx.setStorageSync("imagesTmp", images);
               });
           }
         }
@@ -550,6 +559,7 @@ Page({
     this.setData({
       images: images,
     });
+    wx.setStorageSync("imagesTmp", images);
   },
   // preview image
   previewImage(event) {
@@ -579,6 +589,7 @@ Page({
     this.setData({
       images: images,
     });
+    wx.setStorageSync("imagesTmp", images);
   },
   /* update end */
   //
@@ -688,6 +699,7 @@ Page({
           .then(result => {
             let article = result.data;
             let articleId = article.id;
+            wx.removeStorageSync("images");
             that.skip(articleId);
           });
         //

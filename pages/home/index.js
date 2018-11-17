@@ -35,20 +35,20 @@ Page({
     })
   },
   initGuide() {
-    let that = this;
-    wx.getStorage({
-      key: "index_guide",
-      success: res => {
-        that.setData({
-          guideStatus: 1
-        });
-      },
-      fail: res => {
-        that.setData({
-          guideStatus: 0
-        });
-      }
-    });
+    // let that = this;
+    // wx.getStorage({
+    //   key: "index_guide",
+    //   success: res => {
+    //     that.setData({
+    //       guideStatus: 1
+    //     });
+    //   },
+    //   fail: res => {
+    //     that.setData({
+    //       guideStatus: 0
+    //     });
+    //   }
+    // });
   },
   closeGuide() {
     this.setData({
