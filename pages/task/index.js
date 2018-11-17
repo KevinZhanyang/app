@@ -93,8 +93,8 @@ getCurrentUser(){
 
 }  ,
 
-  putFormId(){
-    
+  putFormId(event){
+    console.log(event);
 
 
   },

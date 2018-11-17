@@ -72,11 +72,13 @@
         </view>
         <view class='text_bottom'>带不走的留给需要它的人吧</view>
       </view>
-      <form bindsubmit="go " data-url='/pages/publish/index' report-submit='true'>
-        <button class="go " data-url='/pages/publish/index' form-type="submit ">
+      <view>
+      <form bindsubmit="go" data-url='/pages/publish/index' report-submit='true'>
+        <button class="go" data-url='/pages/publish/index' form-type="submit">
           去发布
         </button>
       </form>
+      </view>
     </view>
     <view class='item'>
       <view class="item_text ">
@@ -85,8 +87,8 @@
         </view>
         <view class='text_bottom'>好朋友就是会把所有好的给她</view>
       </view>
-      <form bindsubmit="go " data-url='/pages/index/index' report-submit='true'>
-        <button class="go " data-url='/pages/index/index' form-type="submit ">
+      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
+        <button class="go" data-url='/pages/index/index' form-type="submit ">
           去分享
         </button>
       </form>
@@ -99,8 +101,8 @@
         </view>
         <view class='text_bottom'>看到宝贝点爱心领积分</view>
       </view>
-      <form bindsubmit="go " data-url='/pages/index/index' report-submit='true'>
-        <button class="go " data-url='/pages/index/index' form-type="submit ">
+      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
+        <button class="go" data-url='/pages/index/index' form-type="submit">
           去点赞
         </button>
       </form>
@@ -112,21 +114,21 @@
         </view>
         <view class='text_bottom'>逛逛宝贝得积分</view>
       </view>
-      <form bindsubmit="go " data-url='/pages/index/index' report-submit='true'>
-        <button class="go " data-url='/pages/index/index' form-type="submit ">
+      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
+        <button class="go" data-url='/pages/index/index' form-type="submit">
           去浏览
         </button>
       </form>
     </view>
     <view class='item'>
-      <view class="item_text ">
+      <view class="item_text">
         <view class='text_top'>留言
           <label>+2积分*5</label>
         </view>
         <view class='text_bottom'>给卖家留言,卖家马上收到</view>
       </view>
-      <form bindsubmit="go " data-url='/pages/index/index' report-submit='true'>
-        <button class="go " data-url='/pages/index/index' form-type="submit ">
+      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
+        <button class="go" data-url='/pages/index/index' form-type="submit">
           去留言
         </button>
       </form>
@@ -139,8 +141,8 @@
         </view>
         <view class='text_bottom'>拆红包有惊喜哦~</view>
       </view>
-      <form bindsubmit="go " data-url='/pages/index/index' report-submit='true'>
-        <button class="go " data-url='/pages/index/index' form-type="submit ">
+      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
+        <button class="go" data-url='/pages/index/index' form-type="submit">
           去拆红包
         </button>
       </form>
@@ -152,8 +154,8 @@
         </view>
         <view class='text_bottom'>绑定后好消息第一时间通知你</view>
       </view>
-      <form bindsubmit="go " data-url='/pages/home/bind' report-submit='true'>
-        <button class="go " data-url='/pages/home/bind' form-type="submit ">
+      <form bindsubmit="go" data-url='/pages/home/bind' report-submit='true'>
+        <button class="go" data-url='/pages/home/bind' form-type="submit">
           去绑定
         </button>
       </form>
