@@ -7,7 +7,7 @@
     <view class="score">
     	<view class="content">积分 : {{ user.scores }} 分</view>
     	<navigator class="arrow" url="/pages/exchange/index" hover-class="none">
-    	<view class="exchange">赚积分</view>
+    	<view class="exchange">任务入口</view>
     	</navigator>
     </view>
 </view>

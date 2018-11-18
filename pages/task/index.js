@@ -108,7 +108,7 @@ getCurrentUser(){
     let that = this;
     Task.create(this.data.task).then(function (result) {
 
-      if (result.data.code == 200) {
+      if (result.data.code == 200 && result.data.body==1) {
         wx.showLoading({
           title: '签到成功!',
           duration:1500
@@ -120,8 +120,13 @@ getCurrentUser(){
         }
         that.getDetail();
         this.getCurrentUser();
+      }else{
+        wx.showLoading({
+          title: '服务错误!',
+          duration: 1500
+        })
       }
-      console.log(result);
+    
     });
   },
   goExchange(){
@@ -138,6 +143,80 @@ getCurrentUser(){
     })
   }
 ,
+  // goShare(event){
+  //   console.log(event);
+  //   this.onShareAppMessage();
+  // },
+
+  //
+  /* share */
+  onShareAppMessage(res) {
+    //
+    let that = this;
+    console.log("log share res: -----------------------");
+    console.log(res);
+    /* 
+        if (res.from === 'button') {
+        // 来自页面内转发按钮
+        that.data.shareBtn = true;
+        } else {
+        //来自右上角转发
+        that.data.shareBtn = false;
+        }
+        */
+    //
+    let title = "为留学生打造的专业二手交易平台";
+    let path = "/pages/index/index";
+    let imageUrl =
+      "http://static.124115.com/static/program/img/index/share.png";
+    //
+    return {
+      title: title,
+      path: path,
+      imageUrl: imageUrl,
+      // complete start
+      complete: function (res) {
+        if (res.errMsg == "shareAppMessage:ok") {
+          console.log("share success");
+          /*
+                    //分享为按钮转发
+                    if (that.data.shareBtn) {
+                        //判断是否分享到群
+                        if (res.hasOwnProperty('shareTickets')) {
+                            console.log(res.shareTickets[0]);
+                            //分享到群
+                            that.data.isshare = 1;
+                        } else {
+                            // 分享到个人
+                            that.data.isshare = 0;
+                        }
+                    }
+                    */
+          that.postShare();
+        } else {
+          console.log("share fail");
+          wx.showToast({
+            title: "分享失败"
+          });
+        }
+        //
+      }
+      // complate end
+    };
+    //
+  },
+
+  postShare() {
+    //
+    Share.post()
+      .then(result => {
+        let shareLog = result.data;
+        console.log(shareLog);
+      })
+      .then(returl => {
+        //
+      });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

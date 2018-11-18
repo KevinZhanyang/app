@@ -87,8 +87,8 @@
         </view>
         <view class='text_bottom'>好朋友就是会把所有好的给她</view>
       </view>
-      <form bindsubmit="go" data-url='/pages/index/index' report-submit='true'>
-        <button class="go" data-url='/pages/index/index' form-type="submit ">
+      <form report-submit='true'>
+        <button class="go" open-type='share'   form-type="submit">
           去分享
         </button>
       </form>

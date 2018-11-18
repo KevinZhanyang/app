@@ -2,7 +2,7 @@
   <block>
     <view class="flex-wrap " style="{{recentId==4||recentId==8?'height:583rpx !important;':''}}" wx:for="{{ articles }}" wx:for-index="recentId" wx:for-item="article" wx:key="id" wx:if="{{recentId%2==''}}">
 
-      <block wx:if="{{recentId==4}}">
+      <block wx:if="{{recentId==6}}">
         <!-- 活动入口 -->
         <navigator url="/pages/exchange/index" hover-class="navigator-hover">
           <image class="pic" lazy-load="{{true}}" mode="widthFix" src="http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.0jO3otl4oHIW3356a252e690e66b16ac1bdda180af05.png?x-oss-process=style/thumbnail"></image>
@@ -10,7 +10,7 @@
         </navigator>
       </block>
 
-      <block wx:if="{{recentId==8}}">
+      <block wx:if="{{recentId==10}}">
         <!-- 活动入口 -->
         <navigator url="/pages/task/index" hover-class="navigator-hover">
           <image class="pic" lazy-load="{{true}}" mode="widthFix" src="http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.TQuAnQITHByJ15e21a644cd7dbea834e886596fb32f1.jpg?x-oss-process=style/small_thumbnail"></image>

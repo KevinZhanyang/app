@@ -91,6 +91,9 @@ Page({
     let id = event.currentTarget.dataset["id"];
     // let  = this.data.selectSchool;
     let MySchool = this.data.MySchool;
+    if (!MySchool) {
+      MySchool = [];
+    }
     for (let item of MySchool) {
       if (item) {
         if (id == item.id) {
@@ -111,6 +114,9 @@ Page({
     let that = this;
     if (!this.data.selectSchoolaActive) {
       let MySchool = this.data.MySchool;
+      if (!MySchool) {
+        MySchool = [];
+      }
       for (let item of MySchool) {
         if (item) {
         item.state = 0;
@@ -151,39 +157,39 @@ Page({
     });
     //
   },
+  //移动选点
+  moveToLocation: function () {
+
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        let mobileLocation = {
+          longitude: res.longitude,
+          latitude: res.latitude,
+          address: res.address,
+        };
+        that.setData({
+          address: res.address
+        });
+
+      },
+      fail: function (err) {
+        wx.getSetting({
+          success: (res) => {
+            if (!res.authSetting['scope.userLocation'])
+              that.openConfirm()
+          }
+        })
+      }
+    });
+  },
   onShow: function() {
     if (wx.getStorageSync("imagesTmp")) {
       this.setData({
         images: wx.getStorageSync("imagesTmp")
       })
     }
-    var MySchool = wx.getStorageSync("MySchool");
-    console.log(this.data.multiIndex);
-    console.log(this.data.multiArray);
-    var id = this.data.multiArray[1][this.data.multiIndex[1]].id;
-    var newMySchool = [];
-    
-      MySchool.map((item) => {
-        if (item) {
-          if (item.id == id) {
-          } else {
-            newMySchool.push(item)
-          }
-        }
-
-        return item;
-      })
-    
-    for (let item of MySchool) {
-      if (item) {
-        item.state = 0;
-      }
-    }
-    this.setData({
-      MySchool: newMySchool,
-      selectSchool: id,
-      selectSchoolaActive: true
-    });
+   
   },
   //
   onLoad: function(options) {
@@ -429,7 +435,9 @@ Page({
     console.log(this.data.multiArray);
     var id = this.data.multiArray[1][this.data.multiIndex[1]].id;
     var newMySchool = [];
-
+    if(!MySchool){
+         MySchool=[];
+    }
     MySchool.map((item) => {
       if (item) {
         if (item.id == id) {
@@ -527,7 +535,7 @@ Page({
     }
     wx.setStorageSync("MySchool", MySchool);
     var newMySchool=[];
-    if (!is_new) {
+    
       MySchool.map((item) => {
         if (item){
           if (item.id == id) {
@@ -539,7 +547,6 @@ Page({
         
         return item;
       })
-    }
     for (let item of MySchool) {
       if (item) {
         item.state = 0;

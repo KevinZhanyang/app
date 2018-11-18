@@ -3,7 +3,7 @@
 	<view class="share">
 		<navigator url="/pages/article/item?id={{ article.id }}" hover-class="none">
 			<view class="img">
-				<image mode="aspectFill" src="{{ shareImg }}"></image>
+				<image mode="aspectFill" src="{{ shareImg=='http://img.beimei2.com/static/program/img/default/share.jpg?x-oss-process=style/small_thumbnail'?'http://static.124115.com/static/program/img/index/share.png':shareImg}}"></image>
 			</view>
 		</navigator>
 		<!-- sp -->

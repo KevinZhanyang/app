@@ -26,8 +26,8 @@ var qqmapsdk;
 //
 Page({
   data: {
-  catsTop:[
-    {icon:"https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:18:22/1542071902172109.png",id:3,name:"服饰鞋包"},
+    catsTop: [
+      { icon:"https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-18 23:56:43/154255660314099.png",id:3,name:"服饰鞋包"},
     { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:21:05/154207206546870.png", id: 4, name: "手机数码" },
     { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-18 04:55:29/15424881299649.png", id: 2, name: "房屋租赁" },
     { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:29:08/154207254841316.png", id: 9, name: "学习资料" },
@@ -36,7 +36,7 @@ Page({
   ],
   catsBottom:[
     { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:25:54/154207235499378.png", id: 5, name: "宠物植物" },
-    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:27:05/154207242541146.png", id: 1, name: "家具家电" },
+    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:18:22/1542071902172109.png", id: 1, name: "家具家电" },
     { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:32:36/154207275626332.png", id: 8, name: "汽车出行" },
     { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:27:47/154207246719017.png", id: 7, name: "失物招领" },
     { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:28:28/1542072508433132.png", id:10, name: "其他分类" },
@@ -268,18 +268,18 @@ Page({
     }
     
   },
-  onPullDownRefresh: function () {
-    if (true) {
-      this.clearRecentArticle();
-      this.clearHotArticle();
-      this.loadRecentArticle();
-      this.loadHotArticle();
-    }
-    setTimeout(function(){
+  // onPullDownRefresh: function () {
+  //   if (true) {
+  //     this.clearRecentArticle();
+  //     this.clearHotArticle();
+  //     this.loadRecentArticle();
+  //     this.loadHotArticle();
+  //   }
+  //   setTimeout(function(){
 
-      wx.stopPullDownRefresh;
-    },1500)
-  },
+  //     wx.stopPullDownRefresh;
+  //   },1500)
+  // },
   //
   onShow() {
    

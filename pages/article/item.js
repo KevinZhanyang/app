@@ -937,6 +937,10 @@ Page({
       });
   },
   showCircleImg() {
+    // this.setData({
+    //   showShareMoment:true
+    // })
+
     //
     let url = this.data.circleImg;
     if (url.length == 0) {
@@ -972,7 +976,7 @@ Page({
         ],
       });
     }
-    //
+    
   },
     /* COPY WECHAT END */
 });

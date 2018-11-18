@@ -325,6 +325,42 @@ line-height:30px;
 ._packets .attr .rule {
 	color:#ff5555;
 }
+.rule {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  font-size: 26rpx;
+  width: 220rpx;
+  /* height: 60rpx; */
+  margin-left:26rpx;
+  background: transparent !important;
+  /* border: 1px  transparent  !important; */
+  text-align: left;
+  line-height: 60rpx;
+  border:none !important;
+  color: #000;
+}
+.rule button{
+  color: #000;
+}
+/*去除buttun边框关键样式*/
+button[class="rule"]::after {
+  border: 0;
+color: #000;  
+} 
+.location_img_rule{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+
+
+
+
 .packets {
 	width:calc(100% - 60rpx);
 	padding-top:15rpx;

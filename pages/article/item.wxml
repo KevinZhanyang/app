@@ -18,8 +18,10 @@
   </swiper>
 
   <view class="container bg-white price">
-  <view class='trade_top'>
-      <view>$ {{ article.price }}</view> <view wx:if="{{article.tarde_way}}" class="trade">{{article.tardeWay}}</view> </view>
+    <view class='trade_top'>
+      <view>$ {{ article.price }}</view>
+      <view wx:if="{{article.tarde_way}}" class="trade">{{article.tardeWay}}</view>
+    </view>
   </view>
 
   <view class="item content">
@@ -133,7 +135,7 @@
     </view>
     <!-- PARENT START -->
     <view class="parent" hover-class="hover" data-key="{{ key }}" data-children-key="-1" data-parent-id="{{ message.parent.message.id }}" data-reply-id="{{ message.parent.message.id }}" data-user-id="{{message.parent.message.user_id}}" catchtap="reply" catchlongpress="longpressParentMessage">
-      <view class="secondary" >
+      <view class="secondary">
         <view class="nickname">
           {{ message.parent.user.nickname }}
           <label class="seller" wx:if="{{ message.parent.user.id == article.user_id }}">卖主</label>
@@ -144,8 +146,8 @@
     </view>
     <!-- PARENT END -->
     <!-- CHILDREN START -->
-    <view class="children" hover-class="hover" data-key="{{ key }}" data-user-id="{{message.parent.message.user_id}}" data-parent-id="{{ message.parent.message.id }}" data-reply-id="{{ children.message.id }}" wx:for="{{ message.childrens }}" wx:for-index="k" wx:for-item="children" wx:key="id" data-children-key="{{ k }}"
-      catchtap="reply" catchlongpress="longpressChildMessage">
+    <view class="children" hover-class="hover" data-key="{{ key }}" data-user-id="{{message.parent.message.user_id}}" data-parent-id="{{ message.parent.message.id }}" data-reply-id="{{ children.message.id }}" wx:for="{{ message.childrens }}" wx:for-index="k"
+      wx:for-item="children" wx:key="id" data-children-key="{{ k }}" catchtap="reply" catchlongpress="longpressChildMessage">
       <view class="avatar">
         <image src="{{ children.user.avatar }}"></image>
       </view>
@@ -195,7 +197,7 @@
         <view class='menu_text'>首页</view>
       </view>
       <!-- collect -->
-      <view class="homepage" catchtap="showCircleImg" >
+      <view class="homepage" catchtap="showCircleImg">
         <image class="menu_icon  mo" src="/static/img/moments.png"></image>
         <view class='menu_text'>朋友圈</view>
       </view>
@@ -230,6 +232,34 @@
   </view>
 </view>
 <!-- RULE END -->
+
+
+<view class="popup" wx:if='{{showShareMoment}}'>
+  <view class="popup_container">
+    <view class='popup_top'>
+            <view>
+               
+            
+            </view>
+         
+
+    </view>
+    <view class='popup_middle'>
+
+
+
+    </view>
+    <view class='popup_bottom'>
+
+
+
+    </view>
+
+  </view>
+
+</view>
+
+
 
 <!-- COPY START -->
 <view class="_copy z-elves" catchtouchmove="preventTouchMove" wx:if="{{ showCopyWechatInterface }}">

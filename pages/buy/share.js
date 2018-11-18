@@ -126,7 +126,7 @@ Page({
         //
         let title = this.data.article.content;
         let path = '/pages/article/item?id=' + this.data.article.id;
-        let imageUrl = this.data.shareImg;
+      let imageUrl = this.data.shareImg == 'http://img.beimei2.com/static/program/img/default/share.jpg?x-oss-process=style/small_thumbnail' ? 'http://static.124115.com/static/program/img/index/share.png' : this.data.shareImg;
         //
         return {
             title: title,

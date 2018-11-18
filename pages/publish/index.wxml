@@ -44,10 +44,12 @@
         </view>
       </view> -->
 
-      <view class=" attr">
-        <view>
+      <view class="attr">
+        <view class='location_img_rule'>
           <image class="location_img" src="/static/img/location.png"></image>
-          <label class="rule">{{address}}</label>
+          <view class='rule'>
+              <button  bindtap="moveToLocation"  >{{address?address:"选择地址"}}</button>
+          </view>
         </view>
         <view class="radio" bindtap="radioChange">
           <radio-group>
@@ -78,7 +80,7 @@
 
     <view class="cell">
       <view class="secondary">选择分类</view>
-      <view class="primary" style='padding-left:30rpx;'>
+      <view class="primary" style=''>
         <picker bindchange="bindCategoryChange" value="{{ categoryKey }}" range-key="name" range="{{ categories }}">
           <view class="select">{{ categories[categoryKey].name }}</view>
         </picker>

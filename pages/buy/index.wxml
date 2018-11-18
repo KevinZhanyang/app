@@ -44,7 +44,7 @@
 
       <view class="cell">
       <view class="secondary">选择分类</view>
-      <view class="primary">
+      <view class="primary" style='padding-left:30rpx;'>
         <picker bindchange="bindCategoryChange" value="{{ categoryKey }}" range-key="name" range="{{ categories }}">
           <view class="select">{{ categories[categoryKey].name }}</view>
         </picker>

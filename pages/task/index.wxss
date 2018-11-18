@@ -1,6 +1,8 @@
 /* pages/task/index.wxss */
 page{
-  width: 750rpx;
+  width:100%;
+
+overflow-x:hidden;
 }
 .userd_container {
   width: 750rpx;

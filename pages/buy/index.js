@@ -95,12 +95,7 @@ Page({
     //
   },
   onShow: function() {
-    var mySchool = wx.getStorageSync("MySchool");
-    if (mySchool){
-      this.setData({
-        MySchool: mySchool
-      })
-    }
+    
     
   },
   //
@@ -338,6 +333,40 @@ Page({
     that.setData({
       multiArray: multiArray,
     });
+
+
+
+    var MySchool = wx.getStorageSync("MySchool");
+    console.log(this.data.multiIndex);
+    console.log(this.data.multiArray);
+    var id = this.data.multiArray[1][this.data.multiIndex[1]].id;
+    var newMySchool = [];
+    if(!MySchool){
+        MySchool = [];
+    }
+    MySchool.map((item) => {
+      if (item) {
+        if (item.id == id) {
+        } else {
+          newMySchool.push(item)
+        }
+      }
+
+      return item;
+    })
+
+    for (let item of MySchool) {
+      if (item) {
+        item.state = 0;
+      }
+    }
+    this.setData({
+      MySchool: newMySchool,
+      selectSchool: id,
+      selectSchoolaActive: true
+    });
+
+
   },
   /* init end */
   /* update start */
@@ -422,7 +451,7 @@ Page({
     }
     wx.setStorageSync("MySchool", MySchool);
     var newMySchool = [];
-    if (!is_new) {
+  
       MySchool.map((item) => {
         if (item) {
           if (item.id == id) {
@@ -434,14 +463,15 @@ Page({
 
         return item;
       })
-    }
+    
     for (let item of MySchool) {
       if (item) {
         item.state = 0;
       }
     }
     this.setData({
-      MySchool: MySchool,
+      MySchool: newMySchool,
+      newMySchool: newMySchool,
       selectSchool: id,
       selectSchoolaActive: true
     });
@@ -831,7 +861,7 @@ Page({
         console.log('========= remove storage fail');
       },
       complete: function(res) {
-        let url = '/pages/publish/share?id=' + articleId;
+        let url = '/pages/buy/share?id=' + articleId;
         wx.hideLoading();
         wx.redirectTo({
           url: url,

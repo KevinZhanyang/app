@@ -1,4 +1,27 @@
 /* packet */
+.popup {
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0, 0, 0, .7);
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  z-index: 991;
+}
+.popup_container{
+  width: 750rpx;
+  background-color: #fff;
+  height: 900rpx;
+  position:fixed;
+  bottom:0rpx;
+  left:0rpx;
+  padding:42rpx 22rpx;
+  display:flex;
+  flex-direction:column;
+  z-index:999;
+
+}
+
 
 ._packets .attr {
   display: flex;
