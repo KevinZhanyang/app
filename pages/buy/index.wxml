@@ -13,13 +13,13 @@
           <text>添加图片</text>
         </view>
         <view class="image" wx:for="{{ images }}" wx:for-index="index" wx:for-item="image" wx:key="id" wx:if="{{ image.server == 0 || image.server == 1 }}">
-          <image src="/static/img/delete_png.png" class="close" data-key="{{ index }}" bindtap="delImage" wx:if="{{ image.server == 1 }}" ></image>
+          <image src="/static/img/delete_png.png" class="close" data-key="{{ index }}" bindtap="delImage" wx:if="{{ image.server == 1 }}"></image>
           <view class="{{ image.isCover == false ? 'cover cover-canvel' : 'cover' }}" data-key="{{ index }}" bindtap="setCover">封面</view>
           <view class="status" wx:if="{{ image.server != 1 }}">{{ image.server == 0 ? '上传中' : '上传失败' }}</view>
           <image mode="aspectFill" src="{{ image.path }}" data-key="{{ index }}" bindtap="setCover"></image>
         </view>
       </scroll-view>
-     
+
 
       <view class=" attr">
         <view>
@@ -43,7 +43,7 @@
         </picker>
       </view>
     </view>
-   
+
     <view class="cell">
       <view class="secondary">微信号码</view>
       <view class="primary">
@@ -80,8 +80,20 @@
 
     </view>
 
+  
+
 
   </view>
+  <view class="schoolHistory">
+      <view>
+        <view class="schoollist">
+          <view class="list-item {{school.state==1?'active':''}}" bindtap="selectSchool" data-id="{{school.id}}" wx:for="{{MySchool}}" wx:for-item="school" wx:key="{{item.id}}">
+            {{school.name}}
+          </view>
+        </view>
+      </view>
+    </view>
+    
   <!-- LAYER END -->
   <!-- sp -->
   <!--show if out our-->

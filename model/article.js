@@ -344,6 +344,27 @@ export class Article
         });
     }
 
+
+  static postV2(items) {
+    //
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/articles';
+      let options = {
+        url: url,
+        method: 'POST',
+        data: items,
+      }
+
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+  }
+
     //
     static item(id, data = {}) {
         //
@@ -449,7 +470,33 @@ export class Article
         });
         //
     }
+  static onSale(item) {
+    //
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/articles';
+      let options = {
+        url: url,
+        method: 'get',
+        /*
+        data: {
+            order: 'recent',
+            latitude: item.latitude,
+            longitude: item.longitude,
+        },  
+        */
+        data: item,
+      }
 
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+    //
+  }
     //
     static hot(item){
         //
@@ -481,6 +528,54 @@ export class Article
         });
         //
     }
+
+
+  static buy(item) {
+    //
+    item.order = 'hot';
+    item.type=1;
+    // item.category_id = 11;
+    //
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/articles';
+      let options = {
+        url: url,
+        method: 'get',
+        
+        data: item,
+      }
+
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+    //
+  }
+
+
+  static update(item) {
+    
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/articles/'+item.id;
+      let options = {
+        url: url,
+        method: 'PUT',
+        data: item,
+      }
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+    //
+  }
     // game over
 
 

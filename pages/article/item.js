@@ -26,6 +26,7 @@ Page({
             '赞',
             '已赞',
         ],
+      tradeWay: [{ id: 1, name: "自取" }, { id: 2, name: "送货上门" }, { id: 3, name: "邮寄", state: 1 }],
       likeValue: "/static/img/wanted.png",
         // relay
         parentId: 0,
@@ -242,6 +243,7 @@ Page({
             .then(result => {
                 let article = result.data;    
                 let user = article.user;
+              article.tardeWay = article.tarde_way == "1" ? "自取" : (article.tarde_way == "2" ? "送货上门" : (article.tarde_way == "3" ? "邮寄":"可商量"))
                 //
                 that.setData({
                     article: article,

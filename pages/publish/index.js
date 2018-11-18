@@ -59,6 +59,7 @@ Page({
 
     console.log(event)
     let id = event.currentTarget.dataset["id"];
+    let name = event.currentTarget.dataset["name"];
     let selectTag = this.data.selectTag;
     let tradeWay = this.data.tradeWay;
     for (let item of tradeWay) {
@@ -70,7 +71,25 @@ Page({
     }
     this.setData({
       tradeWay: tradeWay,
-      selectTag:id
+      selectTag:id,
+    });
+  },
+  selectSchool(event) {
+
+    console.log(event)
+    let id = event.currentTarget.dataset["id"];
+    // let  = this.data.selectSchool;
+    let MySchool = this.data.MySchool;
+    for (let item of MySchool) {
+      if (id == item.id) {
+        item.state = 1;
+      } else {
+        item.state = 0;
+      }
+    }
+    this.setData({
+      MySchool: MySchool,
+      selectSchool: id
     });
   },
   publishShow() {
@@ -98,6 +117,10 @@ Page({
           images: wx.getStorageSync("imagesTmp")
         })
    }
+    var mySchool = wx.getStorageSync("MySchool");
+    this.setData({
+      MySchool: mySchool
+    })
   },
   //
   onLoad: function(options) {
@@ -379,6 +402,24 @@ Page({
     this.setData({
       multiIndex: value,
       tempMultiIndex: tempMultiIndex,
+    });
+
+    console.log(event)
+    let multiIndex = value;
+    let id = this.data.multiArray[1][multiIndex[1]].id;
+    // let  = this.data.selectSchool;
+    let MySchool = this.data.MySchool;
+    MySchool.push(this.data.multiArray[1][multiIndex[1]])
+    for (let item of MySchool) {
+      if (id == item.id) {
+        item.state = 1;
+      } else {
+        item.state = 0;
+      }
+    }
+    this.setData({
+      MySchool: MySchool,
+      selectSchool: id
     });
   },
   // picker cancel
@@ -675,7 +716,7 @@ Page({
         let multiIndex = that.data.multiIndex;
 
         let categoryId = that.data.categories[that.data.categoryKey].id;
-        let schoolId = that.data.multiArray[1][multiIndex[1]].id;
+        let schoolId = that.data.selectSchool ? that.data.selectSchool:this.data.multiArray[1][multiIndex[1]].id;
         let images = this.data.images;
         let article = this.data.article;
         //
@@ -688,8 +729,6 @@ Page({
           wechat: article.wechat,
           latitude: latitude,
           longitude: longitude,
-          selectTag: that.data.selectTag,
-          isNew: that.data.checked?1:0,
           // 
           form_id: formId,
           images: images,
@@ -700,7 +739,19 @@ Page({
             let article = result.data;
             let articleId = article.id;
             wx.removeStorageSync("images");
+
+            var updateData = {
+              tardeWay: that.data.selectTag,
+              isNew: that.data.checked ? 1 : 0,
+              type:0,
+              id: articleId
+            }
+            console.log(articleId)
+            Article.update(updateData).then(res=>{
+
+            })
             that.skip(articleId);
+            
           });
         //
       });

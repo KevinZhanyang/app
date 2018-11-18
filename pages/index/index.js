@@ -26,6 +26,22 @@ var qqmapsdk;
 //
 Page({
   data: {
+  catsTop:[
+    {icon:"https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:18:22/1542071902172109.png",id:3,name:"服饰鞋包"},
+    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:21:05/154207206546870.png", id: 4, name: "手机数码" },
+    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-18 04:55:29/15424881299649.png", id: 2, name: "房屋租赁" },
+    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:29:08/154207254841316.png", id: 9, name: "学习资料" },
+    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:24:08/1542072248072147.png", id: 6, name: "美妆护肤" },
+
+  ],
+  catsBottom:[
+    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:25:54/154207235499378.png", id: 5, name: "宠物植物" },
+    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:27:05/154207242541146.png", id: 1, name: "家具家电" },
+    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:32:36/154207275626332.png", id: 8, name: "汽车出行" },
+    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:27:47/154207246719017.png", id: 7, name: "失物招领" },
+    { icon: "https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-13 09:28:28/1542072508433132.png", id:10, name: "其他分类" },
+  ],
+
     tabs: [
       { id: "news", isSelect: true, title: "要闻" },
       { id: "hall", isSelect: false, title: "供需" }
@@ -82,7 +98,31 @@ Page({
         });
       },
       fail: function (err) {
-        console.log(err)
+        wx.getSetting({
+          success: (res) => {
+            if (!res.authSetting['scope.userLocation'])
+              that.openConfirm()
+          }
+        })
+      }
+    });
+  },
+  openConfirm: function () {
+    wx.showModal({
+      content: '检测到您没打开二手社的定位权限，是否去设置打开？',
+      confirmText: "确认",
+      cancelText: "取消",
+      success: function (res) {
+        console.log(res);
+        //点击“确认”时打开设置页面
+        if (res.confirm) {
+          console.log('用户点击确认')
+          wx.openSetting({
+            success: (res) => { }
+          })
+        } else {
+          console.log('用户点击取消')
+        }
       }
     });
   },
@@ -214,20 +254,20 @@ Page({
     User.getLocation().then(res => {
       let options = res;
       options.page = that.data.recentPage;
+      options.currentStartIndex = that.data.recentPage*10;
+      options.currentPageIndex = that.data.recentPage;
       //
-      Article.recent(options).then(function(result) {
+      Article.onSale(options).then(function(result) {
         //
         let recentArticles = that.data.recentArticles;
         var paginate = result.data;
-        let articles = paginate.data;
+        let articles = paginate.body.articlesList;
         for (let x in articles) {
           recentArticles.push(articles[x]);
         }
-
         // if current_page equal to last_page, mean need finish
-        let articleLoadStatus =
-          paginate.current_page == paginate.last_page ? 2 : 1;
-        that.data.recentPage = paginate.current_page + 1;
+        let articleLoadStatus = articles.length < 10 ? 2 : 1;
+        that.data.recentPage = that.data.recentPage + 1;
 
         //
         that.setData({
@@ -253,26 +293,31 @@ Page({
     User.getLocation().then(res => {
       //
       let options = res;
-      options.page = that.data.hotPage;
 
-      Article.hot(options).then(function(result) {
+      options.page = that.data.hotPage;
+      options.currentStartIndex = that.data.hotPage * 10;
+      options.currentPageIndex = that.data.hotPage;
+      //
+      Article.buy(options).then(function (result) {
+
         let hotArticles = that.data.hotArticles;
         let paginate = result.data;
-        let articles = paginate.data;
+        let articles = paginate.body.articlesList;
         for (let x in articles) {
           hotArticles.push(articles[x]);
         }
 
         // if current_page equal to last_page, mean need finish
-        let articleLoadStatus =
-          paginate.current_page == paginate.last_page ? 2 : 1;
-        that.data.hotPage = paginate.current_page + 1;
+        let articleLoadStatus =articles.length<10 ? 2 : 1;
+         that.data.hotPage = that.data.hotPage+1;
+       
         that.setData({
           hotArticles: hotArticles,
-          hotArticleLoadStatus: articleLoadStatus
+          hotArticleLoadStatus: articleLoadStatus,
         });
-        //
+      
       });
+      //
     });
   },
 

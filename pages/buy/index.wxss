@@ -21,6 +21,26 @@ color:rgba(51,51,51,1);
 border:none;
 
 }
+.schoollist {
+  /* padding-top: 45rpx; */
+  display: flex;
+  flex-flow: row wrap;
+  margin-left:40rpx;
+/* background:rgba(244,246,249,1); */
+}
+.schoollist .list-item {
+ 
+ padding:15rpx 30rpx;
+ height: 70rpx;
+  background: #fff;
+color:rgba(51,51,51,1);
+font-size:28rpx;
+
+  text-align: center;
+  border-radius: 10rpx;
+  margin: 10rpx 10rpx 10rpx 0rpx;
+background:rgba(255,255,255,1);
+}
 
 
 
@@ -176,9 +196,7 @@ width:40rpx;
    margin-top:18rpx;
 }
 .layer {
-	height:300rpx;
-
-
+	height:160rpx;
 }
 .form-item textarea {
 width:100%;
@@ -188,7 +206,7 @@ height:151rpx !important;
 
 .layer_m{
 display:flex;
-	height:300rpx;
+	height:160rpx;
 justify-content:space-between;
 }
 .publish {		
@@ -198,6 +216,14 @@ justify-content:space-between;
 	bottom:0rpx;
 	padding:15rpx 30rpx;
 
+}
+.list-item .active {
+  background:rgba(251,226,81,0.22);
+  border:1px solid rgba(251,226,81,1);
+   border-radius:8px;
+   font-family:SimHei;
+font-weight:400;
+color:rgba(51,51,51,1);
 }
 .publish .published {
 	background-color:#fed406;

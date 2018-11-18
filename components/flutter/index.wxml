@@ -13,7 +13,7 @@
       <block wx:if="{{recentId==8}}">
         <!-- 活动入口 -->
         <navigator url="/pages/task/index" hover-class="navigator-hover">
-          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.IHvQUjcYJjwJ3356a252e690e66b16ac1bdda180af05.png?x-oss-process=style/thumbnail"></image>
+          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="/static/img/task_home.jpg"></image>
          
         </navigator>
       </block>

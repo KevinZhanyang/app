@@ -29,6 +29,7 @@ const appInstance = getApp();
 //
 Page({
   data: {
+    mySchool:[],
     checked:false,
     // 分类的内容
     categories: [],
@@ -53,6 +54,24 @@ Page({
     showShadow: true,
     publishedShow: true,
   },
+  selectSchool(event) {
+
+    console.log(event)
+    let id = event.currentTarget.dataset["id"];
+    // let  = this.data.selectSchool;
+    let MySchool = this.data.MySchool;
+    for (let item of MySchool) {
+      if (id == item.id) {
+        item.state = 1;
+      } else {
+        item.state = 0;
+      }
+    }
+    this.setData({
+      MySchool: MySchool,
+      selectSchool: id
+    });
+  },
   publishShow() {
 
     let url = Config.apiRoot + '/v1/location';
@@ -73,7 +92,13 @@ Page({
     //
   },
   onShow: function() {
-   
+    var mySchool = wx.getStorageSync("MySchool");
+    if (mySchool){
+      this.setData({
+        MySchool: mySchool
+      })
+    }
+    
   },
   //
   onLoad: function(options) {
@@ -82,24 +107,24 @@ Page({
     });
     //控制国内用户不能上传
     let that = this;
-    this.publishShow().then(function (result) {
-      var locationData = result.data;
-      if (locationData.code == 200 && locationData.body && locationData.body.data.country_id == 'CN' && locationData.body.data.country =="中国") {
-        that.setData({
-          publishedShow: false,
-        });
-        wx.showModal({
-          title: '发布提示',
-          content: '暂不支持国内用户上传！',
-          showCancel: false,
-          success:function(){
-            wx.navigateBack({
+    // this.publishShow().then(function (result) {
+    //   var locationData = result.data;
+    //   if (locationData.code == 200 && locationData.body && locationData.body.data.country_id == 'CN' && locationData.body.data.country =="中国") {
+    //     that.setData({
+    //       publishedShow: false,
+    //     });
+    //     wx.showModal({
+    //       title: '发布提示',
+    //       content: '暂不支持国内用户上传！',
+    //       showCancel: false,
+    //       success:function(){
+    //         wx.navigateBack({
               
-            })
-          }
-        })
-      }
-    });
+    //         })
+    //       }
+    //     })
+    //   }
+    // });
 
     // 如果没有授权地理位置，转到授权
     User.testAuthorizeUserLocation()
@@ -614,11 +639,13 @@ Page({
 
         let categoryId = that.data.categories[that.data.categoryKey].id;
         let schoolId = that.data.multiArray[1][multiIndex[1]].id;
+        let provinceId = that.data.multiArray[1][multiIndex[1]].province_id;
         let images = this.data.images;
         let article = this.data.article;
         //
         let item = {
           category_id: categoryId,
+          province_id: provinceId,
           school_id: schoolId,
           price: article.price,
           content: article.content,
@@ -626,18 +653,37 @@ Page({
           wechat: article.wechat,
           latitude: latitude,
           longitude: longitude,
+          address: that.data.address,
           // 
           form_id: formId,
           images: images,
-          type:1
+          circleImg:"22",
+          shareImg:"22",
+          
         };
         //
         Article.post(item)
           .then(result => {
             let article = result.data;
             let articleId = article.id;
+            wx.removeStorageSync("images");
+            var updateData = {
+              type: 1,
+              id: articleId
+            }
+            console.log(articleId)
+            Article.update(updateData).then(res => {
+
+            })
             that.skip(articleId);
+
           });
+        // Article.postV2(item)
+        //   .then(result => {
+        //     let article = result.data;
+        //     let articleId = article.id;
+        //     that.skip(articleId);
+        //   });
         //
       });
     //

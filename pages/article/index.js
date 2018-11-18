@@ -27,7 +27,7 @@ Page({
     provinceKey: 0,
 
     /* article */
-    page: 1,
+    page: 0,
     articleLoadStatus: -1,
     articles: []
   },
@@ -145,6 +145,9 @@ Page({
     this.setData({
       optionsKey: key
     });
+
+     
+
   },
   changeOption(event) {
     //
@@ -160,7 +163,7 @@ Page({
           provinceKey: value,
           optionsKey: 0,
           articleLoadStatus: -1,
-          page: 1,
+          page: 0,
           articles: []
         });
         break;
@@ -169,20 +172,32 @@ Page({
           categoryKey: value,
           optionsKey: 0,
           articleLoadStatus: -1,
-          page: 1,
+          page: 0,
           articles: []
         });
         break;
       case "sort":
+
+        if (value==3) {
+           this.setData({
+             articleType:1
+           })
+        }else{
+          this.setData({
+            articleType: 2
+          })
+        }
+        
         this.setData({
           sortKey: value,
           optionsKey: 0,
           articleLoadStatus: -1,
-          page: 1,
+          page: 0,
           articles: []
         });
         break;
     }
+    
     //
     this.reflesh();
   },
@@ -226,12 +241,12 @@ Page({
     //
     this.setData({
       keyword: value,
-      page: 1,
+      page: this.data.page+1,
       articles: []
     });
     let item = {
       keyword: value,
-      page: 1
+      page: this.data.page + 1,
     };
     this.searchArticle(item);
   },
@@ -253,7 +268,8 @@ Page({
       province_id: provinceId,
       provinceId: provinceId,
       school_id: schoolId,
-      schoolId: schoolId
+      schoolId: schoolId,
+      page: this.data.page + 1,
     });
   },
   /* sp */
@@ -269,7 +285,8 @@ Page({
       category_id: categoryId,
       province_id: provinceId,
       categoryId: categoryId,
-      provinceId, provinceId
+      provinceId, provinceId,
+      page: this.data.page + 1,
     });
   },
   onReachBottom() {
@@ -283,30 +300,19 @@ Page({
       return;
     }
 
-    // load
-    this.setData({
-      articleLoadStatus: 1
-    });
-
-    //
-    this.setData({
-      keyword: "",
-      empty: ""
-    });
-
     //
     this.setData({
       status: "article"
     });
-
-    //
-    options.page = this.data.page;
 
     let that = this;
     User.getLocation().then(res => {
       //
       options.longitude = res.longitude;
       options.latitude = res.latitude;
+      that.setData({
+        articleLoadStatus:0
+      })
       that.getWithPage(options);
       //
       // Article.get(options).then(function(res) {
@@ -344,32 +350,40 @@ Page({
    
 
   getWithPage(options){
-    let that = this
-    options.currentStartIndex = this.data.page*10;
-    options.perPageNum = 20;
+    let that = this;
+    
+    options.page = options.page;
+    // options.currentStartIndex = that.data.recentPage * 10;
+    options.currentPageIndex = options.page;
     options.longitude = null;
     options.latitude = null;
-    if (options.categoryId == 0 || options.categoryId == undefined){
+    if (options.categoryId == 0 || options.categoryId == undefined) {
       delete options.categoryId
     }
     if (options.provinceId == 0 || options.provinceId == undefined) {
       delete options.provinceId
     }
-   
-    Article.getWithPage(options).then(function (res) {
-      let articles = that.data.articles ? that.data.articles:[];
+    if (that.data.articleType==1){
+         options.type=1;
+    }
+
+    Article.getWithPage(options).then(function (result) {
+      var oldarticles = that.data.articles;
+      let articles = result.data.body.articlesList;
       console.log(65656)
-      console.log(res)
-      for (let x in res.data.body.articlesList) {
-        articles.push(res.data.body.articlesList[x]);
+      console.log(result)
+      for (let x in result.data.body.articlesList) {
+        oldarticles.push(result.data.body.articlesList[x]);
       }
       // if current_page equal to last_page, mean need finish
-      let articleLoadStatus =
-        that.data.page = options.current_page + 1;
+      let articleLoadStatus = articles.length < 10 ? 2 : 1;
       that.setData({
-        articles: articles,
+        articles: oldarticles,
+        articleLoadStatus: articleLoadStatus,
+        page: options.page
       });
     })
+    //
   },
 
   //
@@ -380,25 +394,10 @@ Page({
       console.log("========== all loaded");
       return;
     }
-
-    // load
-    this.setData({
-      articleLoadStatus: 1
-    });
-
-    //
-    this.setData({
-      keyword: "",
-      empty: ""
-    });
-
     //
     this.setData({
       status: "article"
     });
-
-    //
-    options.page = this.data.page;
     
 
     let that = this;

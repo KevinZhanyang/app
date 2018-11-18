@@ -17,13 +17,17 @@
 
   </swiper>
 
-  <view class="container bg-white price">$ {{ article.price }}</view>
+  <view class="container bg-white price">
+  <view class='trade_top'>
+      <view>$ {{ article.price }}</view> <view wx:if="{{article.tarde_way}}" class="trade">{{article.tardeWay}}</view> </view>
+  </view>
+
   <view class="item content">
     {{ article.content }}
   </view>
   <view class="container user bg-white">
     <view class="distance">
-      <text>距 {{ article.distance?article.distance:'查看距离' }} km</text>
+      <text> {{ article.distance?'距'+article.distance+'km':'查看距离' }}</text>
     </view>
     <view class="nickname">
       <label class="time">发布时间：{{ article.created_at }}</label>

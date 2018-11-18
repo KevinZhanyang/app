@@ -5,6 +5,10 @@ import {
 import {
   User
 } from '../../model/user';
+import {
+  FormId
+} from '../../model/formId';
+
 Page({
 
   /**
@@ -95,11 +99,12 @@ getCurrentUser(){
 
   putFormId(event){
     console.log(event);
-
+    FormId.createUserFormId(event.detail.formId);
 
   },
   sign(event){
     console.log(event);
+    FormId.createUserFormId(event.detail.formId);
     let that = this;
     Task.create(this.data.task).then(function (result) {
 
@@ -126,6 +131,7 @@ getCurrentUser(){
 
   },
   go(event){
+    FormId.createUserFormId(event.detail.formId);
     console.log(event.currentTarget);
     wx.navigateTo({
       url: event.currentTarget.dataset.url,

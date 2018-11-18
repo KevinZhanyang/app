@@ -2,7 +2,7 @@
     <navigator wx:if="{{!back}}" open-type="redirect" url="/pages/index/index" hover-class="none">
         <view class="menu">
             <view class="icon">
-                <image src="{{ number == 0 ? '/static/img/home.png' : 'http://static.124115.com/static/program/img/menu/index.png' }}"></image>
+                <image src="{{ number == 0 ? '/static/img/home.png' : '/static/img/home_no_active.png' }}"></image>
             </view>
             <view class="{{ number == 0 ? 'name current' : 'name' }}">首页</view>
         </view>
@@ -24,13 +24,13 @@
     <navigator open-type="redirect" url="/pages/home/index" hover-class="none">
         <view class="menu">
             <view class="icon">
-                <image src="{{ number == 2 ? 'http://static.124115.com/static/program/img/menu/home_.png' : '/static/img/person.png' }}"></image>
+                <image src="{{ number == 2 ? '/static/img/my.png' : '/static/img/person.png' }}"></image>
             </view>
             <view class="{{ number == 2 ? 'name current' : 'name' }}">我的</view>
         </view>
     </navigator>
 </view>
 <view class="blank" style="{{ 'height:' + paddingBottom + 'rpx' }}"></view>
-<view class="notify" wx:if="{{ notify > 0}}" style="{{ 'bottom:' + paddingBottom1 + 'rpx' }}">
+<view class="notify" wx:if="{{ notify > 0}}" >
     {{ notify }}
 </view>

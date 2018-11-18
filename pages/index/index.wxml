@@ -1,12 +1,20 @@
 <!-- SEARCH START -->
+
+  <view class='head'>
+    <image src='/static/img/task_background_2x.png'></image>
+  </view>
+
+
+<view class='topFloat'>
 <view class="_search">
+
+
   <view class='location'>
     <view><image class="location_img" src="/static/img/black_lo.png"></image></view>
     <view>
       <button style='border:none !important;' bindtap="moveToLocation" class="rule" >{{mobileLocation.address?mobileLocation.address:"选择地址"}}</button>
     </view>
     <!-- <label class="rule"></label> -->
-   
   </view>
 
   <view class="search">
@@ -17,6 +25,7 @@
   </view>
 </view>
 <!-- swiper -->
+<view class='banner'>
 <swiper class="carousels" indicator-dots="true" autoplay="true">
   <block wx:for="{{ swipers }}" wx:for-index="index" wx:for-item="swiper" wx:key="id">
     <swiper-item class="carousel">
@@ -26,8 +35,12 @@
     </swiper-item>
   </block>
 </swiper>
+</view>
+
+
+</view>
 <!-- category -->
-<view class="bg-white _categories ">
+<!-- <view class="bg-white _categories ">
   <scroll-view scroll-x="true">
     <view class="categories">
       <view class="category" wx:for="{{ categories }}" wx:for-index="index" wx:for-item="category" wx:key="id">
@@ -40,7 +53,35 @@
       </view>
     </view>
   </scroll-view>
+</view> -->
+
+
+<view class="bg-white _categories ">
+ <view class="m-menu">
+
+ 
+    <navigator class="item" wx:for="{{catsTop}}" wx:for-index="index" wx:for-item="category" wx:key="id"   url="{{ '/pages/article/index?category_id=' + category.id }}">
+      <image src="{{category.icon}}" background-size="cover"></image>
+      <text>{{category.name}}</text>
+    </navigator>
+  </view>
+
+  <view class="m-menu">
+  <navigator class="item" wx:for="{{catsBottom}}" wx:for-index="index" wx:for-item="category" wx:key="id"   url="{{ '/pages/article/index?    category_id=' + category.id }}">
+      <image src="{{category.icon}}" background-size="cover"></image>
+      <text>{{category.name}}</text>
+    </navigator>
+    
+  </view>
 </view>
+
+
+
+
+
+
+
+
 
 <!-- SWITCH -->
 <!-- <view id="the-id" class="switches bg-white">
