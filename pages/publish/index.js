@@ -29,16 +29,27 @@ const appInstance = getApp();
 //
 Page({
   data: {
-    checked:false,
+    selectSchoolaActive: false,
+    checked: false,
     // 分类的内容
     categories: [],
     categoryKey: 0,
-    selectTag:3,
+    selectTag: 3,
     // 学校
     multiArray: [], // 省列表
     schools: [], // 学校列表
     multiIndex: [0, 0], // provinceKey schoolKey
-    tradeWay: [{ id:1, name: "自取" }, { id:2, name: "送货上门" }, { id:3, name: "邮寄" ,state:1}],
+    tradeWay: [{
+      id: 1,
+      name: "自取"
+    }, {
+      id: 2,
+      name: "送货上门"
+    }, {
+      id: 3,
+      name: "邮寄",
+      state: 1
+    }],
     tempMultiIndex: [0, 0],
     // 新闻内容
     article: {
@@ -63,7 +74,7 @@ Page({
     let selectTag = this.data.selectTag;
     let tradeWay = this.data.tradeWay;
     for (let item of tradeWay) {
-      if (id==item.id) {
+      if (id == item.id) {
         item.state = 1;
       } else {
         item.state = 0;
@@ -71,7 +82,7 @@ Page({
     }
     this.setData({
       tradeWay: tradeWay,
-      selectTag:id,
+      selectTag: id,
     });
   },
   selectSchool(event) {
@@ -81,16 +92,45 @@ Page({
     // let  = this.data.selectSchool;
     let MySchool = this.data.MySchool;
     for (let item of MySchool) {
-      if (id == item.id) {
-        item.state = 1;
-      } else {
-        item.state = 0;
+      if (item) {
+        if (id == item.id) {
+          item.state = 1;
+        } else {
+          item.state = 0;
+        }
       }
     }
     this.setData({
       MySchool: MySchool,
-      selectSchool: id
+      selectSchool: id,
+      selectSchoolaActive: false
     });
+  },
+  clickCurrentSchool(event) {
+    console.log(event);
+    let that = this;
+    if (!this.data.selectSchoolaActive) {
+      let MySchool = this.data.MySchool;
+      for (let item of MySchool) {
+        if (item) {
+        item.state = 0;
+        }
+      }
+      that.setData({
+        MySchool: MySchool,
+        selectSchool: event.currentTarget.dataset.id
+      });
+      
+    }else{
+      that.setData({
+       
+        selectSchool: undefined
+      });
+    }
+    that.setData({
+      selectSchoolaActive: !that.data.selectSchoolaActive,
+    
+    })
   },
   publishShow() {
 
@@ -112,15 +152,38 @@ Page({
     //
   },
   onShow: function() {
-    if (wx.getStorageSync("imagesTmp")){
-        this.setData({
-          images: wx.getStorageSync("imagesTmp")
-        })
-   }
-    var mySchool = wx.getStorageSync("MySchool");
+    if (wx.getStorageSync("imagesTmp")) {
+      this.setData({
+        images: wx.getStorageSync("imagesTmp")
+      })
+    }
+    var MySchool = wx.getStorageSync("MySchool");
+    console.log(this.data.multiIndex);
+    console.log(this.data.multiArray);
+    var id = this.data.multiArray[1][this.data.multiIndex[1]].id;
+    var newMySchool = [];
+    
+      MySchool.map((item) => {
+        if (item) {
+          if (item.id == id) {
+          } else {
+            newMySchool.push(item)
+          }
+        }
+
+        return item;
+      })
+    
+    for (let item of MySchool) {
+      if (item) {
+        item.state = 0;
+      }
+    }
     this.setData({
-      MySchool: mySchool
-    })
+      MySchool: newMySchool,
+      selectSchool: id,
+      selectSchoolaActive: true
+    });
   },
   //
   onLoad: function(options) {
@@ -142,7 +205,7 @@ Page({
     //       showCancel: false,
     //       success:function(){
     //         wx.navigateBack({
-              
+
     //         })
     //       }
     //     })
@@ -171,11 +234,11 @@ Page({
               .then(res => {
                 qqmapsdk.reverseGeocoder({
                   location: {
-                    
+
                     latitude: res.latitude,
                     longitude: res.longitude
                   },
-                  success: function (addressRes) {
+                  success: function(addressRes) {
                     var address = addressRes.result.formatted_addresses.recommend;
                     // console.log("hh");
                     // console.log(address);
@@ -183,11 +246,11 @@ Page({
                       address: address
                     })
                   },
-                  fail: function (res) {
+                  fail: function(res) {
                     // console.log("pp");
                     // console.log(res);
                   },
-                  complete: function (res) {
+                  complete: function(res) {
                     // console.log("op");
                     // console.log(res);
                   }
@@ -195,8 +258,6 @@ Page({
 
 
               })
-
-           
 
 
             //
@@ -321,6 +382,9 @@ Page({
         that.setData({
           multiArray: multiArray,
         });
+
+        
+
         //
         that.loadSchool();
       });
@@ -332,7 +396,7 @@ Page({
       //
       let schools = result.data;
       that.data.schools = schools;
-
+   
       that.generatePickSchools();
       //
     });
@@ -359,6 +423,41 @@ Page({
     that.setData({
       multiArray: multiArray,
     });
+
+    var MySchool = wx.getStorageSync("MySchool");
+    console.log(this.data.multiIndex);
+    console.log(this.data.multiArray);
+    var id = this.data.multiArray[1][this.data.multiIndex[1]].id;
+    var newMySchool = [];
+
+    MySchool.map((item) => {
+      if (item) {
+        if (item.id == id) {
+        } else {
+          newMySchool.push(item)
+        }
+      }
+
+      return item;
+    })
+
+    for (let item of MySchool) {
+      if (item) {
+        item.state = 0;
+      }
+    }
+    this.setData({
+      MySchool: newMySchool,
+      selectSchool: id,
+      selectSchoolaActive: true
+    });
+
+
+
+
+
+
+
   },
   /* init end */
   /* update start */
@@ -408,18 +507,49 @@ Page({
     let multiIndex = value;
     let id = this.data.multiArray[1][multiIndex[1]].id;
     // let  = this.data.selectSchool;
-    let MySchool = this.data.MySchool;
-    MySchool.push(this.data.multiArray[1][multiIndex[1]])
+    let MySchool = wx.getStorageSync("MySchool");
+
+    if (!MySchool) {
+      MySchool = [];
+    }
+    var is_new = true;
+    MySchool.map((item) => {
+      if (item) {
+        if (item.id == id) {
+          is_new = false;
+        }
+      }
+      
+      return item;
+    })
+    if (is_new) {
+      MySchool.push(this.data.multiArray[1][multiIndex[1]]);
+    }
+    wx.setStorageSync("MySchool", MySchool);
+    var newMySchool=[];
+    if (!is_new) {
+      MySchool.map((item) => {
+        if (item){
+          if (item.id == id) {
+
+          } else {
+            newMySchool.push(item)
+          }
+        }
+        
+        return item;
+      })
+    }
     for (let item of MySchool) {
-      if (id == item.id) {
-        item.state = 1;
-      } else {
+      if (item) {
         item.state = 0;
       }
     }
     this.setData({
-      MySchool: MySchool,
-      selectSchool: id
+      MySchool: newMySchool,
+      // newMySchool: newMySchool,
+      selectSchool: id,
+      selectSchoolaActive:true
     });
   },
   // picker cancel
@@ -438,13 +568,13 @@ Page({
     let value = event.detail.value;
     let article = this.data.article;
     article.content = value;
-    if(value.length>100){
+    if (value.length > 100) {
       wx.showLoading({
         title: '文字太多啦',
-        duration:1500
+        duration: 1500
       })
       return false;
-      
+
     }
     this.setData({
       article: article,
@@ -536,7 +666,7 @@ Page({
           images: images,
         });
 
-       
+
 
         // 上传到服务器
         for (let x in images) {
@@ -606,7 +736,7 @@ Page({
   previewImage(event) {
     //
     let imageUrl = event.currentTarget.dataset.src;
-   
+
     let imageUrls = [];
     imageUrls.push(imageUrl)
     //
@@ -645,7 +775,7 @@ Page({
     return;
   },
   publish(event) {
-   
+
     //
     let formId = event.detail.formId;
 
@@ -673,7 +803,7 @@ Page({
       this.showError('必须填写价格');
       return;
     }
-   
+
 
     if (this.data.article.content.length == 0) {
       this.showError('内容不能为空');
@@ -716,7 +846,7 @@ Page({
         let multiIndex = that.data.multiIndex;
 
         let categoryId = that.data.categories[that.data.categoryKey].id;
-        let schoolId = that.data.selectSchool ? that.data.selectSchool:this.data.multiArray[1][multiIndex[1]].id;
+        let schoolId = that.data.selectSchool ? that.data.selectSchool : this.data.multiArray[1][multiIndex[1]].id;
         let images = this.data.images;
         let article = this.data.article;
         //
@@ -743,15 +873,15 @@ Page({
             var updateData = {
               tardeWay: that.data.selectTag,
               isNew: that.data.checked ? 1 : 0,
-              type:0,
+              type: 0,
               id: articleId
             }
             console.log(articleId)
-            Article.update(updateData).then(res=>{
+            Article.update(updateData).then(res => {
 
             })
             that.skip(articleId);
-            
+
           });
         //
       });
@@ -834,7 +964,7 @@ Page({
       //
     }
   },
-  radioChange(event){
+  radioChange(event) {
     console.log("3333333333333")
     console.log(event);
     this.setData({

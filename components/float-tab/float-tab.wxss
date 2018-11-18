@@ -72,11 +72,13 @@
   background-image: url(http://static.124115.com/static/program/img/index/switch_left.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+   /* box-shadow:0rpx 3rpx 10rpx 0rpx rgba(251,226,81,1); */
 }
 .switches .switch-right {
   background-image: url(http://static.124115.com/static/program/img/index/switch_right.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+   /* box-shadow:0rpx 3rpx 10rpx 0rpx rgba(251,226,81,1); */
 }
 .switches .switch-off {
   color: #999;

@@ -6,7 +6,7 @@
 		<open-data type="userNickName"></open-data>
 	</view>
 	<view class="greeting">恭喜发财 大吉大利</view>
-	<view class="score">{{ currentPacket.number }} 分</view>
+	<view class="score" wx:if="{{currentPacket.number}}">{{ currentPacket.number}} 分</view>
 </view>
 <!-- LOGO END -->
 <!-- EXCHANGE START -->

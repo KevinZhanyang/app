@@ -1,5 +1,7 @@
 /* pages/task/index.wxss */
-
+page{
+  width: 750rpx;
+}
 .userd_container {
   width: 750rpx;
   height: 100%;

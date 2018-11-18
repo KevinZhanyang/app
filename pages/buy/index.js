@@ -54,24 +54,27 @@ Page({
     showShadow: true,
     publishedShow: true,
   },
-  selectSchool(event) {
+  // selectSchool(event) {
 
-    console.log(event)
-    let id = event.currentTarget.dataset["id"];
-    // let  = this.data.selectSchool;
-    let MySchool = this.data.MySchool;
-    for (let item of MySchool) {
-      if (id == item.id) {
-        item.state = 1;
-      } else {
-        item.state = 0;
-      }
-    }
-    this.setData({
-      MySchool: MySchool,
-      selectSchool: id
-    });
-  },
+  //   console.log(event)
+  //   let id = event.currentTarget.dataset["id"];
+  //   // let  = this.data.selectSchool;
+  //   let MySchool = this.data.MySchool;
+  //   for (let item of MySchool) {
+  //     if(item){
+  //       if (id == item.id) {
+  //         item.state = 1;
+  //       } else {
+  //         item.state = 0;
+  //       }
+  //     }
+      
+  //   }
+  //   this.setData({
+  //     MySchool: MySchool,
+  //     selectSchool: id
+  //   });
+  // },
   publishShow() {
 
     let url = Config.apiRoot + '/v1/location';
@@ -365,7 +368,7 @@ Page({
     }
     //
   },
-  bindSchoolChange(event) {
+  bindSchoolChange2(event) {
     console.log('>>>>>>>>>>>>>>>>>>>>> bindSchoolChange');
     console.log(event);
     let detail = event.detail;
@@ -380,6 +383,124 @@ Page({
       tempMultiIndex: tempMultiIndex,
     });
   },
+  bindSchoolChange(event) {
+    console.log('>>>>>>>>>>>>>>>>>>>>> bindSchoolChange');
+    console.log(event);
+    let detail = event.detail;
+    let value = detail.value; // value 是一个数组
+    let tempMultiIndex = [
+      value[0],
+      value[1],
+    ];
+    //
+    this.setData({
+      multiIndex: value,
+      tempMultiIndex: tempMultiIndex,
+    });
+
+    console.log(event)
+    let multiIndex = value;
+    let id = this.data.multiArray[1][multiIndex[1]].id;
+    // let  = this.data.selectSchool;
+    let MySchool = wx.getStorageSync("MySchool");
+
+    if (!MySchool) {
+      MySchool = [];
+    }
+    var is_new = true;
+    MySchool.map((item) => {
+      if (item) {
+        if (item.id == id) {
+          is_new = false;
+        }
+      }
+
+      return item;
+    })
+    if (is_new) {
+      MySchool.push(this.data.multiArray[1][multiIndex[1]]);
+    }
+    wx.setStorageSync("MySchool", MySchool);
+    var newMySchool = [];
+    if (!is_new) {
+      MySchool.map((item) => {
+        if (item) {
+          if (item.id == id) {
+
+          } else {
+            newMySchool.push(item)
+          }
+        }
+
+        return item;
+      })
+    }
+    for (let item of MySchool) {
+      if (item) {
+        item.state = 0;
+      }
+    }
+    this.setData({
+      MySchool: MySchool,
+      selectSchool: id,
+      selectSchoolaActive: true
+    });
+  },
+
+  selectSchool(event) {
+
+    console.log(event)
+    let id = event.currentTarget.dataset.id;
+    // let  = this.data.selectSchool;
+    let MySchool = this.data.MySchool;
+    for (let item of MySchool) {
+      if (item) {
+        if (id == item.id) {
+          item.state = 1;
+        } else {
+          item.state = 0;
+        }
+      }
+    }
+    this.setData({
+      MySchool: MySchool,
+      selectSchool: id,
+      selectSchoolaActive: false
+    });
+  },
+  clickCurrentSchool(event) {
+    console.log(event);
+    if (!this.data.selectSchoolaActive) {
+      let MySchool = this.data.MySchool;
+      for (let item of MySchool) {
+        if (item) {
+          item.state = 0;
+        }
+      }
+      this.setData({
+        MySchool: MySchool,
+        selectSchool: event.currentTarget.dataset.id
+      });
+
+    } else {
+      this.setData({
+        selectSchool: undefined
+      });
+    }
+    this.setData({
+      selectSchoolaActive: !this.data.selectSchoolaActive,
+    })
+  },
+
+
+
+
+
+
+
+
+
+
   // picker cancel
   bindCancel(event) {
     let tempMultiIndex = this.data.tempMultiIndex;
@@ -638,7 +759,7 @@ Page({
         let multiIndex = that.data.multiIndex;
 
         let categoryId = that.data.categories[that.data.categoryKey].id;
-        let schoolId = that.data.multiArray[1][multiIndex[1]].id;
+        let schoolId = that.data.selectSchool ? that.data.selectSchool : this.data.multiArray[1][multiIndex[1]].id;
         let provinceId = that.data.multiArray[1][multiIndex[1]].province_id;
         let images = this.data.images;
         let article = this.data.article;
@@ -687,6 +808,15 @@ Page({
         //
       });
     //
+  },
+  updatePrice: function (event) {
+    let value = event.detail.value;
+    // value = parseInt(value);
+    let article = this.data.article;
+    article.price = value;
+    this.setData({
+      article: article,
+    });
   },
   // 
   skip(articleId) {

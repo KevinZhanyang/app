@@ -8,7 +8,7 @@
 <!-- ARTICLE START -->
 <view class=" bg-white">
 
-  <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+  <swiper wx:if="{{articleImgs.length>0}}" class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
     <swiper-item wx:for="{{articleImgs}}" wx:for-index="key" wx:for-item="articleImg" wx:key="id">
       <image data-src="{{articleImg.img}} " mode="aspectFill" src="{{articleImg.img}}" data-key="{{ key }}" background-size="cover" bindtap="previewImage"></image>
       <view class="imageCount">

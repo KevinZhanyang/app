@@ -1,11 +1,11 @@
 <!-- SEARCH START -->
 
-  <view class='head'>
+  <!-- <view class='head'>
     <image src='/static/img/task_background_2x.png'></image>
-  </view>
+  </view> -->
 
-
-<view class='topFloat'>
+<!-- 
+<view class='topFloat'> -->
 <view class="_search">
 
 
@@ -38,7 +38,7 @@
 </view>
 
 
-</view>
+<!-- </view> -->
 <!-- category -->
 <!-- <view class="bg-white _categories ">
   <scroll-view scroll-x="true">
@@ -130,8 +130,9 @@
   </view>
 </view> -->
 
-<view class="guide" wx:if="{{ guideStatus == 0 }}">
-    <image class="close" bindtap="closeGuide" src='/static/img/guide.png'/>
+<view class="guide" wx:if="{{ guideStatus == 0 }}" bindtap="closeGuide">
+    <image class="close"  src='/static/img/guide.png'/>
+    
 </view>
 <vant-popup custom-class="out-pop" z-index="98" position="bottom" show="{{modal}}" bind:close="onCloseModal" bindtap='preventTouchMove'>
   <view class="pop-box">

@@ -28,6 +28,27 @@ export class Packet
         //
     } 
 
+  // 按分页方式读取本ARTICLE对应的所有红包列表
+  static getForPacket(data) {
+    //
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/packets/articles/'+data;
+      let options = {
+        url: url,
+        method: 'get'
+      }
+
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+    //
+  } 
+
     // 获取某个红包信息 
     /*
     static item(id) 

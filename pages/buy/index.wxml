@@ -35,8 +35,15 @@
 
   <!-- PARAMETERS START -->
   <view class="cells">
+      <view class="cell">
+      <view class="secondary">价格(美元)</view>
+      <view class="primary">
+        <input class="input" type="digit" maxlength="10" placeholder="" value="{{ article.price }}" bindinput="updatePrice"></input>
+      </view>
+    </view>
 
-    <view class="cell">
+      <view class="cell">
+      <view class="secondary">选择分类</view>
       <view class="primary">
         <picker bindchange="bindCategoryChange" value="{{ categoryKey }}" range-key="name" range="{{ categories }}">
           <view class="select">{{ categories[categoryKey].name }}</view>
@@ -72,8 +79,8 @@
         </view>
       </view>
 
-      <view class="cells school_name">
-        <view class="primary">
+      <view class="{{selectSchoolaActive?'cells school_name selectSchoolactive':'cells school_name'}} " data-id='{{ multiArray[1][multiIndex[1]].id}}' bindtap='clickCurrentSchool'>
+        <view class="primary " style='background: transparent !important;'>
           {{ multiArray[1][multiIndex[1]].name }}
         </view>
       </view>
@@ -87,7 +94,7 @@
   <view class="schoolHistory">
       <view>
         <view class="schoollist">
-          <view class="list-item {{school.state==1?'active':''}}" bindtap="selectSchool" data-id="{{school.id}}" wx:for="{{MySchool}}" wx:for-item="school" wx:key="{{item.id}}">
+          <view class="list-item {{school.state==1?'active':''}}" wx:if="{{school.id}}" bindtap="selectSchool" data-id="{{school.id}}" wx:for="{{MySchool}}" wx:for-item="school" wx:key="{{item.id}}">
             {{school.name}}
           </view>
         </view>

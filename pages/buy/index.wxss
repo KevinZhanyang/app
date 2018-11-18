@@ -16,6 +16,13 @@ font-weight:400;
 color:rgba(51,51,51,1);
 
 }
+
+.selectSchoolactive{
+ 
+background:rgba(251,226,81,0.22);
+  border:1px solid rgba(251,226,81,1);
+
+}
 .cells .cell .secondary {
 
 border:none;
@@ -217,7 +224,7 @@ justify-content:space-between;
 	padding:15rpx 30rpx;
 
 }
-.list-item .active {
+ .active {
   background:rgba(251,226,81,0.22);
   border:1px solid rgba(251,226,81,1);
    border-radius:8px;

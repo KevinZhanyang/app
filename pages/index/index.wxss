@@ -1,6 +1,6 @@
 /* search */
 page{
-
+/* background-color: #fff; */
 }
 .head {
   width: 750rpx;
@@ -79,6 +79,7 @@ margin-left:20rpx;
   overflow: hidden;
   word-wrap: break-word;
   text-overflow: ellipsis;
+  margin-left: 30rpx;
 }
 
 .rule {
@@ -109,7 +110,9 @@ button[class="rule"]::after {
   display: flex;
   padding-top: 15rpx;
   padding-bottom: 15rpx;
-  background:transparent;
+  background:RGBA(251, 226, 81, 1);
+  padding-right:30rpx;
+
 }
 
 .search {
@@ -201,14 +204,14 @@ button[class="rule"]::after {
   border-radius:10rpx;
 }
 .banner{
-  border-radius:10px;
-  margin-top: 38rpx;
+  padding-bottom: 30rpx;
+  background-color: #fff;
 }
 
-.carousels .carousel {
-}
+
 .bg-white{
-  margin-top:60rpx;
+  /* margin-top:30rpx; */
+  background-color: rgba(244,246,249,1) !important;
 
 }
 .carousels .carousel .carousel-img {
@@ -268,15 +271,30 @@ button[class="rule"]::after {
 
 .guide {
   position: fixed;
-  top:15rpx;
+  /* top:15rpx; */
   right: 21rpx;
 
   width: 348rpx;
   height: 84rpx;
 }
+
+.notify {
+  z-index: 101;
+  position: fixed;
+  right: 0rpx;
+  top: 0rpx;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 20rpx;
+  background-color: red;
+  line-height: 30rpx;
+  text-align: center;
+  font-size: 18rpx;
+  color: white;
+}
 .guide image{
-   width: 348rpx;
-  height: 84rpx;
+   width: 354rpx;
+  height: 98rpx;
 }
 
 /* ._guide .guide {
@@ -334,6 +352,8 @@ button[class="rule"]::after {
 .flaot-container {
   display: flex;
   flex-direction: column;
+  background-color:#fff;
+
 }
 
 .float-top {

@@ -25,15 +25,15 @@
 }
 .menus .menu .icon image {
   width: 40rpx;
-  height: 40rpx;
+  height: 44rpx;
 }
 .menus .menu .icon_ {
   position: absolute;
   top: -35rpx;
   right: -15rpx;
   left: -15rpx;
-  width: 100rpx;
-  height: 100rpx;
+  width: 118rpx;
+  height: 118rpx;
 }
 .menus .menu .icon_ image {
   width: 100%;

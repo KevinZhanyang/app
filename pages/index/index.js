@@ -69,13 +69,13 @@ Page({
     modal: false,
     // swiper
     swipers: [{
-        img: "http://static.124115.com/static/program/img/index/school.png",
+        img: "/static/img/banner.jpg",
         url: "/pages/school/index"
-      },
-      {
-        img: "http://static.124115.com/static/program/img/index/exchange.jpg",
-        url: "/pages/exchange/index"
       }
+      // {
+      //   img: "http://static.124115.com/static/program/img/index/exchange.jpg",
+      //   url: "/pages/exchange/index"
+      // }
     ],
     // 向导
     guideStatus: 0, // 0显示|1不显示
@@ -95,7 +95,17 @@ Page({
         };
         that.setData({
           mobileLocation: mobileLocation,
+          recentArticles:[],
+          recentArticleLoadStatus:0
         });
+        setTimeout(function(){
+          that.clearRecentArticle();
+          that.clearHotArticle();
+          that.loadRecentArticle();
+          that.loadHotArticle();
+
+        },1500)
+       
       },
       fail: function (err) {
         wx.getSetting({
@@ -120,6 +130,48 @@ Page({
           wx.openSetting({
             success: (res) => { }
           })
+
+              User.getLocation()
+                .then(result => {
+                  var mobileLocation = {
+                    latitude: result.latitude,
+                    longitude: result.longitude,
+                  };
+                  qqmapsdk.reverseGeocoder({
+                    location: {
+
+                      latitude: result.latitude,
+                      longitude: result.longitude
+                    },
+                    success: function (addressRes) {
+                      var address = addressRes.result.formatted_addresses.recommend;
+                      console.log("hh");
+                      console.log(address);
+                      mobileLocation.address = address;
+                      that.setData({
+                        mobileLocation: mobileLocation,
+                      });
+
+
+                    },
+                    fail: function (result) {
+                      console.log("pp");
+                      console.log(result);
+                    },
+                    complete: function (result) {
+                      console.log("op");
+                      console.log(res);
+                    }
+                  });
+
+
+                })
+           
+
+
+
+
+
         } else {
           console.log('用户点击取消')
         }
@@ -192,6 +244,8 @@ Page({
                 that.setData({
                   mobileLocation: mobileLocation,
                 });
+
+               
               },
               fail: function (res) {
                 console.log("pp");
@@ -206,19 +260,31 @@ Page({
 
           })
       })
-
-    
-  },
-  //
-  onShow() {
-   
-    // if (appInstance.globalData.published == true) {
     if (true) {
       this.clearRecentArticle();
       this.clearHotArticle();
       this.loadRecentArticle();
       this.loadHotArticle();
     }
+    
+  },
+  onPullDownRefresh: function () {
+    if (true) {
+      this.clearRecentArticle();
+      this.clearHotArticle();
+      this.loadRecentArticle();
+      this.loadHotArticle();
+    }
+    setTimeout(function(){
+
+      wx.stopPullDownRefresh;
+    },1500)
+  },
+  //
+  onShow() {
+   
+    // if (appInstance.globalData.published == true) {
+    
   },
   loadNotify() {
     let that = this;

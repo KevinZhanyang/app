@@ -13,17 +13,17 @@ Page({
     onLoad(options) {
         let articleId = options.article_id;
         // 
-        this.loadPacketItem();
+      this.loadPacketItem(articleId);
 
         //
         this.loadPacket(articleId);
     },
     //
-    loadPacketItem() {
+  loadPacketItem(articleId) {
         let that = this;
-        Packet.recentItem()
+    Packet.getForPacket(articleId)
         .then(result => {
-            let packet = result.data;
+            let packet = result.data.body;
             if (packet.number == undefined) {
                 packet.number = 0;
             }

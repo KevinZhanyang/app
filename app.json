@@ -1,6 +1,6 @@
 {
   "pages": [
-     
+       
     
     "pages/index/index",
     "pages/task/index",
@@ -9,7 +9,7 @@
     "pages/exchange/express",
     "pages/article/index",
     "pages/article/item",
-    "pages/packet/index",
+"pages/packet/index",
     "pages/publish/index",
     "pages/publish/share",
     "pages/publish/moments",

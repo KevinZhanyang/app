@@ -142,17 +142,20 @@ Page({
     return false;
     }
     var data ={
-       name:this.data.name,
+      name:this.data.name,
       provinceId: this.data.provinceId,
       status:1
     }
     School.create(data)
       .then(res => {
-        wx.showLoading({
-          title: '已提交',
-          duration: 1500
-        })
-        wx.navigateBack({
+        wx.showModal({
+          title: '温馨提示',
+          content: '提交成功，等待审核！',
+          showCancel:false,
+          success:function(){
+            wx.navigateBack({
+            })
+          }
         })
       });
   }

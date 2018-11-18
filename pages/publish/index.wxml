@@ -78,7 +78,7 @@
 
     <view class="cell">
       <view class="secondary">选择分类</view>
-      <view class="primary">
+      <view class="primary" style='padding-left:30rpx;'>
         <picker bindchange="bindCategoryChange" value="{{ categoryKey }}" range-key="name" range="{{ categories }}">
           <view class="select">{{ categories[categoryKey].name }}</view>
         </picker>
@@ -126,9 +126,9 @@
         </view>
       </view>
 
-      <view class="cells school_name">
-        <view class="primary selectSchool">
-          <view class="select select_school">
+      <view class="{{selectSchoolaActive?'cells school_name selectSchoolactive':'cells school_name'}} " data-id='{{ multiArray[1][multiIndex[1]].id}}' bindtap='clickCurrentSchool'>
+        <view class="primary selectSchool " style='background: transparent !important;'>
+          <view class="select select_school ">
             {{ multiArray[1][multiIndex[1]].name }}
           </view>
         </view>
@@ -140,7 +140,7 @@
   <view class="schoolHistory">
     <view>
       <view class="schoollist">
-        <view class="list-item {{school.state==1?'active':''}}" bindtap="selectSchool" data-id="{{school.id}}" wx:for="{{MySchool}}" wx:for-item="school" wx:key="{{item.id}}">
+        <view class="list-item {{school.state==1?'active':''}}" wx:if="{{school.id}}" bindtap="selectSchool" data-id="{{school.id}}" wx:for="{{MySchool}}" wx:for-item="school" wx:key="{{item.id}}">
           {{school.name}}
         </view>
       </view>

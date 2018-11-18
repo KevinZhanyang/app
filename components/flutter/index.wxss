@@ -15,6 +15,7 @@
   margin-bottom: 20rpx;
   background: #fff;
   border-radius: 0 0 10rpx 10rpx;
+  height: 514rpx;
 }
 
 .flex-wrap .pic {
@@ -49,12 +50,16 @@
 
 .head-flex {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+
+   height: 90rpx;
+  line-height: 90rpx;
+  align-content: center;
 }
 
 .head-image {
-  width: 40rpx;
-  height: 40rpx;
+  width: 46rpx;
+  height: 46rpx;
   border-radius: 50%;
   flex-shrink: 0;
   margin-right: 10rpx;
@@ -66,6 +71,7 @@
   flex-grow: 1;
   flex-flow: row wrap;
   justify-content: space-between;
+ 
 }
 
 .head-box .nickname {
@@ -82,10 +88,12 @@
 }
 
 .head-box .price {
-  font-size: 25rpx;
   color: #000;
   font-weight: 600;
   line-height: 40rpx;
+  /* width: 82rpx; */
+  height: 27rpx;
+  font-size:34rpx;
 }
 .likeNum{
   font-size:22rpx;font-family:JHeiTi;font-weight:400;
