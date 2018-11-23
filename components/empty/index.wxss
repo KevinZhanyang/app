@@ -12,10 +12,10 @@
 }
 .empty .png {
 	text-align:center;
-	width:500rpx;
-	height:294rpx;
+	width:300rpx;
+	height:204rpx;
 }
 .empty .png image {
-	width:500rpx;
-	height:294rpx;
+		width:300rpx;
+	height:204rpx;
 }

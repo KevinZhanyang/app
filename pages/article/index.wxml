@@ -65,8 +65,7 @@
 <view class="bg-white _article" wx:if="{{ status == 'article' }}">
 	<article articles="{{ articles }}" wx:if="{{ articles.length > 0 }}" from="/pages/article/index"></article>
 	<view class="empty" wx:if="{{ articles.length <= 0 }}">
-		<image src="/static/img/empty.png"></image>
-		<view>找不到内容</view>
+		<image src='/static/img/awl.gif'></image>
 	</view>
 </view>
 <!-- ARTICLES END -->

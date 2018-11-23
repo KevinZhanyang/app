@@ -8,10 +8,12 @@
   left: 0rpx;
   z-index: 991;
 }
+
+
 .popup_container{
   width: 750rpx;
   background-color: #fff;
-  height: 900rpx;
+  height: 1000rpx;
   position:fixed;
   bottom:0rpx;
   left:0rpx;
@@ -19,7 +21,64 @@
   display:flex;
   flex-direction:column;
   z-index:999;
+ 
 
+}
+
+.popup_top{
+  display: flex;
+  justify-content: start;
+  align-content: center;
+ height: 27rpx;
+}
+.popup_top_txt{
+ width:328rpx;
+height:27rpx;
+font-size:28rpx;
+font-family:SimHei;
+font-weight:400;
+color:rgba(159,159,159,1);
+line-height:30rpx;
+margin-left: 202rpx;
+word-wrap: nowrap;
+}
+.popup_top_img{
+  width: 24rpx;
+  height: 24rpx;
+  line-height: 27rpx;
+  margin-left:auto;
+  margin-right: 15rpx;
+}
+.popup_top_img image{
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.popup_middle{
+    width: 486rpx;
+    height: 705rpx;
+    margin-left: 110rpx;
+    margin-top:40rpx;
+
+}
+
+.popup_middle image{
+    width: 486rpx;
+    height: 705rpx;
+}
+
+.popup_bottom {		
+	position:fixed;
+	right:0rpx;
+	left:25rpx;
+	bottom:50rpx;
+	padding:15rpx 30rpx;
+  width: 700rpx;
+
+}
+.popup_bottom .published {
+	background-color:#fed406;
+	color:white;
 }
 
 
@@ -569,10 +628,10 @@
   width: 198rpx;
   height: 106rpx;
 }
-
 ._seduce .seduce {
   height: 25rpx;
-  width: 300rpx;
+ width:500rpx;
+
   margin: auto;
   border-radius: 25rpx;
   font-size: 26rpx;
@@ -682,12 +741,14 @@
   bottom: 0rpx;
   right: 0rpx;
   left: 0rpx;
+  height:125rpx;
+
 }
 
 .functions {
   display: flex;
   justify-content: space-between;
-  height: 100rpx;
+  height: 125rpx;
   padding-left: 10rpx;
   padding-right: 15rpx;
   background-color: white;
@@ -750,10 +811,11 @@
   display: inline-block;
   text-align: center;
   width: 328rpx;
-  height: 100rpx;
+  height: 125rpx;
   margin-right: -13rpx;
-  font-size: 30rpx;
-  line-height: 100rpx;
+  font-size:40rpx;
+
+  line-height: 125rpx;
   background-color: #fbe251;
   font-weight: 400;
   color: #333;

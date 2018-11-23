@@ -47,8 +47,10 @@
       <view class="attr">
         <view class='location_img_rule'>
           <image class="location_img" src="/static/img/location.png"></image>
-          <view class='rule'>
+          <view class='rule ruleButtun'>
+              <view class='buttun_noBorder'> 
               <button  bindtap="moveToLocation"  >{{address?address:"选择地址"}}</button>
+              </view>
           </view>
         </view>
         <view class="radio" bindtap="radioChange">
@@ -92,7 +94,7 @@
       <view class="trade_tag">
         <view>
           <view class="list">
-            <view class="list-item {{school.state==1?'active':''}}" bindtap="selectTag" data-id="{{school.id}}" data-name="{{school.name}}" wx:for="{{tradeWay}}" wx:for-item="school" wx:key="{{item.id}}">
+            <view class="list-item {{school.state==1?'active':''}}" bindtap="selectTagV2" data-id="{{school.id}}" data-name="{{school.name}}" wx:for="{{tagList}}" wx:for-item="school" wx:key="{{item.id}}">
               {{school.name}}
             </view>
           </view>

@@ -27,10 +27,15 @@
             <view class="images" wx:if="{{ article.imgs.length == 3 }}">
                 <image class="image image-multi" wx:for="{{ article.imgs }}" mode="aspectFill" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
             </view>
+
+             <view class="images" wx:if="{{ article.imgs.length >= 3 }}">
+                <image class="image image-multi" wx:if="{{index<3 }}" wx:for="{{ article.imgs }}" mode="aspectFill" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
+            </view>
+
             <view class="images" wx:if="{{ article.imgs.length == 2 }}">
                 <image class="image image-double" wx:for="{{ article.imgs }}" mode="aspectFill" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
             </view>
-            <view class="images" wx:if="{{ article.imgs.length == 1 }}">
+            <view class="images" wx:if="{{ article.imgs.length == 1&&(article.noPage!=1||article.no_page==1)}}">
                 <image class="image image-single" mode="widthFix" wx:for="{{ article.imgs }}" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
             </view>
         </navigator>
@@ -38,12 +43,12 @@
         <navigator class="status" url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
             想要 {{ article.likes }}  留言 {{ article.messages }}  收藏 {{ article.collect }}
         </navigator>
-        <view class="attr">
+        <navigator class="attr" url="{{ '/pages/article/item?id=' + article.id }}">
             {{ article.address }}
             <text wx:if="{{ article.distance != '-' }}">距 {{ article.distance }} km</text>
             <navigator class="authorization" open-type="redirect" url="{{ '/pages/authorization/location?from=' + from }}" hover-class="navigator-hover" wx:if="{{ article.distance == '-' }}">
                 查看距离
             </navigator>
-        </view>
+        </navigator>
     </view>
 </view>

@@ -9,8 +9,8 @@
 
       <scroll-view scroll-x="true" class="images bg-white">
         <view class="{{ images.length == 0 ? 'image camera' : 'image' }}" bindtap="chooseImage">
-          <image src="/static/img/adpng.png"></image>
-          <text>添加图片</text>
+          <image src="/static/img/buy_img.jpg"></image>
+          <text>添加图片(选填)</text>
         </view>
         <view class="image" wx:for="{{ images }}" wx:for-index="index" wx:for-item="image" wx:key="id" wx:if="{{ image.server == 0 || image.server == 1 }}">
           <image src="/static/img/delete_png.png" class="close" data-key="{{ index }}" bindtap="delImage" wx:if="{{ image.server == 1 }}"></image>
@@ -22,10 +22,14 @@
 
 
       <view class=" attr">
-        <view>
+       
+     
+        <view class='location_img_rule'>
           <image class="location_img" src="/static/img/location.png"></image>
-          <label class="rule">{{address}}</label>
-        </view>
+          <view class='rule ruleButtun'>
+              <button  bindtap="moveToLocation"  >{{address?address:"选择地址"}}</button>
+          </view>
+  </view>
       </view>
     </view>
 

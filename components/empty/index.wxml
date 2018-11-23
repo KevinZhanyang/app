@@ -1,7 +1,7 @@
 <view class="empty" wx:if="{{ tests == 0 }}">
 	<view>
 		<view class="png">
-    		<image mode="aspectFit" src="http://static.124115.com/static/program/img/default/empty.png"></image>
+    		<image mode="aspectFit" src="/static/img/default.png"></image>
     	</view>
     	<view class="title">{{ title }}</view>
     </view>

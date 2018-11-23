@@ -64,9 +64,12 @@ Page({
                     //
                     setTimeout(function(){
                         //
-                        wx.redirectTo({
-                            url: '/pages/home/index',
-                        });
+                        // wx.redirectTo({
+                        //     url: '/pages/home/index',
+                        // });
+                        wx.navigateBack({
+                          
+                        })
                         //
                     }, 1500);
                     //

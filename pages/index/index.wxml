@@ -29,9 +29,23 @@
 <swiper class="carousels" indicator-dots="true" autoplay="true">
   <block wx:for="{{ swipers }}" wx:for-index="index" wx:for-item="swiper" wx:key="id">
     <swiper-item class="carousel">
-      <navigator url="{{ swiper.url }}" hover-class="navigator-hover">
-        <image class="carousel-img" src="{{ swiper.img }}" />
+    <block wx:if="{{swiper.pubType==1}}">
+     <view bindtap='goWebView' data-url="{{ swiper.clickUrl}}" hover-class="navigator-hover">
+        <image class="carousel-img" src="{{ swiper.imgUrl}}" />
+      </view>
+    </block>
+    <block wx:if="{{swiper.pubType==2}}">
+       <navigator url="https://mp.weixin.qq.com/s?__biz=MzU2MDY4OTM0OA==&mid=2247483809&idx=1&sn=118a7c9a94190f1a3b77a34e20de018a&chksm=fc05780acb72f11c944b93737e6862cf4e5533214a7b69c8c2ce41877540690a0625eb759d23&token=663246813&lang=zh_CN#rd" hover-class="navigator-hover">
+        <image class="carousel-img" src="{{ swiper.imgUrl}}" />
       </navigator>
+    </block>
+
+     <block wx:if="{{swiper.pubType==3}}">
+       <view bindtap='jumpApp' data-path="{{swiper.showTime}}"  data-appid="{{ swiper.clickUrl }}" hover-class="navigator-hover">
+        <image class="carousel-img" src="{{ swiper.imgUrl}}" />
+      </view>
+    </block>
+     
     </swiper-item>
   </block>
 </swiper>
@@ -112,10 +126,10 @@
   </view>
 </view>
 <!-- LOAD START -->
-<view wx:if="{{ switch == 'hot' }}">
+<view wx:if="{{ switch == 'hot' }}" style='background:#fff'>
   <load status="{{ hotArticleLoadStatus }}"></load>
 </view>
-<view wx:if="{{ switch == 'recent' }}">
+<view wx:if="{{ switch == 'recent' }}" style='background:#fff'>
   <load status="{{ recentArticleLoadStatus }}"></load>
 </view>
 <!-- LOAD END -->
@@ -132,7 +146,6 @@
 
 <view class="guide" wx:if="{{ guideStatus == 0 }}" bindtap="closeGuide">
     <image class="close"  src='/static/img/guide.png'/>
-    
 </view>
 <vant-popup custom-class="out-pop" z-index="98" position="bottom" show="{{modal}}" bind:close="onCloseModal" bindtap='preventTouchMove'>
   <view class="pop-box">
@@ -146,4 +159,10 @@
     </view>
   </view>
 </vant-popup>
+
+<block wx:if="{{ShowWebUrl}}">
+
+<web-view src="{{webUrl}}"> </web-view>
+</block>
+
 <!-- GUIDE END -->

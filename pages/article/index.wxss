@@ -12,6 +12,7 @@
 	padding-right:15rpx;
 	background-color:#fed406;
 }
+
 .search .keyword {
 	text-align:center;
 	height:70rpx;
@@ -68,8 +69,8 @@
 	text-align:center;
 }
 ._article .empty image {
-	width:80rpx;
-	height:80rpx;
+	width:200rpx;
+	height:150rpx;
 }
 /* ARTICLES END */
 /* options */

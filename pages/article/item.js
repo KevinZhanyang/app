@@ -105,7 +105,7 @@ Page({
 
                 //
                 that.loadArticle(articleId);
-                that.loadArticleImg(articleId);
+               
         
                 // collect 
                 that.loadCollect(articleId);
@@ -243,7 +243,22 @@ Page({
             .then(result => {
                 let article = result.data;    
                 let user = article.user;
-              article.tardeWay = article.tarde_way == "1" ? "自取" : (article.tarde_way == "2" ? "送货上门" : (article.tarde_way == "3" ? "邮寄":"可商量"))
+               var tradeList = [];
+              if (article.tarde_way){
+
+                var trade = article.tarde_way.split(",");
+                trade.map((item)=>{
+                  tradeList.push(item == "1" ? "自取" : (item == "2" ? "送货上门" : (item == "3" ? "邮寄" : "可商量")))
+                })
+
+                that.setData({
+                  tradeList: tradeList
+                });
+                   
+              }
+
+
+             
                 //
                 that.setData({
                     article: article,
@@ -258,28 +273,75 @@ Page({
                         duration: 2000
                     });
                 }
+
+              that.loadArticleImg(articleId);
                 //
             });
             //
         });
+
+
     },
     // download img of the article
     loadArticleImg(articleId) {
+      if(this.data.article.no_page!=1){
         let that = this;
         Article.getImg(articleId)
-        .then(res => {
+          .then(res => {
             let articleImgs = res.data;
             that.setData({
-                articleImgs: articleImgs,
+              articleImgs: articleImgs,
             });
-        });
+          });
+      }
+        
     },
   inform(){
-    wx.showModal({
-      title: '提示',
-      content: '举报成功，我们将尽快处理，感谢您的支持！',
-      showCancel:false
+
+    wx.showActionSheet({
+      itemList: ['出售禁售品',
+'假冒品牌',
+'疑似欺诈',
+'人身攻击',
+'泄露隐私',
+'垃圾广告'],
+      success: function (res) {
+        console.log(JSON.stringify(res))
+        console.log(res.tapIndex) // 用户点击的按钮，从上到下的顺序，从0开始
+        if (res.tapIndex == 0) {
+          
+        } else if (res.tapIndex == 1) {
+         
+        } else if (res.tapIndex ==2) {
+
+        }
+        else if (res.tapIndex == 3) {
+
+        }
+        else if (res.tapIndex == 4) {
+
+        } else if (res.tapIndex == 5) {
+
+        }
+        wx.showModal({
+          title: '提示',
+          content: '举报成功，我们将尽快处理，感谢您的支持！',
+          showCancel: false
+        })
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: '提示',
+          content: '您取消了举报',
+          showCancel: false
+        })
+      }
     })
+
+   
+
+
+
 
 
 
@@ -877,8 +939,17 @@ Page({
     },
     // 阻目下层页面划动
     preventTouchMove() {
-        //
+       this.setData({
+         showShareMoment:false,
+
+       })
     },
+  closeshowShareMoment(){
+    this.setData({
+      showShareMoment: false,
+
+    })
+  },
     copyWchatCancel() {
         this.setData({
             showCopyWechatInterface: false,
@@ -937,46 +1008,73 @@ Page({
       });
   },
   showCircleImg() {
-    // this.setData({
-    //   showShareMoment:true
-    // })
+    this.setData({
+      showShareMoment:true,
+      showShareMomentUrl: this.data.circleImg
+    })
 
     //
-    let url = this.data.circleImg;
-    if (url.length == 0) {
-      setTimeout(function () {
-        //
-        if (ulr.length == 0) {
-          //
-          setTimeout(function () {
-            //
-            wx.previewImage({
-              urls: [
-                url,
-              ],
-            });
-            //
-          }, 500);
-          //
-        } else {
-          //
-          wx.previewImage({
-            urls: [
-              url,
-            ],
-          });
-          //
-        }
-        //
-      }, 500);
-    } else {
-      wx.previewImage({
-        urls: [
-          url,
-        ],
-      });
-    }
+    // let url = this.data.circleImg;
+    // if (url.length == 0) {
+    //   setTimeout(function () {
+    //     //
+    //     if (ulr.length == 0) {
+    //       //
+    //       setTimeout(function () {
+    //         //
+    //         wx.previewImage({
+    //           urls: [
+    //             url,
+    //           ],
+    //         });
+    //         //
+    //       }, 500);
+    //       //
+    //     } else {
+    //       //
+    //       wx.previewImage({
+    //         urls: [
+    //           url,
+    //         ],
+    //       });
+    //       //
+    //     }
+    //     //
+    //   }, 500);
+    // } else {
+    //   wx.previewImage({
+    //     urls: [
+    //       url,
+    //     ],
+    //   });
+    // }
     
   },
+  saveImg() {
+    let that = this;
+    wx.getImageInfo({
+      src: this.data.showShareMomentUrl,
+      success: function (res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success: (res) => {
+            that.setData({
+              showShareMoment:false
+            })
+               wx.showLoading({
+                 title: '保存成功',
+                 duration:1500
+               })
+               
+          },
+          fail: (err) => {
+           
+          }
+        })
+
+      }
+    })
+
+  }
     /* COPY WECHAT END */
 });

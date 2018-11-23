@@ -298,7 +298,9 @@ border-radius:10px;
 .location_img{
   width: 26rpx;
   height: 32rpx;
-  margin-right: 13rpx;
+  margin-right: 10rpx;
+  margin-top:14rpx;
+
 }
 /* guide end */
 
@@ -306,9 +308,9 @@ border-radius:10px;
 .attr {
 	display:flex;
 	justify-content: space-between;
-	height:50rpx;
-	line-height:50rpx;
-	padding-bottom:60rpx;
+	/* height:200rpx; */
+	/* line-height:200rpx; */
+	/* padding-bottom:60rpx; */
 	padding-left:10rpx;
 	padding-right:30rpx;
 	font-size:26rpx;
@@ -333,29 +335,49 @@ line-height:30px;
   word-wrap: break-word;
   text-overflow: ellipsis;
   font-size: 26rpx;
-  width: 220rpx;
+  width:450rpx;
+
   /* height: 60rpx; */
-  margin-left:26rpx;
+
   background: transparent !important;
   /* border: 1px  transparent  !important; */
   text-align: left;
   line-height: 60rpx;
   border:none !important;
   color: #000;
+  margin-top:4rpx;
+
 }
 .rule button{
-  color: #000;
+ color:rgba(102,102,102,1);
+font-size: 26rpx;
+  text-align: left;
+  height: 60rpx;
+  line-height: 60rpx;
+display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  border:none;
+background: transparent !important;
+}
+.buttun_noBorder{
+  border:none;
+  background: transparent !important;
 }
 /*去除buttun边框关键样式*/
-button[class="rule"]::after {
-  border: 0;
-color: #000;  
+button[class="buttun_noBorder"]::after {
+  border:0;
+ /* color:rgba(102,102,102,1); */
 } 
 .location_img_rule{
   display: flex;
   justify-content: center;
   align-content: center;
 }
+button::after{ border: none; }
 
 
 
@@ -415,7 +437,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .selectSchoolactive{
  
 background:rgba(251,226,81,0.22);
-  border:1px solid rgba(251,226,81,1);
+
 
 }
 
@@ -468,7 +490,7 @@ background:rgba(255,255,255,1);
   border:1px solid rgba(251,226,81,1);
    border-radius:8px;
    font-family:SimHei;
-font-weight:400;
+/* font-weight:400; */
 color:rgba(51,51,51,1);
 }
 
@@ -499,9 +521,10 @@ background:rgba(255,255,255,1);
 
 .list-item.active {
   background:rgba(251,226,81,0.22);
-  border:1px solid rgba(251,226,81,1);
-   border-radius:8px;
-   font-family:SimHei;
-font-weight:400;
-color:rgba(51,51,51,1);
+  
+   /* border-radius: 10rpx; */
+   /* font-family:SimHei; */
+/* font-weight:400; */
+/* color:rgba(51,51,51,1); */
+/* color: #b5b8be; */
 }

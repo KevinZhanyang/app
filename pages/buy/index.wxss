@@ -1,360 +1,435 @@
-
 @import "../../icon.wxss";
 @import "../../colorui.wxss";
 
 .primary {
-background:#fff;
-color:rgba(51,51,51,1);
-font-size:28rpx;
-
+  background: #fff;
+  color: rgba(51, 51, 51, 1);
+  font-size: 28rpx;
 }
+
 .secondary {
-  font-size:28rpx;
-font-family:SimHei;
-background:#fff;
-font-weight:400;
-color:rgba(51,51,51,1);
-
+  font-size: 28rpx;
+  font-family: SimHei;
+  background: #fff;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
 }
 
-.selectSchoolactive{
- 
-  background:rgba(251,226,81,0.22) !important;
-  border:1px solid rgba(251,226,81,1);
-
+.selectSchoolactive {
+  background: rgba(251, 226, 81, 0.22) !important;
+  /* border: 1px solid rgba(251, 226, 81, 1); */
 }
+
 .cells .cell .secondary {
-
-border:none;
-
+  border: none;
 }
+
 .schoollist {
   /* padding-top: 45rpx; */
   display: flex;
   flex-flow: row wrap;
-  margin-left:40rpx;
-  margin-bottom:200rpx;
-/* background:rgba(244,246,249,1); */
+  margin-left: 40rpx;
+  margin-bottom: 200rpx;
+  /* background:rgba(244,246,249,1); */
 }
-.schoollist .list-item {
- 
- padding:15rpx 30rpx;
- height: 70rpx;
-  background: #fff;
-color:rgba(51,51,51,1);
-font-size:28rpx;
 
+.schoollist .list-item {
+  padding: 15rpx 30rpx;
+  height: 70rpx;
+  background: #fff;
+  color: rgba(51, 51, 51, 1);
+  font-size: 28rpx;
   text-align: center;
   border-radius: 10rpx;
   margin: 10rpx 10rpx 10rpx 0rpx;
-background:rgba(255,255,255,1);
+  background: rgba(255, 255, 255, 1);
 }
-
-
-
 
 .images {
-	position: relative;
-	display:flex;
-	flex-wrap:wrap;
-	flex-direction: column;
-	justify-content: flex-start;
-	white-space:nowrap;
-	width:100%;
-	padding-top:15rpx;
-	padding-bottom:15rpx;
-	margin-bottom:25rpx;
-	/* border-bottom:1px solid #EEE; */
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  white-space: nowrap;
+  width: 100%;
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+  margin-bottom: 25rpx;
+  /* border-bottom:1px solid #EEE; */
 }
+
 .images .camera {
-	/* (750 - 120) / 2 */
-	/* margin-left:315rpx; */
-	/* margin-left:285rpx; */
+  /* (750 - 120) / 2 *//* margin-left:315rpx; *//* margin-left:285rpx; */
 }
-.img{
-  	width:156rpx !important;
-  	height:156rpx !important;
-}
-.lattice-btn{
-  	width:156rpx !important;
-  	height:156rpx !important;
-}
-.img .png{
-  width:156rpx !important;
-  height:156rpx !important;
 
+.img {
+  width: 156rpx !important;
+  height: 156rpx !important;
 }
+
+.lattice-btn {
+  width: 156rpx !important;
+  height: 156rpx !important;
+}
+
+.img .png {
+  width: 156rpx !important;
+  height: 156rpx !important;
+}
+
 .lattice-image>view {
-padding-bottom:0 !important;
-
+  padding-bottom: 0 !important;
 }
 
-.delete_png{
-   width:40rpx !important;
-  height:40rpx !important;
-  position:absolute !important;
-z-index: 9;
-left:-10rpx !important;
-}
-.delete_png_view{
-  display:block !important;
-   width:40rpx !important;
-  height:40rpx !important;
-  position:absolute !important;
- 
-  
-  
+.delete_png {
+  width: 40rpx !important;
+  height: 40rpx !important;
+  position: absolute !important;
+  z-index: 9;
+  left: -10rpx !important;
 }
 
+.delete_png_view {
+  display: block !important;
+  width: 40rpx !important;
+  height: 40rpx !important;
+  position: absolute !important;
+}
 
-.lattice-image .icon-close,.lattice-image .icon-upload {
-position:absolute;
-top:0rpx;
-left:0rpx;
-z-index:9;
-display:block;
-width:50rpx;
-border-bottom-left-radius:3px;
-background:rgba(0,0,0,.5);
-color:#fff;
-text-align:center;
-font-size:28rpx;
-line-height:50rpx;
-
+.lattice-image .icon-close, .lattice-image .icon-upload {
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: 9;
+  display: block;
+  width: 50rpx;
+  border-bottom-left-radius: 3px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 50rpx;
 }
 
 .image {
-	position:relative;
-	display:inline-block;
-	width:180rpx;
-	height:180rpx;
-	overflow:hidden;
-	margin-left:15rpx;
+  position: relative;
+  display: inline-block;
+  width: 180rpx;
+  height: 180rpx;
+  overflow: hidden;
+  margin-left: 15rpx;
 }
+
 .image image {
-	width:180rpx;
-	height:180rpx;
+  width: 180rpx;
+  height: 180rpx;
 }
+
 .image .close {
-	position:absolute;
-	top:0rpx;
-	right:0rpx;
-width:40rpx;
-	height:40rpx;
-	/* background-color:black; */
-	color:white;
-	font-size:40rpx;
-	line-height:24rpx;
-	text-align:center;
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  width: 40rpx;
+  height: 40rpx;
+  /* background-color:black; */
+  color: white;
+  font-size: 40rpx;
+  line-height: 24rpx;
+  text-align: center;
 }
+
 .image .close image {
-	width:50rpx;
-	height:50rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
+
 .image .cover {
-	position:absolute;
-	bottom:0rpx;
-	right:0rpx;
-	left:0rpx;
-	background-color:#ff5555;
-	text-align:center;
-	width:180rpx;
-	height:35rpx;
-	opacity:0.8;
-	font-size:26rpx;
-	line-height:35rpx;
-	color:white;
+  position: absolute;
+  bottom: 0rpx;
+  right: 0rpx;
+  left: 0rpx;
+  background-color: #f55;
+  text-align: center;
+  width: 180rpx;
+  height: 35rpx;
+  opacity: 0.8;
+  font-size: 26rpx;
+  line-height: 35rpx;
+  color: white;
 }
+
 .image .cover-canvel {
-	display:none;
+  display: none;
 }
+
 .image .status {
-	position:absolute;
-	top:0rpx;
-	bottom:0rpx;
-	right:0rpx;
-	left:0rpx;
-	background-color:rgba(0,0,0, 0.8);
-	text-align:center;
-	width:180rpx;
-	height:180rpx;
-	opacity:0.8;
-	font-size:30rpx;
-	line-height:180rpx;
-	color:white;
+  position: absolute;
+  top: 0rpx;
+  bottom: 0rpx;
+  right: 0rpx;
+  left: 0rpx;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  width: 180rpx;
+  height: 180rpx;
+  opacity: 0.8;
+  font-size: 30rpx;
+  line-height: 180rpx;
+  color: white;
 }
+
 /* textarea */
+
 .description {
-	width:100%;
-	padding-top:30rpx;
-	padding-bottom:30rpx;
-	border-top:1px solid #EEE;
-	border-bottom:1px solid #EEE;
-	margin-bottom:25rpx;
-	font-size:26rpx;
-	line-height:30rpx;
+  width: 100%;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 25rpx;
+  font-size: 26rpx;
+  line-height: 30rpx;
 }
+
 .description .content {
-	width:100%;
+  width: 100%;
 }
-.layer_text{
+
+.layer_text {
   margin-left: 45rpx;
   height: 70rpx;
   line-height: 70rpx;
-   margin-top:18rpx;
+  margin-top: 18rpx;
 }
+
 .layer {
-	height:160rpx;
+  height: 160rpx;
 }
+
 .form-item textarea {
-width:100%;
-height:151rpx !important;
+  width: 100%;
+  height: 151rpx !important;
 }
 
+.layer_m {
+  display: flex;
+  height: 160rpx;
+  justify-content: space-between;
+}
 
-.layer_m{
-display:flex;
-	height:160rpx;
-justify-content:space-between;
+.publish {
+  position: fixed;
+  right: 0rpx;
+  left: 0rpx;
+  bottom: 0rpx;
+  padding: 15rpx 30rpx;
 }
-.publish {		
-	position:fixed;
-	right:0rpx;
-	left:0rpx;
-	bottom:0rpx;
-	padding:15rpx 30rpx;
 
+.active {
+  background: rgba(251, 226, 81, 0.22) !important;
+  /* border: 1px solid rgba(251, 226, 81, 1); */
+  /* border-radius: 8px; */
+  /* font-family: SimHei; */
+  /* font-weight: 400; */
+  /* color: rgba(51, 51, 51, 1); */
 }
- .active {
-  background:rgba(251,226,81,0.22) !important;
-  border:1px solid rgba(251,226,81,1);
-   border-radius:8px;
-   font-family:SimHei;
-font-weight:400;
-color:rgba(51,51,51,1);
-}
+
 .publish .published {
-	background-color:#fed406;
-	color:white;
+  background-color: #fed406;
+  color: white;
 }
-.school{
- margin-top:10rpx;
 
+.school {
+  margin-top: 10rpx;
   height: 70rpx;
   width: 308rpx;
   line-height: 70rpx;
-
-margin-left:45rpx;
+  margin-left: 45rpx;
 }
 
-.school_name{
-  margin-top:10rpx;
-
+.school_name {
+  margin-top: 10rpx;
   height: 70rpx;
   width: 371rpx;
   line-height: 70rpx;
   text-align: center;
-  margin-left:65rpx;
-background:rgba(255,255,255,1);
-border-radius:10px;
+  margin-left: 65rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10px;
 }
-.select_school{
-   line-height: 70rpx;
+
+.select_school {
+  line-height: 70rpx;
 }
+
 /* guide start */
+
 .guide-layer {
-	position:fixed;
-	top:0rpx;
-	bottom:0rpx;
-	right:0rpx;
-	left:0rpx;
-	background-color:rgba(0,0,0,0.6);
+  position: fixed;
+  top: 0rpx;
+  bottom: 0rpx;
+  right: 0rpx;
+  left: 0rpx;
+  background-color: rgba(0, 0, 0, 0.6);
 }
+
 ._guide {
-	position:fixed;
-	top:0rpx;
-	bottom:0rpx;
-	right:0rpx;
-	left:0rpx;
-	background-image:url(http://static.124115.com/static/program/img/publish/guide.png);
-	background-size:100% 100%;
-	background-position:center center;
-	width:100vw;
-	height:100vh;
+  position: fixed;
+  top: 0rpx;
+  bottom: 0rpx;
+  right: 0rpx;
+  left: 0rpx;
+  background-image: url(http://static.124115.com/static/program/img/publish/guide.png);
+  background-size: 100% 100%;
+  background-position: center center;
+  width: 100vw;
+  height: 100vh;
 }
+
 ._guide .guide {
-	positions:relative;
+  positions: relative;
 }
+
 ._guide .guide .close {
-	position:absolute;
-	right:10rpx;
-	bottom:160rpx;
-	width:180rpx;
-	height:100rpx;
+  position: absolute;
+  right: 10rpx;
+  bottom: 160rpx;
+  width: 180rpx;
+  height: 100rpx;
 }
-.location_img{
+
+.location_img {
   width: 26rpx;
   height: 32rpx;
   margin-right: 13rpx;
+  margin-top: 14rpx;
 }
+
 /* guide end */
 
 /* packet */
+
 .attr {
-	display:flex;
-	justify-content: space-between;
-	height:50rpx;
-	line-height:50rpx;
-	padding-bottom:60rpx;
-	padding-left:10rpx;
-	padding-right:30rpx;
-	font-size:26rpx;
-	color:#6f6f6f;
+  display: flex;
+  justify-content: space-between;
+  /* height:200rpx; *//* line-height:200rpx; *//* padding-bottom:60rpx; */
+  padding-left: 10rpx;
+  padding-right: 30rpx;
+  font-size: 26rpx;
+  color: #6f6f6f;
   width: 750rpx;
 }
-.attr label{
-font-size:28rpx;
-font-family:SimHei;
-font-weight:400;
-color:rgba(102,102,102,1);
-line-height:30px;  
+
+.attr label {
+  font-size: 28rpx;
+  font-family: SimHei;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
+  line-height: 30px;
 }
+
 ._packets .attr .rule {
-	color:#ff5555;
+  color: #f55;
 }
+
+.rule {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  font-size: 26rpx;
+  width: 400rpx;
+  /* height: 60rpx; *//* margin-left:26rpx; */
+  background: transparent !important;
+  /* border: 1px  transparent  !important; */
+  text-align: left;
+  line-height: 60rpx;
+  border: none !important;
+  color: #000;
+  margin-top: 4rpx;
+}
+
+.rule button {
+  color: rgba(102, 102, 102, 1);
+  text-align: left;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  border: none;
+  background: transparent !important;
+  font-size: 26rpx;
+}
+
+/*去除buttun边框关键样式*/
+
+button[class="rule ruleButtun"]::after {
+  border: 0;
+  color: rgba(102, 102, 102, 1);
+}
+
+button::after {
+  border: none;
+  
+}
+
+.location_img_rule {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+._packets .attr .rule {
+  color: #f55;
+}
+
 .packets {
-	width:calc(100% - 60rpx);
-	padding-top:15rpx;
-	padding-bottom:30rpx;
-	margin-right:30rpx;
-	margin-left:30rpx;
+  width: calc(100% - 60rpx);
+  padding-top: 15rpx;
+  padding-bottom: 30rpx;
+  margin-right: 30rpx;
+  margin-left: 30rpx;
 }
 
 /*  重写 radio 样式  */
+
 /* 未选中的 背景样式 */
-radio .wx-radio-input{
-   border-radius: 50%;/* 圆角 */
-   width: 40rpx;
-   height: 40rpx;
+
+radio .wx-radio-input {
+  border-radius: 50%; /* 圆角 */
+  width: 40rpx;
+  height: 40rpx;
 }
+
 /* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
-radio .wx-radio-input.wx-radio-input-checked{
-   border: none;
-   background: red;
+
+radio .wx-radio-input.wx-radio-input-checked {
+  border: none;
+  background: red;
 }
+
 /* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
-radio .wx-radio-input.wx-radio-input-checked::before{
-   border-radius: 50%;/* 圆角 */
-   width: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
-   height: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
-   line-height: 40rpx;
-   text-align: center;
-   font-size:30rpx; /* 对勾大小 30rpx */
-   color:#fff; /* 对勾颜色 白色 */
-   background: transparent;
-   transform:translate(-50%, -50%) scale(1);
-   -webkit-transform:translate(-50%, -50%) scale(1);
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%; /* 圆角 */
+  width: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  height: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 30rpx; /* 对勾大小 30rpx */
+  color: #fff; /* 对勾颜色 白色 */
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
 }
-.radio{
+
+.radio {
   margin-bottom: 3rpx;
 }

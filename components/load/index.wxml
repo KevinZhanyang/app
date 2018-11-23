@@ -1,7 +1,9 @@
 <!-- 正在加载 -->
 <view class="load-more" wx:if="{{ status == 0 }}">
-	<view class="loading"></view>
-	<view class="tips">数据下载中,请稍后...</view>
+	<!-- <view class="loading"></view> -->
+	<view class="tips">
+   <image class='gif' src='/static/img/awl.gif'></image>
+  </view>
 </view>
 <!-- 加载完毕 -->
 <view class="load-more" wx:if="{{ status == 1 }}">

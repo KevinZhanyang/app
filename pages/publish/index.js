@@ -33,8 +33,9 @@ Page({
     checked: false,
     // 分类的内容
     categories: [],
+    selectTag:[],
     categoryKey: 0,
-    selectTag: 3,
+    // selectTag: 3,
     // 学校
     multiArray: [], // 省列表
     schools: [], // 学校列表
@@ -48,7 +49,19 @@ Page({
     }, {
       id: 3,
       name: "邮寄",
-      state: 1
+      state: 0
+    }],
+
+    tagList: [{
+      id: 1,
+      name: "自取"
+    }, {
+      id: 2,
+      name: "送货上门"
+    }, {
+      id: 3,
+      name: "邮寄",
+      state: 0
     }],
     tempMultiIndex: [0, 0],
     // 新闻内容
@@ -85,6 +98,52 @@ Page({
       selectTag: id,
     });
   },
+
+  selectTagV2(event) {
+
+
+    let id = event.currentTarget.dataset["id"];
+    let selectTag = this.data.selectTag;
+    let tagList = this.data.tagList;
+    if (selectTag.indexOf(id) > -1) {
+      selectTag.splice(selectTag.indexOf(id), 1);
+    } else {
+      if (selectTag.length > 7) {
+
+
+        this.setData({
+          showTipsModel: true,
+          tips: "最多选择8个标签"
+        })
+
+        setTimeout(() => {
+
+          this.setData({
+            showTipsModel: false
+          })
+
+
+        }, 1500)
+
+
+        return false;
+
+
+      };
+      selectTag.push(id);
+    }
+    for (let item of tagList) {
+      if (selectTag.indexOf(item.id) > -1) {
+        item.state = 1;
+      } else {
+        item.state = 0;
+      }
+    }
+    this.setData({
+      tagList
+    });
+  },
+
   selectSchool(event) {
 
     console.log(event)
@@ -877,8 +936,21 @@ Page({
             let articleId = article.id;
             wx.removeStorageSync("images");
 
+
+            let selectTag = this.data.selectTag;
+
+            var submitTag ='';
+            selectTag.map((item,index)=>{
+              if (index==selectTag.length-1){
+                submitTag += item
+              }else{
+                submitTag += item+","
+              }
+              return item
+            })
+
             var updateData = {
-              tardeWay: that.data.selectTag,
+              tardeWay: submitTag,
               isNew: that.data.checked ? 1 : 0,
               type: 0,
               id: articleId

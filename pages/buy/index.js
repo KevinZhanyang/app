@@ -46,6 +46,12 @@ Page({
       phone: '',
       wechat: '',
     },
+    defaultImg:{
+      isCover:1,
+      server:1,
+      name:'wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.4rCKFXbfEDHF3058d046bbe9888d56aeeb11d05a26ff.png',
+      img:'temp_img/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.4rCKFXbfEDHF3058d046bbe9888d56aeeb11d05a26ff.png'
+    },
     // 新闻的图片列表
     images: [],
     // 发布的按钮禁用状态: true 铵钮棼用，不可以发布，false, 铵钮可以，可以发布
@@ -669,6 +675,32 @@ Page({
       }
     });
   },
+  //移动选点
+  moveToLocation: function () {
+
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        let mobileLocation = {
+          longitude: res.longitude,
+          latitude: res.latitude,
+          address: res.address,
+        };
+        that.setData({
+          address: res.address
+        });
+
+      },
+      fail: function (err) {
+        wx.getSetting({
+          success: (res) => {
+            if (!res.authSetting['scope.userLocation'])
+              that.openConfirm()
+          }
+        })
+      }
+    });
+  },
   // 如果只有一张图就算了。如果还有在工作中的图，把帽子给他们
   delImage(event) {
     //
@@ -728,7 +760,7 @@ Page({
   publish(event) {
     //
     let formId = event.detail.formId;
-
+    var noPage=0;
     let imageLength = 0; // 服务器上已存在的图片数量
     let onProgress = 0;
     let images = this.data.images;
@@ -743,10 +775,11 @@ Page({
       this.showError('还有照片上传中');
       return;
     }
-    // if (imageLength <= 0) {
-    //   this.showError('必须发布照片');
-    //   return;
-    // }
+    if (imageLength <= 0) {
+      noPage = 1;
+      images.push(this.data.defaultImg)
+      return;
+    }
 
     if (this.data.article.content.length == 0) {
       this.showError('内容不能为空');
@@ -820,7 +853,8 @@ Page({
             wx.removeStorageSync("images");
             var updateData = {
               type: 1,
-              id: articleId
+              id: articleId,
+              noPage:1
             }
             console.log(articleId)
             Article.update(updateData).then(res => {

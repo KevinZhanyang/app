@@ -29,9 +29,9 @@
 }
 .menus .menu .icon_ {
   position: absolute;
-  top: -35rpx;
+  top: -51rpx;
   right: -15rpx;
-  left: -15rpx;
+  left: -30rpx;
   width: 118rpx;
   height: 118rpx;
 }

@@ -109,7 +109,7 @@ button[class="rule"]::after {
 ._search {
   display: flex;
   padding-top: 15rpx;
-  padding-bottom: 15rpx;
+  padding-bottom:32rpx;
   background:RGBA(251, 226, 81, 1);
   padding-right:30rpx;
 
@@ -273,7 +273,7 @@ button[class="rule"]::after {
   position: fixed;
   /* top:15rpx; */
   right: 21rpx;
-
+  top:0rpx;
   width: 348rpx;
   height: 84rpx;
 }
