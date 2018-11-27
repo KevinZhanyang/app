@@ -233,12 +233,11 @@
 </view>
 <!-- RULE END -->
 
-
-<view class="popup" wx:if='{{showShareMoment}}' >
+<view class="popup" wx:if='{{showShareMoment}}' bindtap='preventTouchMove'></view>
+<view  wx:if='{{showShareMoment}}' >
   <view class="popup_container">
     <view class='popup_top'>
       <view class='popup_top_txt'>
-
         保存图片分享到朋友圈吧
       </view>
 
@@ -249,7 +248,7 @@
 
     </view>
     <view class='popup_middle'>
-      <image src='{{showShareMomentUrl}}'></image>
+      <image src='{{showShareMomentUrlPath}}'></image>
 
 
     </view>

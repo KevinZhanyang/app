@@ -11,7 +11,7 @@
 </view>
 
 <!-- 已全部加载 -->
-<view class="load-more" wx:if="{{ status == 2 }}">
-	<view class="tips">数据已全部加载完成</view>
+<view class="load-more2" wx:if="{{ status == 2 }}">
+	<view class="tips">换个关键词搜索试试看哦</view>
 </view>
 

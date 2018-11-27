@@ -1,0 +1,63 @@
+<view style='padding:0 0 40rpx 0;'>
+
+  <!--pages/activity/index.wxml-->
+  <view class='top'>
+    <view class="home_top">
+      <image mode='widthFix' src='/static/img/p_top.png'></image>
+    </view>
+  </view>
+
+  <view class='body'>
+
+
+    <view class='body_top'>
+           <view class='body_top_head' >
+               <view class='body_top_txt_top'>复制红包码后</view>
+              <view class='body_top_txt_bottom'>点击下方领取红包即可享现金大礼</view>
+           </view>
+           <view  class='body_top_middle'>1234</view>
+           <view class='body_top_bottom'>
+               <form bindsubmit="putFormId" report-submit='true'>
+          <button class="sign_btn_top" form-type="submit">
+            复制
+          </button>
+        </form>
+           
+           </view>
+    </view>
+
+    <view class='body_bottom'>
+      <view>
+          <view  class='body_bottom_top_txt'>点击下方按钮后<text class='reply'>回复1</text>领取红包</view>
+          <view class='body_bottom_bottom_txt'>￥0.3元~￥50元</view>
+      </view>
+      <view>
+        <form bindsubmit="putFormId" report-submit='true'>
+          <button class="sign_btn" form-type="submit">
+            领取红包
+          </button>
+        </form>
+      </view>
+    </view>
+
+
+  </view>
+  <view class='footer'>
+      <view class='footer_left'>
+      
+         <view class='footer_left_txt_top'>同时分享朋友圈或微信群还可获得</view>
+         <view class='footer_left_txt_top_bottom'>500-5000积分</view>
+         <view class='footer_left_txt_bottom'>积分可换取iPhoneX、kinddle等好礼</view>
+      </view>
+      <view class='footer_right'>
+      <form bindsubmit="putFormId" report-submit='true'>
+          <button class="sign_btn_bottom" form-type="submit">
+           <text>分享</text> 
+          </button>
+        </form>
+      
+      </view>
+
+  </view>
+
+</view>

@@ -221,6 +221,7 @@ Page({
   search(event) {
     let detail = event.detail;
     let value = detail.value;
+    
     this.setData({
       keyword: value,
       page: 1,
@@ -281,6 +282,7 @@ Page({
     let provinceId = this.data.provinces[this.data.provinceKey].id;
 
     this.loadArticle({
+      keyword: this.data.keyword ? this.data.keyword:"",
       sort_id: sortId,
       category_id: categoryId,
       province_id: provinceId,

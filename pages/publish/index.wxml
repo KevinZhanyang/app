@@ -154,6 +154,7 @@
   <!-- sp -->
   <!--show if out our-->
   <view class="publish">
+  
     <button class="published" disabled="{{ publishButtonDisabled }}" size="default" formType="submit">发布</button>
   </view>
 </form>

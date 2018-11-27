@@ -19,7 +19,9 @@ import {
 import {
   Banner
 } from "../../model/banner";
-
+import {
+  FormId
+} from '../../model/formId';
 //
 const appInstance = getApp();
 
@@ -120,7 +122,10 @@ Page({
   }
   ,
   //移动选点
-  moveToLocation: function () {
+  moveToLocation: function (event) {
+
+    console.log(event);
+    FormId.createUserFormId(event.detail.formId);
  
     var that = this;
     wx.chooseLocation({

@@ -88,4 +88,26 @@ export class Message
         //
     }
     // game over
+
+
+  static create(item) {
+    //
+    return new Promise(function (resolve, reject) {
+      //
+      let url = Config.apiRoot + '/v1/messages';
+      let options = {
+        url: url,
+        method: 'post',
+        data: item,
+      }
+
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+    //
+  }
 }

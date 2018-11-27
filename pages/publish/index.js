@@ -21,6 +21,9 @@ import {
 import {
   Upload
 } from '../../lib/upload';
+import {
+  FormId
+} from '../../model/formId';
 var QQMapWX = require('../../lib/map/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
 //
@@ -844,7 +847,7 @@ Page({
 
     //
     let formId = event.detail.formId;
-
+    FormId.createUserFormId(event.detail.formId);
     let imageLength = 0; // 服务器上已存在的图片数量
     let onProgress = 0;
     let images = this.data.images;

@@ -7,7 +7,7 @@
 			<view class="name">
 				<image class="avatar" src="{{ notify.user.avatar }}"></image>
 				{{ notify.user.nickname }}
-				<label class="read" wx:if="{{ notify.read == 1 }}">末读</label>
+				<label class="read" wx:if="{{ notify.read == 1 }}">未读</label>
 			</view>
 			<view class="created_at">{{ notify.created_at }}</view>
 		</view>

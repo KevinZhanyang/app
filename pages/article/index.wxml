@@ -71,7 +71,7 @@
 <!-- ARTICLES END -->
 
 <!-- LOAD START -->
-<view wx:if="{{ articles.length > 0 }}">
-    <load status="{{ articleLoadStatus }}"></load>
+<view wx:if="{{ articles.length > 0 }}" style="articleLoadStatus!=2?'background:#fff':''">
+    <load status="{{ articleLoadStatus }}" class="{{articleLoadStatus==2?'load-more':''}}"></load>
 </view>
 <!-- LOAD END -->

@@ -1,6 +1,6 @@
 {
   "pages": [
-    
+    "pages/activity/index",
     "pages/index/index",
     "pages/task/index",
     "pages/school/index",
