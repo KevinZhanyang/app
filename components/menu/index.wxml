@@ -16,7 +16,7 @@
     <!-- <navigator url="/pages/publish/index" hover-class="none"> -->
     <view bind:tap="showModal" class="menu">
         <view class="icon_">
-            <image src="/static/img/publish.png"></image>
+            <image src="/static/img/packet.gif"></image>
         </view>
       
     </view>

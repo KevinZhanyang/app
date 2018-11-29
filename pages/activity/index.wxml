@@ -12,12 +12,12 @@
 
     <view class='body_top'>
            <view class='body_top_head' >
-               <view class='body_top_txt_top'>复制红包码后</view>
-              <view class='body_top_txt_bottom'>点击下方领取红包即可享现金大礼</view>
+               <view class='body_top_txt_top'>您的红包码</view>
+              <!-- <view class='body_top_txt_bottom'>点击下方领取红包即可享现金大礼</view> -->
            </view>
-           <view  class='body_top_middle'>1234</view>
+           <view  class='body_top_middle'>{{code}}</view>
            <view class='body_top_bottom'>
-               <form bindsubmit="putFormId" report-submit='true'>
+               <form bindsubmit="copy" report-submit='true'>
           <button class="sign_btn_top" form-type="submit">
             复制
           </button>
@@ -28,15 +28,16 @@
 
     <view class='body_bottom'>
       <view>
-          <view  class='body_bottom_top_txt'>点击下方按钮后<text class='reply'>回复1</text>领取红包</view>
+          <view  class='body_bottom_top_txt'>点击下方按钮后<text class='reply'>回复1</text>领取现金红包</view>
           <view class='body_bottom_bottom_txt'>￥0.3元~￥50元</view>
       </view>
       <view>
-        <form bindsubmit="putFormId" report-submit='true'>
-          <button class="sign_btn" form-type="submit">
+        <!-- <form bindsubmit="putFormId" report-submit='true'> -->
+          <button class="sign_btn"  open-type="contact" session-from='{"nickName":"{{user.nickname}}","avatarUrl":"{{user.avatar}}"}'  >
             领取红包
           </button>
-        </form>
+          
+        <!-- </form> -->
       </view>
     </view>
 
@@ -51,8 +52,8 @@
       </view>
       <view class='footer_right'>
       <form bindsubmit="putFormId" report-submit='true'>
-          <button class="sign_btn_bottom" form-type="submit">
-           <text>分享</text> 
+          <button class="sign_btn_bottom" formType="submit">
+           
           </button>
         </form>
       

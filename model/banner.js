@@ -23,4 +23,23 @@ export class Banner {
 
   }
 
+
+  static getBanner() {
+    let url = Config.apiRoot + '/v1/homeBanner/4';
+    let options = {
+      url: url,
+      method: 'GET',
+
+    }
+    return new Promise(function (resolve, reject) {
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+
+  }
+
 }

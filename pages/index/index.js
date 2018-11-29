@@ -84,8 +84,8 @@ Page({
     wx.navigateToMiniProgram({
       appId: event.currentTarget.dataset.appid,
       path: event.currentTarget.dataset.path,
-      extraData: {},
-      envVersion: 'develop',
+      extraData: { token: wx.getStorageSync("aldstat_uuid")},
+      envVersion: 'release',
       success(res) {
         console.log(res)
       }
@@ -103,7 +103,7 @@ Page({
        }
        console.log(res)
      })
-
+    
 
    },
 
@@ -249,6 +249,21 @@ Page({
   //
   onLoad: function(options) {
     let that = this;
+
+
+    
+    Banner.getBanner().then(res => {
+      if (res.data.code == 200) {
+        
+        that.setData({
+          showAwl: res.data.body.pubType==10?true:false
+        })
+      }
+      console.log(res)
+    })
+
+
+
     this.getScrollTop();
     qqmapsdk = new QQMapWX({
       key: 'HG5BZ-TRHW3-5R737-33FXO-KNHNE-ESB5F'

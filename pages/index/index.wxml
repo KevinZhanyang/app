@@ -1,5 +1,9 @@
 <!-- SEARCH START -->
-
+ <view wx:if="{{showAwl==true}}">
+      <button  bindtap='jumpApp' data-appid="wxe5a82cc8d15bd3de">
+          <image   class="edit" mode="aspectFit" src='/static/img/pms.gif'/>
+      </button>
+  </view>
   <!-- <view class='head'>
     <image src='/static/img/task_background_2x.png'></image>
   </view> -->

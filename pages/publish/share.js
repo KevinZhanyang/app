@@ -1,7 +1,7 @@
 //
 import { Article } from '../../model/article';
 import { Share } from '../../model/share';
-
+import { Activity } from "../../model/activity";
 //
 Page({
   data: {
@@ -17,9 +17,39 @@ Page({
     guideStatus: 0, // 0显示|1不显示
     //
     showDeclaration: false,
+    
+  },
+  postPacket(){
+    this.setData({
+      receiveRedPacketInterface: false,
+    });
+      wx.navigateTo({
+        url: "/pages/activity/index",
+      })
+
+  },
+  closeGetRedpacketPopupWindow() {
+    this.setData({
+      receiveRedPacketInterface: false,
+    });
   },
   //
   onLoad(options) {
+    let that = this;
+    Activity.getActivity().then(res => {
+      console.log(res)
+      var array = [];
+      if (wx.getStorageSync(res.data.body.code) == res.data.body.code) {
+      
+        wx.setStorageSync("limit", 1);
+      } else {
+        wx.setStorageSync(res.data.body.code, res.data.body.code);
+        wx.setStorageSync("limit", 0);
+      }
+    });
+
+
+
     //
     let articleId = options.id;
 
@@ -36,8 +66,12 @@ Page({
     // 初始化来判断是否分享到群
     this.prepareShare();
 
-    // 初始化向导图
-    this.initGuide();
+    if (wx.getStorageSync("limit")!='1'){
+      this.setData({
+        receiveRedPacketInterface: true
+      })
+   }
+   
   },
   //
   prepareShare() {
@@ -58,6 +92,11 @@ Page({
           shareImg: result.thumbnail,
         });
       });
+  },
+
+  onShow(){
+    // 初始化向导图
+    this.initGuide();
   },
   /*
   loadArticle(articleId) {

@@ -1,4 +1,13 @@
 /* search */
+
+.edit {
+  width: 120rpx;
+  height: 120rpx;
+  position: fixed;
+  top: 300rpx;
+  right: 40rpx;
+  z-index: 99;
+}
 page{
 /* background-color: #fff; */
 }

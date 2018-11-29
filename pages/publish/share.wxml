@@ -13,7 +13,7 @@
 		</view>
 		<!-- sp -->
 		<view class="effect">把宝贝分享给好友 才能卖得更快哦</view>
-		<view  wx:if="{{ guideStatus !== 0 }}" class="activity">
+		<view  class="activity">
 			<view class="moments" bindtap="showCircleImg">
 				朋友圈
 			</view>
@@ -26,9 +26,9 @@
 </view>
 <!-- ADVERTISEMENT END -->
 <!-- GUIDE START -->
-<view class="guide-layer z-human" wx:if="{{ guideStatus == 0 }}">
+<view class="guide-layer z-human" wx:if="{{ !receiveRedPacketInterface&&guideStatus == 0 }}">
 </view>
-<view class="_guide z-elves" wx:if="{{ guideStatus == 0 }}">
+<view class="_guide z-elves" wx:if="{{ !receiveRedPacketInterface&&guideStatus == 0 }}">
     <view class="guide">
         <view class="close" bindtap="closeGuide"></view>
     </view>
@@ -43,5 +43,15 @@
 			北美二手社作为提供二手信息发布平台，不对二手交易结果和交易中发生的事故承担责任，二手信息卖家和买家对此承担责任 北美二手社会在法律范围内尽可能地规范、督促用户遵守相关法律和平台使用规则，营造良好的平台使用环境。感谢您的支持。
 		</view>
 	</view>
+</view>
+
+
+
+<view class="_congratulate congratulate_ z-human" wx:if="{{ receiveRedPacketInterface }}">
+  <view class="congratulate z-elves">
+    <view class="close" bindtap="closeGetRedpacketPopupWindow">X</view>
+    <view class="content"></view>
+    <button class="open" bindtap="postPacket"></button>
+  </view>
 </view>
 <!-- DECLARATION CONTENT END -->

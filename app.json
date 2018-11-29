@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/activity/index",
+
     "pages/index/index",
+        "pages/activity/index",
     "pages/task/index",
     "pages/school/index",
     "pages/exchange/index",
@@ -10,7 +11,7 @@
     "pages/article/item",
     "pages/packet/index",
     "pages/publish/index",
-    "pages/publish/share",
+"pages/publish/share",
     "pages/publish/moments",
     "pages/published/index",
     "pages/buy/index",
