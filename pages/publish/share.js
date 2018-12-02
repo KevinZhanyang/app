@@ -1,7 +1,9 @@
 //
+var util = require("../../utils/util.js");
 import { Article } from '../../model/article';
 import { Share } from '../../model/share';
 import { Activity } from "../../model/activity";
+var uploadImage = require('../../utils/uploadFile.js');
 //
 Page({
   data: {
@@ -9,6 +11,7 @@ Page({
     article: {
       id: 0,
     },
+
     // articleImgs: [],
     // 分享
     shareImg: '', // 微信朋友|群的照片
@@ -33,9 +36,212 @@ Page({
       receiveRedPacketInterface: false,
     });
   },
+  // 阻目下层页面划动
+  preventTouchMove() {
+    this.setData({
+      showShareMoment: false,
+    })
+    wx.hideLoading();
+  },
+  closeshowShareMoment() {
+
+    this.setData({
+      showShareMoment: false,
+
+    })
+    wx.hideLoading();
+  },
+
+  getSystemInfo: function () {
+    var t = this;
+    wx.getSystemInfo({
+      success: function (a) {
+        //screenWidth,screenHeight屏幕宽高
+        var i = a.screenWidth / 750;
+        t.setData({
+          screenWidth: i,
+          canvasWidth: a.screenWidth / 750 * 750,
+          canvasHeight: a.screenWidth / 750 * 1089
+        })
+      }
+    })
+  },
+
+  sys: function () {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          windowW: res.windowWidth,
+          windowH: res.windowHeight
+        })
+      },
+    })
+  },
+  bginfo: function () {
+    var that = this;
+    wx.downloadFile({
+      url: 'https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-12-02 18:39:45/1543747185095110.png',//注意公众平台是否配置相应的域名
+      success: function (res) {
+        that.setData({
+          canvasimgbg: res.tempFilePath
+        })
+      }
+    })
+  },
+
+  bgCover: function (bgCover) {
+    var that = this;
+    wx.downloadFile({
+      url: bgCover.replace("http://img.beimei2.com","https://used-america.oss-us-west-1.aliyuncs.com"),//注意公众平台是否配置相应的域名
+      success: function (res) {
+        that.setData({
+          bgCover: res.tempFilePath
+        })
+      }
+    })
+  },
+  bgQrcode: function () {
+    var that = this;
+    wx.downloadFile({
+      url: this.data.article.share_img,//注意公众平台是否配置相应的域名
+      success: function (res) {
+        that.setData({
+          qrcode: res.tempFilePath
+        })
+      }
+    })
+  },
+  canvasdraw: function (canvas) {
+    var that = this;
+    var windowW = that.data.windowW;
+    var windowH = that.data.windowH;
+    var canvasimgbg = that.data.canvasimgbg;
+    var canvasimg1 = that.data.bgCover;
+    var qrcode = that.data.qrcode;
+    canvas.drawImage(canvasimgbg, 0, 0, that.data.canvasWidth*1.2, that.data.canvasHeight*0.9);
+    canvas.drawImage(canvasimg1, 30, 70, that.data.canvasWidth , that.data.canvasHeight*0.5);
+    canvas.drawImage(qrcode, that.data.canvasWidth*0.8, that.data.canvasHeight * 0.8, that.data.canvasWidth*0.2, that.data.canvasHeight * 0.2);
+    // canvas.setFontSize(20)
+    // canvas.fillText('Hello', 200, 200)
+
+    canvas.draw(true, setTimeout(function () {
+      console.log("jhkjhkhkhk")
+      that.daochu()
+    }, 1000));
+    
+  },
+  daochu: function () {
+    console.log('a');
+    var that = this;
+    var windowW = that.data.windowW;
+    var windowH = that.data.windowH;
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: windowW,
+      height: windowH,
+      destWidth: windowW,
+      destHeight: windowH,
+      canvasId: 'shareCanvas',
+      success: function (res) {
+        console.log(res)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(res) {
+            console.log(res)
+          }
+        })
+        that.upload(res);
+        // wx.previewImage({
+        //   urls: [res.tempFilePath],
+        // })
+      },
+      error:function(err){
+console.log(err)
+      }
+    })
+  },
+
+  upload(res){
+    var nowTime = util.formatTime(new Date());
+    //显示消息提示框
+    wx.showLoading({
+      title: '上传中' + 1 + '/' + 1,
+      mask: true
+    })
+    console.log(res.tempFilePath);
+
+    //上传图片
+    //你的域名下的/cbb文件下的/当前年月日文件下的/图片.png
+    //图片路径可自行修改
+    uploadImage(res.tempFilePath, 'cbb/' + nowTime + '/',
+      function (result) {
+        console.log("======上传成功图片地址为：", result);
+        that.setData({
+          qrcodeUrl: result,
+        })
+        wx.hideLoading();
+      }, function (result) {
+        console.log("======上传失败======", result);
+        wx.hideLoading()
+      }
+    )
+
+
+
+  },
+
+
+
+  showCircleImg() {
+    let that = this;
+    this.setData({
+      showShareMoment: true,
+    })
+    var canvas = wx.createCanvasContext('shareCanvas');
+    that.canvasdraw(canvas);
+  },
+  saveImg() {
+    let that = this;
+      wx.getImageInfo({
+        src: that.data.showShareMomentUrlPath,
+        success: function (result) {
+          console.log("--------->>>>>>>");
+          console.log(result);
+          wx.saveImageToPhotosAlbum({
+            filePath: result.path,
+            success: (res) => {
+              that.setData({
+                showShareMoment: false
+              })
+              wx.showLoading({
+                title: '保存成功',
+                duration: 1500
+              })
+            },
+            fail: (err) => {
+              console.log(err)
+              wx.showLoading({
+                title: '保存失败',
+                duration: 1500
+              })
+
+            }
+          })
+        },
+        error: function (err) {
+          console.log("--------->>>>>>>");
+          console.log(err);
+        }
+      })
+  },
   //
   onLoad(options) {
     let that = this;
+    that.sys();
+    that.bginfo();
+    that.getSystemInfo();
     Activity.getActivity().then(res => {
       console.log(res)
       var array = [];
@@ -48,20 +254,12 @@ Page({
       }
     });
 
-
-
     //
-    let articleId = options.id;
-
-    // 下载新闻信息
+    let articleId = 2149;
+    // // 下载新闻信息
     // this.loadArticle(articleId);
 
-    // 下载朋友图照片
-    this.loadCircleImg(articleId);
-
-    // 下载分享给用户|群的照片
     this.loadShare(articleId);
-    // this.loadArticleImg(articleId); // 下载图片后下载
 
     // 初始化来判断是否分享到群
     this.prepareShare();
@@ -80,7 +278,25 @@ Page({
       withShareTicket: true
     });
   },
-  // 下载朋友圈照片
+
+
+  onShow(){
+    // 初始化向导图
+    this.initGuide();
+  },
+  
+  loadArticle(articleId) {
+      // let that = this;
+      // Article.item(articleId)
+      // .then(result => {
+      //     let article = result.data;
+      //     that.setData({
+      //         article: article
+      //     });
+       
+      // });
+  },
+
   loadShare(articleId) {
     //
     let that = this;
@@ -91,77 +307,24 @@ Page({
           article: result.article,
           shareImg: result.thumbnail,
         });
+
+        that.bgCover(result.thumbnail);
+        that.bgQrcode();
       });
   },
 
-  onShow(){
-    // 初始化向导图
-    this.initGuide();
-  },
-  /*
-  loadArticle(articleId) {
-      let that = this;
-      Article.item(articleId)
-      .then(result => {
-          let article = result.data;
-          that.setData({
-              article: article,
-          });
-      });
-  },
-  */
-  //
-  /*
-  loadArticleImg(articleId) {
-      let that = this;
-      Article.getImg(articleId)
-      .then(res => {
-          let images = res.data;
-          let imageUrl = images[0].img;
-          // let shareImgUrl = images[0].share_img;
-          for (let x in images) {
-              if (images[x].is_cover == 1) {
-                  imageUrl = images[x].img;
-                  // shareImgUrl = images[x].share_img;
-              }
-          }
-          //
-          that.setData({
-              imageUrl: imageUrl,
-              // shareImgUrl: shareImgUrl,
-          });
 
-          //
-          that.getShareImg(articleId);
-      });
-  },
-  */
-  //
+
+
+
+
+
+
+
+
   onShareAppMessage(res) {
     //
     let that = this;
-
-    /*
-    let res = {
-        'form': 'button',
-        target: {
-            //
-        }  
-    };
-    */
-    //console.log('log share res: -----------------------');
-    // console.log(res);
-    /* 
-    if (res.from === 'button') {
-    // 来自页面内转发按钮
-    that.data.shareBtn = true;
-    } else {
-    //来自右上角转发
-    that.data.shareBtn = false;
-    }
-    */
-
-    //
     let title = this.data.article.content;
     let path = '/pages/article/item?id=' + this.data.article.id;
     let imageUrl = this.data.shareImg == 'http://img.beimei2.com/static/program/img/default/share.jpg?x-oss-process=style/small_thumbnail' ? 'http://static.124115.com/static/program/img/index/share.png' : this.data.shareImg;
@@ -175,20 +338,6 @@ Page({
         //
         if (res.errMsg == 'shareAppMessage:ok') {
           console.log('share success');
-          /*
-          //分享为按钮转发
-          if (that.data.shareBtn) {
-              //判断是否分享到群
-              if (res.hasOwnProperty('shareTickets')) {
-                  console.log(res.shareTickets[0]);
-                  //分享到群
-                  that.data.isshare = 1;
-              } else {
-                  // 分享到个人
-                  that.data.isshare = 0;
-              }
-          }
-          */
           that.postShare();
         } else {
           console.log('share fail');
@@ -221,58 +370,7 @@ Page({
         //
       });
   },
-  /* circle start */
-  loadCircleImg(articleId) {
-    //
-    let that = this;
-    Share.getCircleImg(articleId)
-      .then(res => {
-        let img = res.data;
-        that.setData({
-          circleImg: img,
-        });
-      });
-    //
-  },
-  showCircleImg() {
-    //
-    let url = this.data.circleImg;
-    if (url.length == 0) {
-      setTimeout(function () {
-        //
-        if (ulr.length == 0) {
-          //
-          setTimeout(function () {
-            //
-            wx.previewImage({
-              urls: [
-                url,
-              ],
-            });
-            //
-          }, 500);
-          //
-        } else {
-          //
-          wx.previewImage({
-            urls: [
-              url,
-            ],
-          });
-          //
-        }
-        //
-      }, 500);
-    } else {
-      wx.previewImage({
-        urls: [
-          url,
-        ],
-      });
-    }
-    //
-  },
-  /* circle end */
+
   /* guide start */
   initGuide() {
     let that = this;

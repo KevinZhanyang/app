@@ -111,24 +111,24 @@ Page({
     });
     //控制国内用户不能上传
     let that = this;
-    // this.publishShow().then(function (result) {
-    //   var locationData = result.data;
-    //   if (locationData.code == 200 && locationData.body && locationData.body.data.country_id == 'CN' && locationData.body.data.country =="中国") {
-    //     that.setData({
-    //       publishedShow: false,
-    //     });
-    //     wx.showModal({
-    //       title: '发布提示',
-    //       content: '暂不支持国内用户上传！',
-    //       showCancel: false,
-    //       success:function(){
-    //         wx.navigateBack({
+    this.publishShow().then(function (result) {
+      var locationData = result.data;
+      if (locationData.code == 200 && locationData.body && locationData.body.data.country_id == 'CN' && locationData.body.data.country =="中国") {
+        that.setData({
+          publishedShow: false,
+        });
+        wx.showModal({
+          title: '发布提示',
+          content: '暂不支持国内用户上传！',
+          showCancel: false,
+          success:function(){
+            wx.navigateBack({
               
-    //         })
-    //       }
-    //     })
-    //   }
-    // });
+            })
+          }
+        })
+      }
+    });
 
     // 如果没有授权地理位置，转到授权
     User.testAuthorizeUserLocation()

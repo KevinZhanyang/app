@@ -104,7 +104,6 @@ Page({
 
   selectTagV2(event) {
 
-
     let id = event.currentTarget.dataset["id"];
     let selectTag = this.data.selectTag;
     let tagList = this.data.tagList;
@@ -960,10 +959,8 @@ Page({
             }
             console.log(articleId)
             Article.update(updateData).then(res => {
-
+              that.skip(articleId);
             })
-            that.skip(articleId);
-
           });
         //
       });
@@ -984,9 +981,11 @@ Page({
       complete: function(res) {
         let url = '/pages/publish/share?id=' + articleId;
         wx.hideLoading();
-        wx.redirectTo({
-          url: url,
-        });
+        setTimeout(function(){
+          wx.redirectTo({
+            url: url,
+          });
+        },500)
       }
     });
     //

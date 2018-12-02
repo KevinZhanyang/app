@@ -55,3 +55,35 @@
   </view>
 </view>
 <!-- DECLARATION CONTENT END -->
+
+
+
+<view class="popup" wx:if='{{showShareMoment}}' bindtap='preventTouchMove'></view>
+<view  wx:if='{{showShareMoment}}' >
+  <view class="popup_container">
+    <view class='popup_top'>
+      <view class='popup_top_txt'>
+        保存图片分享到朋友圈吧
+      </view>
+
+      <view class='popup_top_img' bindtap='closeshowShareMoment'>
+
+        <image src="/static/img/x.png"></image>
+      </view>
+
+    </view>
+    <view class='popup_middle'>
+      <image src='{{showShareMomentUrlPath}}'></image>
+
+
+    </view>
+    <view class='popup_bottom' bindtap='saveImg'>
+
+
+      <button class="published" disabled="{{ publishButtonDisabled }}" size="default" formType="submit">保存到相册</button>
+
+    </view>
+
+  </view>
+
+</view>

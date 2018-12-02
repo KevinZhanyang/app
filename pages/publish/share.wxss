@@ -1,3 +1,85 @@
+/* packet */
+.popup {
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0, 0, 0, .7);
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: 98;
+}
+
+
+.popup_container{
+  width: 750rpx;
+  background-color: #fff;
+  height: 1159rpx;
+  position:fixed;
+  bottom:0rpx;
+  left:0rpx;
+  padding:42rpx 22rpx;
+  display:flex;
+  flex-direction:column;
+  z-index:999;
+}
+
+.popup_top{
+  display: flex;
+  justify-content: start;
+  align-content: center;
+ height: 27rpx;
+}
+.popup_top_txt{
+ width:328rpx;
+height:27rpx;
+font-size:28rpx;
+font-family:SimHei;
+font-weight:400;
+color:rgba(159,159,159,1);
+line-height:30rpx;
+margin-left: 202rpx;
+word-wrap: nowrap;
+}
+.popup_top_img{
+  width: 24rpx;
+  height: 24rpx;
+  line-height: 27rpx;
+  margin-left:auto;
+  margin-right: 15rpx;
+}
+.popup_top_img image{
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.popup_middle{
+    width: 690rpx;
+    height: 705rpx;
+    /* margin-left: 10rpx; */
+    /* margin-top:40rpx; */
+
+}
+
+.popup_middle image{
+    width: 486rpx;
+    height: 705rpx;
+}
+
+.popup_bottom {		
+	position:fixed;
+	right:0rpx;
+	left:25rpx;
+	bottom:50rpx;
+	padding:15rpx 30rpx;
+  width: 700rpx;
+
+}
+.popup_bottom .published {
+	background-color:#fed406;
+	color:white;
+}
+
+
 page {
 }
 ._share {
