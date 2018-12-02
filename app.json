@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/publish/share",
+   
     "pages/index/index",
-     
+    "pages/publish/share",
     "pages/activity/index",
     "pages/task/index",
     "pages/school/index",

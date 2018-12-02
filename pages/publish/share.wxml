@@ -70,15 +70,17 @@
       </view>
 
     </view>
-    <view class='popup_middle'>
-      <!-- <image src='{{showShareMomentUrlPath}}'></image> -->
-<canvas canvas-id="shareCanvas" style="width:750rpx;height:1089rpx" />
+    <view class="{{canvasIndex==0?'popup_middle':'popup_middle_2'}}">
+
+      <block wx:if="{{canvasIndex==0}}">
+       <canvas canvas-id="shareCanvas" style="width:750rpx;height:1089rpx" />
+      </block>
+      <block wx:else>
+       <image mode='aspectFit' src='{{qrcodeUrl}}'></image>
+      </block>
     </view>
     <view class='popup_bottom' bindtap='saveImg'>
-
-
       <button class="published" disabled="{{ publishButtonDisabled }}" size="default" formType="submit">保存到相册</button>
-
     </view>
 
   </view>

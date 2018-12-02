@@ -17,7 +17,7 @@
   position:fixed;
   bottom:0rpx;
   left:0rpx;
-  padding:42rpx 22rpx;
+  padding:22rpx 0rpx;
   display:flex;
   flex-direction:column;
   z-index:999;
@@ -59,17 +59,23 @@ word-wrap: nowrap;
     /* margin-top:40rpx; */
 
 }
-
-.popup_middle image{
-    width: 486rpx;
+.popup_middle_2{
+    width: 690rpx;
     height: 705rpx;
+    margin-left: 10rpx;
+    margin-top:20rpx;
+}
+
+
+.popup_middle_2 image{
+    width:750rpx;height:1089rpx
 }
 
 .popup_bottom {		
 	position:fixed;
 	right:0rpx;
 	left:25rpx;
-	bottom:50rpx;
+	bottom:10rpx;
 	padding:15rpx 30rpx;
   width: 700rpx;
 

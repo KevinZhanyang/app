@@ -94,6 +94,9 @@ Page({
     } else {
       articleId = options.id;
     }
+    if(options.scene){
+      articleId = encodeURIComponent(options.scene)
+    }
 
     let that = this;
 

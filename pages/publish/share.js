@@ -1,8 +1,14 @@
 //
 var util = require("../../utils/util.js");
-import { Article } from '../../model/article';
-import { Share } from '../../model/share';
-import { Activity } from "../../model/activity";
+import {
+  Article
+} from '../../model/article';
+import {
+  Share
+} from '../../model/share';
+import {
+  Activity
+} from "../../model/activity";
 var uploadImage = require('../../utils/uploadFile.js');
 //
 Page({
@@ -20,15 +26,15 @@ Page({
     guideStatus: 0, // 0显示|1不显示
     //
     showDeclaration: false,
-    
+    canvasIndex: 0
   },
-  postPacket(){
+  postPacket() {
     this.setData({
       receiveRedPacketInterface: false,
     });
-      wx.navigateTo({
-        url: "/pages/activity/index",
-      })
+    wx.navigateTo({
+      url: "/pages/activity/index",
+    })
 
   },
   closeGetRedpacketPopupWindow() {
@@ -40,22 +46,23 @@ Page({
   preventTouchMove() {
     this.setData({
       showShareMoment: false,
+      canvasIndex: 1
     })
+
     wx.hideLoading();
   },
   closeshowShareMoment() {
-
     this.setData({
       showShareMoment: false,
-
+      canvasIndex: 1
     })
     wx.hideLoading();
   },
 
-  getSystemInfo: function () {
+  getSystemInfo: function() {
     var t = this;
     wx.getSystemInfo({
-      success: function (a) {
+      success: function(a) {
         //screenWidth,screenHeight屏幕宽高
         var i = a.screenWidth / 750;
         t.setData({
@@ -67,10 +74,10 @@ Page({
     })
   },
 
-  sys: function () {
+  sys: function() {
     var that = this;
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         that.setData({
           windowW: res.windowWidth,
           windowH: res.windowHeight
@@ -78,60 +85,63 @@ Page({
       },
     })
   },
-  bginfo: function () {
+  bginfo: function() {
     var that = this;
-    wx.downloadFile({
-      url: 'https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-12-02 18:39:45/1543747185095110.png',//注意公众平台是否配置相应的域名
-      success: function (res) {
-        that.setData({
-          canvasimgbg: res.tempFilePath
-        })
-      }
-    })
+
   },
 
-  bgCover: function (bgCover) {
+  bgCover: function(bgCover) {
     var that = this;
     wx.downloadFile({
-      url: bgCover.replace("http://img.beimei2.com","https://used-america.oss-us-west-1.aliyuncs.com"),//注意公众平台是否配置相应的域名
-      success: function (res) {
+      url: bgCover.replace("http://img.beimei2.com", "https://used-america.oss-us-west-1.aliyuncs.com"), //注意公众平台是否配置相应的域名
+      success: function(res) {
         that.setData({
           bgCover: res.tempFilePath
         })
+        wx.downloadFile({
+          url: 'https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-12-02 18:39:45/1543747185095110.png', //注意公众平台是否配置相应的域名
+          success: function(res) {
+            that.setData({
+              canvasimgbg: res.tempFilePath
+            })
+            var canvas = wx.createCanvasContext('shareCanvas');
+            that.canvasdraw(canvas);
+          }
+        })
       }
     })
   },
-  bgQrcode: function () {
+  bgQrcode: function() {
     var that = this;
     wx.downloadFile({
-      url: this.data.article.share_img,//注意公众平台是否配置相应的域名
-      success: function (res) {
+      url: this.data.article.share_img, //注意公众平台是否配置相应的域名
+      success: function(res) {
         that.setData({
           qrcode: res.tempFilePath
         })
       }
     })
   },
-  canvasdraw: function (canvas) {
+  canvasdraw: function(canvas) {
     var that = this;
     var windowW = that.data.windowW;
     var windowH = that.data.windowH;
     var canvasimgbg = that.data.canvasimgbg;
     var canvasimg1 = that.data.bgCover;
     var qrcode = that.data.qrcode;
-    canvas.drawImage(canvasimgbg, 0, 0, that.data.canvasWidth*1.2, that.data.canvasHeight*0.9);
-    canvas.drawImage(canvasimg1, 30, 70, that.data.canvasWidth , that.data.canvasHeight*0.5);
-    canvas.drawImage(qrcode, that.data.canvasWidth*0.8, that.data.canvasHeight * 0.8, that.data.canvasWidth*0.2, that.data.canvasHeight * 0.2);
+    canvas.drawImage(canvasimgbg, 0, 0, that.data.canvasWidth, that.data.canvasHeight * 0.9);
+    canvas.drawImage(canvasimg1, 25, 80, that.data.canvasWidth * 0.85, that.data.canvasHeight * 0.5);
+    canvas.drawImage(qrcode, that.data.canvasWidth * 0.65, that.data.canvasHeight * 0.65, that.data.canvasWidth / 3, that.data.canvasHeight / 5);
     // canvas.setFontSize(20)
     // canvas.fillText('Hello', 200, 200)
 
-    canvas.draw(true, setTimeout(function () {
+    canvas.draw(true, setTimeout(function() {
       console.log("jhkjhkhkhk")
       that.daochu()
     }, 1000));
-    
+
   },
-  daochu: function () {
+  daochu: function() {
     console.log('a');
     var that = this;
     var windowW = that.data.windowW;
@@ -144,97 +154,153 @@ Page({
       destWidth: windowW,
       destHeight: windowH,
       canvasId: 'shareCanvas',
-      success: function (res) {
+      success: function(res) {
         console.log(res)
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success(res) {
-            console.log(res)
-          }
-        })
         that.upload(res);
-        // wx.previewImage({
-        //   urls: [res.tempFilePath],
-        // })
       },
-      error:function(err){
-console.log(err)
+      error: function(err) {
+        console.log(err)
       }
     })
   },
 
-  upload(res){
+  upload(res) {
+    let that = this;
     var nowTime = util.formatTime(new Date());
-    //显示消息提示框
-    wx.showLoading({
-      title: '上传中' + 1 + '/' + 1,
-      mask: true
-    })
     console.log(res.tempFilePath);
-
     //上传图片
     //你的域名下的/cbb文件下的/当前年月日文件下的/图片.png
     //图片路径可自行修改
     uploadImage(res.tempFilePath, 'cbb/' + nowTime + '/',
-      function (result) {
+      function(result) {
         console.log("======上传成功图片地址为：", result);
         that.setData({
           qrcodeUrl: result,
         })
+        var updateData = {
+          circleImg: result.replace("https://used-america.oss-us-west-1.aliyuncs.com/", ""),
+          id: that.data.article.id
+        }
+        // console.log(articleId)
+        Article.update(updateData).then(res => {})
         wx.hideLoading();
-      }, function (result) {
+      },
+      function(result) {
         console.log("======上传失败======", result);
         wx.hideLoading()
       }
     )
-
-
-
   },
-
-
 
   showCircleImg() {
     let that = this;
     this.setData({
       showShareMoment: true,
+
     })
-    var canvas = wx.createCanvasContext('shareCanvas');
-    that.canvasdraw(canvas);
   },
   saveImg() {
     let that = this;
-      wx.getImageInfo({
-        src: that.data.showShareMomentUrlPath,
-        success: function (result) {
-          console.log("--------->>>>>>>");
-          console.log(result);
-          wx.saveImageToPhotosAlbum({
-            filePath: result.path,
-            success: (res) => {
-              that.setData({
-                showShareMoment: false
-              })
-              wx.showLoading({
-                title: '保存成功',
-                duration: 1500
-              })
-            },
-            fail: (err) => {
-              console.log(err)
-              wx.showLoading({
-                title: '保存失败',
-                duration: 1500
-              })
+    
+    
+     wx.showLoading({
+       
+     })
+     if(!that.data.qrcodeUrl){
+        that.data.setInter = setInterval(
+                   function  () {
+                     if (that.data.qrcodeUrl){
+                       clearInterval(that.data.setInter)
+                       wx.getImageInfo({
+                         src: that.data.qrcodeUrl,
+                         success: function (result) {
+                           console.log("--------->>>>>>>");
+                           console.log(result);
+                           wx.hideLoading()
+                           wx.saveImageToPhotosAlbum({
+                             filePath: result.path,
+                             success: (res) => {
+                               that.setData({
+                                 showShareMoment: false,
+                                 canvasIndex: 1
+                               })
+                               wx.showLoading({
+                                 title: '保存成功',
+                                 duration: 1500,
+                               })
+                             },
+                             fail: (err) => {
+                               console.log(err)
+                               that.setData({
+                                 showShareMoment: false,
+                                 canvasIndex: 1
+                               })
+                               wx.showLoading({
+                                 title: '保存失败',
+                                 duration: 1500,
 
-            }
-          })
-        },
-        error: function (err) {
-          console.log("--------->>>>>>>");
-          console.log(err);
-        }
-      })
+                               })
+
+                             }
+                           })
+                         },
+                         error: function (err) {
+                           console.log("--------->>>>>>>");
+                           console.log(err);
+                           wx.hideLoading()
+                         }
+                       })
+
+
+                       
+                      }
+                   }
+             , 2000);
+     
+     }else{
+       wx.getImageInfo({
+         src: that.data.qrcodeUrl,
+         success: function (result) {
+           console.log("--------->>>>>>>");
+           console.log(result);
+           wx.hideLoading()
+           wx.saveImageToPhotosAlbum({
+             filePath: result.path,
+             success: (res) => {
+               that.setData({
+                 showShareMoment: false,
+                 canvasIndex: 1
+               })
+               wx.showLoading({
+                 title: '保存成功',
+                 duration: 1500,
+               })
+             },
+             fail: (err) => {
+               console.log(err)
+               that.setData({
+                 showShareMoment: false,
+                 canvasIndex: 1
+               })
+               wx.showLoading({
+                 title: '保存失败',
+                 duration: 1500,
+               })
+             }
+           })
+         },
+         error: function (err) {
+           console.log("--------->>>>>>>");
+           console.log(err);
+           wx.hideLoading()
+         }
+       })
+
+     }
+   
+
+
+  
   },
   //
   onLoad(options) {
@@ -246,7 +312,7 @@ console.log(err)
       console.log(res)
       var array = [];
       if (wx.getStorageSync(res.data.body.code) == res.data.body.code) {
-      
+
         wx.setStorageSync("limit", 1);
       } else {
         wx.setStorageSync(res.data.body.code, res.data.body.code);
@@ -255,7 +321,7 @@ console.log(err)
     });
 
     //
-    let articleId = 2149;
+    let articleId = options.id;
     // // 下载新闻信息
     // this.loadArticle(articleId);
 
@@ -264,12 +330,12 @@ console.log(err)
     // 初始化来判断是否分享到群
     this.prepareShare();
 
-    if (wx.getStorageSync("limit")!='1'){
+    if (wx.getStorageSync("limit") != '1') {
       this.setData({
         receiveRedPacketInterface: true
       })
-   }
-   
+    }
+
   },
   //
   prepareShare() {
@@ -280,21 +346,21 @@ console.log(err)
   },
 
 
-  onShow(){
+  onShow() {
     // 初始化向导图
     this.initGuide();
   },
-  
+
   loadArticle(articleId) {
-      // let that = this;
-      // Article.item(articleId)
-      // .then(result => {
-      //     let article = result.data;
-      //     that.setData({
-      //         article: article
-      //     });
-       
-      // });
+    // let that = this;
+    // Article.item(articleId)
+    // .then(result => {
+    //     let article = result.data;
+    //     that.setData({
+    //         article: article
+    //     });
+
+    // });
   },
 
   loadShare(articleId) {
@@ -307,7 +373,6 @@ console.log(err)
           article: result.article,
           shareImg: result.thumbnail,
         });
-
         that.bgCover(result.thumbnail);
         that.bgQrcode();
       });
@@ -334,7 +399,7 @@ console.log(err)
       path: path,
       imageUrl: imageUrl,
       // complete start 
-      complete: function (res) {
+      complete: function(res) {
         //
         if (res.errMsg == 'shareAppMessage:ok') {
           console.log('share success');
