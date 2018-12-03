@@ -104,8 +104,7 @@ Page({
             that.setData({
               canvasimgbg: res.tempFilePath
             })
-            var canvas = wx.createCanvasContext('shareCanvas');
-            that.canvasdraw(canvas);
+            that.bgQrcode();
           }
         })
       }
@@ -135,9 +134,8 @@ Page({
     // canvas.setFontSize(20)
     // canvas.fillText('Hello', 200, 200)
 
-    canvas.draw(true, setTimeout(function() {
-      console.log("jhkjhkhkhk")
-      that.daochu()
+    canvas.draw(false, setTimeout(function() {
+      that.daochu();
     }, 1000));
 
   },
@@ -163,8 +161,8 @@ Page({
       }
     })
   },
-
   upload(res) {
+    console.log('b');
     let that = this;
     var nowTime = util.formatTime(new Date());
     console.log(res.tempFilePath);
@@ -196,111 +194,110 @@ Page({
     let that = this;
     this.setData({
       showShareMoment: true,
-
     })
+    if (that.data.canvasIndex == 0) {
+      wx.showLoading({})
+      that.data.setInter = setInterval(          function () {
+        if (that.data.qrcode) {
+          wx.hideLoading()
+          clearInterval(that.data.setInter)
+          var canvas = wx.createCanvasContext('shareCanvas');
+          that.canvasdraw(canvas);
+        }
+      }    , 2000);
+    }
   },
   saveImg() {
     let that = this;
-    
-    
-     wx.showLoading({
-       
-     })
-     if(!that.data.qrcodeUrl){
-        that.data.setInter = setInterval(
-                   function  () {
-                     if (that.data.qrcodeUrl){
-                       clearInterval(that.data.setInter)
-                       wx.getImageInfo({
-                         src: that.data.qrcodeUrl,
-                         success: function (result) {
-                           console.log("--------->>>>>>>");
-                           console.log(result);
-                           wx.hideLoading()
-                           wx.saveImageToPhotosAlbum({
-                             filePath: result.path,
-                             success: (res) => {
-                               that.setData({
-                                 showShareMoment: false,
-                                 canvasIndex: 1
-                               })
-                               wx.showLoading({
-                                 title: '保存成功',
-                                 duration: 1500,
-                               })
-                             },
-                             fail: (err) => {
-                               console.log(err)
-                               that.setData({
-                                 showShareMoment: false,
-                                 canvasIndex: 1
-                               })
-                               wx.showLoading({
-                                 title: '保存失败',
-                                 duration: 1500,
+    wx.showLoading({})
+    if (!that.data.qrcodeUrl) { 
+      that.data.setInter = setInterval(          function () {
+        if (that.data.qrcodeUrl) {
+          clearInterval(that.data.setInter)
+          wx.getImageInfo({
+            src: that.data.qrcodeUrl,
+            success: function(result) {
+              console.log("--------->>>>>>>");
+              console.log(result);
+              wx.hideLoading()
+              wx.saveImageToPhotosAlbum({
+                filePath: result.path,
+                success: (res) => {
+                  that.setData({
+                    showShareMoment: false,
+                    canvasIndex: 1
+                  })
+                  wx.showLoading({
+                    title: '保存成功',
+                    duration: 1500,
+                  })
+                },
+                fail: (err) => {
+                  console.log(err)
+                  that.setData({
+                    showShareMoment: false,
+                    canvasIndex: 1
+                  })
+                  wx.showLoading({
+                    title: '保存失败',
+                    duration: 1500,
 
-                               })
+                  })
 
-                             }
-                           })
-                         },
-                         error: function (err) {
-                           console.log("--------->>>>>>>");
-                           console.log(err);
-                           wx.hideLoading()
-                         }
-                       })
+                }
+              })
+            },
+            error: function(err) {
+              console.log("--------->>>>>>>");
+              console.log(err);
+              wx.hideLoading()
+            }
+          })
 
 
-                       
-                      }
-                   }
-             , 2000);
-     
-     }else{
-       wx.getImageInfo({
-         src: that.data.qrcodeUrl,
-         success: function (result) {
-           console.log("--------->>>>>>>");
-           console.log(result);
-           wx.hideLoading()
-           wx.saveImageToPhotosAlbum({
-             filePath: result.path,
-             success: (res) => {
-               that.setData({
-                 showShareMoment: false,
-                 canvasIndex: 1
-               })
-               wx.showLoading({
-                 title: '保存成功',
-                 duration: 1500,
-               })
-             },
-             fail: (err) => {
-               console.log(err)
-               that.setData({
-                 showShareMoment: false,
-                 canvasIndex: 1
-               })
-               wx.showLoading({
-                 title: '保存失败',
-                 duration: 1500,
-               })
-             }
-           })
-         },
-         error: function (err) {
-           console.log("--------->>>>>>>");
-           console.log(err);
-           wx.hideLoading()
-         }
-       })
 
-     }
-   
+        }          
+      }    , 2000);
 
-
-  
+    } else {
+      wx.getImageInfo({
+        src: that.data.qrcodeUrl,
+        success: function(result) {
+          console.log("--------->>>>>>>");
+          console.log(result);
+          wx.hideLoading()
+          wx.saveImageToPhotosAlbum({
+            filePath: result.path,
+            success: (res) => {
+              that.setData({
+                showShareMoment: false,
+                canvasIndex: 1
+              })
+              wx.showLoading({
+                title: '保存成功',
+                duration: 1500,
+              })
+            },
+            fail: (err) => {
+              console.log(err)
+              that.setData({
+                showShareMoment: false,
+                canvasIndex: 1
+              })
+              wx.showLoading({
+                title: '保存失败',
+                duration: 1500,
+              })
+            }
+          })
+        },
+        error: function(err) {
+          console.log("--------->>>>>>>");
+          console.log(err);
+          wx.hideLoading()
+        }
+      })
+    }
   },
   //
   onLoad(options) {
@@ -374,7 +371,7 @@ Page({
           shareImg: result.thumbnail,
         });
         that.bgCover(result.thumbnail);
-        that.bgQrcode();
+
       });
   },
 

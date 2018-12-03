@@ -1,7 +1,9 @@
 {
   "pages": [
    
+  
     "pages/index/index",
+    "pages/buy/share",
     "pages/publish/share",
     "pages/activity/index",
     "pages/task/index",
@@ -15,7 +17,7 @@
     "pages/publish/moments",
     "pages/published/index",
     "pages/buy/index",
-    "pages/buy/share",
+   
     "pages/buy/moments",
     "pages/home/index",
     "pages/home/message",
