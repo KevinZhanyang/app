@@ -118,6 +118,19 @@ Page({
         that.setData({
           qrcode: res.tempFilePath
         })
+
+        wx.getImageInfo({
+          src: res.tempFilePath,
+          success: function (resImg) {
+            that.setData({
+              qrcodewidth: resImg.width,
+              qrcodeheight: resImg.height,
+            })
+          }
+        })
+
+
+
       }
     })
   },
@@ -129,11 +142,18 @@ Page({
     var canvasimg1 = that.data.bgCover;
     var qrcode = that.data.qrcode;
     canvas.drawImage(canvasimgbg, 0, 0, that.data.canvasWidth, that.data.canvasHeight * 0.9);
-    canvas.drawImage(canvasimg1, 25, 80, that.data.canvasWidth * 0.85, that.data.canvasHeight * 0.5);
-    canvas.drawImage(qrcode, that.data.canvasWidth * 0.65, that.data.canvasHeight * 0.65, that.data.canvasWidth / 3, that.data.canvasHeight / 5);
-    // canvas.setFontSize(20)
-    // canvas.fillText('Hello', 200, 200)
-
+    canvas.drawImage(canvasimg1, 25, 80, that.data.canvasWidth * 0.86, that.data.canvasHeight * 0.46);
+    canvas.drawImage(qrcode, that.data.canvasWidth * 0.68, that.data.canvasHeight * 0.69, that.data.qrcodewidth * 0.22, that.data.qrcodeheight * 0.21,430,430);
+    if (this.data.article.content.length>10){
+      canvas.setFontSize(24)
+      canvas.fillText(this.data.article.content.slice(0, 10), 25, that.data.canvasHeight * 0.73)
+      canvas.setFontSize(24)
+      canvas.fillText(this.data.article.content.slice(10, 20), 25, that.data.canvasHeight * 0.73 + 30)
+    }else{
+      canvas.setFontSize(24)
+      canvas.fillText(this.data.article.content.slice(0, 10), 25, that.data.canvasHeight * 0.76)
+    }
+  
     canvas.draw(false, setTimeout(function() {
       that.daochu();
     }, 1000));
@@ -150,7 +170,9 @@ Page({
       width: windowW,
       height: windowH,
       destWidth: windowW,
-      destHeight: windowH,
+      destHeight: windowH * 0.8,
+      fileType:'jpg',
+      quality:1,
       canvasId: 'shareCanvas',
       success: function(res) {
         console.log(res)
@@ -317,13 +339,11 @@ Page({
       }
     });
 
-    //
-    let articleId = options.id;
+    //2243
+    let articleId = 2243;
     // // 下载新闻信息
     // this.loadArticle(articleId);
-
     this.loadShare(articleId);
-
     // 初始化来判断是否分享到群
     this.prepareShare();
 

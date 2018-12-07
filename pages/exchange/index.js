@@ -34,7 +34,7 @@ Page({
     	Product.get().then(function(result){
     		var products = result.data;
     		that.setData({
-    			products: products,
+    			products: products.body,
     		});
     	});
     },

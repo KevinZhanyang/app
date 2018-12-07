@@ -15,13 +15,14 @@ Page({
     //
     onLoad: function(options){
         let productId = options.id;
+        console.log(productId)
     	this.loadProduct(productId);
     },
     //
     loadProduct: function(productId){
     	let that = this;
     	Product.item(productId).then(function(result){
-    		var product = result.data;
+    		var product = result.data.body;
     		that.setData({
     			product: product,
     		});
@@ -84,10 +85,14 @@ Page({
 
         //
         let express = {
-            name: name,
+            name: this.data.product.name,
+          content: this.data.product.name + '*' + this.data.product.getNum,
+          recipient: this.data.product.name,
             phone: phone,
             address: address,
-            product_id: productId,
+            productId: productId,
+            score: this.data.product.price,
+            result:'处理中'
         };
         Product.exchange(express)
         .then(res => {

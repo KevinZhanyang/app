@@ -4,7 +4,7 @@
 <!-- USER END -->
 <!-- EXCHANGE START -->
 <view class="_exchange">
-    <navigator url="/pages/exchange/index" hover-class="navigator-hover">
+    <navigator url="/pages/exchange/newPage" hover-class="navigator-hover">
     <view class="exchange">
         <image src="https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-18 19:25:35/1542540335233147.png"></image>
     </view>

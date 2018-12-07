@@ -1,14 +1,15 @@
 {
   "pages": [
-   
-  
+      "pages/publish/share",
     "pages/index/index",
+    "pages/exchange/newPage",
+    "pages/exchange/index",
+    "pages/exchange/rule",
     "pages/buy/share",
-    "pages/publish/share",
+
     "pages/activity/index",
     "pages/task/index",
     "pages/school/index",
-    "pages/exchange/index",
     "pages/exchange/express",
     "pages/article/index",
     "pages/article/item",
@@ -17,7 +18,6 @@
     "pages/publish/moments",
     "pages/published/index",
     "pages/buy/index",
-   
     "pages/buy/moments",
     "pages/home/index",
     "pages/home/message",
@@ -48,5 +48,4 @@
   "navigateToMiniProgramAppIdList": [
     "wxe5a82cc8d15bd3de"
   ]
-
 }

@@ -25,15 +25,15 @@
             <!-- CONTENT END -->
             <!-- images -->
             <view class="images" wx:if="{{ article.imgs.length == 3 }}">
-                <image class="image image-multi" wx:for="{{ article.imgs }}" mode="aspectFill" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
+                <image class="image image-multi" wx:for="{{ article.imgs }}" mode="widthFix" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
             </view>
 
              <view class="images" wx:if="{{ article.imgs.length >= 3 }}">
-                <image class="image image-multi" wx:if="{{index<3 }}" wx:for="{{ article.imgs }}" mode="aspectFill" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
+                <image class="image image-multi" wx:if="{{index<3 }}" wx:for="{{ article.imgs }}" mode="widthFix" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
             </view>
 
             <view class="images" wx:if="{{ article.imgs.length == 2 }}">
-                <image class="image image-double" wx:for="{{ article.imgs }}" mode="aspectFill" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
+                <image class="image image-double" wx:for="{{ article.imgs }}" mode="widthFix" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>
             </view>
             <view class="images" wx:if="{{ article.imgs.length == 1&&(article.noPage!=1||article.no_page==1)}}">
                 <image class="image image-single" mode="widthFix" wx:for="{{ article.imgs }}" wx:for-index="index" wx:for-item="img" wx:key="id" src="{{ img.img }}"></image>

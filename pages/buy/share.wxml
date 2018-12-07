@@ -13,7 +13,7 @@
 		</view>
 		<!-- sp -->
 		<view class="effect">把宝贝分享给好友 才能卖得更快哦</view>
-		<view   class="activity">
+		<view  class="activity">
 			<view class="moments" bindtap="showCircleImg">
 				朋友圈
 			</view>
@@ -56,8 +56,6 @@
 </view>
 <!-- DECLARATION CONTENT END -->
 
-
-
 <view class="popup" wx:if='{{showShareMoment}}' bindtap='preventTouchMove'></view>
 <view  wx:if='{{showShareMoment}}' >
   <view class="popup_container">
@@ -72,16 +70,17 @@
       </view>
 
     </view>
-    <view class='popup_middle'>
-      <image src='{{showShareMomentUrlPath}}'></image>
+    <view class="{{canvasIndex==0?'popup_middle':'popup_middle_2'}}">
 
-
+      <block wx:if="{{canvasIndex==0}}">
+       <canvas canvas-id="shareCanvas" style="width:750rpx;height:1089rpx" />
+      </block>
+      <block wx:else>
+       <image mode='aspectFit' src='{{qrcodeUrl}}'></image>
+      </block>
     </view>
     <view class='popup_bottom' bindtap='saveImg'>
-
-
       <button class="published" disabled="{{ publishButtonDisabled }}" size="default" formType="submit">保存到相册</button>
-
     </view>
 
   </view>

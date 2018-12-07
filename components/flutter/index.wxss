@@ -36,14 +36,14 @@
   padding-bottom: 30rpx;
   /* word-wrap: break-word; */
   text-align: justify;
-  height: 76rpx;
+  height: 70rpx;
 
   display: -webkit-box ;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-all;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp:2; 
+  -webkit-line-clamp:3;
 
   /* -webkit-animation: weuiLoading 1s steps(12, end) infinite; */
 }

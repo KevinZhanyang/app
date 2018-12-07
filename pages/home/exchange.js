@@ -30,7 +30,7 @@ Page({
     	let that = this;
     	Product.getExchanges()
     	.then(res => {
-    		let exchanges = res.data;
+        let exchanges = res.data.body.exchangesList;
     		that.setData({
     			exchanges: exchanges,
     		});

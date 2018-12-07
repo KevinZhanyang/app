@@ -584,7 +584,7 @@ export class Article
     //
     return new Promise(function (resolve, reject) {
       //
-      let url = Config.apiRoot + '/v1/articles';
+      let url = Config.apiRoot + '/v1/article/select';
       let options = {
         url: url,
         method: 'get',

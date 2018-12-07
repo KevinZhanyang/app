@@ -119,7 +119,7 @@ getCurrentUser(){
           })
         }
         that.getDetail();
-        this.getCurrentUser();
+        that.getCurrentUser();
       }else{
         wx.showLoading({
           title: '服务错误!',

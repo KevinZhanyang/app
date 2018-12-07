@@ -1,25 +1,15 @@
 <view class="free-WaterfallFlow">
-  <block>
-    <view class="flex-wrap " style="{{recentId==4||recentId==8?'height:583rpx !important;':''}}" wx:for="{{ articles }}" wx:for-index="recentId" wx:for-item="article" wx:key="id" wx:if="{{recentId%2==''}}">
-
+  <block  wx:for="{{ articles }}" wx:for-index="recentId" wx:for-item="article" wx:key="id" wx:if="{{recentId%2==''}}">
+   
       <block wx:if="{{recentId==6}}">
+       <view class="flex-wrap " style="{{recentId==6||recentId==10?'height:583rpx !important;':''}}">
         <!-- 活动入口 -->
-        <navigator url="/pages/exchange/index" hover-class="navigator-hover">
-          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.0jO3otl4oHIW3356a252e690e66b16ac1bdda180af05.png?x-oss-process=style/thumbnail"></image>
-         
+        <navigator url="/pages/exchange/newPage" hover-class="navigator-hover">
+          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-12-04 22:55:52/154393535274225.png"></image>
         </navigator>
-      </block>
+         </view>
 
-      <block wx:if="{{recentId==10}}">
-        <!-- 活动入口 -->
-        <navigator url="/pages/task/index" hover-class="navigator-hover">
-          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.TQuAnQITHByJ15e21a644cd7dbea834e886596fb32f1.jpg?x-oss-process=style/small_thumbnail"></image>
-         
-        </navigator>
-      </block>
-
-
-      <block wx:else>
+  <view class="flex-wrap">
         <navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
           <image class="pic" lazy-load="{{true}}" mode="aspectFill" src="{{article.imgs[0].img}}"></image>
           <view class="imageCount"><image class='currentarticle' src="/static/img/Art_like.png">{{key+1}}</image><view class='likeNum'>{{article.likes}}</view></view>
@@ -28,7 +18,7 @@
             <view class="head-containner">
               <navigator url="/pages/published/index?user_id={{ article.user_id }}" hover-class="navigator-hover">
                 <div class="head-flex">
-                  <image mode="widthFix" lazy-load="{{true}}" class="head-image" src="{{ article.avatar }}"></image>
+                  <image mode="widthFix" lazy-load="{{true}}" class="head-image" src="{{ article.avatar?article.avatar:'http://img.beimei2.com/static/program/img/default/avatar.png' }}"></image>
                   
                   <view class="head-box">
                     <view class="nickname">{{ article.nickname }}</view>
@@ -39,11 +29,69 @@
             </view>
           </view>
         </navigator>
+        </view>
+
+      </block>
+      <block wx:if="{{recentId==10}}">
+        <view class="flex-wrap " style="{{recentId==6||recentId==10?'height:583rpx !important;':''}}">
+        <!-- 活动入口 -->
+        <navigator url="/pages/task/index" hover-class="navigator-hover">
+          <image class="pic" lazy-load="{{true}}" mode="widthFix" src="http://img.beimei2.com/article/1846/wx31f8d157fbe5ebc8.o6zAJs-Sd36JvPoI_pj9FZrAnqaY.TQuAnQITHByJ15e21a644cd7dbea834e886596fb32f1.jpg?x-oss-process=style/small_thumbnail"></image>
+        </navigator>
+         </view>
+
+  <view class="flex-wrap" >
+        <navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
+          <image class="pic" lazy-load="{{true}}" mode="aspectFill" src="{{article.imgs[0].img}}"></image>
+          <view class="imageCount"><image class='currentarticle' src="/static/img/Art_like.png">{{key+1}}</image><view class='likeNum'>{{article.likes}}</view></view>
+          <view class="containner">
+            <view class="ellipsis ">{{ article.content}}</view>
+            <view class="head-containner">
+              <navigator url="/pages/published/index?user_id={{ article.user_id }}" hover-class="navigator-hover">
+                <div class="head-flex">
+                  <image mode="widthFix" lazy-load="{{true}}" class="head-image" src="{{ article.avatar?article.avatar:'http://img.beimei2.com/static/program/img/default/avatar.png' }}"></image>
+                  
+                  <view class="head-box">
+                    <view class="nickname">{{ article.nickname }}</view>
+                    <view class="price">$ {{ article.price }}</view>
+                  </view>
+                </div>
+              </navigator>
+            </view>
+          </view>
+        </navigator>
+        </view>
+
+
+
+      </block>
+      <block  wx:if="{{recentId!=10&&recentId!=6}}">
+      <view class="flex-wrap " style="{{recentId==6||recentId==10?'height:583rpx !important;':''}}">
+        <navigator url="{{ '/pages/article/item?id=' + article.id }}" hover-class="navigator-hover">
+          <image class="pic" lazy-load="{{true}}" mode="aspectFill" src="{{article.imgs[0].img}}"></image>
+          <view class="imageCount"><image class='currentarticle' src="/static/img/Art_like.png">{{key+1}}</image><view class='likeNum'>{{article.likes}}</view></view>
+          <view class="containner">
+            <view class="ellipsis ">{{ article.content}}</view>
+            <view class="head-containner">
+              <navigator url="/pages/published/index?user_id={{ article.user_id }}" hover-class="navigator-hover">
+                <div class="head-flex">
+                  <image mode="widthFix" lazy-load="{{true}}" class="head-image" src="{{ article.avatar?article.avatar:'http://img.beimei2.com/static/program/img/default/avatar.png' }}"></image>
+                  
+                  <view class="head-box">
+                    <view class="nickname">{{ article.nickname }}</view>
+                    <view class="price">$ {{ article.price }}</view>
+                  </view>
+                </div>
+              </navigator>
+            </view>
+          </view>
+        </navigator>
+        </view>
       </block>
 
 
 
-    </view>
+   
   </block>
   <block>
     <!-- 学校入口 -->
@@ -67,7 +115,7 @@
             <view class="head-containner">
               <navigator url="/pages/published/index?user_id={{ article.user_id }}" hover-class="navigator-hover">
                 <div class="head-flex">
-                  <image mode="widthFix" lazy-load="{{true}}" class="head-image" src="{{ article.avatar }}"></image>
+                  <image mode="widthFix" lazy-load="{{true}}" class="head-image" src="{{ article.avatar?article.avatar:'http://img.beimei2.com/static/program/img/default/avatar.png' }}"></image>
                   <view class="head-box">
                     <view class="nickname">{{ article.nickname }}</view>
                     <view class="price">$ {{ article.price }}</view>

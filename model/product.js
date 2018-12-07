@@ -11,13 +11,12 @@ export class Product
 		//
         return new Promise(function(resole, reject){
         	//
-	        let url = Config.host + '/exchange';
+          let url = Config.apiRoot + '/v1/exchanges';
 	        let options = {
 	        	url: url,
 	        	method: 'POST',
 	        	data: data,
 	        }
-	       
 	       	//
 	        Http.executeWithLogin(options).then(function(result){
 	        	resole(result);
@@ -34,9 +33,10 @@ export class Product
 		//
         return new Promise(function(resole, reject){
         	//
-	        let url = Config.host + '/exchange';
+          let url = Config.apiRoot + '/v1/exchanges/My';
 	        let options = {
 	        	url: url,
+            
 	        }
 	       
 	       	//
@@ -55,9 +55,11 @@ export class Product
 		//
         return new Promise(function(resole, reject){
         	//
-	        let url = Config.host + '/product';
+          let url = Config.apiRoot + '/v1/productsNew';
 	        let options = {
 	        	url: url,
+            method: 'GET',
+            data: parameters,
 	        }
 	       
 	       	//
@@ -76,7 +78,7 @@ export class Product
 		//
         return new Promise(function(resole, reject){
         	//
-	        let url = Config.host + '/product/' + id;
+          let url = Config.apiRoot + '/v1/productsNew/' + id;
 	        let options = {
 	        	url: url,
 	        }
