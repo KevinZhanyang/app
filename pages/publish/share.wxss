@@ -13,7 +13,7 @@
 .popup_container{
   width: 750rpx;
   background-color: #fff;
-  height: 1159rpx;
+  height: 1230rpx;
   position:fixed;
   bottom:0rpx;
   left:0rpx;
@@ -53,29 +53,37 @@ word-wrap: nowrap;
 }
 
 .popup_middle{
-    width: 690rpx;
+    width: 486rpx;
     height: 705rpx;
     /* margin-left: 10rpx; */
     /* margin-top:40rpx; */
 
 }
-.popup_middle_2{
-    width: 690rpx;
+
+.popup_middle .v{
+    width: 486rpx;
     height: 705rpx;
-    margin-left: 10rpx;
-    margin-top:20rpx;
+    /* margin-left: 10rpx; */
+    /* margin-top:40rpx; */
+
+}
+
+.popup_middle_2{
+  
 }
 
 
 .popup_middle_2 image{
-    width:750rpx;height:1089rpx
+   
 }
+
+
 
 .popup_bottom {		
 	position:fixed;
 	right:0rpx;
 	left:25rpx;
-	bottom:10rpx;
+	bottom:3rpx;
 	padding:15rpx 30rpx;
   width: 700rpx;
 

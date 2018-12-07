@@ -70,13 +70,15 @@
       </view>
 
     </view>
-    <view class="{{canvasIndex==0?'popup_middle':'popup_middle_2'}}">
+    <view class='popup_middle'>
 
       <block wx:if="{{canvasIndex==0}}">
-       <canvas canvas-id="shareCanvas" style="width:750rpx;height:1089rpx" />
+       <view class='v'>
+       <canvas canvas-id="shareCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px" />
+       </view>
       </block>
       <block wx:else>
-       <image mode='aspectFit' src='{{qrcodeUrl}}'></image>
+       <image mode='widthFix' style="width:{{canvasWidth}}px;height:{{canvasHeight}}px"  src='{{qrcodeUrl}}'></image>
       </block>
     </view>
     <view class='popup_bottom' bindtap='saveImg'>

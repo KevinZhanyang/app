@@ -2,11 +2,11 @@
   "pages": [
       "pages/publish/share",
     "pages/index/index",
+   
     "pages/exchange/newPage",
     "pages/exchange/index",
     "pages/exchange/rule",
     "pages/buy/share",
-
     "pages/activity/index",
     "pages/task/index",
     "pages/school/index",

@@ -220,7 +220,6 @@ Page({
   },
   //移动选点
   moveToLocation: function () {
-
     var that = this;
     wx.chooseLocation({
       success: function (res) {
@@ -232,7 +231,6 @@ Page({
         that.setData({
           address: res.address
         });
-
       },
       fail: function (err) {
         wx.getSetting({

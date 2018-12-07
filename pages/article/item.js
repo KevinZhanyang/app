@@ -95,7 +95,8 @@ Page({
       articleId = options.id;
     }
     if(options.scene){
-      articleId = encodeURIComponent(options.scene)
+      articleId = encodeURIComponent(options.scene),
+        options.id = articleId
     }
 
     let that = this;

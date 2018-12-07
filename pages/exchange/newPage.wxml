@@ -1,0 +1,207 @@
+<!-- TOP START -->
+<view class="rainbow">
+  <image mode="widthFix" src="https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-11-18 19:24:16/154254025682749.png"></image>
+</view>
+<!-- TOP END -->
+
+<!-- buttun -->
+
+<view class='top_buttun'>
+  <view class='top_buttun_left'>
+    <view class="myscore" size="default" formType="submit" bindtap='gotask'>
+      <view class="myscore_txt">积分: <text>{{user.scores}}</text></view>
+      <view class="myscore_image">
+        <image src='/static/img/return.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='top_buttun_right'>
+    <view class="exRule" size="default" bindtap='gorule'>兑换规则</view>
+  </view>
+</view>
+
+
+
+
+
+<!-- PRODUCT START -->
+<view style='padding-bottom:20rpx;' wx:if="{{products1&&products2}}">
+  <view class='products'>
+    <view class='type'>
+    </view>
+    <view class="product">
+      <!-- sp -->
+      <view class="img">
+        <image mode='aspectFit' src="{{products1[0].img}}"></image>
+      </view>
+      <!-- sp -->
+      <view class="content">
+        <view class="name_num">{{products1[0].name}}*{{products1[0].getNum}}</view>
+        <view class="name">{{products1[0].name}}</view>
+        <view class="price">
+          <text>{{products1[0].price}}</text> 积分</view>
+        <view class="exchange">
+          <view class="_navigator" wx:if="{{ products1[0].limit > 0 && user.scores >= products1[0].price }}" bindtap='goExe' data-id="{{products1[0].id}}">兑换</view>
+          <view class="navigator" wx:if="{{ products1[0].limit <= 0 || user.scores < products1[0].price }}">兑换</view>
+        </view>
+      </view>
+      <!-- sp -->
+    </view>
+
+    <view class='product_scroll'>
+      <scroll-view scroll-x class='scrow'>
+        <view style='display:inline-block;' wx:for="{{ products1 }}" wx:for-index="key" wx:for-item="product" wx:key="id">
+          <view class="item" wx:if="{{key!=0}}">
+            <view class='item_img'>
+              <image mode='aspectFit' src="{{product.img}}"></image>
+            </view>
+            <view class='item_name_num'>{{product.name}}*{{product.getNum}}</view>
+            <view class='item_price'>
+              <text>{{product.price}}</text> 积分</view>
+            <view class='item_exchange'>
+               <view class="_navigator" wx:if="{{ product.limit > 0 && user.scores >= product.price }}" bindtap='goExe' data-id="{{product.id}}">兑换</view>
+              <view class="navigator" wx:if="{{ product.limit <= 0 || user.scores < product.price }}">兑换</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- PRODUCT START -->
+  <view class='products'>
+    <view class='type1'>
+    </view>
+    <view class="product">
+      <!-- sp -->
+      <view class="img">
+        <image mode='aspectFit' src="{{products2[0].img}}"></image>
+      </view>
+      <!-- sp -->
+      <view class="content">
+        <view class="name_num">{{products2[0].name}}*{{products2[0].getNum}}</view>
+        <view class="name">{{products2[0].name}}</view>
+        <view class="price">
+          <text>{{products2[0].price}}</text> 积分</view>
+        <view class="exchange">
+          <view class="_navigator" wx:if="{{ products2[0].limit > 0 && user.scores >= products2[0].price }}" bindtap='goExe' data-id="{{products2[0].id}}">兑换</view>
+          <view class="navigator" wx:if="{{ products2[0].limit <= 0 || user.scores < products2[0].price }}">兑换</view>
+        </view>
+      </view>
+      <!-- sp -->
+    </view>
+
+    <view class='product_scroll'>
+      <scroll-view scroll-x class='scrow'>
+        <view style='display:inline-block;' wx:for="{{products2}}" wx:for-index="key" wx:for-item="product" wx:key="id">
+          <view class="item" wx:if="{{key!=0}}">
+            <view class='item_img'>
+              <image mode='aspectFit' src="{{product.img}}"></image>
+            </view>
+            <view class='item_name_num'>{{product.name}}*{{product.getNum}}</view>
+            <view class='item_price'>
+              <text>{{product.price}}</text> 积分</view>
+            <view class='item_exchange'>
+              <view class="_navigator" wx:if="{{ product.limit > 0 && user.scores >= product.price }}" bindtap='goExe' data-id="{{product.id}}">兑换</view>
+              <view class="navigator" wx:if="{{ product.limit <= 0 || user.scores < product.price }}">兑换</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- PRODUCT START -->
+  <view class='products'>
+    <view class='type2'>
+    </view>
+    <view class="product">
+      <!-- sp -->
+      <view class="img">
+        <image mode='aspectFit' src="{{products3[0].img}}"></image>
+      </view>
+      <!-- sp -->
+      <view class="content">
+        <view class="name_num">{{products3[0].name}}*{{products3[0].getNum}}</view>
+        <view class="name">{{products1[0].name}}</view>
+        <view class="price">
+          <text>{{products3[0].price}}</text> 积分</view>
+        <view class="exchange">
+          <view class="_navigator" wx:if="{{ products3[0].limit > 0 && user.scores >= products3[0].price }}" bindtap='goExe' data-id="{{products3[0].id}}">兑换</view>
+          <view class="navigator" wx:if="{{ products3[0].limit <= 0 || user.scores < products3[0].price }}">兑换</view>
+        </view>
+      </view>
+      <!-- sp -->
+    </view>
+
+    <view class='product_scroll'>
+      <scroll-view scroll-x class='scrow'>
+        <view style='display:inline-block;' wx:for="{{products3}}" wx:for-index="key" wx:for-item="product" wx:key="id">
+          <view class="item" wx:if="{{key!=0}}">
+            <view class='item_img'>
+              <image mode='aspectFit' src="{{product.img}}"></image>
+            </view>
+            <view class='item_name_num'>{{product.name}}*{{product.getNum}}</view>
+            <view class='item_price'>
+              <text>{{product.price}}</text> 积分</view>
+            <view class='item_exchange'>
+              <view class="_navigator" wx:if="{{ product.limit > 0 && user.scores >= product.price }}" bindtap='goExe' data-id="{{product.id}}">兑换</view>
+              <view class="navigator" wx:if="{{ product.limit <= 0 || user.scores < product.price }}">兑换</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+
+  <!-- PRODUCT START -->
+  <view class='products'>
+    <view class='type3'>
+    </view>
+    <view class="product">
+      <!-- sp -->
+      <view class="img">
+        <image mode='aspectFit' src="{{products4[0].img}}"></image>
+      </view>
+      <!-- sp -->
+      <view class="content">
+        <view class="name_num">{{products4[0].name}}*{{products4[0].getNum}}</view>
+        <view class="name">{{products4[0].name}}</view>
+        <view class="price">
+          <text>{{products4[0].price}}</text> 积分</view>
+        <view class="exchange">
+          <view class="_navigator" wx:if="{{ products4[0].limit > 0 && user.scores >= products4[0].price }}" bindtap='goExe' data-id="{{product4[0].id}}">兑换</view>
+          <view class="navigator" wx:if="{{ products4[0].limit <= 0 || user.scores < products4[0].price }}">兑换</view>
+        </view>
+      </view>
+      <!-- sp -->
+    </view>
+
+    <view class='product_scroll'>
+      <scroll-view scroll-x class='scrow'>
+        <view style='display:inline-block;' wx:for="{{products4}}" wx:for-index="key" wx:for-item="product" wx:key="id">
+          <view class="item" wx:if="{{key!=0}}">
+            <view class='item_img'>
+              <image mode='aspectFit' src="{{product.img}}"></image>
+            </view>
+            <view class='item_name_num'>{{product.name}}*{{product.getNum}}</view>
+            <view class='item_price'>
+              <text>{{product.price}}</text> 积分</view>
+            <view class='item_exchange'>
+              <view class="_navigator" wx:if="{{ product.limit > 0 && user.scores >= product.price }}" bindtap='goExe' data-id="{{product.id}}">兑换</view>
+              <view class="navigator" wx:if="{{ product.limit <= 0 || user.scores < product.price }}">兑换</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+</view>
+<!-- PRODUCT EDNT -->
+
+
+<view class='lodding' wx:else>
+    <image src='/static/img/awl.gif'></image>
+</view>

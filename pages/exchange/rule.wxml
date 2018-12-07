@@ -1,0 +1,24 @@
+<!-- BOTTOM START -->
+<view class="red-packet">
+	<image src="http://static.124115.com/static/program/img/exchange/red_packet.png?v1"></image>
+</view>
+<view class="explain">
+	<view class="title">Q1, 如何获取积分</view>
+	<view class="content">1. 点赞获得2积分</view>
+	<view class="content">2. 拆分红包获得1积分</view>
+	<view class="content">3. 留言获得2积分</view>
+	<view class="content">4. 分享获得10积分</view>
+	<view class="content">5. 浏览获得2积分</view>
+	<view class="content">6. 绑定手机获取20积分</view>
+	<view class="content">7. 发布信息获得20积分</view>
+</view>
+<view class="explain">
+	<view class="title">Q2,兑换流程</view>
+	<view class="content">1. 点击【立即兑换】按钮输入"收货地址"</view>
+	<view class="content">2. 兑换成功后工作人员将在3天后处理</view>
+	<view class="content">3. 添加小助手微信号:+18058869518了解更多详情</view>
+</view>
+<!-- BOTTOM END -->
+<!-- DECLARATION START -->
+<view class="declaration">一切解释权归北美二手社所有</view>
+<!-- DECLARATION END -->

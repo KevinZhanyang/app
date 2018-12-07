@@ -80,7 +80,9 @@ Page({
       success: function(res) {
         that.setData({
           windowW: res.windowWidth,
-          windowH: res.windowHeight
+          windowH: res.windowHeight,
+          canvasWidth: res.screenWidth / 750 * 750,
+          canvasHeight: res.screenWidth / 750 * 1089
         })
       },
     })
@@ -97,6 +99,15 @@ Page({
       success: function(res) {
         that.setData({
           bgCover: res.tempFilePath
+        })
+        wx.getImageInfo({
+          src: res.tempFilePath,
+          success: function (resImg) {
+            that.setData({
+              coverwidth: resImg.width,
+              coverheight: resImg.height,
+            })
+          }
         })
         wx.downloadFile({
           url: 'https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-12-02 18:39:45/1543747185095110.png', //注意公众平台是否配置相应的域名
@@ -136,27 +147,74 @@ Page({
   },
   canvasdraw: function(canvas) {
     var that = this;
-    var windowW = that.data.windowW;
-    var windowH = that.data.windowH;
+    var windowW = that.data.canvasWidth;
+    var windowH = that.data.canvasHeight;
     var canvasimgbg = that.data.canvasimgbg;
     var canvasimg1 = that.data.bgCover;
     var qrcode = that.data.qrcode;
-    canvas.drawImage(canvasimgbg, 0, 0, that.data.canvasWidth, that.data.canvasHeight * 0.9);
-    canvas.drawImage(canvasimg1, 25, 80, that.data.canvasWidth * 0.86, that.data.canvasHeight * 0.46);
-    canvas.drawImage(qrcode, that.data.canvasWidth * 0.68, that.data.canvasHeight * 0.69, that.data.qrcodewidth * 0.22, that.data.qrcodeheight * 0.21,430,430);
+   
+    canvas.drawImage(canvasimgbg, 0, 0, that.data.canvasWidth, that.data.canvasHeight);
+
+    canvas.save()
+    canvas.shadowOffsetX = 5;
+
+    canvas.shadowOffsetY = 5;
+
+    canvas.shadowBlur = 5;
+
+    canvas.shadowColor = "rgba(0,0,0,0.5)";
+    var w = that.data.coverwidth
+    var h = that.data.coverheight
+    var dw = 300 / w          //canvas与图片的宽高比
+    var dh = 200 / h
+    that.setData({
+      dw:dw,
+      dh:dh
+    })
+    var ratio
+    // 裁剪图片中间部分
+    if (w > 300 && h > 200 || w < 300 && h < 200) {
+      if (dw > dh) {
+        console.log(1)
+        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 30, 100, 313, 250)
+      } else {
+        console.log(2)
+        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 30, 100, 313, 250)
+      }
+    }
+    // 拉伸图片
+    else {
+      if (w < 300) {
+        console.log(3)
+        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 30, 100, 313, 250)
+      } else {
+        console.log(4)
+        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 30, 100, 313, 250)
+      }
+    }
+
+    canvas.restore()
+    // canvas.drawImage(canvasimg1, 0, that.data.coverheight / 4, that.data.coverwidth, that.data.coverheight / 2, 25, 80, that.data.coverwidth * 0.87, that.data.coverheight * 0.5);
+
+
+
+
+    canvas.drawImage(qrcode, that.data.canvasWidth * 0.60, that.data.canvasHeight * 0.71, that.data.canvasWidth * 0.35, that.data.canvasHeight * 0.24);
     if (this.data.article.content.length>10){
       canvas.setFontSize(24)
-      canvas.fillText(this.data.article.content.slice(0, 10), 25, that.data.canvasHeight * 0.73)
+      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.75)
       canvas.setFontSize(24)
-      canvas.fillText(this.data.article.content.slice(10, 20), 25, that.data.canvasHeight * 0.73 + 30)
+      canvas.fillText(this.data.article.content.slice(7,14), 30, that.data.canvasHeight * 0.75 + 30)
     }else{
       canvas.setFontSize(24)
-      canvas.fillText(this.data.article.content.slice(0, 10), 25, that.data.canvasHeight * 0.76)
+      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.77)
     }
   
     canvas.draw(false, setTimeout(function() {
+    
       that.daochu();
-    }, 1000));
+    }, 500));
+  
 
   },
   daochu: function() {
@@ -165,17 +223,23 @@ Page({
     var windowW = that.data.windowW;
     var windowH = that.data.windowH;
     wx.canvasToTempFilePath({
-      x: 0,
-      y: 0,
-      width: windowW,
-      height: windowH,
-      destWidth: windowW,
-      destHeight: windowH * 0.8,
-      fileType:'jpg',
-      quality:1,
+      // x: 0,
+      // y: 0,
+      // width: windowW,
+      // height: windowH,
+      // destWidth: windowW,
+      // destHeight: 1089/2,
+      // fileType:'jpg',
+      // quality:1,
       canvasId: 'shareCanvas',
       success: function(res) {
         console.log(res)
+        // that.setData(
+        //   {
+        //     canvasIndex: 1,
+        //     qrcodeUrl: res.tempFilePath
+        //   }
+        // )
         that.upload(res);
       },
       error: function(err) {
@@ -194,7 +258,9 @@ Page({
     uploadImage(res.tempFilePath, 'cbb/' + nowTime + '/',
       function(result) {
         console.log("======上传成功图片地址为：", result);
+       
         that.setData({
+          // canvasIndex:1,
           qrcodeUrl: result,
         })
         var updateData = {
@@ -221,7 +287,7 @@ Page({
       wx.showLoading({})
       that.data.setInter = setInterval(          function () {
         if (that.data.qrcode) {
-          wx.hideLoading()
+          wx.hideLoading();
           clearInterval(that.data.setInter)
           var canvas = wx.createCanvasContext('shareCanvas');
           that.canvasdraw(canvas);
