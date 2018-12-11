@@ -120,7 +120,7 @@ button[class="rule"]::after {
   display: flex;
   padding-top: 15rpx;
   padding-bottom:32rpx;
-  background:RGBA(251, 226, 81, 1);
+  background:#fff;
   padding-right:30rpx;
 
 }
@@ -131,7 +131,7 @@ button[class="rule"]::after {
   padding-right: 75rpx;
   position: relative;
   border-radius: 30rpx;
-  background-color: #f5f5f5;
+  background-color: #efeff4;
   border: 1px solid #f5f5f5;
   width: 461rpx;
   margin-left: 40rpx;

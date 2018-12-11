@@ -59,10 +59,10 @@ Page({
     wx.hideLoading();
   },
 
-  getSystemInfo: function() {
+  getSystemInfo: function () {
     var t = this;
     wx.getSystemInfo({
-      success: function(a) {
+      success: function (a) {
         //screenWidth,screenHeight屏幕宽高
         var i = a.screenWidth / 750;
         t.setData({
@@ -74,10 +74,10 @@ Page({
     })
   },
 
-  sys: function() {
+  sys: function () {
     var that = this;
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         that.setData({
           windowW: res.windowWidth,
           windowH: res.windowHeight,
@@ -87,16 +87,16 @@ Page({
       },
     })
   },
-  bginfo: function() {
+  bginfo: function () {
     var that = this;
 
   },
 
-  bgCover: function(bgCover) {
+  bgCover: function (bgCover) {
     var that = this;
     wx.downloadFile({
       url: bgCover.replace("http://img.beimei2.com", "https://used-america.oss-us-west-1.aliyuncs.com"), //注意公众平台是否配置相应的域名
-      success: function(res) {
+      success: function (res) {
         that.setData({
           bgCover: res.tempFilePath
         })
@@ -111,7 +111,7 @@ Page({
         })
         wx.downloadFile({
           url: 'https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-12-02 18:39:45/1543747185095110.png', //注意公众平台是否配置相应的域名
-          success: function(res) {
+          success: function (res) {
             that.setData({
               canvasimgbg: res.tempFilePath
             })
@@ -121,11 +121,11 @@ Page({
       }
     })
   },
-  bgQrcode: function() {
+  bgQrcode: function () {
     var that = this;
     wx.downloadFile({
       url: this.data.article.share_img, //注意公众平台是否配置相应的域名
-      success: function(res) {
+      success: function (res) {
         that.setData({
           qrcode: res.tempFilePath
         })
@@ -145,79 +145,127 @@ Page({
       }
     })
   },
-  canvasdraw: function(canvas) {
+  /**
+  * 
+  * @param {CanvasContext} ctx canvas上下文
+  * @param {number} x 圆角矩形选区的左上角 x坐标
+  * @param {number} y 圆角矩形选区的左上角 y坐标
+  * @param {number} w 圆角矩形选区的宽度
+  * @param {number} h 圆角矩形选区的高度
+  * @param {number} r 圆角的半径
+  */
+ roundRect(ctx, x, y, w, h, r) {
+    // 开始绘制
+    ctx.beginPath()
+  // 因为边缘描边存在锯齿，最好指定使用 transparent 填充
+  // 这里是使用 fill 还是 stroke都可以，二选一即可
+  // ctx.setFillStyle('transparent')
+  // ctx.setStrokeStyle('transparent')
+  // 左上角
+  ctx.arc(x + r, y + r, r, Math.PI, Math.PI * 1.5)
+
+  // border-top
+  ctx.moveTo(x + r, y)
+  ctx.lineTo(x + w - r, y)
+  ctx.lineTo(x + w, y + r)
+  // 右上角
+  ctx.arc(x + w - r, y + r, r, Math.PI * 1.5, Math.PI * 2)
+
+  // border-right
+  ctx.lineTo(x + w, y + h - r)
+  ctx.lineTo(x + w - r, y + h)
+  // 右下角
+  ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * 0.5)
+
+  // border-bottom
+  ctx.lineTo(x + r, y + h)
+  ctx.lineTo(x, y + h - r)
+  // 左下角
+  ctx.arc(x + r, y + h - r, r, Math.PI * 0.5, Math.PI)
+
+  // border-left
+  ctx.lineTo(x, y + r)
+  ctx.lineTo(x + r, y)
+
+  // 这里是使用 fill 还是 stroke都可以，二选一即可，但是需要与上面对应
+  // ctx.fill()
+  ctx.stroke()
+  ctx.closePath()
+  // 剪切
+  ctx.clip()
+  },
+  canvasdraw: function (canvas) {
     var that = this;
     var windowW = that.data.canvasWidth;
     var windowH = that.data.canvasHeight;
     var canvasimgbg = that.data.canvasimgbg;
     var canvasimg1 = that.data.bgCover;
     var qrcode = that.data.qrcode;
-   
+
     canvas.drawImage(canvasimgbg, 0, 0, that.data.canvasWidth, that.data.canvasHeight);
 
     canvas.save()
-    canvas.shadowOffsetX = 5;
+    //设置图片阴影
+    canvas.shadowOffsetX = -5;
 
     canvas.shadowOffsetY = 5;
 
     canvas.shadowBlur = 5;
 
-    canvas.shadowColor = "rgba(0,0,0,0.5)";
+    canvas.shadowColor = "rgba(0,0,0,1)";
+    
+
     var w = that.data.coverwidth
     var h = that.data.coverheight
     var dw = 300 / w          //canvas与图片的宽高比
     var dh = 200 / h
     that.setData({
-      dw:dw,
-      dh:dh
+      dw: dw,
+      dh: dh
     })
     var ratio
     // 裁剪图片中间部分
     if (w > 300 && h > 200 || w < 300 && h < 200) {
       if (dw > dh) {
         console.log(1)
-        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 30, 100, 313, 250)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.82,10);
+        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.9)
       } else {
         console.log(2)
-        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 30, 100, 313, 250)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.82, 10);
+        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.9)
       }
     }
     // 拉伸图片
     else {
       if (w < 300) {
         console.log(3)
-        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 30, 100, 313, 250)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81, 10);
+        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81)
       } else {
         console.log(4)
-        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 30, 100, 313, 250)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81, 10);
+        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81)
       }
     }
-
     canvas.restore()
     // canvas.drawImage(canvasimg1, 0, that.data.coverheight / 4, that.data.coverwidth, that.data.coverheight / 2, 25, 80, that.data.coverwidth * 0.87, that.data.coverheight * 0.5);
-
-
-
-
-    canvas.drawImage(qrcode, that.data.canvasWidth * 0.60, that.data.canvasHeight * 0.71, that.data.canvasWidth * 0.35, that.data.canvasHeight * 0.24);
-    if (this.data.article.content.length>10){
+    canvas.drawImage(qrcode, that.data.canvasWidth * 0.62, that.data.canvasHeight * 0.75, that.data.canvasWidth * 0.315, that.data.canvasHeight * 0.215);
+    if (this.data.article.content.length > 10) {
       canvas.setFontSize(24)
-      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.75)
+      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.8)
       canvas.setFontSize(24)
-      canvas.fillText(this.data.article.content.slice(7,14), 30, that.data.canvasHeight * 0.75 + 30)
-    }else{
+      canvas.fillText(this.data.article.content.slice(7, 14), 30, that.data.canvasHeight * 0.8 + 30)
+    } else {
       canvas.setFontSize(24)
-      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.77)
+      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.8)
     }
-  
-    canvas.draw(false, setTimeout(function() {
-    
+    canvas.draw(false, setTimeout(function () {
+
       that.daochu();
     }, 500));
-  
-
   },
-  daochu: function() {
+  daochu: function () {
     console.log('a');
     var that = this;
     var windowW = that.data.windowW;
@@ -232,17 +280,11 @@ Page({
       // fileType:'jpg',
       // quality:1,
       canvasId: 'shareCanvas',
-      success: function(res) {
+      success: function (res) {
         console.log(res)
-        // that.setData(
-        //   {
-        //     canvasIndex: 1,
-        //     qrcodeUrl: res.tempFilePath
-        //   }
-        // )
         that.upload(res);
       },
-      error: function(err) {
+      error: function (err) {
         console.log(err)
       }
     })
@@ -256,9 +298,9 @@ Page({
     //你的域名下的/cbb文件下的/当前年月日文件下的/图片.png
     //图片路径可自行修改
     uploadImage(res.tempFilePath, 'cbb/' + nowTime + '/',
-      function(result) {
+      function (result) {
         console.log("======上传成功图片地址为：", result);
-       
+
         that.setData({
           // canvasIndex:1,
           qrcodeUrl: result,
@@ -268,10 +310,10 @@ Page({
           id: that.data.article.id
         }
         // console.log(articleId)
-        Article.update(updateData).then(res => {})
+        Article.update(updateData).then(res => { })
         wx.hideLoading();
       },
-      function(result) {
+      function (result) {
         console.log("======上传失败======", result);
         wx.hideLoading()
       }
@@ -285,7 +327,7 @@ Page({
     })
     if (that.data.canvasIndex == 0) {
       wx.showLoading({})
-      that.data.setInter = setInterval(          function () {
+      that.data.setInter = setInterval(          function () {
         if (that.data.qrcode) {
           wx.hideLoading();
           clearInterval(that.data.setInter)
@@ -298,13 +340,13 @@ Page({
   saveImg() {
     let that = this;
     wx.showLoading({})
-    if (!that.data.qrcodeUrl) { 
-      that.data.setInter = setInterval(          function () {
+    if (!that.data.qrcodeUrl) {
+      that.data.setInter = setInterval(          function () {
         if (that.data.qrcodeUrl) {
           clearInterval(that.data.setInter)
           wx.getImageInfo({
             src: that.data.qrcodeUrl,
-            success: function(result) {
+            success: function (result) {
               console.log("--------->>>>>>>");
               console.log(result);
               wx.hideLoading()
@@ -335,7 +377,7 @@ Page({
                 }
               })
             },
-            error: function(err) {
+            error: function (err) {
               console.log("--------->>>>>>>");
               console.log(err);
               wx.hideLoading()
@@ -344,13 +386,13 @@ Page({
 
 
 
-        }          
+        }
       }    , 2000);
 
     } else {
       wx.getImageInfo({
         src: that.data.qrcodeUrl,
-        success: function(result) {
+        success: function (result) {
           console.log("--------->>>>>>>");
           console.log(result);
           wx.hideLoading()
@@ -379,7 +421,7 @@ Page({
             }
           })
         },
-        error: function(err) {
+        error: function (err) {
           console.log("--------->>>>>>>");
           console.log(err);
           wx.hideLoading()
@@ -405,8 +447,8 @@ Page({
       }
     });
 
-    //2243
-    let articleId = 2243;
+    //
+    let articleId = options.id;
     // // 下载新闻信息
     // this.loadArticle(articleId);
     this.loadShare(articleId);
@@ -482,7 +524,7 @@ Page({
       path: path,
       imageUrl: imageUrl,
       // complete start 
-      complete: function(res) {
+      complete: function (res) {
         //
         if (res.errMsg == 'shareAppMessage:ok') {
           console.log('share success');

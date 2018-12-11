@@ -42,4 +42,22 @@ export class Banner {
 
   }
 
+  static getBannerItem(id) {
+    let url = Config.apiRoot + '/v1/homeBanner/'+id;
+    let options = {
+      url: url,
+      method: 'GET',
+
+    }
+    return new Promise(function (resolve, reject) {
+      //
+      Http.executeWithLogin(options).then(function (result) {
+        resolve(result);
+      }, function (error) {
+        reject(error);
+      });
+    });
+
+  }
+
 }

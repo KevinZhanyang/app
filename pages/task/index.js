@@ -165,7 +165,7 @@ getCurrentUser(){
         }
         */
     //
-    let title = "为留学生打造的专业二手交易平台";
+    let title = "百万留学生的闲置好物分享平台";
     let path = "/pages/index/index";
     let imageUrl =
       "http://static.124115.com/static/program/img/index/share.png";
@@ -269,7 +269,7 @@ getCurrentUser(){
     if (res.from ==='button'){
 
       //
-      let title = "为留学生打造的专业二手交易平台";
+      let title = "百万留学生的闲置好物分享平台";
       let path = "/pages/index/index";
       let imageUrl =
         "http://static.124115.com/static/program/img/index/share.png";

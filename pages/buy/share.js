@@ -145,6 +145,55 @@ Page({
       }
     })
   },
+  /**
+  * 
+  * @param {CanvasContext} ctx canvas上下文
+  * @param {number} x 圆角矩形选区的左上角 x坐标
+  * @param {number} y 圆角矩形选区的左上角 y坐标
+  * @param {number} w 圆角矩形选区的宽度
+  * @param {number} h 圆角矩形选区的高度
+  * @param {number} r 圆角的半径
+  */
+  roundRect(ctx, x, y, w, h, r) {
+    // 开始绘制
+    ctx.beginPath()
+    // 因为边缘描边存在锯齿，最好指定使用 transparent 填充
+    // 这里是使用 fill 还是 stroke都可以，二选一即可
+    // ctx.setFillStyle('transparent')
+    // ctx.setStrokeStyle('transparent')
+    // 左上角
+    ctx.arc(x + r, y + r, r, Math.PI, Math.PI * 1.5)
+
+    // border-top
+    ctx.moveTo(x + r, y)
+    ctx.lineTo(x + w - r, y)
+    ctx.lineTo(x + w, y + r)
+    // 右上角
+    ctx.arc(x + w - r, y + r, r, Math.PI * 1.5, Math.PI * 2)
+
+    // border-right
+    ctx.lineTo(x + w, y + h - r)
+    ctx.lineTo(x + w - r, y + h)
+    // 右下角
+    ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * 0.5)
+
+    // border-bottom
+    ctx.lineTo(x + r, y + h)
+    ctx.lineTo(x, y + h - r)
+    // 左下角
+    ctx.arc(x + r, y + h - r, r, Math.PI * 0.5, Math.PI)
+
+    // border-left
+    ctx.lineTo(x, y + r)
+    ctx.lineTo(x + r, y)
+
+    // 这里是使用 fill 还是 stroke都可以，二选一即可，但是需要与上面对应
+    // ctx.fill()
+    ctx.stroke()
+    ctx.closePath()
+    // 剪切
+    ctx.clip()
+  },
   canvasdraw: function (canvas) {
     var that = this;
     var windowW = that.data.canvasWidth;
@@ -154,6 +203,17 @@ Page({
     var qrcode = that.data.qrcode;
 
     canvas.drawImage(canvasimgbg, 0, 0, that.data.canvasWidth, that.data.canvasHeight);
+
+    canvas.save()
+    //设置图片阴影
+    canvas.shadowOffsetX = -5;
+
+    canvas.shadowOffsetY = 5;
+
+    canvas.shadowBlur = 5;
+
+    canvas.shadowColor = "rgba(0,0,0,1)";
+
 
     var w = that.data.coverwidth
     var h = that.data.coverheight
@@ -168,47 +228,42 @@ Page({
     if (w > 300 && h > 200 || w < 300 && h < 200) {
       if (dw > dh) {
         console.log(1)
-        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 30, 100, 313, 250)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.82, 10);
+        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.9)
       } else {
         console.log(2)
-        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 30, 100, 313, 250)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.82, 10);
+        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.9)
       }
     }
     // 拉伸图片
     else {
       if (w < 300) {
         console.log(3)
-        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 30, 100, 313, 250)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81, 10);
+        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81)
       } else {
         console.log(4)
-        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 30, 100, 313, 250)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81, 10);
+        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81)
       }
     }
-
-
+    canvas.restore()
     // canvas.drawImage(canvasimg1, 0, that.data.coverheight / 4, that.data.coverwidth, that.data.coverheight / 2, 25, 80, that.data.coverwidth * 0.87, that.data.coverheight * 0.5);
-
-
-
-
-
-    canvas.drawImage(qrcode, that.data.canvasWidth * 0.60, that.data.canvasHeight * 0.71, that.data.canvasWidth * 0.35, that.data.canvasHeight * 0.24);
+    canvas.drawImage(qrcode, that.data.canvasWidth * 0.62, that.data.canvasHeight * 0.75, that.data.canvasWidth * 0.315, that.data.canvasHeight * 0.215);
     if (this.data.article.content.length > 10) {
       canvas.setFontSize(24)
-      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.75)
+      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.8)
       canvas.setFontSize(24)
-      canvas.fillText(this.data.article.content.slice(7, 14), 30, that.data.canvasHeight * 0.75 + 30)
+      canvas.fillText(this.data.article.content.slice(7, 14), 30, that.data.canvasHeight * 0.8 + 30)
     } else {
       canvas.setFontSize(24)
-      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.77)
+      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.8)
     }
-
     canvas.draw(false, setTimeout(function () {
 
       that.daochu();
     }, 500));
-
-
   },
   daochu: function () {
     console.log('a');
@@ -227,12 +282,6 @@ Page({
       canvasId: 'shareCanvas',
       success: function (res) {
         console.log(res)
-        // that.setData(
-        //   {
-        //     canvasIndex: 1,
-        //     qrcodeUrl: res.tempFilePath
-        //   }
-        // )
         that.upload(res);
       },
       error: function (err) {
@@ -278,7 +327,7 @@ Page({
     })
     if (that.data.canvasIndex == 0) {
       wx.showLoading({})
-      that.data.setInter = setInterval(          function  () {
+      that.data.setInter = setInterval(          function () {
         if (that.data.qrcode) {
           wx.hideLoading();
           clearInterval(that.data.setInter)
@@ -292,7 +341,7 @@ Page({
     let that = this;
     wx.showLoading({})
     if (!that.data.qrcodeUrl) {
-      that.data.setInter = setInterval(          function  () {
+      that.data.setInter = setInterval(          function () {
         if (that.data.qrcodeUrl) {
           clearInterval(that.data.setInter)
           wx.getImageInfo({
@@ -398,7 +447,7 @@ Page({
       }
     });
 
-    //2243
+    //
     let articleId = options.id;
     // // 下载新闻信息
     // this.loadArticle(articleId);

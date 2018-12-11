@@ -11,7 +11,7 @@ display:flex;
 	padding-bottom:15rpx;
 	padding-left:15rpx;
 	padding-right:15rpx;
-	background-color:#fed406;
+	background-color:#fff;
 
 
 }
@@ -23,7 +23,7 @@ display:flex;
 	padding-right:15rpx;
 	border-radius:35rpx;
 	font-size:26rpx;
-	background-color:#F5F5F5;
+	background-color:#efeff4;
 	color:#2b2b2b;
 
 

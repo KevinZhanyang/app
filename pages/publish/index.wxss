@@ -508,7 +508,8 @@ margin-bottom:45rpx;
 
 .list .list-item {
  
- padding:10rpx 30rpx;
+ padding:10rpx 20rpx;
+
   font-size: 30rpx;
   background: #fff;
   color: #b5b8be;

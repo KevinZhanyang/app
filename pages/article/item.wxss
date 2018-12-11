@@ -1,4 +1,3 @@
-/* packet */
 .popup {
   width: 100%;
   height: 100%;
@@ -13,16 +12,14 @@
 .popup_container{
   width: 750rpx;
   background-color: #fff;
-  height: 1000rpx;
+  height: 1230rpx;
   position:fixed;
   bottom:0rpx;
   left:0rpx;
-  padding:42rpx 22rpx;
+  padding:22rpx 0rpx;
   display:flex;
   flex-direction:column;
   z-index:999;
- 
-
 }
 
 .popup_top{
@@ -55,23 +52,42 @@ word-wrap: nowrap;
 }
 
 .popup_middle{
-    width: 486rpx;
-    height: 705rpx;
-    margin-left: 110rpx;
-    margin-top:40rpx;
+    width:750rpx;
+    height: 1068rpx;
+    /* margin-left: 10rpx; */
+    /* margin-top:40rpx; */
 
 }
-
 .popup_middle image{
+   width:750rpx;
+    height: 1068rpx;
+
+}
+
+.popup_middle .v{
     width: 486rpx;
     height: 705rpx;
+    /* margin-left: 10rpx; */
+    /* margin-top:40rpx; */
+
 }
+
+.popup_middle_2{
+  
+}
+
+
+.popup_middle_2 image{
+   
+}
+
+
 
 .popup_bottom {		
 	position:fixed;
 	right:0rpx;
 	left:25rpx;
-	bottom:50rpx;
+	bottom:3rpx;
 	padding:15rpx 30rpx;
   width: 700rpx;
 
@@ -80,6 +96,7 @@ word-wrap: nowrap;
 	background-color:#fed406;
 	color:white;
 }
+
 
 
 ._packets .attr {

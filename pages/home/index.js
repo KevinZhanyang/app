@@ -152,7 +152,7 @@ Page({
 
         //
         return {
-            title: '为留学生打造的专业二手交易平台',
+            title: '百万留学生的闲置好物分享平台',
             path: '/pages/index/index',
             imageUrl: 'http://static.124115.com/static/program/img/index/share.png',
         };

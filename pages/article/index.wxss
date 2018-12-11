@@ -21,7 +21,7 @@ background-color: #f5f5f5 !important;
 	padding-bottom:15rpx;
 	padding-left:15rpx;
 	padding-right:15rpx;
-	background-color:#fed406;
+	/* background-color:#fed406; */
 }
 
 .search .keyword {

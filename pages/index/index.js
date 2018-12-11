@@ -112,11 +112,15 @@ Page({
   goWebView(event){
 
     let url = event.currentTarget.dataset.url;
+    let img = event.currentTarget.dataset.img;
+    let title = event.currentTarget.dataset.title;
+    let id = event.currentTarget.dataset.id;
     console.log("ssssssss");
     console.log(url);
+    console.log(img);
     wx.setStorageSync("webUrl", url)
     wx.navigateTo({
-      url: '/pages/webView/index?webUrl='+url,
+      url: '/pages/webView/index?img=' + img + '&title=' + title+'&id='+id,
     })
 
   }
@@ -509,7 +513,7 @@ Page({
         */
 
     //
-    let title = "为留学生打造的专业二手交易平台";
+    let title = "百万留学生的闲置好物分享平台";
     let path = "/pages/index/index";
     let imageUrl =
       "http://static.124115.com/static/program/img/index/share.png";

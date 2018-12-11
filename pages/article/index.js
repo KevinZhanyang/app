@@ -27,7 +27,7 @@ Page({
     provinceKey: 0,
 
     /* article */
-    page: 0,
+    page: -1,
     articleLoadStatus: -1,
     articles: []
   },
@@ -221,24 +221,36 @@ Page({
   search(event) {
     let detail = event.detail;
     let value = detail.value;
-    
+    let sortId = this.data.sortKey;
+    let categoryId = this.data.categories[this.data.categoryKey].id;
+    let provinceId = this.data.provinces[this.data.provinceKey].id;
     this.setData({
       keyword: value,
       page: 1,
+      
       articles: [],
       articleLoadStatus: 1 // 设置状态条开始搜索
     });
     let item = {
       keyword: value,
-      page: 1
+      page: 1,
+      category_id: categoryId,
+      categoryId: categoryId,
+      province_id: provinceId,
+      provinceId: provinceId,
+      sortId: sortId,
     };
+    console.log("56546546")
     this.searchArticle(item);
   },
   searchByKeyword(event) {
+    console.log("ashuirdasnsdjkhkh")
     let currentTarget = event.currentTarget;
     let dataset = currentTarget.dataset;
     let value = dataset.keyword;
-
+    let sortId = this.data.sortKey;
+    let categoryId = this.data.categories[this.data.categoryKey].id;
+    let provinceId = this.data.provinces[this.data.provinceKey].id;
     //
     this.setData({
       keyword: value,
@@ -247,8 +259,14 @@ Page({
     });
     let item = {
       keyword: value,
+      category_id: categoryId,
+      categoryId: categoryId,
+      province_id: provinceId,
+      provinceId: provinceId,
       page: this.data.page + 1,
+      sortId: sortId,
     };
+    console.log(item)
     this.searchArticle(item);
   },
   /* KEYWORDS END */
@@ -284,6 +302,7 @@ Page({
     this.loadArticle({
       keyword: this.data.keyword ? this.data.keyword:"",
       sort_id: sortId,
+      sortId: sortId,
       category_id: categoryId,
       province_id: provinceId,
       categoryId: categoryId,

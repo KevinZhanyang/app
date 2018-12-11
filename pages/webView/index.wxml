@@ -1,2 +1,9 @@
 <!--pages/webView/index.wxml-->
-<web-view src="{{webUrl}}"> </web-view>
+ <view>
+      <button  bindtap='jumpApp' data-appid="wxe5a82cc8d15bd3de">
+          <image   class="edit" mode="aspectFit" src='/static/img/pms.gif'/>
+      </button>
+  </view>
+  <view style="z-index: 1;">
+  <web-view style="z-index: 1;"  src="{{webUrl}}"> </web-view>
+  </view>

@@ -17,10 +17,11 @@ import {
 import {
   User
 } from '../../model/user';
-
+var uploadImage = require('../../utils/uploadFile.js');
 //
 const appInstance = getApp();
-
+//
+var util = require("../../utils/util.js");
 //
 Page({
   data: {
@@ -82,11 +83,401 @@ Page({
     });
   },
 
+
+  getSystemInfo: function () {
+    var t = this;
+    wx.getSystemInfo({
+      success: function (a) {
+        //screenWidth,screenHeight屏幕宽高
+        var i = a.screenWidth / 750;
+        t.setData({
+          screenWidth: i,
+          canvasWidth: a.screenWidth / 750 * 750,
+          canvasHeight: a.screenWidth / 750 * 1089
+        })
+      }
+    })
+  },
+
+  sys: function () {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          windowW: res.windowWidth,
+          windowH: res.windowHeight,
+          canvasWidth: res.screenWidth / 750 * 750,
+          canvasHeight: res.screenWidth / 750 * 1089
+        })
+      },
+    })
+  },
+  bginfo: function () {
+    var that = this;
+
+  },
+
+  bgCover: function (bgCover) {
+    var that = this;
+    wx.downloadFile({
+      url: bgCover.replace("http://img.beimei2.com", "https://used-america.oss-us-west-1.aliyuncs.com"), //注意公众平台是否配置相应的域名
+      success: function (res) {
+        that.setData({
+          bgCover: res.tempFilePath
+        })
+        wx.getImageInfo({
+          src: res.tempFilePath,
+          success: function (resImg) {
+            that.setData({
+              coverwidth: resImg.width,
+              coverheight: resImg.height,
+            })
+          }
+        })
+        wx.downloadFile({
+          url: 'https://used-america.oss-us-west-1.aliyuncs.com/cbb/2018-12-02 18:39:45/1543747185095110.png', //注意公众平台是否配置相应的域名
+          success: function (res) {
+            that.setData({
+              canvasimgbg: res.tempFilePath
+            })
+            that.bgQrcode(that.data.qrcodeUpdate);
+          }
+        })
+      }
+    })
+  },
+  bgQrcode: function (qrcodeUpdate) {
+    var that = this;
+    wx.downloadFile({
+      url: qrcodeUpdate, //注意公众平台是否配置相应的域名
+      success: function (res) {
+        that.setData({
+          qrcode: res.tempFilePath
+        })
+
+        wx.getImageInfo({
+          src: res.tempFilePath,
+          success: function (resImg) {
+            that.setData({
+              qrcodewidth: resImg.width,
+              qrcodeheight: resImg.height,
+            })
+          }
+        })
+      }
+    })
+  },
+  /**
+  * 
+  * @param {CanvasContext} ctx canvas上下文
+  * @param {number} x 圆角矩形选区的左上角 x坐标
+  * @param {number} y 圆角矩形选区的左上角 y坐标
+  * @param {number} w 圆角矩形选区的宽度
+  * @param {number} h 圆角矩形选区的高度
+  * @param {number} r 圆角的半径
+  */
+  roundRect(ctx, x, y, w, h, r) {
+    // 开始绘制
+    ctx.beginPath()
+    // 因为边缘描边存在锯齿，最好指定使用 transparent 填充
+    // 这里是使用 fill 还是 stroke都可以，二选一即可
+    // ctx.setFillStyle('transparent')
+    // ctx.setStrokeStyle('transparent')
+    // 左上角
+    ctx.arc(x + r, y + r, r, Math.PI, Math.PI * 1.5)
+
+    // border-top
+    ctx.moveTo(x + r, y)
+    ctx.lineTo(x + w - r, y)
+    ctx.lineTo(x + w, y + r)
+    // 右上角
+    ctx.arc(x + w - r, y + r, r, Math.PI * 1.5, Math.PI * 2)
+
+    // border-right
+    ctx.lineTo(x + w, y + h - r)
+    ctx.lineTo(x + w - r, y + h)
+    // 右下角
+    ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * 0.5)
+
+    // border-bottom
+    ctx.lineTo(x + r, y + h)
+    ctx.lineTo(x, y + h - r)
+    // 左下角
+    ctx.arc(x + r, y + h - r, r, Math.PI * 0.5, Math.PI)
+
+    // border-left
+    ctx.lineTo(x, y + r)
+    ctx.lineTo(x + r, y)
+
+    // 这里是使用 fill 还是 stroke都可以，二选一即可，但是需要与上面对应
+    // ctx.fill()
+    ctx.stroke()
+    ctx.closePath()
+    // 剪切
+    ctx.clip()
+  },
+  canvasdraw: function (canvas) {
+    var that = this;
+    var windowW = that.data.canvasWidth;
+    var windowH = that.data.canvasHeight;
+    var canvasimgbg = that.data.canvasimgbg;
+    var canvasimg1 = that.data.bgCover;
+    var qrcode = that.data.qrcode;
+
+    canvas.drawImage(canvasimgbg, 0, 0, that.data.canvasWidth, that.data.canvasHeight);
+
+    canvas.save()
+    //设置图片阴影
+    canvas.shadowOffsetX = -5;
+
+    canvas.shadowOffsetY = 5;
+
+    canvas.shadowBlur = 5;
+
+    canvas.shadowColor = "rgba(0,0,0,1)";
+
+
+    var w = that.data.coverwidth
+    var h = that.data.coverheight
+    var dw = 300 / w          //canvas与图片的宽高比
+    var dh = 200 / h
+    that.setData({
+      dw: dw,
+      dh: dh
+    })
+    var ratio
+    // 裁剪图片中间部分
+    if (w > 300 && h > 200 || w < 300 && h < 200) {
+      if (dw > dh) {
+        console.log(1)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.82, 10);
+        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.9)
+      } else {
+        console.log(2)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.82, 10);
+        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.9)
+      }
+    }
+    // 拉伸图片
+    else {
+      if (w < 300) {
+        console.log(3)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81, 10);
+        canvas.drawImage(canvasimg1, 0, (h - 200 / dw) / 2, w, 200 / dw, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81)
+      } else {
+        console.log(4)
+        this.roundRect(canvas, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81, 10);
+        canvas.drawImage(canvasimg1, (w - 300 / dh) / 2, 0, 300 / dh, h, 38, 80, that.data.canvasWidth * 0.81, that.data.canvasWidth * 0.81)
+      }
+    }
+    canvas.restore()
+    // canvas.drawImage(canvasimg1, 0, that.data.coverheight / 4, that.data.coverwidth, that.data.coverheight / 2, 25, 80, that.data.coverwidth * 0.87, that.data.coverheight * 0.5);
+    canvas.drawImage(qrcode, that.data.canvasWidth * 0.62, that.data.canvasHeight * 0.75, that.data.canvasWidth * 0.315, that.data.canvasHeight * 0.215);
+    if (this.data.article.content.length > 10) {
+      canvas.setFontSize(24)
+      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.8)
+      canvas.setFontSize(24)
+      canvas.fillText(this.data.article.content.slice(7, 14), 30, that.data.canvasHeight * 0.8 + 30)
+    } else {
+      canvas.setFontSize(24)
+      canvas.fillText(this.data.article.content.slice(0, 7), 30, that.data.canvasHeight * 0.8)
+    }
+    canvas.draw(false, setTimeout(function () {
+
+      that.daochu();
+    }, 500));
+  },
+  daochu: function () {
+    console.log('a');
+    var that = this;
+    var windowW = that.data.windowW;
+    var windowH = that.data.windowH;
+    wx.canvasToTempFilePath({
+      // x: 0,
+      // y: 0,
+      // width: windowW,
+      // height: windowH,
+      // destWidth: windowW,
+      // destHeight: 1089/2,
+      // fileType:'jpg',
+      // quality:1,
+      canvasId: 'shareCanvas',
+      success: function (res) {
+        console.log(res)
+        that.upload(res);
+      },
+      error: function (err) {
+        console.log(err)
+      }
+    })
+  },
+  upload(res) {
+    console.log('b');
+    let that = this;
+    var nowTime = util.formatTime(new Date());
+    console.log(res.tempFilePath);
+    //上传图片
+    //你的域名下的/cbb文件下的/当前年月日文件下的/图片.png
+    //图片路径可自行修改
+    uploadImage(res.tempFilePath, 'cbb/' + nowTime + '/',
+      function (result) {
+        console.log("======上传成功图片地址为：", result);
+
+        that.setData({
+          // canvasIndex:1,
+          qrcodeUrl: result,
+        })
+        var updateData = {
+          circleImg: result.replace("https://used-america.oss-us-west-1.aliyuncs.com/", ""),
+          id: that.data.article.id
+        }
+        // console.log(articleId)
+        Article.update(updateData).then(res => { })
+        wx.hideLoading();
+      },
+      function (result) {
+        console.log("======上传失败======", result);
+        wx.hideLoading()
+      }
+    )
+  },
+
+  showCircleImg() {
+    let that = this;
+    this.setData({
+      showShareMoment: true,
+    })
+    if (that.data.canvasIndex == 0) {
+      wx.showLoading({ title: "图片加载中"})
+      that.data.setInter = setInterval(          function  () {
+        if (that.data.qrcode) {
+          wx.hideLoading();
+          clearInterval(that.data.setInter)
+          var canvas = wx.createCanvasContext('shareCanvas');
+          that.canvasdraw(canvas);
+        }
+      }    , 2000);
+    }else{
+      if (!that.data.qrcodeUrl){
+        wx.showLoading({
+          title: "图片加载中"
+        })
+        that.data.setInter = setInterval(          function () {
+          if (that.data.qrcodeUrl) {
+            wx.hideLoading();
+            clearInterval(that.data.setInter)
+          }
+        }    , 1000);
+      }
+   
+
+    }
+  },
+  saveImg() {
+    let that = this;
+    wx.showLoading({})
+    if (!that.data.qrcodeUrl) {
+      that.data.setInter = setInterval(          function  () {
+        if (that.data.qrcodeUrl) {
+          clearInterval(that.data.setInter)
+          wx.getImageInfo({
+            src: that.data.qrcodeUrl,
+            success: function (result) {
+              console.log("--------->>>>>>>");
+              console.log(result);
+              wx.hideLoading()
+              wx.saveImageToPhotosAlbum({
+                filePath: result.path,
+                success: (res) => {
+                  that.setData({
+                    showShareMoment: false,
+                    canvasIndex: 1
+                  })
+                  wx.showLoading({
+                    title: '保存成功',
+                    duration: 1500,
+                  })
+                },
+                fail: (err) => {
+                  console.log(err)
+                  that.setData({
+                    showShareMoment: false,
+                    canvasIndex: 1
+                  })
+                  wx.showLoading({
+                    title: '保存失败',
+                    duration: 1500,
+
+                  })
+
+                }
+              })
+            },
+            error: function (err) {
+              console.log("--------->>>>>>>");
+              console.log(err);
+              wx.hideLoading()
+            }
+          })
+
+
+
+        }
+      }    , 2000);
+
+    } else {
+      wx.getImageInfo({
+        src: that.data.qrcodeUrl,
+        success: function (result) {
+          console.log("--------->>>>>>>");
+          console.log(result);
+          wx.hideLoading()
+          wx.saveImageToPhotosAlbum({
+            filePath: result.path,
+            success: (res) => {
+              that.setData({
+                showShareMoment: false,
+                canvasIndex: 1
+              })
+              wx.showLoading({
+                title: '保存成功',
+                duration: 1500,
+              })
+            },
+            fail: (err) => {
+              console.log(err)
+              that.setData({
+                showShareMoment: false,
+                canvasIndex: 1
+              })
+              wx.showLoading({
+                title: '保存失败',
+                duration: 1500,
+              })
+            }
+          })
+        },
+        error: function (err) {
+          console.log("--------->>>>>>>");
+          console.log(err);
+          wx.hideLoading()
+        }
+      })
+    }
+  },
+  loadShare(articleId) {
+    let that = this;
+    Share.getShareImg(articleId)
+      .then(res => {
+        let result = res.data;
+        that.setData({
+          shareImg: result.thumbnail,
+        });
+        that.bgCover(result.thumbnail);
+      });
+  },
   //
   onLoad(options) {
-
-
-
     let articleId = 0;
     if (options.q != undefined) {
       let url = 'https://used.124115.com/regular?id=125';
@@ -98,24 +489,19 @@ Page({
       articleId = encodeURIComponent(options.scene),
         options.id = articleId
     }
-
     let that = this;
-
     User.getCurrentUser().then(res => {
       that.setData({
         currentUser: res.data.body
       })
-
-
     })
-    // 下载分享给用户|群的照片
-    that.loadCircleImg(articleId);
+   
     /*
     wx.showLoading({
         title: 'loading',
         mask: true,
     });
-        
+   
     */
     // 如果没有授权地理位置，转到授权
     User.testAuthorizeUserLocation()
@@ -128,7 +514,6 @@ Page({
             that.setData({
               showShadow: false,
             });
-
             //
             that.loadArticle(articleId);
 
@@ -283,8 +668,44 @@ Page({
 
             }
 
+            if (article.circle_img.indexOf("circle") >= 0 || !article.circle_img){
+              //开始画图
+              console.log("---------------------<<<<<<<<<<<<<<1111");
+              if (article.share_img){
+                that.setData({
+                  canvasIndex: 0,
+                  qrcodeUpdate: article.share_img
+                })
+                console.log();
+                that.sys();
+                that.bginfo();
+                that.getSystemInfo();
+                that.loadShare(articleId)
+              }else{
+                //更新二维码；并返回二维码连接；
+                var updateData = {
+                  id: article.id
+                }
+                Article.update(updateData).then(res => {
+                  let qrcodeUrl = res.data.body;
+                  that.setData({
+                    canvasIndex: 0,
+                    qrcodeUpdate: qrcodeUrl
+                  })
+                  console.log(qrcodeUrl);
+                  console.log(that.data);
+                  that.sys();
+                  that.bginfo();
+                  that.getSystemInfo();
+                  that.loadShare(articleId)
+                })
+              }
+              
+             }else{
+              // 下载分享给用户|群的照片
+              that.loadCircleImg(articleId);
 
-
+             }
             //
             that.setData({
               article: article,
@@ -299,7 +720,6 @@ Page({
                 duration: 2000
               });
             }
-
             that.loadArticleImg(articleId);
             //
           });
@@ -362,13 +782,6 @@ Page({
         })
       }
     })
-
-
-
-
-
-
-
 
   },
   // preview image
@@ -790,24 +1203,15 @@ Page({
           wechat: result.user.wechat
         }
 
-
-
-
-
         let combination = {
           message: message,
           user: user
         }
 
-
-
-
-
-
         let messages = that.data.messages;
         console.log(messages);
         // 添加主留言
-        if (combination.parent_id == 0) {
+        if (combination.message.parent_id == 0) {
           messages.unshift({
             parent: combination
           });
@@ -918,7 +1322,6 @@ Page({
         break;
       }
     }
-
     //
     return {
       title: title,
@@ -1006,6 +1409,7 @@ Page({
   preventTouchMove() {
     this.setData({
       showShareMoment: false,
+      canvasIndex:1
     })
     wx.hideLoading();
   },
@@ -1013,7 +1417,7 @@ Page({
 
     this.setData({
       showShareMoment: false,
-
+      canvasIndex: 1
     })
     wx.hideLoading();
   },
@@ -1067,7 +1471,7 @@ Page({
             console.log("--------->>>>>>>");
             console.log(result);
             that.setData({
-              showShareMomentUrlPath: result.path
+              qrcodeUrl: result.path
             })
           },
           error: function(err) {
@@ -1075,131 +1479,8 @@ Page({
             console.log(err);
           }
         })
-
-
       });
     //
-  },
-  // 下载朋友圈照片
-  loadShare(articleId) {
-    //
-    let that = this;
-    Share.getShareImg(articleId)
-      .then(res => {
-        let result = res.data;
-        that.setData({
-          shareImg: result.thumbnail,
-        });
-      });
-  },
-  showCircleImg() {
-    let that = this;
-    this.setData({
-      showShareMoment: true,
-      showShareMomentUrl: that.data.circleImg
-    })
-
-
-    if (!that.data.showShareMomentUrlPath) {
-      wx.showLoading({
-        title: '图片生成中',
-      })
-      var times = 0
-      var i = setInterval(function() {
-        times++
-        if (that.data.showShareMomentUrlPath) {
-
-          clearInterval(i)
-          wx.hideLoading();
-        } else {
-
-        }
-      }, 1000)
-
-    }
-
-    //
-    // let url = this.data.circleImg;
-    // if (url.length == 0) {
-    //   setTimeout(function () {
-    //     //
-    //     if (ulr.length == 0) {
-    //       //
-    //       setTimeout(function () {
-    //         //
-    //         wx.previewImage({
-    //           urls: [
-    //             url,
-    //           ],
-    //         });
-    //         //
-    //       }, 500);
-    //       //
-    //     } else {
-    //       //
-    //       wx.previewImage({
-    //         urls: [
-    //           url,
-    //         ],
-    //       });
-    //       //
-    //     }
-    //     //
-    //   }, 500);
-    // } else {
-    //   wx.previewImage({
-    //     urls: [
-    //       url,
-    //     ],
-    //   });
-    // }
-
-  },
-  saveImg() {
-    let that = this;
-    if (!that.data.showShareMomentUrlPath) {
-      wx.showLoading({
-        title: '稍后点击',
-        duration: 1500
-      })
-      wx.getImageInfo({
-        src: that.data.circleImg.replace("http://img.beimei2.com", "https://used-america.oss-us-west-1.aliyuncs.com"),
-        success: function(result) {
-          console.log("--------->>>>>>>");
-          console.log(result);
-          that.setData({
-            showShareMomentUrlPath: result.path
-          })
-        },
-        error: function(err) {
-          console.log("--------->>>>>>>");
-          console.log(err);
-        }
-      })
-      return false;
-    }
-    wx.saveImageToPhotosAlbum({
-      filePath: that.data.showShareMomentUrlPath,
-      success: (res) => {
-        that.setData({
-          showShareMoment: false
-        })
-        wx.showLoading({
-          title: '保存成功',
-          duration: 1500
-        })
-
-      },
-      fail: (err) => {
-        console.log(err)
-        wx.showLoading({
-          title: '保存失败',
-          duration: 1500
-        })
-       
-      }
-    })
-
   }
   /* COPY WECHAT END */
 });
