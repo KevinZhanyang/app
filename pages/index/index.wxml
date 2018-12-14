@@ -38,7 +38,7 @@
   <block wx:for="{{ swipers }}" wx:for-index="index" wx:for-item="swiper" wx:key="id">
     <swiper-item class="carousel">
     <block wx:if="{{swiper.pubType==1}}">
-     <view bindtap='goWebView' data-url="{{ swiper.clickUrl}}"  data-id="{{ swiper.recId}}"  data-img="{{swiper.createTime}}" data-title="{{swiper.updateTime}}" hover-class="navigator-hover">
+     <view bindtap='goWebView' data-url="{{ swiper.clickUrl}}"  data-id="{{ swiper.recId}}"  data-img="{{swiper.createTime?swiper.createTime:1}}" data-title="{{swiper.updateTime}}" hover-class="navigator-hover">
         <image class="carousel-img" src="{{ swiper.imgUrl}}" />
       </view>
     </block>

@@ -17,42 +17,29 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let that = this;
-    if (!options.img){
-      that.goWebView(options.id);
-    }else{
-
-      Banner.getBannerItem(options.id).then(res => {
-        if (res.data.code == 200) {
-          that.setData({
-            banner: res.data.body,
-            webUrl: res.data.body.clickUrl,
-            show:true
+    Banner.getBannerItem(options.id).then(res => {
+      if (res.data.code == 200) {
+        that.setData({
+          banner: res.data.body,
+          webUrl: res.data.body.clickUrl
+        })
+        if (res.data.body.createTime){
+          wx.downloadFile({
+            url: res.data.body.createTime, //注意公众平台是否配置相应的域名
+            success: function (res) {
+              console.log("111111111")
+              console.log(res);
+              that.setData({
+                img: res.tempFilePath,
+              })
+            }, error: function (err) {
+              console.log("2222")
+              console.log(err);
+            }
           })
-          if (res.data.body.createTime) {
-            wx.downloadFile({
-              url: res.data.body.createTime, //注意公众平台是否配置相应的域名
-              success: function (res) {
-                console.log("111111111")
-                console.log(res);
-                that.setData({
-                  img: res.tempFilePath,
-                })
-              }, error: function (err) {
-                console.log("2222")
-                console.log(err);
-              }
-            })
-          }
-
         }
-      })
-    }
-
-  },
-
-  goWebView(banner) {
-    wx.navigateTo({
-      url: '/pages/wv/index?id=' + banner,
+     
+      }
     })
   },
   /**
@@ -66,15 +53,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.index){
-       wx.redirectTo({
-         url: '/pages/index/index',
-       })
-    }else{
-      this.setData({
-        index:1
-      })
-    }
 
   },
 
@@ -115,7 +93,7 @@ Page({
       return {
         title: this.data.banner.updateTime ? this.data.banner.updateTime : '北美二手社',
         imageUrl: this.data.img,
-        path: 'pages/webView/index?id=' + this.data.banner.recId,
+        path: 'pages/webView/index?id='+this.data.banner.recId,
         // complete start
         complete: function (res) {
           if (res.errMsg == "shareAppMessage:ok") {
@@ -130,7 +108,7 @@ Page({
         }
         // complate end
       };
-    }else{
+    } else {
       return {
         title: this.data.banner.updateTime ? this.data.banner.updateTime : '北美二手社',
         path: 'pages/webView/index?id=' + this.data.banner.recId,
@@ -150,5 +128,9 @@ Page({
       };
     }
 
+
+
+
+    //
   },
 })
