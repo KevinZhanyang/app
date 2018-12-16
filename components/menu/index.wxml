@@ -21,7 +21,7 @@
       
     </view>
     <!-- </navigator> -->
-    <navigator open-type="redirect" url="/pages/home/index" hover-class="none">
+    <navigator open-type="redirect" url="/pages/messageCenter/index" hover-class="none">
         <view class="menu">
             <view class="icon">
                 <image src="{{ number == 2 ? '/static/img/my.png' : '/static/img/person.png' }}"></image>

@@ -1,8 +1,9 @@
 {
   "pages": [
      
-       
     "pages/index/index",
+    "pages/messageCenter/index",
+    "pages/messageCenter/chat",
     "pages/publish/share",
     "pages/exchange/newPage",
     "pages/exchange/index",

@@ -1,0 +1,5 @@
+{"usingComponents": {
+    "vant-popup": "/components/popup/index",
+    "menu": "/components/menu/index"
+    
+  }}

@@ -1,0 +1,31 @@
+<view class="message-sec">
+    <view class="child rel" wx:for="{{contactList}}" wx:key="{{index}}" wx:if="{{contactList.length > 0}}" bindtap='linkChat'
+      data-id="{{item.friendId}}" data-name="{{item.friendName}}" data-image="{{item.friendAvatarUrl}}">
+        <image class="abs br-10" wx:if="{{item.friendAvatarUrl == ''}}" src="{{noData}}"></image>
+        <image class="abs br-10" wx:if="{{item.friendAvatarUrl != ''}}" src="{{item.friendAvatarUrl}}"></image>
+        <em class="abs" >{{item.friendName}}</em>
+        <view class="content">
+            <view class="flex">
+                <view class="flex100-5 tr">{{item.msgTime}}</view>
+            </view>
+            <view class="text ellipsis" wx:if="{{item.unreadMsgCount == 0}}">{{item.msg}}</view>
+            <view class="text ellipsis" wx:if="{{item.unreadMsgCount > 0}}">[{{item.unreadMsgCount}}条] {{item.msg}}</view>
+        </view>
+    </view>
+</view>
+
+<!-- 消息列表为空的视图 -->
+<!-- MENU START -->
+<menu number="2" bind:show="showModal" back="{{back}}" notify="{{ systemNotify }}"></menu>
+<vant-popup custom-class="out-pop" z-index="98" position="bottom" show="{{modal}}" bind:close="onCloseModal" bindtap='preventTouchMove'>
+  <view class="pop-box">
+    <view class="left-btn" bindtap='goPublish'>
+      <image src="/static/img/sale.png" mode="widthFix" />
+      <label>我要出售</label>
+    </view>
+    <view class="right-btn" bindtap='goBuy'>
+      <image src="/static/img/buy.png" mode="widthFix" />
+      <label>我要求购</label>
+    </view>
+  </view>
+</vant-popup>

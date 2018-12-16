@@ -1,0 +1,125 @@
+<scroll-view scroll-into-view="{{toView}}" style="height: {{scroll_height}}px;" upper-threshold="100" scroll-y="true" enable-back-to-top="true" class="message-list">
+  <!-- 每一行 -->
+  <view class="row" wx:for="{{messages}}" wx:key="" id="row_{{index}}">
+    <!-- 日期 -->
+    <view class="chat-time" wx:if="{{item.msgTime != ''}}">{{item.msgTime}}</view>
+    <!-- 头像与内容文本 -->
+    <view class="body" style="flex-flow: {{item.myself == 0 ? 'row' : 'row-reverse'}}">
+      <view class="avatar-container">
+        <image class="avatar" src="{{item.avatarUrl}}" />
+      </view>
+      <!-- 画对话框 -->
+
+      <block wx:if="{{item.msgType=='text'||!item.msgType}}">
+        <view class="triangle" style="{{item.myself == 1 ? 'right: 140rpx; background: #7ECB4B' : 'left: 140rpx;'}}"></view>
+        <view class="content" style="{{item.myself == 1 ? 'background: #7ECB4B' : ''}}">
+          <view>{{item.msgText}}</view>
+        </view>
+      </block>
+      <block wx:if="{{item.msgType=='custom'}}">
+        <block wx:if="{{item.msgText.ext=='pic'}}">
+          <view class="chat-item flex-wrap {{item.myself == 1 ? 'house' : 'other'}}" bindtap='preView' data-src='{{item.msgText.data}}'>
+            <view class='content ' style="width:520rpx;">
+              <image class='img' style="width:100%;" mode="scaleToFill" src="{{item.msgText.data}}"></image>
+            </view>
+          </view>
+        </block>
+        <block wx:if="{{item.msgText.ext=='sound'}}">
+
+          <block wx:if="{{item.myself==1}}">
+           <view class="">
+            <view bindtap="paly" class="play-file" data-src="{{item.msgText.data}}">
+              <time>{{time}}"</time>
+              <block wx:if="{{!playing}}">
+                <image mode="aspectFit" src="/static/img/play-recoder.png" class="play-image" />
+              </block>
+              <block wx:else>
+                <image mode="aspectFit" src="/static/img/do-recoder.gif" class="play-image" />
+              </block>
+            </view>
+          </view>
+          </block>
+          <block wx:else>
+           <view class="">
+            <view bindtap="paly" class="play-file" data-src="{{item.msgText.data}}">
+              <block wx:if="{{!playing}}">
+                <image  mode="aspectFit" src="/static/img/play-recoder.png" class="play-image reverse" />
+              </block>
+              <block wx:else>
+                <image mode="aspectFit" src="/static/img/do-recoder.gif" class="play-image reverse" />
+              </block>
+               <time> {{time}}"</time>
+            </view>
+          </view>
+          </block>
+        </block>
+        <block wx:if="{{item.msgText.ext!='sound' && item.msgText.ext!='pic'}}">
+          <view class="chat-item flex-wrap {{item.myself == 1 ? 'house' : 'other'}}" bindtap='go' data-id='{{item.msgText.ext}}'>
+            <view class='content ' style="width:520rpx;">
+              <image class='img' style="width:100%;height:339rpx;" mode="scaleToFill" src="http://img.beimei2.com/article/17478/tmp_d296502f99bfa51797d458046b38755d.jpg?x-oss-process=style/thumbnail"></image>
+              <view class='info'>
+                <view class='info-name'>{{item.msgText.data}}</view>
+                <view class='flex-wrap'>
+                  <view class='flex-item3'>
+                    <view class='info-price'>{{item.msgText.desc}}</view>
+                  </view>
+                  <view class='flex-item'>
+                    <view class='info-type'>好物</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+
+
+      </block>
+
+
+    </view>
+  </view>
+</scroll-view>
+<view class="reply">
+
+  <!-- left start -->
+  <block wx:if="{{msgType!='sound'}}">
+    <view class='sound' bindtap='changeSendMsgType' data-type="sound">
+      <image src="/static/img/sound.png" />
+    </view>
+  </block>
+  <block wx:else>
+    <view class='sound' bindtap='changeSendMsgType' data-type="text">
+      <image src="/static/img/keyBoard.png" />
+    </view>
+  </block>
+  <!-- left end -->
+
+  <!-- middle start -->
+  <block wx:if="{{msgType!='sound'}}">
+    <view class="opration-area">
+      <input type="text" bindinput="getContent" value="{{content}}" />
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="opration-area">
+      <button bindtouchstart="start" bindtouchend="end" class="recorderbtn" hover-class='btnchange'>
+        <image mode="aspectFit" src="/static/img/recoder.png" class="slide-image" wx:if="{{!ishui}}" />
+        <image mode="aspectFit" src="/static/img/recoder1.png" class="slide-image" wx:else/> 按住录音
+      </button>
+    </view>
+  </block>
+  <!-- middle end -->
+
+  <!-- right start -->
+  <block wx:if="{{content}}">
+    <view class="send" bindtap='sendMsg'>发送</view>
+  </block>
+  <block wx:else>
+    <view class='addPic' bindtap='toSelectPic'>
+      <image src="/static/img/addPic.png" />
+    </view>
+  </block>
+  <!-- right end -->
+
+</view>
